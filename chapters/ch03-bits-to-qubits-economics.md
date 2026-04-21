@@ -39,12 +39,42 @@ This chapter gives you a framework for that math — one built to outlast any si
 
 ---
 
-## The Single Idea: Quantum Is a Different Cost Curve
+## The Single Idea: Quantum Is a Different Cost Curve — Not Just a Faster One
 
 ::::{admonition} The Core Claim
 :class: important
 Quantum computing does not replace classical computing on the same cost curve. It introduces a *new* cost curve that may intersect the classical curve for specific workloads at specific scales. Your job is not to predict *when* that intersection occurs — it is to build a model that tells you *whether* it occurs for *your* workloads.
 ::::
+
+Here is the most common and most costly misunderstanding in quantum computing: **quantum is not a faster classical computer.** It is not a turbocharged server. It does not do the same work faster. For certain classes of problems, it does *fundamentally different work* — and that distinction changes everything about how you evaluate it economically.
+
+### The Locksmith vs. the Brute-Force Safe-Cracker
+
+Imagine you need to open a safe and you don't have the combination. A classical computer's approach is brute force: try 0000, then 0001, then 0002 — through every possible combination in sequence (or in large parallel batches). Given enough time and enough machines, it will eventually succeed. This is how classical computers approach hard problems like factoring large numbers: try, check, try again.
+
+A quantum computer doesn't try harder. It uses a fundamentally different technique: *interference*. It puts the problem into superposition — all possible answers simultaneously — and then applies a sequence of operations that constructively reinforces the *correct* answer while destructively canceling the wrong ones. The mechanism is closer to a skilled locksmith listening to the tumblers than a cracker grinding through combinations.
+
+The locksmith doesn't do more work. The locksmith does *different work* — work that is mathematically structured in a way the brute-force approach cannot replicate.
+
+### The GPS Analogy
+
+Before GPS, finding your location required triangulating from landmarks: spot a water tower, spot a church steeple, find where the sight lines cross. It was sequential, imprecise, and slow. Faster triangulation equipment would give you a faster result — but it would still be triangulation.
+
+GPS doesn't do faster triangulation. It uses simultaneous signals from multiple satellites and the mathematics of trilateration to compute position in an entirely different way. The result isn't just quicker — it's more accurate and works in environments where triangulation is impossible.
+
+Quantum computing's relationship to classical computing is analogous. For specific problem classes — factoring, quantum simulation, certain optimization problems — it isn't doing the same calculation faster. It is using a different mathematical structure entirely, one that classical hardware cannot efficiently emulate.
+
+:::{note} Plain Language
+**What this means for your budget:** Classical hardware improvements (more cores, faster clock speeds, better parallelism) help with every classical problem. Quantum improvements only matter for problems where the *quantum approach* is applicable. The first question is never "how fast is the quantum computer?" — it is "does a quantum algorithm even exist for this problem?"
+:::
+
+### The Shape of the Cost Curve Itself Changes
+
+This isn't a semantic distinction — it has direct economic consequences. On a classical cost curve, throwing more hardware at a problem always helps (until you hit diminishing returns). On certain problems, a quantum computer doesn't just offer a cost advantage at scale — it offers *tractability* where classical hardware offers none.
+
+RSA encryption, for example, is secure because factoring the large primes underlying it would take classical computers millions of years. Not "very expensive" — impossible within any reasonable human timeframe. A sufficiently capable quantum computer running Shor's algorithm would factor those primes in hours. The cost curve doesn't just shift — it changes *shape*. Problems that were infinitely expensive on the classical curve become finite on the quantum curve.
+
+This is why "quantum is X times faster" framing misses the point for the workloads that matter most. For those workloads, the quantum advantage isn't speed — it's existence.
 
 Classical computing has been governed by a predictable economics for fifty years: more transistors, lower cost per operation, better performance per dollar. That predictability made capital planning tractable. You could forecast server refresh cycles, amortize hardware over three to five years, and benchmark performance against a commodity baseline.
 
@@ -139,6 +169,20 @@ Match archetype to workload maturity: **Free Tier** for exploration, **Pay-Per-S
 **Figure 3.4.** The true unit of quantum cost is not "per qubit" — it is cost per *useful result*, driven by four multiplicative factors.
 ::::
 
+### The Restaurant Analogy: Stop Counting Pots
+
+You would not judge a restaurant's quality or pricing by counting how many pots are in the kitchen. A restaurant with 200 pots might produce terrible food at high cost, while a restaurant with 20 pots might produce extraordinary meals at half the price. The pots are inputs. What matters is the finished meal: quality, cost, and whether you actually wanted it.
+
+The phrase "cost per qubit" is the restaurant-pot fallacy applied to quantum computing. It counts the inputs (physical qubits) while ignoring everything that determines whether those inputs produce useful output: how many qubits are doing real computation versus error correction, how deep the circuit is, how noisy the hardware, how long you waited in queue.
+
+When a vendor quotes you a "per qubit" price, ask the same question you'd ask a restaurant: *what does the finished meal cost?* In quantum terms: **what is the cost per useful result?**
+
+:::{note} Plain Language
+**The analogy's limit:** Unlike restaurant pots, qubit counts *do* set a hard ceiling on what problems you can run. You can't cook a meal for 100 if your kitchen only has 2 burners. Similarly, a 10-qubit machine can't run an algorithm that requires 50 logical qubits. So qubit count matters — but as a *constraint*, not as a *price unit*.
+:::
+
+### The True Cost Formula — Five Factors, All Multiplicative
+
 The most dangerous phrase in quantum vendor conversations is "cost per qubit." It is meaningless as a unit of economic analysis because it omits everything that actually determines what you pay for useful computation.
 
 The correct unit is **cost per useful result**, which decomposes as follows:
@@ -153,6 +197,40 @@ Where:
 - **Y** = Yield — fraction of shots producing a usable result
 
 Each of these factors is **multiplicative**. A circuit that requires 1,000 shots, runs at depth 100, operates on hardware with 0.1% gate error rate, and sits in a 4-hour queue does not cost "1,000 shots worth of money." It costs a number that reflects the compounding of all four factors — and that number can be orders of magnitude larger than the headline shot price suggests.
+
+### Walking Through the Formula — Plain Language
+
+**S — Shot Count: Why one run is never one run**
+
+Quantum measurement is probabilistic. Unlike a classical computer that returns the same answer every time, a quantum computer returns a sample from a probability distribution. If you run a circuit once, you get one bitstring — one random draw. To know the *likely* answer, you need to run it hundreds or thousands of times and look at the distribution.
+
+Think of it like polling. One poll respondent tells you nothing. A thousand respondents gives you a confidence interval. Shot count is the sample size of your quantum experiment. For typical variational algorithms, you need 1,000 to 10,000 shots per experiment for statistically meaningful results.
+
+**D — Circuit Depth: The longer you run, the more noise accumulates**
+
+Circuit depth is the number of sequential gate operations in your circuit. Think of it like a game of telephone: each person in the chain introduces a small chance of error, and the chain's reliability degrades with every additional person. A quantum circuit of depth 10 is like a 10-person chain. A circuit of depth 100 is like a 100-person chain — errors compound at every step.
+
+On today's hardware, circuits deeper than roughly 50–100 gates often produce outputs dominated by noise rather than signal. This is the primary reason why many theoretically powerful quantum algorithms can't be run on current hardware: they require circuits far deeper than the hardware can reliably execute.
+
+**ε — Error Rate: The tax on every gate**
+
+Every gate operation in a quantum circuit has a small probability of introducing an error. Current two-qubit gate error rates on leading hardware range from 0.1% to 1%. That sounds small — until you run a circuit with 100 gates, at which point you're compounding errors across every single operation.
+
+The practical consequence: a high-error-rate machine requires more shots to extract the same signal from noisy results, driving up both S and the error mitigation overhead. When hardware vendors announce improved error rates, this is the number that most directly reduces your cost per useful result.
+
+**Q — Queue Time: The cost that hides in plain sight**
+
+Queue time is the wait between submitting your circuit and its execution on hardware. On free tiers, this can be hours to days. On paid tiers, it ranges from minutes to hours. The reason it's a cost isn't just inconvenience — it's that your researchers are waiting, and their time is billable.
+
+As Exercise 3.2 will demonstrate, queue cost frequently dominates the entire cost equation, dwarfing QPU pricing. A 3-hour queue at a \$150/hr researcher rate costs \$450 — before you've paid for a single shot.
+
+**Y — Yield: Not all shots are useful shots**
+
+Even after you've collected your shots, not all of them contribute to a usable result. Noise, decoherence, and measurement errors can corrupt a shot entirely. Yield is the fraction of shots that produce a bitstring you can trust. A 70% yield means 30% of your shots were wasted — effectively increasing the true cost per useful result by 43%.
+
+:::{note} Plain Language
+**The punchline:** These five factors multiply together. Improving any single factor helps, but the biggest gains come from attacking the dominant factor. In most near-term quantum workloads, that dominant factor is queue time — not QPU pricing. Securing reserved access that eliminates queue time will often do more for your unit economics than negotiating a 50% discount on per-shot rates.
+:::
 
 :::{prf:definition} Shot
 :label: def-shot
@@ -181,9 +259,27 @@ The business implication: as hardware improves and error rates fall, the true co
 **Figure 3.5.** The physical-to-logical qubit iceberg. The headline qubit count a vendor advertises is the visible tip; the logical qubits available for your computation are the much smaller submerged portion.
 ::::
 
+### The Skyscraper Scaffolding Analogy
+
+When you build a skyscraper, the scaffolding surrounding the structure can use more steel than the building itself. Workers, safety systems, support beams — all of it exists to make construction of the real thing possible. The scaffolding is essential. It is not the building.
+
+Physical qubits are the scaffolding. The overwhelming majority of them are doing error correction — holding the fragile quantum state together, detecting errors, compensating for noise. The **logical qubits** are the finished floors: the reliable, usable computation space you actually get to work with.
+
 When a quantum hardware vendor announces "1,000 qubits," that number describes physical qubits — individual quantum systems that can hold a superposition state. It does not describe the number of *reliable* qubits available for your computation.
 
+### The Headline Trap — Why Qubit Counts Are Almost Always Misleading
+
 Physical qubits are fragile. They decohere (lose their quantum state) and suffer gate errors. To perform reliable computation, multiple physical qubits must be combined into a single **logical qubit** through quantum error correction. The overhead for this conversion is enormous by current standards.
+
+Here is the arithmetic that every board presentation gets wrong: for fault-tolerant computation using the Surface Code (the most widely researched error correction approach), you currently need roughly **1,000 physical qubits to produce one reliable logical qubit**.
+
+Read that again. A "1,000-qubit processor" — the kind that generates press releases and stock price movements — gives you approximately **one** logical qubit for fault-tolerant computation.
+
+This is not a rounding error or a conservative estimate. It is the state of the technology. The vendors know it. The researchers know it. The gap between headline qubit count and usable logical qubits is the single largest source of overhyped quantum claims in the market.
+
+:::{note} Plain Language
+**For your next vendor meeting:** When a vendor says "our 1,000-qubit processor," your response should be: "How many logical qubits does that deliver for fault-tolerant computation at your current physical error rate?" If they don't have an immediate answer, you've found the edge of their honest knowledge.
+:::
 
 | Error Correction Code | Physical Qubits per Logical Qubit | Notes |
 |---|---|---|
@@ -285,6 +381,22 @@ For early-stage quantum projects, budget the following allocation: 20% QPU time,
 ::::
 
 Quantum computing vendors, press releases, and even peer-reviewed papers use the terms *advantage*, *utility*, and *supremacy* interchangeably. They are not interchangeable. Each describes a different threshold, a different kind of claim, and a different standard of evidence. Confusing them is the fastest route to a credibility-destroying board presentation.
+
+### The Rubik's Cube Analogy
+
+Imagine a competition with three levels of achievement:
+
+**Level 1 — Supremacy:** You are the fastest person alive at solving a Rubik's cube *blindfolded in one hand while reciting the alphabet backwards*. Nobody has ever been faster. Nobody else can even attempt it. This is an extraordinary technical feat. It is also a task nobody pays for.
+
+**Level 2 — Utility:** You are faster than most humans at solving a normal Rubik's cube in a normal way. People genuinely pay for fast Rubik's cube solvers in certain contexts. You're commercially relevant, even if dedicated machines can eventually do it faster.
+
+**Level 3 — Advantage:** You are faster than any human *and* any machine at *brain surgery*. You are better than the best available alternative at a task that matters profoundly and generates significant commercial value. This is the holy grail.
+
+Google's 2019 Sycamore experiment achieved Level 1. It was blindfolded Rubik's cube solving — technically extraordinary, practically useless. IBM's 2023 utility demonstration approached Level 2. Level 3 — quantum advantage on a commercially meaningful problem — remains largely unachieved as of this writing.
+
+:::{note} Plain Language
+**Why this matters for procurement:** Vendors almost never tell you which level they're claiming. "Our quantum computer achieved a breakthrough" could mean Level 1, Level 2, or (rarely) approaching Level 3. Your due diligence is to identify which level applies — because only Level 3 generates a positive ROI for a production investment.
+:::
 
 :::{prf:definition} Quantum Supremacy
 :label: def-quantum-supremacy
@@ -825,126 +937,6 @@ The economics of quantum computing sit at the intersection of technology assessm
 
 ---
 
-## Exercises
-
-:::{exercise} Exercise 3.1: Archetype Matching
-:label: ex-ch03-archetype-matching
-
-A pharmaceutical research team is in the third month of a quantum drug discovery pilot. They have validated their molecular simulation circuit and now want to run it 500 times per day, five days per week, for the next three months. They have a fixed monthly research budget of \$15,000.
-
-(a) Which pricing archetype is most likely optimal for this workload? Justify your answer.
-
-(b) What additional information would you need to confirm your recommendation?
-
-(c) What is the primary risk of choosing the wrong archetype at this stage?
-
-:::
-
-::::{dropdown} Solution 3.1
-(a) **Pay-per-minute or reserved capacity** is most likely optimal. The team has validated their workload (so the "exploration" phase justifying pay-per-shot or free tier is complete), and the volume — 500 runs × 22 days = 11,000 runs per month — is high and predictable. Pay-per-minute favors dense execution (which VQE-style circuits typically are), while reserved capacity offers the lowest per-run cost if the monthly budget covers the reservation fee.
-
-(b) Additional information needed:
-- Circuit execution time per run (to model pay-per-minute costs)
-- Whether the runs are batched (affecting queue behavior) or spread throughout the day
-- Vendor pricing for both archetypes at current market rates
-- Whether the hardware availability SLA on pay-per-minute vs. reserved differs significantly
-
-(c) **Choosing pay-per-shot at this volume would likely exceed the monthly budget** — at high run volumes, per-shot pricing has high marginal cost. Conversely, committing to reserved capacity before validating utilization risks paying for capacity that goes unused if the experiment completes early.
-::::
-
----
-
-:::{exercise} Exercise 3.2: Cost Driver Decomposition
-:label: ex-ch03-cost-driver
-
-A quantum circuit runs at depth 80, requires 5,000 shots per experiment for statistical confidence, and experiences a 0.3% two-qubit gate error rate. Each experiment takes 3 hours of queue time. Your researcher rate is \$120/hour. QPU cost is \$0.00002 per shot.
-
-(a) Calculate the error mitigation multiplier assuming you use zero-noise extrapolation requiring 3× the base shots.
-
-(b) Calculate the total cost per experiment (QPU + queue).
-
-(c) Which cost driver contributes most to total cost?
-
-(d) If hardware improves to 0.03% gate error rate, how does the cost-per-useful-result change, assuming the error mitigation multiplier scales proportionally?
-
-:::
-
-::::{dropdown} Solution 3.2
-(a) Error mitigation multiplier = 3× (given — ZNE requires 3× shots)
-
-(b) Cost calculation:
-- Effective shots = 5,000 × 3 = 15,000 shots
-- QPU cost = 15,000 × \$0.00002 = \$0.30
-- Queue cost = 3 hours × \$120 = \$360.00
-- **Total = \$360.30 per experiment**
-
-(c) **Queue time** dominates overwhelmingly — \$360 of \$360.30 (99.9%) is queue cost. This illustrates a critical point: for early-stage quantum access, researcher time waiting for hardware is almost always the largest cost driver, not QPU pricing.
-
-(d) If error rate drops 10× (from 0.3% to 0.03%), the error mitigation multiplier may drop proportionally from 3× to perhaps 1.3× (fewer shots needed for equivalent accuracy). New QPU cost = 5,000 × 1.3 × \$0.00002 = \$0.13. Queue cost is unchanged. Total ≈ \$360.13. The improvement in QPU cost is negligible because queue cost dominates. The correct fix is reducing queue time (through tier upgrade or reserved access), not waiting for hardware improvement.
-::::
-
----
-
-:::{exercise} Exercise 3.3: Overhead Ratio Impact
-:label: ex-ch03-overhead
-
-A quantum algorithm requires 20 logical qubits to run fault-tolerantly. Current hardware has a physical-to-logical overhead ratio of 1,000:1.
-
-(a) How many physical qubits does the hardware need to support this workload?
-
-(b) If the overhead ratio improves to 100:1, how does the required physical qubit count change?
-
-(c) A vendor announces "100-qubit hardware." Explain, using the overhead framework, why this announcement does not change your answer to part (a).
-
-(d) At what physical qubit count would the 1,000:1 overhead hardware become marginally sufficient for this workload?
-
-:::
-
-::::{dropdown} Solution 3.3
-(a) Physical qubits required = 20 logical × 1,000 = **20,000 physical qubits**
-
-(b) At 100:1 overhead: 20 logical × 100 = **2,000 physical qubits**
-
-(c) A 100-qubit machine at 1,000:1 overhead provides only 100 ÷ 1,000 = 0.1 logical qubits — effectively zero. The announcement of 100 physical qubits does not approach the 20,000-qubit threshold required for this workload. The headline qubit count is irrelevant without the overhead ratio.
-
-(d) Marginally sufficient at **20,000 physical qubits** (exactly 20 logical qubits at 1,000:1). In practice, you would want headroom — perhaps 25,000 physical qubits — to account for qubit connectivity constraints and ancilla qubits used by the error correction code.
-::::
-
----
-
-:::{exercise} Exercise 3.4: Break-Even Construction
-:label: ex-ch03-break-even
-
-You are evaluating quantum optimization for a logistics routing problem. Classical optimization costs \$2.50 per problem instance and takes 8 minutes. A quantum QAOA approach would require 50,000 shots per instance at \$0.00003/shot, with an error mitigation multiplier of 2.5×, and an average queue time of 1.5 hours. Your team's hourly cost is \$175.
-
-(a) Calculate the quantum cost per instance.
-
-(b) Calculate the break-even QPU price at which quantum matches classical cost (holding other parameters constant).
-
-(c) The vendor announces a 50% price reduction. Does this change the break-even outcome? Why or why not?
-
-(d) What single operational change would have the largest impact on making quantum competitive for this workload?
-
-:::
-
-::::{dropdown} Solution 3.4
-(a) Quantum cost calculation:
-- Effective shots = 50,000 × 2.5 = 125,000
-- QPU cost = 125,000 × \$0.00003 = \$3.75
-- Queue cost = 1.5 × \$175 = \$262.50
-- **Total quantum cost = \$266.25 per instance**
-- Classical = \$2.50. Quantum is **106.5× more expensive**.
-
-(b) Break-even QPU price: set QPU cost = Classical cost − Queue cost
-= \$2.50 − \$262.50 = −\$260.00
-This is negative — the queue cost alone exceeds the classical cost. **No positive QPU price achieves break-even at current queue times.** The workload is not economically viable under these parameters regardless of QPU pricing.
-
-(c) A 50% QPU price reduction changes QPU cost from \$3.75 to \$1.875. Total quantum cost drops to \$264.375. The ratio changes from 106.5× to 105.7×. The improvement is negligible because queue cost (99% of total) is unchanged. The price cut is essentially irrelevant.
-
-(d) **Reducing queue time** is the only lever that matters. If queue time dropped from 1.5 hours to 3 minutes (0.05 hours), queue cost = \$8.75, total quantum = \$12.50 — still 5× classical, but in the same order of magnitude. Reserved-capacity access (which typically eliminates queue time) would be the operational mechanism. This exercise illustrates why archetype selection and operational access tier matter far more than headline shot pricing.
-::::
-
----
 
 ## Glossary
 
