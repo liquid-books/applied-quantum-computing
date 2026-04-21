@@ -9,7 +9,7 @@ description: >
 :::{figure} images/cover.png
 :label: fig-cover
 :alt: Applied Quantum Computing — The Qubit Economy book cover by Dr. Ernesto Lee
-:width: 60%
+:width: 100%
 :align: center
 
 *Applied Quantum Computing: A Leader's Guide to the Next Computing Revolution — The Qubit Economy* · Dr. Ernesto Lee
