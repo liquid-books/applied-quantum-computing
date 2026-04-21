@@ -7,7 +7,7 @@ label: ch-01-why-quantum-why-now
 tags: [quantum computing, business strategy, NISQ, fault tolerance, market forecasts, quantum winters]
 ---
 
-# Chapter 1: The $850 Billion Question — Why Quantum, Why Now
+# Chapter 1: The \$850 Billion Question — Why Quantum, Why Now
 
 :::{figure} ../images/ch01-explainer-infographic.png
 :label: fig-ch01-explainer-infographic
@@ -76,18 +76,18 @@ Before examining the numbers, it is worth establishing a discipline that should 
 :width: 100%
 :align: center
 
-**Quantum Computing Market Projections, 2024–2035.** The wide uncertainty bands reflect genuine disagreement about adoption timelines, hardware scaling, and application unlock dates — not analytical imprecision. Conservative estimates project $450B by 2035; optimistic scenarios reach $850B. Source: McKinsey Global Institute (2021), BCG Quantum Advantage report (2023).
+**Quantum Computing Market Projections, 2024–2035.** The wide uncertainty bands reflect genuine disagreement about adoption timelines, hardware scaling, and application unlock dates — not analytical imprecision. Conservative estimates project \$450B by 2035; optimistic scenarios reach \$850B. Source: McKinsey Global Institute (2021), BCG Quantum Advantage report (2023).
 :::
 
-The headline figure of $850 billion comes from McKinsey Global Institute's 2021 analysis, which projected that quantum computing could generate between $450 billion and $850 billion in value across four sectors by 2035: pharmaceuticals and chemicals, finance, logistics and mobility, and materials science. The range — nearly a factor of two — is not a sign of analytical sloppiness. It reflects three genuinely uncertain variables: hardware scaling timelines, application discovery rates, and competitive market dynamics.
+The headline figure of \$850 billion comes from McKinsey Global Institute's 2021 analysis, which projected that quantum computing could generate between \$450 billion and \$850 billion in value across four sectors by 2035: pharmaceuticals and chemicals, finance, logistics and mobility, and materials science. The range — nearly a factor of two — is not a sign of analytical sloppiness. It reflects three genuinely uncertain variables: hardware scaling timelines, application discovery rates, and competitive market dynamics.
 
-Boston Consulting Group's parallel analysis, updated in 2023, projected a more conservative base case of $450 billion but noted that the pharmaceutical sector alone could see $50–$100 billion in value creation from accelerated drug discovery. IBM's internal market projections, shared with enterprise clients, suggest a "quantum utility" inflection point — the moment when quantum computers solve commercially meaningful problems faster than classical alternatives — arriving in the late 2020s for specific narrow applications.
+Boston Consulting Group's parallel analysis, updated in 2023, projected a more conservative base case of \$450 billion but noted that the pharmaceutical sector alone could see \$50–\$100 billion in value creation from accelerated drug discovery. IBM's internal market projections, shared with enterprise clients, suggest a "quantum utility" inflection point — the moment when quantum computers solve commercially meaningful problems faster than classical alternatives — arriving in the late 2020s for specific narrow applications.
 
 What do these ranges tell a strategist? Several things:
 
 **The sectors are consistent across forecasters.** Every major analysis identifies the same four domains as primary value capture zones: (1) pharmaceutical simulation, where quantum chemistry can model molecular interactions at a level of fidelity inaccessible to classical computers; (2) financial optimization, where portfolio construction, risk modeling, and derivative pricing involve combinatorial problems that scale poorly classically; (3) logistics and supply chain, where route optimization and scheduling represent tractable near-term quantum applications; and (4) materials science and battery chemistry, where quantum simulation of electron behavior could unlock next-generation energy storage.
 
-**The timelines are wide and honestly so.** The difference between a $450 billion and $850 billion outcome by 2035 largely depends on whether certain hardware thresholds are crossed in 2028 or 2032. Nobody knows. Forecasters who offer narrower ranges are making unstated assumptions about hardware progress that they cannot fully justify.
+**The timelines are wide and honestly so.** The difference between a \$450 billion and \$850 billion outcome by 2035 largely depends on whether certain hardware thresholds are crossed in 2028 or 2032. Nobody knows. Forecasters who offer narrower ranges are making unstated assumptions about hardware progress that they cannot fully justify.
 
 **The floor is nonzero and rising.** Even pessimistic scenarios now project meaningful quantum value creation. The era when the honest answer was "possibly never" has passed. The question is when and how much, not whether.
 
@@ -122,7 +122,7 @@ First, it is funded by *corporate capital*, not primarily by government grants. 
 
 Second, there is a clear *near-term application path*. NISQ-era computers — imperfect, limited, but real — can already run quantum circuits that provide genuine research value for chemistry simulation, optimization heuristics, and quantum machine learning experiments. The field no longer requires waiting for fault-tolerant hardware before delivering any value.
 
-Third, the *geopolitical context* has transformed the funding calculus. China's National Laboratory for Quantum Information Sciences, opened in Hefei in 2020 with an estimated $10 billion budget, has turned quantum computing into a national security priority for every major power. Governments do not defund national security programs the way they defund basic research.
+Third, the *geopolitical context* has transformed the funding calculus. China's National Laboratory for Quantum Information Sciences, opened in Hefei in 2020 with an estimated \$10 billion budget, has turned quantum computing into a national security priority for every major power. Governments do not defund national security programs the way they defund basic research.
 
 Fourth, the *ecosystem* has matured irreversibly. Qiskit, IBM's open-source quantum development kit, has been downloaded millions of times. AWS Braket, Azure Quantum, and Google Quantum AI each offer cloud access to real quantum hardware. The developer community building quantum applications is orders of magnitude larger than at any previous point in the field's history. This community creates lock-in that prior waves never achieved.
 
@@ -158,9 +158,9 @@ It is tempting to argue that because quantum computing has disappointed before, 
 
 The geopolitical dimension of quantum computing is perhaps the least appreciated by enterprise strategists and the most consequential for long-term investment trajectories. Governments do not fund quantum research primarily because they expect commercial returns. They fund it because quantum computers offer decisive asymmetric advantages in three national security domains: signals intelligence (breaking adversary communications), materials simulation (nuclear weapons design and advanced conventional weapons), and optimization (logistics superiority in military operations).
 
-The United States National Quantum Initiative Act, signed in 2018, authorized $1.2 billion over five years. The 2022 CHIPS and Science Act added additional quantum provisions. By 2025, federal quantum commitments exceeded $3 billion across the Department of Energy, NSF, DARPA, NIST, and the intelligence community. The European Union's Quantum Flagship program committed €1 billion over ten years. The United Kingdom published a £2.5 billion National Quantum Strategy in 2023.
+The United States National Quantum Initiative Act, signed in 2018, authorized \$1.2 billion over five years. The 2022 CHIPS and Science Act added additional quantum provisions. By 2025, federal quantum commitments exceeded \$3 billion across the Department of Energy, NSF, DARPA, NIST, and the intelligence community. The European Union's Quantum Flagship program committed €1 billion over ten years. The United Kingdom published a £2.5 billion National Quantum Strategy in 2023.
 
-China's investments are harder to audit but by most independent estimates dwarf Western programs. The National Laboratory for Quantum Information Sciences alone reportedly received $10 billion in initial funding, and Chinese researchers publish more quantum computing papers annually than any other nation. The Micius satellite, which demonstrated quantum key distribution at intercontinental distances in 2017, was a signal — both technical and geopolitical — that China is not a follower in this field.
+China's investments are harder to audit but by most independent estimates dwarf Western programs. The National Laboratory for Quantum Information Sciences alone reportedly received \$10 billion in initial funding, and Chinese researchers publish more quantum computing papers annually than any other nation. The Micius satellite, which demonstrated quantum key distribution at intercontinental distances in 2017, was a signal — both technical and geopolitical — that China is not a follower in this field.
 
 The enterprise implication is straightforward: when governments treat a technology as a national security priority, the funding does not dry up when commercial timelines slip. The current quantum investment cycle is structurally supported by strategic imperatives that are immune to quarterly earnings pressure.
 
@@ -262,7 +262,7 @@ A **fault-tolerant quantum computer (FTQC)** encodes logical qubits in redundant
 
 ---
 
-## Flagship Case Study: Google Sycamore and the $10,000-Year Question
+## Flagship Case Study: Google Sycamore and the \$10,000-Year Question
 
 :::{figure} ../images/ch01-google-sycamore-case-study.png
 :label: fig-ch01-google-sycamore-case-study
@@ -291,7 +291,7 @@ Google's team acknowledged the rebuttal but maintained that their estimate was b
 
 ### Measured Outcome
 
-The market reaction over the following 18 months revealed something important about how enterprise attention works. IonQ, which went public via SPAC in late 2021, achieved a peak market capitalization exceeding $6 billion — representing primarily speculative valuation, not revenue. Quantum computing became a fixture of corporate innovation reports, board-level technology briefings, and MBA curriculum. IBM announced its Quantum Roadmap committing to 1,000+ qubit systems by 2023 and 4,000+ qubit systems by 2025. Microsoft, previously quiet on near-term quantum timelines, accelerated its investment in topological qubit research. Venture capital investment in quantum computing reached $1.4 billion globally in 2021, up from $400 million in 2019.
+The market reaction over the following 18 months revealed something important about how enterprise attention works. IonQ, which went public via SPAC in late 2021, achieved a peak market capitalization exceeding \$6 billion — representing primarily speculative valuation, not revenue. Quantum computing became a fixture of corporate innovation reports, board-level technology briefings, and MBA curriculum. IBM announced its Quantum Roadmap committing to 1,000+ qubit systems by 2023 and 4,000+ qubit systems by 2025. Microsoft, previously quiet on near-term quantum timelines, accelerated its investment in topological qubit research. Venture capital investment in quantum computing reached \$1.4 billion globally in 2021, up from \$400 million in 2019.
 
 None of this was caused directly by Sycamore. But Sycamore was the catalyst that made quantum computing legible to non-physicists. It provided a narrative: "Google did something a supercomputer couldn't."
 
@@ -354,17 +354,17 @@ The BMW case illustrates a strategic posture that will likely define the most su
 
 ## Unit Economics: Reading the Forecast Landscape
 
-The $850 billion headline figure deserves structural analysis. How is that number constructed, and what assumptions does it depend on?
+The \$850 billion headline figure deserves structural analysis. How is that number constructed, and what assumptions does it depend on?
 
 McKinsey's 2021 methodology disaggregated the forecast by sector and value type:
 
 | Sector | Low Estimate | High Estimate | Primary Application |
 |--------|-------------|---------------|---------------------|
-| Pharmaceutical & Chemicals | $200B | $340B | Drug discovery, materials simulation |
-| Finance | $110B | $180B | Portfolio optimization, risk modeling |
-| Mobility & Logistics | $90B | $150B | Route optimization, fleet scheduling |
-| Materials Science | $50B | $180B | Battery chemistry, semiconductor design |
-| **Total** | **$450B** | **$850B** | |
+| Pharmaceutical & Chemicals | \$200B | \$340B | Drug discovery, materials simulation |
+| Finance | \$110B | \$180B | Portfolio optimization, risk modeling |
+| Mobility & Logistics | \$90B | \$150B | Route optimization, fleet scheduling |
+| Materials Science | \$50B | \$180B | Battery chemistry, semiconductor design |
+| **Total** | **\$450B** | **\$850B** | |
 
 : McKinsey Global Institute quantum value forecast by sector, 2035 horizon. *Source: McKinsey Global Institute (2021). "A Quantum Decade: Navigating the Tradeoffs."* {#tbl-ch01-forecast}
 
@@ -373,7 +373,7 @@ The pharmaceutical number dominates the forecast. This reflects the enormous val
 ```{admonition} What the Forecast Assumes
 :class: note
 
-The McKinsey $450–850B range depends on at least three structural assumptions: **(1)** That early fault-tolerant hardware capable of running useful quantum chemistry simulations arrives in the 2028–2032 window. **(2)** That enterprises can deploy quantum-ready workflows within 3–5 years of hardware availability, requiring that they start building capability now. **(3)** That classical computing does not achieve equivalent breakthroughs (e.g., AI-accelerated molecular simulation) that close the value gap before quantum hardware matures. Each of these can be contested. The honest answer is that the range captures this uncertainty explicitly.
+The McKinsey \$450–850B range depends on at least three structural assumptions: **(1)** That early fault-tolerant hardware capable of running useful quantum chemistry simulations arrives in the 2028–2032 window. **(2)** That enterprises can deploy quantum-ready workflows within 3–5 years of hardware availability, requiring that they start building capability now. **(3)** That classical computing does not achieve equivalent breakthroughs (e.g., AI-accelerated molecular simulation) that close the value gap before quantum hardware matures. Each of these can be contested. The honest answer is that the range captures this uncertainty explicitly.
 ```
 
 ---
@@ -385,7 +385,7 @@ The McKinsey $450–850B range depends on at least three structural assumptions:
 
 **Scenario:** You are a strategy analyst at a large healthcare system. Your CTO has shared the following one-paragraph forecast excerpt from a consulting report:
 
-*"Our base case projects that quantum computing will enable healthcare systems to reduce drug discovery costs by 30% and accelerate time-to-market by 2.5 years by 2035, generating approximately $85 billion in value globally. This projection assumes that early fault-tolerant systems capable of running quantum chemistry simulations at useful fidelity will be commercially available by 2029, that major pharmaceutical partners will adopt quantum-native workflows within 3 years of hardware availability, and that current AI-based drug discovery tools do not achieve equivalent capabilities independently."*
+*"Our base case projects that quantum computing will enable healthcare systems to reduce drug discovery costs by 30% and accelerate time-to-market by 2.5 years by 2035, generating approximately \$85 billion in value globally. This projection assumes that early fault-tolerant systems capable of running quantum chemistry simulations at useful fidelity will be commercially available by 2029, that major pharmaceutical partners will adopt quantum-native workflows within 3 years of hardware availability, and that current AI-based drug discovery tools do not achieve equivalent capabilities independently."*
 
 **Your task:** Identify the **three most load-bearing assumptions** in this excerpt. For each assumption:
 1. State the assumption explicitly.
@@ -599,17 +599,17 @@ This chapter's discussion invites you to apply forecast evaluation skills to a r
 
 **Forecasting Under Uncertainty**
 
-The McKinsey (2021) forecast projects $450–850 billion in quantum value by 2035. The range spans nearly a factor of two. Explain why a factor-of-two range is actually *more honest* than a point estimate for a technology at this stage of development. What specific variables account for the spread between $450B and $850B? Name at least three.
+The McKinsey (2021) forecast projects \$450–850 billion in quantum value by 2035. The range spans nearly a factor of two. Explain why a factor-of-two range is actually *more honest* than a point estimate for a technology at this stage of development. What specific variables account for the spread between \$450B and \$850B? Name at least three.
 
 :::{dropdown} Solution
 
 A point estimate implies a precision that cannot be justified for a technology whose commercial timeline depends on hardware engineering achievements, enterprise adoption rates, and competitive dynamics from classical computing — all of which have significant uncertainty.
 
-The $400 billion spread between $450B and $850B is driven primarily by:
+The \$400 billion spread between \$450B and \$850B is driven primarily by:
 
 1. **Hardware timeline uncertainty**: Whether early fault-tolerant hardware becomes commercially available by 2028 (optimistic) or 2033 (conservative) creates an enormous difference in the 2035 value realized, since quantum value compounds as deployment scales.
 
-2. **Enterprise adoption lag**: Historically, enterprises take 3–10 years to deploy transformative technologies from when hardware is commercially available. The shorter end of this range yields $850B; the longer end yields $450B.
+2. **Enterprise adoption lag**: Historically, enterprises take 3–10 years to deploy transformative technologies from when hardware is commercially available. The shorter end of this range yields \$850B; the longer end yields \$450B.
 
 3. **Classical computing competition**: If AI-classical hybrid methods achieve drug discovery results comparable to quantum simulation in the 2026–2030 window (as AlphaFold demonstrated for protein structure), the pharmaceutical value component — the largest single sector — contracts significantly.
 
@@ -629,7 +629,7 @@ Identify three structural differences between the current quantum investment cyc
 :::{dropdown} Solution
 
 **Difference 1: Corporate capital depth.**
-Prior investment cycles were funded primarily by government grants and academic research budgets. Google, IBM, Microsoft, Amazon, and Intel have each committed billions in corporate capital that does not have a grant cycle renewal deadline. Evidence: IBM's $100 million commitment to the Chicago Quantum Exchange (2021); Google's sustained Quantum AI research headcount of 300+ researchers.
+Prior investment cycles were funded primarily by government grants and academic research budgets. Google, IBM, Microsoft, Amazon, and Intel have each committed billions in corporate capital that does not have a grant cycle renewal deadline. Evidence: IBM's \$100 million commitment to the Chicago Quantum Exchange (2021); Google's sustained Quantum AI research headcount of 300+ researchers.
 
 **Difference 2: Near-term NISQ applications.**
 Prior cycles required waiting for fault-tolerant hardware before any commercial application was possible. NISQ devices — imperfect but real — already provide quantum chemistry research value for small molecules and optimization heuristics for logistics problems. The field no longer has a pure theory-to-hardware gap. Evidence: JPMorgan's published quantum derivative pricing research (2019); Quantinuum's commercial quantum chemistry service for pharmaceutical partners (launched 2023).
@@ -666,7 +666,7 @@ The CIO's argument is technically correct but strategically incomplete. The harv
 
 **NISQ Posture for a Mid-Market Firm**
 
-A regional bank with $18 billion in assets and a team of 12 data scientists is evaluating whether to invest in a quantum computing capability. The CTO says the bank is "too small" to justify quantum investment until the technology matures. Using the NISQ-to-fault-tolerance roadmap, construct a phased quantum readiness plan for this bank that is proportionate to its size. What should they do *now*, *soon*, and *later*?
+A regional bank with \$18 billion in assets and a team of 12 data scientists is evaluating whether to invest in a quantum computing capability. The CTO says the bank is "too small" to justify quantum investment until the technology matures. Using the NISQ-to-fault-tolerance roadmap, construct a phased quantum readiness plan for this bank that is proportionate to its size. What should they do *now*, *soon*, and *later*?
 
 :::{dropdown} Solution
 
@@ -680,11 +680,11 @@ The CTO's instinct to avoid premature hardware investment is correct, but "too s
 **Soon (2027–2032): Targeted experiments and vendor engagement.**
 - As early fault-tolerant hardware becomes available via cloud access, identify 2–3 specific portfolio optimization or fraud detection problem instances to benchmark against classical baselines.
 - Begin evaluating quantum-safe cryptographic library vendors and test post-quantum TLS in non-production environments.
-- Budget for cloud quantum compute credits at AWS Braket or IBM Quantum ($10,000–50,000/year for meaningful experimentation).
+- Budget for cloud quantum compute credits at AWS Braket or IBM Quantum (\$10,000–50,000/year for meaningful experimentation).
 
 **Later (2030+): Deployment where advantage is demonstrated.**
 - If quantum advantage is confirmed for a specific banking application in this window, the bank will have the algorithmic knowledge, the vendor relationships, and the cryptographic infrastructure to deploy quickly — rather than starting from scratch.
-- Total investment through the "now" and "soon" phases: approximately $200,000–$500,000 in staff time and cloud credits, orders of magnitude less than the competitive cost of being unprepared.
+- Total investment through the "now" and "soon" phases: approximately \$200,000–\$500,000 in staff time and cloud credits, orders of magnitude less than the competitive cost of being unprepared.
 :::
 ::::
 
@@ -767,7 +767,7 @@ The cost of beginning that process today is modest. The cost of beginning it eig
 :class: note
 
 - Quantum computing has crossed from physics experiment to enterprise agenda item, driven by three structural accelerants: geopolitics, AI convergence, and cryptographic risk.
-- Market forecasts project $450–850B in quantum value creation by 2035, with pharmaceuticals and finance as the primary sectors. Treat these as ranges, not point estimates.
+- Market forecasts project \$450–850B in quantum value creation by 2035, with pharmaceuticals and finance as the primary sectors. Treat these as ranges, not point estimates.
 - The current quantum investment cycle is structurally different from prior quantum winters: it is funded by corporate capital, supports near-term NISQ applications, and is sustained by national security mandates.
 - The NISQ-to-fault-tolerance roadmap translates to three enterprise planning horizons: *now* (build literacy, begin cryptographic migration), *soon* (deploy early commercial experiments), and *later* (broad transformation).
 - The cryptographic risk from quantum computing creates present-day organizational exposure through the harvest-now-decrypt-later threat. Organizations should begin post-quantum cryptographic migration regardless of their broader quantum strategy.
