@@ -6,20 +6,22 @@ description: >
   No physics background required.
 ---
 
+:::{figure} images/cover.png
+:label: fig-cover
+:alt: Applied Quantum Computing — The Qubit Economy book cover by Dr. Ernesto Lee
+:width: 60%
+:align: center
+
+*Applied Quantum Computing: A Leader's Guide to the Next Computing Revolution — The Qubit Economy* · Dr. Ernesto Lee
+:::
+
+---
+
 # Applied Quantum Computing
 
 ## The Qubit Economy
 
 **A Graduate-Level Masterclass in Quantum Computing for Business Leaders**
-
-:::{figure} images/cover.png
-:label: fig-cover
-:alt: Applied Quantum Computing book cover — The Qubit Economy by Dr. Ernesto Lee
-:width: 55%
-:align: center
-
-*Applied Quantum Computing: A Leader's Guide to the Next Computing Revolution* — Dr. Ernesto Lee
-:::
 
 ---
 
