@@ -511,6 +511,12 @@ Write a 250-word reflection addressing:
 
 ## Lab 1 (Optional Advanced, Python): Quantum Momentum Index
 
+<a href="https://colab.research.google.com/github/liquid-books/applied-quantum-computing/blob/main/notebooks/ch01-quantum-momentum-index.ipynb" target="_blank">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" style="margin-bottom: 1rem;"/>
+</a>
+
+> **No installation needed.** Click the button above to open this lab instantly in Google Colab — free, browser-based, works on any device. Run the first cell to install all dependencies automatically.
+
 ```{admonition} Advanced Lab — Python Required
 :class: tip
 

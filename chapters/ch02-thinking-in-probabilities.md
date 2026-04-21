@@ -501,6 +501,12 @@ Submit: screenshot + written explanation.
 
 ## Lab 2 (Optional Advanced): The Bell Inequality from Scratch
 
+<a href="https://colab.research.google.com/github/liquid-books/applied-quantum-computing/blob/main/notebooks/ch02-bell-inequality-chsh.ipynb" target="_blank">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" style="margin-bottom: 1rem;"/>
+</a>
+
+> **No installation needed.** Click the button above to open this lab instantly in Google Colab — free, browser-based, works on any device. Run the first cell to install all dependencies automatically.
+
 **Tool:** Qiskit (Python)
 
 **Prerequisites:** Python 3.8+, Qiskit installed (`pip install qiskit qiskit-aer`)
