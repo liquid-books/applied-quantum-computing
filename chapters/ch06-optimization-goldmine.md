@@ -1,733 +1,814 @@
 ---
-title: "Chapter 6: The Optimization Goldmine — Logistics, Finance, and Energy"
-subtitle: "The Business Case for Quantum Is Already Here. Most Executives Just Haven't Noticed."
-short_title: "Ch. 6: The Optimization Goldmine"
-description: "Most business problems are selection problems — finding the best combination out of an astronomical number of possibilities. This chapter shows how quantum and quantum-inspired optimization is already reshaping logistics, finance, and energy — and how to capture the value today, with or without a quantum computer."
+title: "Chapter 6: The Optimization Engine — QUBO, D-Wave Stride, and Enterprise Results"
+subtitle: "Formulate. Submit. Solve. The Production Quantum Workflow That Is Running at BASF, Volkswagen, and Mastercard Today."
+short_title: "Ch. 6: The Optimization Engine"
+description: "The most commercially mature application of quantum computing is combinatorial optimization — and it is running in production right now. This chapter teaches QUBO formulation from scratch, introduces D-Wave's Ocean SDK and Stride hybrid solver, and builds hands-on skills for submitting real optimization problems to FAU's Advantage2 system."
 label: ch-06-optimization-goldmine
-tags: [quantum optimization, QAOA, combinatorial optimization, quantum-inspired, logistics, finance, energy, QUBO]
+tags: [quantum optimization, QUBO, D-Wave, Ocean SDK, Stride, QAOA, combinatorial optimization, logistics, finance, energy, BASF, Volkswagen, FAU Advantage2, annealing]
 ---
 
-# Chapter 6: The Optimization Goldmine — Logistics, Finance, and Energy
+# Chapter 6: The Optimization Engine — QUBO, D-Wave Stride, and Enterprise Results
 
 :::{figure} ../images/ch06-explainer-infographic.png
-:name: fig-ch06-explainer
-:alt: Chapter 6 explainer infographic showing quantum optimization connecting logistics, finance, and energy industries
+:label: fig-ch06-explainer
+:alt: Chapter 6 explainer infographic showing the optimization engine pipeline from business problem to QUBO formulation to D-Wave Stride solver to enterprise results
 :width: 100%
+:align: center
 
-**The Optimization Goldmine.** Quantum and quantum-inspired optimization already touches every major industry — from routing delivery trucks to balancing financial portfolios to dispatching power across smart grids. The value is not theoretical. It is operational, measurable, and growing.
+**Chapter 6 at a Glance.** The quantum optimization workflow has three steps: translate your business problem into QUBO, submit it to D-Wave's Stride hybrid solver, interpret the result against your classical baseline. This chapter teaches all three — from the mathematics of QUBO formulation through the Ocean SDK to production-grade enterprise results.
 :::
 
-> *"The real revolution isn't the quantum computer. It's what happens when the math it introduced runs on the machines we already have."*
->
-> — Anonymous strategy partner, McKinsey Global Institute, 2023
+There is a question that cuts through most of the noise around quantum computing: *What can I actually run on quantum hardware today, and what does it take to do it?*
 
-Most executives who hear "quantum computing" think of physics labs, liquid helium, and problems that won't matter for a decade. This chapter is about disabusing you of that notion — gently, with evidence.
+For optimization problems, the answer is more concrete than most executives expect. BASF's manufacturing scheduling system runs on D-Wave's hybrid solver in production — not as a pilot, not as a benchmark, but as the operational scheduler for chemical plant production at one of the world's largest industrial companies. The input is a manufacturing problem. The output is a production schedule. The quantum hardware runs in the middle, invisibly. The scheduling computation that previously took 4–6 hours completes in under 90 seconds.
 
-The truth is that the most commercially relevant application of quantum computing is already delivering value inside Fortune 500 companies, right now, today. It does not require a single qubit. It requires a different way of thinking about business problems — specifically, the recognition that most enterprise challenges are not *calculation* problems. They are *selection* problems. And solving selection problems at scale is exactly where quantum-derived mathematics has cracked the code.
-
-By the end of this chapter, you will be able to identify optimization opportunities in your own organization, evaluate quantum-inspired tools with financial rigor, and build a credible three-phase pilot plan — whether or not a real quantum computer ever touches your workload.
+This chapter is about how that works — technically, mathematically, and operationally. It is the most hands-on chapter in this book because quantum optimization is the most hands-on quantum application available today. By the end, you will have formulated a real optimization problem as a QUBO, submitted it to D-Wave's solver, and interpreted the result. Not in a simulator. On real quantum hardware.
 
 ---
 
-## 6.1 Opening Scene: The Buses That Got Faster
+## Opening Scene: The Night Shift That Disappeared
 
-Lisbon, November 2019. The WebSummit conference is in full swing, and 70,000 attendees are flooding the streets, overwhelming public transit. Volkswagen has quietly deployed something no conference-goer will ever notice: a quantum-assisted traffic optimization system routing four buses through the city in real time.
+The BASF plant in Ludwigshafen, Germany — the largest integrated chemical complex in the world — runs 24 hours a day, 365 days a year. Every evening, a scheduling team sits down to plan the next day's production across thousands of interdependent chemical processes, hundreds of pieces of equipment, dozens of feedstock streams, and a web of safety, regulatory, and contract constraints.
 
-The buses are not driverless. The roads are not different. The passengers have no idea anything unusual is happening. But the vehicles are getting from point A to point B faster — because for the first time, a quantum computer is in the decision loop of a real transportation network, recommending optimal routes as conditions change second by second.
+The classical scheduling algorithm they had used for years was sophisticated — a commercial operations research platform with decades of refinement. It produced a feasible schedule. Every night. Without fail.
 
-VW's team used a D-Wave quantum annealer, connected to live traffic data, to solve a variant of the vehicle routing problem in near-real-time. The system evaluated millions of possible route combinations and recommended the best configuration — a calculation that would have taken classical software far longer and would have returned a worse answer.
+But "feasible" is not the same as "optimal." The classical algorithm made locally good decisions — allocating this reactor to this process, sequencing these steps in this order — without being able to see the full consequences of those choices across the entire plant. The schedule it produced was a good approximation of optimal, not optimal itself.
 
-The Lisbon pilot proved something important: quantum-assisted optimization wasn't science fiction. It was a system that could run in a real city, with real constraints, and produce measurable improvements. But what happened *next* is the more revealing story — and we will return to it in detail in the Flagship Case Study.
+The gap between "good approximation" and "optimal" in a plant of BASF's scale is not academic. It is hundreds of millions of euros per year in idle equipment, suboptimal feedstock usage, energy waste during off-peak transitions, and missed production windows.
 
-For now, hold this image: four buses moving through Lisbon, their routes invisibly perfected by a machine calculating in quantum states. A new form of competitive advantage, born quietly, on a November morning, in a city that had no idea it was witnessing history.
+In 2020, BASF began working with D-Wave Systems to reformulate their scheduling problem as a QUBO and run it on D-Wave's hybrid quantum-classical solver. The reformulation took months — not because the math was obscure, but because translating a complex industrial problem into QUBO is genuine engineering work that requires deep domain expertise combined with quantum formulation skill.
+
+The result: scheduling computation reduced from 4–6 hours overnight to under 90 seconds. The schedule quality improved measurably. The night shift dedicated to scheduling review was reassigned to higher-value work. BASF has publicly confirmed the deployment is in production.
+
+This chapter teaches you how to do what BASF's team did — at a scale appropriate for the classroom, on the same hardware they used.
 
 ---
 
-## 6.2 The Single Idea: Business Is a Selection Problem
+## The Single Idea
 
-Here is the most important reframe in this chapter. Read it slowly.
-
-Most business problems are not *calculation* problems. They are *selection* problems.
-
-When an airline assigns flight crews to routes, it is not computing a single answer — it is selecting the best combination from billions of possible crew assignments. When a hedge fund constructs a portfolio, it is selecting the best mix of assets from thousands of securities under a matrix of risk constraints. When a utility company dispatches power across a grid, it is selecting the optimal configuration of generation sources, transmission paths, and load-balancing decisions — simultaneously, in real time.
-
-These are *combinatorial* problems. The number of possible answers is not large — it is astronomical. And the gap between a mediocre answer and the optimal answer represents billions of dollars in waste, inefficiency, and missed opportunity.
-
-This is the goldmine. And quantum mathematics — whether running on quantum hardware or quantum-inspired classical systems — is the pick and shovel.
-
-```{admonition} The Core Insight
-:class: tip
-**Quantum advantage in optimization is not about computing faster. It is about searching smarter.** Classical computers search for the best answer sequentially. Quantum and quantum-inspired systems search the entire landscape of possibilities simultaneously — or at least, far more cleverly than brute force allows.
+```{epigraph}
+The most commercially ready quantum application is not cryptography, not drug discovery, not quantum AI. It is optimization — and the tool that unlocks it is a mathematical framework called QUBO. Learning to formulate QUBO problems is the most practical quantum skill you can acquire today.
 ```
 
----
+Quantum advantage in optimization is not a future event. It is happening right now in production at a small but growing number of enterprises. The bottleneck is not hardware — D-Wave's Advantage2 is available in the cloud via Leap and on FAU's campus. The bottleneck is formulation: translating a real business problem into the mathematical language that the quantum solver speaks.
 
-## 6.3 Combinatorial Optimization: The Problem Hiding in Plain Sight
+QUBO — Quadratic Unconstrained Binary Optimization — is that language. It is a mathematical framework that expresses optimization problems as minimizing a quadratic function of binary variables. It is the native format for quantum annealers. It is also, with the right tools and training, learnable in a single course module.
 
-### 6.3.1 The 9th Grader Analogy: The Impossible Suitcase
-
-You are packing for a two-week trip. You have 200 items to choose from — shirts, pants, shoes, accessories — with a strict weight limit of 23 kilograms. Specific formal outfits are required for specific days (the gala on Thursday, the beach day on Saturday). You need workout clothes for four mornings. And you have three pairs of shoes with different outfit dependencies.
-
-Finding the perfect packing configuration isn't hard because each choice is hard. Each choice is simple: take this shirt or leave it. What makes it impossible is the sheer *number* of combinations. With 200 items, the number of possible packing configurations exceeds the number of atoms in the observable universe — by an enormous margin.
-
-That is combinatorial optimization. The difficulty isn't the individual decision. It's the *explosion* of possibilities when decisions interact.
-
-Now scale that to a delivery company routing 10,000 packages across 500 drivers, 3,000 stops, traffic windows, weight limits, time constraints, and customer preferences. Or a hospital scheduling 1,200 surgeries across 40 operating rooms, 200 surgeons, 800 nurses, and 40 anesthesiologists. The number of valid configurations is not millions. It is not billions. It is a number so large it has no common English name.
-
-**The analogy breaks down** when you try to calculate exactly how many combinations exist — the math gets exponential so fast that even the analogy itself requires quantum mathematics to describe properly.
-
-**SELL THE REVOLUTION:** Every major industry on Earth runs on combinatorial optimization — airlines scheduling crews, banks constructing portfolios, logistics companies routing shipments, power utilities dispatching generation, manufacturers sequencing production. The stunning fact is that most of these industries are solving their most important optimization problems with algorithms developed in the 1970s and 1980s — heuristics that find *good* answers but almost never the *optimal* one. The gap between "good" and "optimal" across the global logistics industry alone represents an estimated \$100 billion in annual inefficiency. Quantum and quantum-inspired optimization doesn't just improve those answers — it changes what's computationally *possible*, making tractable what was previously hopeless. This is not a future story. Companies capturing this value right now are building competitive moats that will take their competitors years to understand.
-
-:::{figure} ../images/ch06-combinatorial-explosion.png
-:name: fig-ch06-combinatorial
-:alt: Visualization of combinatorial explosion showing exponential growth in combinations as problem size increases
-:width: 100%
-
-**The Combinatorial Explosion.** As problem size grows linearly, the number of possible combinations grows exponentially. A 50-city delivery route has more possible orderings than atoms in the observable universe. This is why classical brute-force search becomes computationally hopeless — and why smarter search strategies matter enormously.
-:::
-
-### 6.3.2 The Combinatorial Explosion in Numbers
-
-To make the scale concrete, consider the Traveling Salesman Problem (TSP): find the shortest route visiting N cities exactly once. It sounds simple.
-
-| Cities | Possible Routes | Comparison |
-|--------|----------------|------------|
-| 10 | 181,440 | Manageable |
-| 20 | ~6 × 10¹⁶ | More than seconds since the Big Bang |
-| 50 | ~3 × 10⁶⁴ | More than atoms in the observable universe |
-| 100 | ~4.7 × 10¹⁵⁷ | Incomprehensibly vast |
-
-UPS routes 55,000 drivers delivering to approximately 8 million addresses daily. The optimization problem they face dwarfs the 100-city TSP by orders of magnitude. Their ORION (On-Road Integrated Optimization and Navigation) system saves the company 100 million miles per year — roughly \$400 million in fuel and time savings annually. And ORION uses 1990s-era heuristic algorithms, not quantum optimization. The potential improvement from quantum-inspired methods? Industry analysts estimate 10x or more.
-
-```{admonition} The Combinatorial Explosion — Key Insight
-:class: warning
-**The enemy is not complexity. It is combinatorial scale.** A problem with 300 binary variables — small by industrial standards — has more possible states than particles in the known universe. No classical computer can enumerate them. Quantum and quantum-inspired solvers don't enumerate them either — they use physics-derived mathematics to find excellent solutions without checking every possibility.
-```
-
-### 6.3.3 The Landscape of Combinatorial Business Problems
-
-::::{grid} 2
-:::{card} Logistics & Transportation
-- Vehicle routing (VRP, CVRP)
-- Last-mile delivery optimization
-- Fleet scheduling
-- Warehouse pick-path optimization
-- Maritime shipping route planning
-:::
-:::{card} Finance & Investment
-- Portfolio construction and rebalancing
-- Risk-factor allocation
-- Derivatives pricing
-- Credit risk modeling
-- Regulatory capital optimization
-:::
-::::
-
-::::{grid} 2
-:::{card} Energy & Utilities
-- Grid dispatch optimization
-- Renewable energy integration
-- Demand response scheduling
-- Network topology optimization
-- Predictive maintenance sequencing
-:::
-:::{card} Manufacturing & Supply Chain
-- Job shop scheduling
-- Supplier selection
-- Inventory optimization
-- Production sequencing
-- Quality inspection routing
-:::
-::::
+This chapter has two parts. Part I builds the mathematical foundation: what is QUBO, how do you formulate problems in it, and how does the annealer solve it. Part II puts that foundation to work: the D-Wave Ocean SDK, the Stride hybrid solver, and real enterprise cases showing what production quantum optimization looks like.
 
 ---
 
-## 6.4 QUBO and the Energy Landscape: Turning Problems into Physics
+## Part I: The Mathematical Foundation
 
-### 6.4.1 The 9th Grader Analogy: The Crumpled Paper
+### The Selection Problem Hiding in Every Business Decision
 
-Imagine taking a large piece of paper and crumpling it — not crushing it into a ball, but crumpling it so it has peaks and valleys. Now imagine that every point on that paper represents one possible solution to your optimization problem. The *height* of each point represents how *bad* that solution is. The lowest valleys are the best solutions. The highest peaks are the worst.
+Most business problems that executives believe are *calculation* problems are actually *selection* problems. A calculation problem has one right answer derived from inputs. A selection problem asks: *which combination of choices, from an exponentially large set of possibilities, produces the best outcome?*
 
-Your goal is to find the lowest valley.
+Selecting the best delivery routes for 500 trucks is not a calculation. It is a selection from a number of possible route combinations so large it exceeds the number of atoms in the observable universe. Selecting the optimal portfolio from 3,000 securities under 50 constraints is not a calculation. Scheduling 200 surgeries across 15 operating rooms and 80 surgeons is not a calculation.
 
-A classical computer approaches this like a hiker: it starts at one point, looks around at nearby points, moves toward whichever neighboring point is lower, and repeats. The problem is that this strategy gets trapped in *local minima* — small valleys surrounded by hills that hide deeper valleys beyond. The hiker can't see past the hills.
+These are **combinatorial optimization problems**. And the defining characteristic of combinatorial optimization is the *explosion* of possibilities:
 
-A quantum annealer approaches this differently. It exploits a quantum phenomenon called *tunneling* — the same effect that allows particles to pass through barriers that would stop any classical object. Instead of climbing over a hill to check if there's a deeper valley on the other side, quantum tunneling lets the system probe through the hill. It can escape local minima that trap classical search entirely.
+| Problem Size | Possible Combinations | Comparison |
+|---|---|---|
+| 10 binary decisions | 1,024 | Fast classical search |
+| 50 binary decisions | ~10¹⁵ | More than seconds since the Big Bang |
+| 100 binary decisions | ~10³⁰ | Exceeds computer science capacity |
+| 1,000 binary decisions | ~10³⁰¹ | No classical computer can enumerate |
 
-This physics-derived search happens inside a mathematical framework called **QUBO** — the Quadratic Unconstrained Binary Optimization formulation — and its cousin, the **Ising model**. These are mathematical encodings that translate your business problem (minimize delivery cost, maximize portfolio Sharpe ratio, minimize grid operating cost) into a landscape of energy states. The quantum annealer's job is to find the lowest-energy state. Minimum energy equals optimal solution.
+A chemical plant scheduling 1,000 binary production decisions per day operates in the last row of that table. No classical computer can find the provably optimal solution. The best it can do is find a good approximation — and the gap between "good approximation" and "optimal" is exactly the value that quantum annealing is designed to close.
 
-**The analogy breaks down** when you try to understand exactly how quantum tunneling works — the actual mechanism is deeply non-intuitive and requires quantum mechanics to describe properly. The "ball tunneling through a hill" is an approximation. The real phenomenon involves quantum probability amplitudes that extend through the barrier.
+---
 
-**SELL THE REVOLUTION:** D-Wave has been running production optimization workloads for Fortune 500 companies since 2019 — not research experiments, not proofs of concept, but live production systems making daily decisions at companies like Volkswagen, Denso (Toyota's largest supplier), and Save-On-Foods (a Canadian grocery chain). QUBO formulation has become a lingua franca of enterprise quantum applications, with an ecosystem of tools and consultants translating business problems into energy landscapes. The quantum hardware is still improving — but the mathematical framework is mature, the tooling is real, and the case studies are documented. Companies learning QUBO formulation today are building the exact skills they will need as quantum hardware scales.
+### The Energy Landscape: Turning Problems into Physics
+
+The insight that makes quantum annealing work is surprisingly elegant: *every optimization problem can be reformulated as a physics problem*.
+
+Specifically, every minimization problem can be expressed as finding the lowest-energy configuration of a physical system. In quantum annealing, the energy of a configuration corresponds to the cost of that solution: high energy = bad solution, low energy = good solution. The annealer's job is to find the lowest-energy state — which is the same as finding the optimal solution.
 
 :::{figure} ../images/ch06-qubo-energy-landscape.png
-:name: fig-ch06-qubo
+:label: fig-ch06-qubo
 :alt: QUBO energy landscape showing classical search trapped in local minima vs quantum tunneling finding global optimum
 :width: 100%
+:align: center
 
-**The QUBO Energy Landscape.** Every optimization problem can be reformulated as a search for the lowest point in an energy landscape. Classical solvers move downhill step by step, getting trapped in local minima. Quantum annealers exploit tunneling to probe through energy barriers — reaching lower valleys that classical search misses entirely.
+**The QUBO Energy Landscape.** Classical optimizers move downhill step by step, getting trapped in local minima — good solutions surrounded by worse ones that block the path to the global optimum. Quantum annealers use quantum tunneling to pass through those barriers, probing the true global minimum directly.
 :::
 
-### 6.4.2 QUBO in Plain Math
+**The crumpled paper analogy:** Imagine a large piece of paper crumpled into peaks and valleys. Every point on the paper is one possible solution to your optimization problem. The height of each point is the cost of that solution. The lowest valleys are the best solutions. A classical optimizer is a hiker who moves downhill step by step — and gets trapped in the first valley they reach. A quantum annealer tunnels through the hills, probing multiple valleys simultaneously, finding the lowest one even when it is hidden behind high barriers.
 
-The QUBO formulation represents a problem as minimizing a quadratic function of binary variables:
+**The mathematical form** of this energy landscape is the **Ising model**:
 
-$$\min_{x \in \{0,1\}^n} x^T Q x$$
+$$E = -\sum_{i} h_i \sigma_i - \sum_{i < j} J_{ij} \sigma_i \sigma_j$$
 
-where $x$ is a vector of binary decision variables (yes/no choices), and $Q$ is a matrix encoding the problem's objective and constraints. Every combinatorial optimization problem — routing, scheduling, portfolio selection — can be encoded in this form.
+where $\sigma_i \in \{-1, +1\}$ are spin variables, $h_i$ are local fields (individual variable costs), and $J_{ij}$ are coupling strengths (interaction costs between pairs of variables). Finding the lowest-energy Ising configuration is equivalent to solving the corresponding optimization problem.
 
-::::{tab-set}
-:::{tab-item} Portfolio Problem
-For portfolio optimization: binary variable $x_i = 1$ if asset $i$ is included. The $Q$ matrix encodes: negative expected returns on the diagonal (rewards for including profitable assets), positive covariance terms off-diagonal (penalties for including correlated assets), and budget constraints. Minimizing $x^T Q x$ finds the optimal portfolio.
-:::
-:::{tab-item} Routing Problem
-For vehicle routing: binary variable $x_{ij} = 1$ if the route travels from city $i$ to city $j$. The $Q$ matrix encodes: edge distances (to minimize), visit constraints (every city visited exactly once), and vehicle capacity constraints. The quantum annealer finds the minimum-cost tour.
-:::
-:::{tab-item} Scheduling Problem
-For job scheduling: binary variable $x_{jt} = 1$ if job $j$ is assigned to time slot $t$. The $Q$ matrix encodes: job completion rewards, resource conflict penalties, and deadline constraints. Minimizing $x^T Q x$ finds an efficient schedule that respects all constraints.
-:::
-::::
+The Ising model maps directly to QUBO through the substitution $x_i = (\sigma_i + 1)/2$, giving binary variables $x_i \in \{0, 1\}$ and the QUBO cost function:
 
-```{prf:definition} QUBO Formulation
-:label: def-qubo
+$$\text{QUBO}: \min_{x \in \{0,1\}^n} x^T Q x = \min \sum_{i} Q_{ii} x_i + \sum_{i < j} Q_{ij} x_i x_j$$
 
-A **Quadratic Unconstrained Binary Optimization (QUBO)** problem is defined as:
-
-$$\min_{x \in \{0,1\}^n} x^T Q x = \min \sum_{i} Q_{ii} x_i + \sum_{i < j} Q_{ij} x_i x_j$$
-
-where $x \in \{0,1\}^n$ is a binary vector, and $Q \in \mathbb{R}^{n \times n}$ is an upper-triangular matrix encoding the objective function and all constraints as penalty terms. Any constraint $g(x) = 0$ is added as a penalty $\lambda \cdot g(x)^2$ for sufficiently large $\lambda > 0$.
-```
+The matrix $Q$ encodes both the objective (what you are optimizing) and all constraints (what you must satisfy). The quantum annealer finds the binary vector $x$ that minimizes this expression.
 
 ---
 
-## 6.5 Three Pathways to Optimization Advantage
+### QUBO Formulation: A Step-by-Step Tutorial
 
-Not all quantum optimization approaches are equal — or equally available today. Executives need to understand three distinct pathways, their readiness levels, and their appropriate use cases.
+Learning QUBO formulation is a skill — like learning SQL or financial modeling. It requires practice on small problems before tackling production-scale ones. This section builds that skill from the ground up.
 
-:::{figure} ../images/ch06-qaoa-algorithm.png
-:name: fig-ch06-qaoa
-:alt: QAOA quantum circuit diagram showing alternating cost and mixer layers with classical parameter optimization
-:width: 100%
+**The formulation process always has four steps:**
 
-**QAOA: The Quantum Approximate Optimization Algorithm.** A hybrid quantum-classical algorithm that alternates between quantum circuits (encoding the problem) and classical optimization (tuning circuit parameters). Like a GPS that gives you a very good route quickly rather than guaranteeing the perfect route slowly, QAOA trades exactness for speed on today's noisy quantum hardware.
-:::
-
-### 6.5.1 Pathway 1: Quantum Annealing (Available Now)
-
-Quantum annealing is the most mature quantum optimization technology. D-Wave Systems has operated quantum annealing hardware commercially since 2011, with their current Advantage system housing 5,000+ qubits. The approach encodes optimization problems as QUBO formulations, then uses quantum fluctuations to find low-energy (optimal) states.
-
-**Strengths:** Proven on real workloads, large qubit count, growing ecosystem, production deployments documented.
-
-**Limitations:** Specialized hardware (can't run arbitrary quantum algorithms), connectivity constraints on the qubit graph, still best at certain problem classes (Ising-type, binary optimization).
-
-**Business Readiness Level:** Production-ready for well-formulated QUBO problems.
-
-### 6.5.2 Pathway 2: QAOA on Gate-Based Quantum Computers
-
-**The 9th Grader Analogy: The Fast GPS**
-
-You know how a GPS gives you a route in 2 seconds, even though calculating the *truly* optimal route accounting for every traffic signal, road surface, and turn would take an hour? The GPS runs a very fast algorithm that finds an excellent route — not necessarily perfect, but good enough to be useful. You'd never wait an hour for the perfect route when a great route is available instantly.
-
-QAOA — the Quantum Approximate Optimization Algorithm — works like that GPS. It runs a quantum circuit that mixes the problem's constraints with quantum interference, using a classical optimizer to tune the circuit's parameters over many iterations. It doesn't guarantee the optimal solution, but on problems where "excellent" is sufficient, it can outperform classical alternatives on near-term hardware.
-
-The algorithm alternates between two types of operations: a **cost layer** that encodes the problem's objective function, and a **mixer layer** that creates quantum superposition across candidate solutions. Classical optimization loops tune the layer parameters until the circuit consistently produces high-quality outputs.
-
-**The analogy breaks down** because QAOA's speed advantage over classical methods is not yet proven at commercially relevant scale — on small problems, classical algorithms are often competitive. The promise is that as quantum hardware improves and problem sizes grow, QAOA's quantum interference effects will generate solutions that classical methods cannot match.
-
-**SELL THE REVOLUTION:** QAOA runs on IBM's, Google's, and IonQ's publicly available quantum hardware today. JPMorgan Chase has published research on quantum portfolio optimization using QAOA variants. Airbus is testing QAOA for aircraft loading optimization. BMW is exploring QAOA for paint shop sequencing. The algorithm is being stress-tested on today's imperfect hardware precisely so that companies understand what they are buying when the hardware matures. The organizations running these pilots are not wasting money — they are acquiring quantum fluency that will translate directly into competitive advantage when QAOA's scaling advantage materializes. Those who wait will be learning from scratch.
-
-### 6.5.3 Pathway 3: Quantum-Inspired Classical Solvers
-
-**The 9th Grader Analogy: The Chef Who Changed Restaurants**
-
-Imagine a chef who trained for a decade at a legendary French restaurant — learning the precise knife techniques, flavor-layering methods, and plating philosophy of classical French cuisine. Then the chef moves to a completely different restaurant: a modern American steakhouse. The restaurant has no French menu, no classic French equipment, no traditional French ingredients. But the *techniques* the chef learned travel perfectly. The steakhouse's dishes become noticeably better — more precise, more balanced, more sophisticated — because the methods were worth learning regardless of the original context.
-
-Quantum-inspired solvers work exactly this way. Researchers studied quantum annealing and quantum tunneling, extracted the mathematical principles that make them powerful, and then implemented those same principles on ordinary classical hardware. No quantum computer required. The algorithms — Simulated Bifurcation, Coherent Ising Machines emulated in silicon, Fujitsu's Digital Annealer — run on conventional CPUs and GPUs, but their mathematics derives from quantum physics.
-
-**The analogy breaks down** in one important way: the quantum-inspired algorithms can't reproduce every quantum effect. Some quantum phenomena — genuine entanglement, for instance — don't transfer to classical hardware. The quantum-inspired solver captures maybe 60–80% of the advantage, not 100%.
-
-**SELL THE REVOLUTION:** This is, right now today, the single most important concept in this entire chapter for any executive reading it. You do not need to wait for quantum hardware to mature. You do not need a six-figure quantum computing budget. You do not need to hire quantum physicists. Quantum-inspired solvers — available from Fujitsu, Toshiba, Microsoft, Amazon (Braket), and multiple startups — run on your existing infrastructure, integrate with your existing data pipelines, and deliver 60–80% of the optimization improvement that full quantum hardware promises. A retail chain with \$2 billion in logistics spend can recover \$50–120 million per year in routing efficiency using quantum-inspired solvers on cloud-hosted GPUs. Right now. This week. The competitive moat is available to any organization willing to learn the math and build the formulation.
-
-:::{figure} ../images/ch06-quantum-inspired-gateway.png
-:name: fig-ch06-gateway
-:alt: Quantum-inspired gateway diagram showing three-phase progression from classical to quantum-inspired to full quantum
-:width: 100%
-
-**The Quantum-Inspired Gateway.** Three pathways to optimization advantage, mapped by technology readiness and available benefit. The quantum-inspired middle path captures 60–80% of full quantum value today, on classical hardware, with zero quantum infrastructure risk — making it the highest-ROI entry point for most enterprises.
-:::
-
-### 6.5.4 Comparison: Which Pathway When?
-
-| Dimension | Quantum Annealing | QAOA (Gate-Based) | Quantum-Inspired |
-|-----------|-------------------|-------------------|-----------------|
-| **Hardware** | D-Wave quantum hardware | IBM, Google, IonQ QPUs | Classical CPU/GPU |
-| **Availability** | Commercial now | Commercial, limited | Commercial now |
-| **Problem size** | Up to ~5,000 binary vars | Currently 50–100 qubits | Millions of variables |
-| **Quality** | High for QUBO | Approximate, improving | 60–80% of quantum |
-| **Cost** | Moderate-high | High (cloud QPU time) | Low (cloud compute) |
-| **Risk** | Hardware dependency | Hardware immaturity | Low |
-| **Best for** | Production QUBO problems | Research + future-proofing | Enterprise deployment now |
+1. **Define binary variables:** What binary decisions does your problem involve? Each yes/no choice becomes one binary variable.
+2. **Write the objective:** What are you minimizing or maximizing? Express it as a quadratic function of your binary variables.
+3. **Add constraints as penalties:** For each constraint your problem must satisfy, add a penalty term (a positive number multiplied by how much the constraint is violated squared) to the objective.
+4. **Set penalty weights:** Choose penalty multipliers large enough to force the solver to satisfy constraints, but not so large that they dominate the objective.
 
 ---
 
-## 6.6 The Quantum-Inspired Gateway: Capturing Value Today
+#### Example 1: The Knapsack Problem
 
-The quantum-inspired gateway deserves its own section because it changes the ROI calculus for every enterprise optimization program.
+**Problem:** You have 5 items with weights $[2, 3, 4, 5, 1]$ kg and values $[3, 4, 5, 6, 1]$. Your knapsack holds at most 8 kg. Which items do you take to maximize value?
 
-The traditional technology adoption narrative goes: *wait for the technology to mature, then adopt when the business case is clear.* That strategy made sense for cloud computing, for mobile, for AI. It is the *wrong* strategy for quantum optimization — because the mathematics is already mature enough to deliver value on classical hardware, and the organizations that learn the formulation skills now will be positioned to transfer those skills to quantum hardware as it scales.
+**Step 1: Binary variables.** Let $x_i = 1$ if item $i$ is taken, 0 otherwise. Five variables: $x_1, x_2, x_3, x_4, x_5$.
 
-The quantum-inspired gateway is a deliberate strategy:
+**Step 2: Objective.** Maximize total value = $3x_1 + 4x_2 + 5x_3 + 6x_4 + 1x_5$. Since QUBO minimizes, negate: minimize $-3x_1 - 4x_2 - 5x_3 - 6x_4 - x_5$.
 
-1. **Identify** your highest-value combinatorial optimization problems (routing, scheduling, portfolio, dispatch)
-2. **Formulate** them as QUBO or Ising problems using quantum-inspired tools
-3. **Solve** them using quantum-inspired classical solvers (Fujitsu Digital Annealer, Toshiba SBM, D-Wave Leap hybrid, Microsoft Azure Quantum)
-4. **Measure** ROI from solution quality improvement vs. current solver
-5. **Transfer** the formulation to quantum hardware as qubit count and quality improve
+**Step 3: Constraints.** Weight constraint: $2x_1 + 3x_2 + 4x_3 + 5x_4 + x_5 \leq 8$. Rewritten as a penalty: $\lambda \cdot \max(0, 2x_1 + 3x_2 + 4x_3 + 5x_4 + x_5 - 8)^2$.
 
-This strategy delivers returns today while building quantum competency organically. The kill-switch for moving to "true quantum" is when the quantum hardware offers meaningfully better solution quality or speed on your specific problem class — and you'll know, because you'll have the benchmark data from step 4.
-
-```{admonition} Executive Decision Framework
-:class: note
-**When to pursue quantum-inspired (now):** Optimization problems with >100 binary variables, documented solution quality gap with current solvers, recurring daily/weekly run frequency, measurable cost of suboptimal decisions.
-
-**When to consider quantum annealing (now):** Same as above, plus: QUBO formulation fits within D-Wave's qubit graph topology, team has quantum formulation expertise, organization tolerates hardware vendor dependency.
-
-**When to monitor QAOA (future):** Track IBM and Google's quantum volume and QAOA benchmark publications. Set a review trigger at 1,000+ logical qubits with error correction.
-```
+**Step 4: Q matrix.** Combine objective and penalty into one QUBO matrix. The diagonal entries $Q_{ii}$ capture linear terms (values and self-penalty). The off-diagonal entries $Q_{ij}$ capture pair interactions (weight constraint cross-terms).
 
 ---
 
-## 6.7 Industry Applications: The Money Is Real
+#### Example 2: A 3-City Routing Problem
 
-### 6.7.1 Finance: Portfolio Optimization at Scale
+**Problem:** A delivery driver must visit cities A, B, C in the shortest total distance, starting and ending at the depot.
 
-Portfolio optimization is textbook combinatorial complexity. A portfolio manager selecting from 3,000 securities under 50 risk constraints, regulatory capital limits, ESG screens, and liquidity requirements is solving a combinatorial problem that classical quadratic programming handles adequately for small portfolios — but struggles with at institutional scale.
+**Binary variables:** $x_{it} = 1$ if city $i$ is visited at time step $t$.
 
-The standard approach — Markowitz mean-variance optimization — works beautifully in theory and degrades at scale because the number of constraint interactions grows quadratically with portfolio size. A 1,000-security portfolio has 500,000 covariance pairs to manage. Add integer constraints (you can't buy 0.7 shares of a stock) and the problem becomes combinatorially hard.
+For 3 cities and 3 time steps: 9 binary variables. The Q matrix encodes:
+- Objective: minimize total travel distance (negative reward for short-distance connections)
+- Constraint 1: each city visited exactly once (each row sums to 1)
+- Constraint 2: each time step has exactly one city (each column sums to 1)
 
-Goldman Sachs has invested substantially in quantum computing research, including quantum optimization for portfolio problems. Their published work explores how QUBO formulations can encode integer portfolio selection under cardinality constraints (exactly N securities in the portfolio), finding solutions that classical solvers approximate but don't guarantee. The projected improvement is 5–15% better risk-adjusted return on constrained portfolios — which at institutional scale represents hundreds of millions in annual alpha.
-
-:::{figure} ../images/ch06-finance-optimization.png
-:name: fig-ch06-finance
-:alt: Portfolio optimization infographic showing classical Markowitz efficient frontier vs quantum-enhanced optimization
-:width: 100%
-
-**Quantum Portfolio Optimization.** Classical Markowitz optimization finds good portfolios for small, unconstrained problems. Quantum and quantum-inspired methods handle large-scale integer constraints, ESG screens, and regulatory capital requirements simultaneously — finding portfolios that classical solvers provably cannot reach.
-:::
-
-### 6.7.2 Logistics: The Last Mile That Eats Your Margin
-
-The last-mile delivery problem is the most expensive problem in e-commerce logistics. The last 20% of a package's journey — from regional hub to front door — accounts for approximately 50% of total delivery cost. The optimization problem involves simultaneously routing thousands of packages through hundreds of stops, with time windows, vehicle capacities, driver schedules, and real-time traffic conditions.
-
-DHL has piloted quantum-inspired routing optimization across multiple European markets, working with D-Wave and subsequently with quantum-inspired classical solvers. In their published case studies, quantum-inspired routing reduced delivery stops per route by 4–8%, translating to meaningful fuel savings and driver hours recovered. For a company processing 400 million shipments annually, a 6% improvement in last-mile routing efficiency represents over \$800 million in annual cost reduction.
-
-The key insight from DHL's work: the quantum-inspired solver wasn't better because it was quantum-derived. It was better because the energy landscape formulation naturally handles *all* constraints simultaneously, rather than the sequential constraint-satisfaction approach of classical solvers. Time windows, vehicle capacities, and customer priorities are all encoded in the same QUBO matrix — the solver optimizes across them simultaneously rather than satisficing one at a time.
-
-:::{figure} ../images/ch06-logistics-routing.png
-:name: fig-ch06-logistics
-:alt: Last-mile logistics routing showing classical vs quantum-optimized delivery paths with 8% distance savings
-:width: 100%
-
-**Quantum-Inspired Last-Mile Routing.** Classical routing algorithms satisfy constraints sequentially, producing routes that are locally good but globally suboptimal. QUBO-based formulations encode all constraints simultaneously, allowing quantum-inspired solvers to find configurations that classical methods routinely miss — with documented efficiency gains of 4–8% in real deployments.
-:::
-
-### 6.7.3 Energy: Dispatching Electrons Optimally
-
-The energy grid dispatch problem is among the most computationally demanding optimization problems run in real time, anywhere in the world. Every few minutes, grid operators must decide how to distribute electrical generation across hundreds of power plants — balancing supply and demand, respecting transmission capacity limits, minimizing cost while maintaining reserve margins for reliability.
-
-ExxonMobil has worked with quantum computing researchers on a related problem: maritime logistics optimization. Their LNG shipping operations involve routing dozens of vessels across global ocean lanes, scheduling port calls, managing cargo swaps between vessels, and optimizing fuel consumption across varying weather and price conditions. The combinatorial complexity rivals grid dispatch: tens of vessels, hundreds of port combinations, thousands of possible cargo assignments.
-
-In ExxonMobil's collaboration with IBM Quantum, researchers demonstrated that QUBO formulations of the maritime routing problem could encode constraints that classical solvers handled only approximately. While full quantum advantage awaited larger quantum systems, the quantum-inspired intermediate approach delivered documented improvements in solution quality. ExxonMobil's estimate: a 1% improvement in global LNG shipping optimization is worth approximately \$200 million per year.
-
-:::{figure} ../images/ch06-energy-dispatch.png
-:name: fig-ch06-energy
-:alt: Energy grid dispatch optimization showing quantum optimization layer connecting power sources to smart grid
-:width: 100%
-
-**Quantum-Inspired Grid Dispatch.** Energy dispatch is a continuous, real-time combinatorial optimization problem involving hundreds of generation assets, thousands of transmission constraints, and rapidly changing demand signals. Quantum-inspired solvers are being piloted at multiple utilities for day-ahead dispatch planning — with projected savings of 2–5% on generation cost, representing hundreds of millions per year at utility scale.
-:::
+With penalty weight $\lambda$ chosen large relative to maximum edge length, the minimum QUBO solution gives the shortest valid tour.
 
 ---
 
-## 6.8 Flagship Case Study: Volkswagen, Lisbon, and the Quantum-Inspired Pivot
+#### Example 3: Portfolio Selection (QUBO for Finance)
 
-### Situation
+**Problem:** Select 3 assets from 6 candidates to maximize expected Sharpe ratio while minimizing pairwise correlation.
 
-The year is 2019. Volkswagen Group's digital transformation team, working with D-Wave Systems, has been exploring quantum optimization for logistics and production planning. The WebSummit conference in Lisbon presents an unusual opportunity: a real city, with real traffic congestion, and a defined optimization problem (route four buses carrying conference attendees from their hotels to the venue) — small enough to run on current quantum hardware, real enough to generate credible data.
+**Binary variables:** $x_i = 1$ if asset $i$ is selected. Six variables.
 
-VW deploys a D-Wave Advantage quantum annealer connected to real-time traffic data. The system formulates the four-bus routing problem as a QUBO and solves it continuously as traffic conditions change. The buses receive optimized routes every few minutes. The optimization beats the classical baseline by a measurable margin — not dramatically, but demonstrably.
+**Objective:** Minimize $-\sum_i r_i x_i + \lambda_1 \sum_{i < j} C_{ij} x_i x_j$
 
-The world notices. The pilot generates substantial media coverage. VW announces it as a milestone in quantum computing application. And internally, the data science team begins a second analysis — one that doesn't make the press release.
+where $r_i$ is the expected return of asset $i$ and $C_{ij}$ is the correlation between assets $i$ and $j$.
 
-### Quantum Angle
+**Constraint:** Exactly 3 assets selected: $\sum_i x_i = 3$.
 
-The Lisbon pilot used a D-Wave quantum annealer operating with approximately 2,000 qubits (the Advantage system launched later with 5,000+). The routing problem was small enough to fit comfortably within the hardware. The QUBO formulation encoded: four vehicles, multiple waypoints, time-varying traffic weights, and a minimization objective over total journey time. The quantum annealer found low-energy states — optimal routes — faster than equivalent classical search.
+As a penalty: $\lambda_2 (\sum_i x_i - 3)^2 = \lambda_2 (\sum_i x_i^2 + 2\sum_{i < j} x_i x_j - 6\sum_i x_i + 9)$
 
-What VW's team learned in Lisbon was not that quantum computing was production-ready for their full logistics network. What they learned was more nuanced: *the formulation works, the improvement is real, and the problem scales beyond what current hardware can handle cleanly — but the classical implementation of the same formulation also outperforms their legacy solver.*
+Since $x_i^2 = x_i$ for binary variables, this simplifies to known quadratic terms that add directly to $Q$.
 
-### Decisions Made
-
-Post-Lisbon, VW made two decisions that have been rarely discussed together:
-
-**Decision 1:** Continue investing in gate-based quantum computing research through VW.OS (their software division) and partnerships with IBM and Google, treating quantum hardware as a 5–10 year horizon technology for production deployment.
-
-**Decision 2:** Deploy quantum-inspired classical solvers for production logistics optimization in their supply chain, factory scheduling, and parts routing — starting with their Wolfsburg and Zwickau plants.
-
-Decision 2 is the more significant story. By 2021, VW was running Fujitsu Digital Annealer-based optimization for production scheduling at multiple facilities. The quantum-inspired solver — running the same QUBO mathematics as their Lisbon experiment, but on classical hardware — delivered documented efficiency improvements of 3–8% in parts logistics routing and 2–5% in factory scheduling throughput.
-
-The ROI calculation was straightforward: quantum-inspired solver licensing + implementation costs vs. annual efficiency gains in a multi-billion-euro production operation. Payback period: under 18 months.
-
-The kill-switch for transitioning to "true quantum" was explicitly defined: when a quantum annealer or QAOA system can solve VW's full production scheduling problem (thousands of variables) with measurably better solution quality than the quantum-inspired classical solver, and at comparable cost per solve, the migration happens.
-
-### Measured Outcome
-
-| Metric | Lisbon Pilot (2019) | Production Deployment (2021+) |
-|--------|---------------------|-------------------------------|
-| Technology | D-Wave quantum annealer | Fujitsu Digital Annealer (classical) |
-| Problem size | 4 vehicles, real-time | Thousands of components, daily batch |
-| Improvement vs. baseline | ~10% route efficiency | 3–8% logistics routing efficiency |
-| Annual value | Unmeasured (pilot) | \$50–200M estimated range |
-| Quantum hardware required? | Yes | No |
-
-### Open Question
-
-At what qubit count and error rate does gate-based quantum QAOA definitively outperform VW's quantum-inspired classical solver on their specific production scheduling problem class? This remains an open research question — one VW's team is actively benchmarking. The answer will define the quantum kill-switch for one of the world's largest manufacturers.
-
-:::{figure} ../images/ch06-vw-lisbon-case.png
-:name: fig-ch06-vw
-:alt: Volkswagen Lisbon case study diagram showing 2019 quantum pilot and subsequent quantum-inspired production deployment
-:width: 100%
-
-**VW's Quantum-Inspired Pivot.** The Lisbon pilot proved that quantum-derived optimization formulations worked on real transportation problems. The more consequential decision was the subsequent deployment of quantum-inspired classical solvers in production — delivering measurable ROI without waiting for quantum hardware to mature.
-:::
-
-**Discussion Questions for Case Analysis:**
-
-1. VW's team defined an explicit "kill-switch" for transitioning to full quantum. What are the risks of defining this trigger too early vs. too late? How should a business protect against hardware vendor lock-in at either stage?
-
-2. The Lisbon pilot improved a 4-vehicle routing problem. VW's production scheduling problem involves thousands of variables. What changes — mathematically and organizationally — when you scale the formulation?
-
-3. VW chose quantum-inspired over quantum annealing for their production deployment despite already having D-Wave experience. What factors likely drove that decision? Is that logic generalizable to other industries?
-
----
-
-## 6.9 Industry Snapshots
-
-### Goldman Sachs: The Portfolio That Classical Solvers Couldn't Reach
-
-Goldman Sachs's quantitative investment management division manages portfolios subject to a web of constraints that would paralyze most optimization algorithms: position limits, factor exposure constraints, ESG screens, tax-loss harvesting rules, regulatory capital requirements, and liquidity bands — all applied simultaneously across portfolios of thousands of securities. The classical approach involves hierarchical relaxation: solve for broad allocations first, then layer on constraints, losing global optimality at each step.
-
-In a series of published papers beginning in 2020, Goldman's quantum research team demonstrated that QUBO formulations could encode the full constraint matrix simultaneously — allowing a quantum-inspired solver to search across all constraint dimensions at once, rather than satisficing sequentially. On test portfolios of 100–200 securities with 30+ active constraints, the quantum-inspired approach consistently found portfolios with 3–8% better risk-adjusted returns than the classical hierarchical method. On a \$10 billion portfolio, that improvement represents \$300–800 million in annual alpha — before fees.
-
-Goldman has not disclosed whether these methods are in production. What they have disclosed is that the research program is well-funded, well-staffed, and viewed internally as strategically critical. In finance, the advantage doesn't have to be large to be devastating. A consistent 1% alpha advantage, compounded over years, is the difference between the top-tier fund and everyone else.
-
-### DHL: The Retail Chain That Never Bought a Qubit
-
-In 2021, a European retail chain with over 1,000 stores and a private fleet of 800 delivery vehicles undertook an optimization review of their distribution network. Their classical routing software — a commercial vehicle routing platform widely used in the industry — had been in place for seven years. It performed well. Their logistics team didn't think they had a problem.
-
-The quantum-inspired audit told a different story. A consultant using D-Wave Leap's hybrid quantum-classical solver reformulated the retailer's routing problem as a QUBO — encoding vehicle capacities, time windows, store priority levels, cross-docking constraints, and driver hour regulations simultaneously. The quantum-inspired solution reduced total delivery miles by 8.2% and vehicle utilization by 6.4%.
-
-The retailer's logistics spend was approximately \$180 million annually. The improvement translated to approximately \$14 million per year in savings — achieved with no quantum hardware purchase, no quantum computing team, and no fundamental change to their logistics operation. The solver runs as a nightly batch optimization job on cloud-hosted GPUs. Implementation cost: under \$500,000. ROI: 2,800% in the first year.
-
-The retailer's name is not public. The case study has been published (anonymized) by DHL's Innovation Center. It is representative of dozens of similar deployments happening quietly across retail, grocery, and consumer goods logistics.
-
-### ExxonMobil: Optimizing the Ocean
-
-ExxonMobil's Global LNG shipping operation — moving liquefied natural gas between production facilities, regasification terminals, and spot cargo buyers across the Pacific and Atlantic — involves a routing and scheduling problem of remarkable complexity. Dozens of specialized LNG vessels. Hundreds of port combinations. Thousands of possible cargo assignments. Contract obligations, demurrage penalties, weather routing constraints, and volatile spot market prices all interact simultaneously.
-
-The classical approach uses a combination of experienced human planners and linear programming models that must make simplifying assumptions to remain solvable. The LP models optimize for primary objectives while treating many constraints as soft penalties — meaning the "optimal" solution from the classical model is optimal within its simplified representation of reality, not optimal in the actual operating environment.
-
-ExxonMobil's collaboration with IBM Quantum investigated whether QUBO formulations could encode the full-complexity model without simplification. The preliminary results, reported at a 2021 quantum computing conference, showed that QUBO encoding was feasible for representative problem instances and that quantum-inspired solutions outperformed the LP baseline on problem instances with high constraint density. ExxonMobil's published estimate: a 1% improvement in global LNG logistics optimization is worth approximately \$200 million annually. Even a modest quantum-inspired improvement — 0.3–0.5% on full-fleet deployment — would justify the program's entire research budget many times over.
-
----
-
-## 6.10 The ROI Framework: Making the Business Case
-
-Before any pilot, executives need a structured approach to calculating the quantum optimization ROI envelope. The framework has four components:
-
-:::{figure} ../images/ch06-roi-framework.png
-:name: fig-ch06-roi
-:alt: ROI framework for quantum optimization pilots showing three-phase roadmap and decision tree
-:width: 100%
-
-**The Quantum Optimization ROI Framework.** A structured approach to building the business case: identify the cost envelope, quantify the solution quality gap, estimate improvement from quantum-inspired methods, then validate through a bounded pilot before scaling.
-:::
-
-**Step 1: Identify the Annual Cost Envelope**
-What is the total annual spend directly affected by the optimization problem? For logistics routing, this is fuel + driver labor + vehicle depreciation. For portfolio optimization, this is the alpha gap multiplied by assets under management. For grid dispatch, this is generation cost above minimum-cost dispatch.
-
-**Step 2: Estimate the Solution Quality Gap**
-How much worse is your current solution than theoretical optimum? For well-studied problem classes, published benchmarks give typical gaps: vehicle routing heuristics are typically 5–15% above optimal; portfolio optimization with integer constraints is typically 3–10% above optimal; grid dispatch with full constraint encoding is typically 2–8% above optimal.
-
-**Step 3: Apply the Quantum-Inspired Improvement Factor**
-Quantum-inspired solvers typically recover 50–80% of the solution quality gap in well-formulated problems. Multiply the gap by the recovery factor to estimate annual improvement value.
-
-**Step 4: Build the Pilot Budget**
-A bounded quantum-inspired pilot — covering problem formulation, solver licensing, integration, and measurement — typically costs \$200,000–\$1,000,000 for a medium-complexity problem. The payback period is almost always under 24 months for problems with annual cost envelopes exceeding \$50 million.
-
-```{admonition} ROI Calculation Example
-:class: tip
-**Retail logistics example:**
-- Annual logistics spend: \$180M
-- Solution quality gap (estimated): 10%
-- Gap value: \$18M/year
-- Quantum-inspired recovery: 70% of gap
-- Annual improvement: \$12.6M
-- Pilot cost: \$400K
-- Payback period: 12 days of improvement value
-- 3-year NPV (10% discount): ~\$31M
-```
-
----
-
-## 6.11 Productive-Struggle Problem
-
-```{admonition} Your Organization's Hidden Goldmine
+:::{admonition} The Constraint Penalty Rule
 :class: important
 
-**The Challenge:** Most organizations have at least one major optimization problem that is currently solved "well enough" by a combination of human judgment, legacy software, and simplified models. Your task is to find it, size it, and propose a quantum-inspired attack plan.
+Every constraint of the form $g(x) = 0$ adds a penalty $\lambda \cdot g(x)^2$ to the QUBO. The penalty weight $\lambda$ must be large enough that satisfying the constraint is always cheaper than violating it. Rule of thumb: $\lambda > $ maximum possible value of the objective. If in doubt, start with $\lambda = 5 \times \max |Q_{ij}|$ and tune empirically.
+:::
 
-**Part 1: Identify (30 minutes)**
-Think about recurring decisions in your organization that involve selecting the best combination of resources, assignments, routes, or allocations. Candidates: delivery routing, staff scheduling, inventory replenishment, supplier selection, capital allocation, production sequencing.
+---
 
-**Part 2: Size (30 minutes)**
-Estimate the annual cost envelope. Be conservative. If the problem involves \$10M+ in annual spend and your current solver leaves even a 5% quality gap, the ROI opportunity is \$500,000+/year.
+### The Combinatorial Explosion: Why This Matters at Scale
 
-**Part 3: Classify (15 minutes)**
-Classify the complexity: How many binary variables does a full formulation require? (Rule of thumb: 1 binary variable per decision, e.g., each vehicle-stop-timewindow combination.) Problems with 50–500 binary variables are excellent candidates for quantum-inspired methods today.
+The knapsack and routing examples above involve 5–9 binary variables. Real production problems involve thousands.
 
-**Part 4: Propose (45 minutes)**
-Propose a three-phase pilot plan: Phase 1 (4 weeks) — formulate the QUBO on a simplified subset of the problem. Phase 2 (8 weeks) — run quantum-inspired solver vs. current baseline on historical data, measure solution quality gap improvement. Phase 3 (12 weeks) — deploy in shadow mode (solver runs in parallel, doesn't control decisions), measure actual vs. predicted improvement.
+| Problem | Binary Variables | Classical Brute Force | D-Wave Stride |
+|---|---|---|---|
+| 3-city routing | 9 | Instant | Instant |
+| 20-city routing | 400 | Infeasible | Seconds |
+| BASF plant scheduling | ~50,000 | Infeasible (forever) | Minutes |
+| Portfolio (3,000 assets) | 3,000 | Infeasible | Minutes |
+
+The combinatorial explosion makes classical brute force futile above ~30 variables. Classical heuristics (greedy algorithms, simulated annealing, genetic algorithms) scale better but find solutions that are provably suboptimal. D-Wave's Stride hybrid solver — which decomposes large QUBOs, routes subproblems to the Advantage2 QPU, and coordinates results classically — handles the production-scale problems in the last two rows of that table.
+
+---
+
+## Part II: The D-Wave Ocean SDK
+
+D-Wave's **Ocean SDK** is the Python library for formulating and submitting problems to D-Wave hardware and solvers. It is the tool BASF's engineers used to translate their manufacturing scheduling problem into QUBO. It is what you will use in Lab 6.
+
+Ocean is open-source, well-documented, and installable in one line:
+
+```bash
+pip install dwave-ocean-sdk
 ```
 
-::::{dropdown} Worked Example: Hospital Surgery Scheduling
-:open:
+### The Core Workflow
 
-**Problem:** A 500-bed hospital schedules 200 surgeries per week across 15 operating rooms, 80 surgeons, 150 nurses, and 40 anesthesiologists. Each surgery has equipment requirements, duration uncertainty, and priority levels.
+Every Ocean program follows the same structure:
 
-**Cost Envelope:** Average surgery revenue is \$12,000. OR utilization at 80% (typical). Improving to 85% utilization adds \~50 additional surgeries per week × \$12,000 = \$600,000/week. Annual value: \$31 million.
+```python
+# Step 1: Define the problem as a QUBO dictionary
+Q = {
+    ('x1', 'x1'): -3,   # diagonal: reward for including item 1 (value = 3)
+    ('x2', 'x2'): -4,   # reward for item 2
+    ('x3', 'x3'): -5,   # reward for item 3
+    ('x1', 'x2'): 6,    # penalty: weight interaction between items 1 and 2
+    # ... etc
+}
 
-**Variable Count:** 200 surgeries × 15 ORs × 40 time slots = 120,000 binary variables. This exceeds current quantum annealer capacity but is solvable by quantum-inspired classical solvers.
+# Step 2: Choose a sampler (solver)
+from dwave.system import LeapHybridSampler
+sampler = LeapHybridSampler()   # D-Wave Leap hybrid solver (Stride)
+# OR:
+from dwave.system import DWaveSampler, EmbeddingComposite
+sampler = EmbeddingComposite(DWaveSampler())   # Direct QPU access
 
-**Three-Phase Plan:**
-- Phase 1: Formulate QUBO for simplified problem (50 surgeries, 5 ORs). Validate formulation correctness.
-- Phase 2: Run Fujitsu Digital Annealer vs. current scheduling system on 8 weeks of historical data. Measure OR utilization improvement.
-- Phase 3: Deploy in shadow mode for 12 weeks. Present improvement data to CFO for full deployment decision.
+# Step 3: Submit the problem
+sampleset = sampler.sample_qubo(Q, label="Knapsack Problem")
 
-**Kill-Switch for True Quantum:** When a quantum annealer with sufficient qubit connectivity can solve the full 120,000-variable problem with 10%+ better solution quality than the quantum-inspired baseline.
+# Step 4: Extract and interpret results
+best = sampleset.first
+print(f"Best solution: {best.sample}")
+print(f"Energy (cost): {best.energy}")
+print(f"Timing: {sampleset.info}")
+```
+
+### Samplers: Choosing Your Solver
+
+Ocean uses a **sampler** abstraction — every solver (QPU, hybrid, simulator) has the same interface, so you can switch between them by changing one line.
+
+| Sampler | What It Does | When to Use |
+|---|---|---|
+| `SimulatedAnnealingSampler` | Classical simulated annealing on CPU | Testing formulations locally, no Leap account needed |
+| `TabuSampler` | Classical tabu search | Fast local testing, comparison baseline |
+| `DWaveSampler` + `EmbeddingComposite` | Direct QPU access on Advantage2 | Small problems (<3,000 variables), research |
+| `LeapHybridSampler` | Stride hybrid solver | Production-scale problems, enterprise use |
+| `LeapHybridCQMSampler` | Constrained Quadratic Model solver | Problems with explicit constraints (easier formulation) |
+
+### The Constrained Quadratic Model (CQM): A Better Interface
+
+For complex problems with many constraints, Ocean offers a higher-level interface: the **Constrained Quadratic Model (CQM)**. Instead of manually constructing the Q matrix and adding penalty terms, you define the objective and constraints directly in a natural mathematical syntax, and Ocean handles the QUBO conversion internally.
+
+```python
+from dimod import ConstrainedQuadraticModel, Binary, quicksum
+from dwave.system import LeapHybridCQMSampler
+
+# Define binary variables
+items = ['item1', 'item2', 'item3', 'item4', 'item5']
+weights = {'item1': 2, 'item2': 3, 'item3': 4, 'item4': 5, 'item5': 1}
+values  = {'item1': 3, 'item2': 4, 'item3': 5, 'item4': 6, 'item5': 1}
+x = {i: Binary(i) for i in items}
+
+# Build the CQM
+cqm = ConstrainedQuadraticModel()
+
+# Objective: maximize total value (minimize negative)
+cqm.set_objective(-quicksum(values[i] * x[i] for i in items))
+
+# Constraint: total weight ≤ 8
+cqm.add_constraint(
+    quicksum(weights[i] * x[i] for i in items) <= 8,
+    label='weight_limit'
+)
+
+# Submit to Stride
+sampler = LeapHybridCQMSampler()
+sampleset = sampler.sample_cqm(cqm, label='Knapsack CQM', time_limit=5)
+
+# Extract feasible solutions
+feasible = sampleset.filter(lambda s: s.is_feasible)
+best = feasible.first
+print({i: best.sample[i] for i in items})
+```
+
+The CQM interface is the recommended starting point for enterprise problems. It is more readable, less error-prone, and handles constraint penalty weights automatically.
+
+---
+
+### Reading the Results
+
+Every Ocean sampleset contains:
+
+```python
+# Sample output structure
+sampleset.first          # Best solution found
+sampleset.first.sample   # Dict of variable assignments {x1: 0, x2: 1, ...}
+sampleset.first.energy   # Cost function value (lower = better)
+sampleset.first.num_occurrences  # How many times this solution appeared
+
+sampleset.info           # Timing breakdown
+# Example info:
+# {'timing': {
+#    'qpu_sampling_time': 2680,       # microseconds on QPU
+#    'qpu_access_time': 15000,        # total QPU reservation
+#    'total_real_time': 1.23          # seconds including classical overhead
+# }}
+```
+
+The timing breakdown is one of the most instructive outputs. QPU sampling time in *microseconds* vs. total wall time in *seconds* reveals the classical overhead surrounding the quantum computation — problem programming, embedding, communication, and classical post-processing.
+
+---
+
+## Part III: The Stride Hybrid Solver in Depth
+
+For enterprise-scale problems — the BASF scheduling problem, a logistics fleet of 500 vehicles, a portfolio of 3,000 assets — the direct QPU cannot handle the full problem in one submission. D-Wave's **Stride hybrid solver** bridges this gap.
+
+:::{figure} ../images/ch06-stride-architecture.png
+:label: fig-ch06-stride
+:alt: D-Wave Stride hybrid solver architecture showing problem decomposition, QPU subproblem routing, and classical coordination
+:width: 100%
+:align: center
+
+**Stride Hybrid Solver Architecture.** Stride operates as a classical orchestration layer around the Advantage2 QPU. Large QUBO problems are decomposed into QPU-tractable subproblems, each solved by the annealer, with results coordinated classically until a stopping criterion is met. The enterprise user sees a single API call; the quantum-classical coordination is invisible.
+:::
+
+### How Stride Works
+
+Stride implements a form of **decomposition-based hybrid optimization**:
+
+1. **Problem ingestion:** The full QUBO (potentially millions of variables) is received as input
+2. **Subproblem identification:** A classical algorithm identifies high-impact subsets of variables — clusters where improving the solution is most likely to reduce total cost
+3. **QPU submission:** Each subproblem (scaled to fit the Advantage2's qubit capacity) is submitted to the annealer
+4. **Result integration:** QPU results are integrated back into the full solution, updating the variable assignments
+5. **Iteration:** Steps 2–4 repeat until the time limit is reached or convergence is detected
+6. **Output:** The best full-problem solution found across all iterations is returned
+
+From the user's perspective, Stride takes one API call and returns one answer. The internal quantum-classical orchestration is abstracted away.
+
+### Stride vs. Direct QPU: When to Use Each
+
+| Criterion | Direct QPU | Stride Hybrid |
+|---|---|---|
+| Problem size | <3,000 logical variables | Up to millions of variables |
+| Latency | Microseconds (QPU only) | Seconds to minutes |
+| Cost model | QPU microseconds | Solver seconds |
+| Best for | Research, small pilots, benchmarking | Production enterprise workloads |
+| FAU coursework | Available on Advantage2 | Available on Advantage2 + Leap |
+
+For all production use cases in this course — BASF-style scheduling, logistics routing, portfolio construction — Stride is the right tool.
+
+### The Time Limit Parameter
+
+Stride accepts a `time_limit` parameter (in seconds) that controls how long the solver runs before returning its best solution. There is a fundamental tradeoff:
+
+- **Short time limit (5–30s):** Fast results, may not reach convergence. Good for interactive exploration and rapid iteration during formulation development.
+- **Medium time limit (60–300s):** Balanced quality/speed. Typical for production batch jobs.
+- **Long time limit (>300s):** Maximum solution quality. Used for high-value, infrequently-run problems where quality matters more than speed.
+
+```python
+# Short run (exploratory)
+sampleset = sampler.sample_cqm(cqm, time_limit=10)
+
+# Production run
+sampleset = sampler.sample_cqm(cqm, time_limit=180)
+```
+
+The BASF production deployment uses a time limit calibrated to complete within the operational scheduling window — the solver runs overnight to maximize quality, but can also run in near-real-time (90 seconds) for disruption response.
+
+---
+
+## Part IV: Enterprise Applications
+
+### Flagship Case Study: BASF — Manufacturing Scheduling from Hours to Seconds
+
+#### Situation
+
+BASF's Ludwigshafen complex, the world's largest integrated chemical site, schedules thousands of production processes across hundreds of interconnected facilities every day. The scheduling problem involves:
+
+- **Equipment assignments:** Which reactor, vessel, or dryer handles which chemical process?
+- **Sequencing constraints:** Process A must complete before Process B can start on the same equipment
+- **Feedstock timing:** Raw material availability windows that cannot be violated
+- **Safety constraints:** Certain chemical combinations cannot be processed simultaneously on adjacent equipment
+- **Contract commitments:** Customer delivery schedules that drive hard completion deadlines
+- **Energy optimization:** Off-peak electricity rates for energy-intensive processes
+
+The classical OR solver previously used required 4–6 hours of overnight computation to produce a feasible schedule for the following day. The solver found feasible schedules reliably — but "feasible" means constraint-satisfying, not cost-minimizing. The gap between the feasible schedule and the optimal schedule represented meaningful economic waste in equipment utilization, feedstock consumption, and energy cost.
+
+#### QUBO Formulation
+
+BASF's technical team, working with D-Wave, reformulated the scheduling problem as a QUBO. The binary variables represented assignment decisions: $x_{jkt} = 1$ if job $j$ is assigned to equipment $k$ at time slot $t$.
+
+For a representative problem instance with 200 jobs, 30 equipment units, and 50 time slots, this generates $200 \times 30 \times 50 = 300,000$ binary variables — far beyond direct QPU capacity but tractable for Stride.
+
+The Q matrix encoded:
+- **Objective terms:** Negative reward for completing high-priority jobs within deadline; positive cost for equipment idle time
+- **Assignment constraints:** Each job assigned to exactly one equipment-time slot (constraint penalty)
+- **Precedence constraints:** Penalty for violating process sequencing requirements
+- **Capacity constraints:** No equipment assigned more than one job per time slot
+- **Safety constraints:** Penalty for forbidden equipment-process combinations
+
+Constraint penalty weights were calibrated through iterative testing: too low and the solver violates constraints; too high and the solver ignores the objective. The calibration process took the engineering team several weeks of domain-specific tuning.
+
+#### Results
+
+| Metric | Classical OR Solver | D-Wave Stride |
+|---|---|---|
+| Solve time | 4–6 hours | 90 seconds |
+| Schedule quality | Feasible | Measurably closer to optimal |
+| Real-time disruption response | Not feasible | Feasible (re-plan in <2 minutes) |
+| Night shift scheduling team | Required | Partially reassigned |
+
+The most operationally significant improvement was not the solve time — it was the capability for **real-time disruption response**. When an equipment failure or feedstock delay disrupts a production plan, the classical overnight batch approach could not re-optimize in real time. The Stride-based system can re-plan in under 2 minutes, allowing production coordinators to respond immediately to disruptions rather than running to the end of the shift with a broken plan.
+
+BASF has publicly confirmed this deployment is in production and has described it as a competitive differentiator.
+
+#### Open Question
+
+The BASF QUBO formulation was built for a specific plant topology and product mix. How should the formulation be updated when plant equipment is added, product formulations change, or new safety constraints are introduced? This is the ongoing formulation maintenance challenge for production quantum deployments — and it is a career opportunity for engineers who understand both the process chemistry and the QUBO math.
+
+---
+
+### Industry Snapshot: Volkswagen and the Quantum-Inspired Pivot
+
+Volkswagen's 2019 Lisbon pilot — routing four conference buses through real Lisbon traffic using a D-Wave annealer — was the first public demonstration of quantum optimization on a real urban routing problem. VW's team formulated the four-vehicle routing problem as a QUBO, submitted it to D-Wave's hardware, and received optimized routes in near-real-time.
+
+What happened next is the more instructive story. VW's post-pilot analysis revealed: the quantum annealing formulation produced better solutions than their classical routing baseline — but the full production problem (thousands of vehicles, millions of constraints) exceeded the direct QPU capacity of the hardware available in 2019. Rather than wait for larger quantum hardware, VW deployed **quantum-inspired classical solvers** using the same QUBO mathematical framework, running on Fujitsu's Digital Annealer, for production logistics optimization at their Wolfsburg and Zwickau plants. Documented efficiency improvements: 3–8% in parts logistics routing, 2–5% in factory scheduling throughput.
+
+**The strategic lesson:** QUBO formulation is a transferable skill. Problems formulated for quantum annealers today run on quantum-inspired classical solvers when the scale exceeds current QPU capacity — and will run on larger QPUs as hardware scales. Investing in QUBO formulation skills today builds capability that pays off across all three generations of hardware.
+
+---
+
+### Industry Snapshot: Verge Ag — Quantum Routing for Autonomous Agriculture
+
+Verge Ag, an Australian agricultural technology company, uses autonomous vehicles to manage large-scale crop operations — planting, spraying, harvesting — across farm fields that can span thousands of hectares. The autonomous vehicle routing problem involves dozens of vehicles, complex field geometries, crop-type constraints, equipment capability limits, and dynamic replanning as weather and soil conditions change.
+
+Verge Ag partnered with D-Wave to reformulate their fleet routing problem as a QUBO and solve it using Stride. The production deployment enables real-time route optimization for autonomous agricultural fleets — a problem class where classical routing algorithms had previously required human intervention to handle the dynamic replanning required in actual field operations.
+
+The Verge Ag case illustrates an important pattern: quantum optimization is showing up earliest in industries where (1) the routing/scheduling problem has high operational complexity, (2) real-time replanning has direct operational value, and (3) the problem naturally maps to binary decisions. Autonomous vehicles, just-in-time manufacturing, and emergency logistics all share these characteristics.
+
+---
+
+### Industry Snapshot: Mastercard — Fraud Detection as a Graph Problem
+
+Mastercard's use of D-Wave's hybrid solver for transaction graph optimization is one of the more surprising enterprise quantum deployments — surprising because fraud detection does not immediately look like a QUBO problem.
+
+Mastercard's approach reformulates fraud ring detection as a **Maximum Clique** problem on a transaction graph: given a graph where nodes are accounts and edges represent suspicious transaction links, find the largest fully connected subgraph (clique) — which corresponds to the most tightly coordinated fraud ring. Maximum Clique is a classic NP-hard graph optimization problem that maps directly to QUBO.
+
+The quantum annealer's ability to search large solution spaces simultaneously makes it particularly well-suited for graph optimization problems where classical algorithms struggle at scale. Mastercard has described the D-Wave deployment as part of their production fraud detection infrastructure.
+
+**The formulation insight:** Many problems that don't look like optimization problems — fraud detection, drug-target matching, supply chain risk identification — reformulate as graph problems that map naturally to QUBO. The QUBO formulation skill extends far beyond traditional "optimization" domains.
+
+---
+
+### The Three Pathways to Optimization Advantage
+
+Not all quantum optimization routes are equally available today. Understanding all three is essential for a complete enterprise strategy.
+
+:::{figure} ../images/ch06-quantum-inspired-gateway.png
+:label: fig-ch06-gateway
+:alt: Three-pathway quantum optimization diagram showing annealing, QAOA, and quantum-inspired classical routes with readiness levels
+:width: 100%
+:align: center
+
+**Three Pathways, Different Timelines.** Quantum annealing (D-Wave Stride) is production-ready for optimization today. QAOA on gate-model hardware is viable for research and near-term pilots. Quantum-inspired classical solvers deliver 60–80% of quantum benefit on existing infrastructure — the highest near-term ROI for most enterprises.
+:::
+
+**Pathway 1 — Quantum Annealing (Production-Ready Now)**
+
+D-Wave Advantage2 + Stride hybrid solver. The BASF, VW, Mastercard, and Verge Ag deployments. Available on FAU's campus and via D-Wave Leap cloud. Best for QUBO optimization problems with up to millions of variables.
+
+**Pathway 2 — QAOA on Gate-Model Hardware (Research/Near-Term)**
+
+Quantum Approximate Optimization Algorithm running on IBM, Google, or IonQ hardware. The algorithm alternates between quantum cost layers (encoding the problem) and quantum mixer layers (creating superposition over solutions), with a classical optimizer tuning the parameters. QAOA is not yet competitive with D-Wave Stride on production-scale problems, but it is the right tool for research into gate-model optimization and for building familiarity with the algorithm class that will matter most in the fault-tolerance era.
+
+**Pathway 3 — Quantum-Inspired Classical Solvers (High Near-Term ROI)**
+
+Fujitsu Digital Annealer, Toshiba Simulated Bifurcation Machine, Microsoft Azure Quantum-Inspired Optimization, D-Wave's `neal` (simulated annealing) library. These tools use QUBO mathematics on classical hardware. They capture 60–80% of full quantum optimization benefit without quantum hardware. For organizations not yet ready to commit to quantum cloud infrastructure, quantum-inspired solvers are the fastest path to production ROI — and the formulation skills transfer directly to quantum hardware.
+
+| Pathway | Hardware | Problem Scale | Solution Quality | Available |
+|---|---|---|---|---|
+| Quantum annealing (Stride) | D-Wave Advantage2 | Millions of variables | High | Now |
+| QAOA | IBM / Google / IonQ | ~50–200 qubits | Approximate | Now (research) |
+| Quantum-inspired | Classical CPU/GPU | Millions of variables | 60–80% of quantum | Now |
+
+---
+
+## Part V: The ROI Framework
+
+### Sizing the Opportunity
+
+Before any pilot, executives need a structured approach to calculating the quantum optimization ROI envelope. The framework has four steps:
+
+**Step 1: Identify the Annual Cost Envelope**
+What is the total annual spend directly affected by the optimization problem? For logistics routing: fuel + driver labor + vehicle depreciation. For portfolio optimization: alpha gap × assets under management. For plant scheduling: equipment downtime + feedstock waste + energy cost above minimum.
+
+**Step 2: Estimate the Solution Quality Gap**
+How much worse is your current solution than theoretical optimum? Published benchmarks for common problem classes:
+- Vehicle routing heuristics: typically 5–15% above optimal
+- Portfolio optimization with integer constraints: 3–10% above optimal
+- Job shop scheduling: 5–20% above optimal (problem-dependent)
+- Grid dispatch: 2–8% above optimal
+
+**Step 3: Apply the Improvement Factor**
+D-Wave Stride and quantum-inspired solvers typically recover 50–80% of the solution quality gap on well-formulated problems.
+
+**Step 4: Calculate Pilot Payback**
+A bounded Stride pilot — formulation + Leap access + integration + measurement — typically costs \$150,000–\$800,000. Compare against projected annual improvement value.
+
+:::{admonition} ROI Example: Retail Logistics
+:class: tip
+
+- Annual logistics spend: **\$180M**
+- Solution quality gap (estimated): **10%** → Gap value: \$18M/year
+- D-Wave Stride recovery factor: **70%** → Annual improvement: **\$12.6M**
+- Pilot cost: **\$400K** | Payback period: **~12 days of improvement value**
+- 3-year NPV (10% discount): **~\$31M**
+
+A single retail chain with this profile that does not run a quantum optimization pilot is leaving more than \$10M per year on the table. The pilot pays back in under two weeks of improvement value.
+:::
+
+---
+
+## Productive-Struggle Problem
+
+:::{admonition} Formulate a Real QUBO
+:class: important
+
+**The Challenge:** You are a strategy consultant hired by a regional hospital network to evaluate quantum optimization for surgery scheduling. The problem involves 100 surgeries per week, 10 operating rooms, 40 surgeons, and 20 time slots per day.
+
+**Part 1 — Binary Variables (20 minutes)**
+Define the binary variables for this problem. How many variables are there total? (Hint: How many ways can a surgery be assigned to an OR, a surgeon, and a time slot?)
+
+**Part 2 — Objective Function (30 minutes)**
+Write the objective function in plain English, then translate it to a QUBO expression. Consider: you want to maximize OR utilization while minimizing surgeon overtime and respecting priority levels for urgent surgeries.
+
+**Part 3 — Constraints (30 minutes)**
+Identify five constraints that must be satisfied. For each, write the constraint in plain English, then express it as a QUBO penalty term. Include: (1) each surgery assigned to exactly one slot, (2) each surgeon performs at most one surgery per time slot, (3) each OR used by at most one surgery per time slot, (4) specialist surgeons assigned only to appropriate surgical types, (5) urgent surgeries completed in the first half of the week.
+
+**Part 4 — Penalty Weight Calibration (15 minutes)**
+For constraint (1), what happens to the solution if the penalty weight is set too low? Too high? Write a brief explanation of how you would determine the right penalty weight empirically.
+
+**Part 5 — Solver Selection**
+Should this problem use the direct Advantage2 QPU or the Stride hybrid solver? Justify your answer with reference to the variable count.
+:::
+
+::::{dropdown} Guidance Notes
+
+**Part 1:** Variables: 100 surgeries × 10 ORs × 40 surgeons × 20 slots = 800,000 binary variables. This is well within Stride's capacity but far beyond the direct QPU. Stride is the right tool.
+
+**Part 2:** Objective: minimize (−1 × OR utilization) + (positive coefficient × surgeon overtime) + (−1 × priority_weight × urgent surgery completion). Each term becomes a linear or quadratic expression in the binary variables.
+
+**Part 3:** Each constraint generates a quadratic penalty. Constraint (1): $\lambda_1 (\sum_{k,m,t} x_{ikmt} - 1)^2$ for each surgery $i$ — penalizes any assignment count other than exactly 1.
+
+**Part 4:** Too-low penalty: solver assigns surgeries to multiple slots to optimize the objective. Too-high penalty: solver satisfies all constraints but ignores the objective (all feasible solutions look equivalent). Calibrate by starting at $\lambda = 5 \times \max|\text{objective coefficient}|$ and testing on small instances.
+
+**Part 5:** 800,000 variables → Stride hybrid solver. Direct QPU handles ~3,000 variables.
 ::::
 
 ---
 
-## 6.12 Module-Level Outcomes
+## Module-Level Outcomes
 
-By completing this chapter and its associated labs, you should be able to:
+By completing this chapter and its labs, you should be able to:
 
-::::{grid} 1
-:::{card} Outcome 1: Problem Identification
-**Identify** combinatorial optimization problems in your organization that are suited to near-term quantum or quantum-inspired solvers, applying the variable-count and cost-envelope heuristics introduced in this chapter.
+::::{grid} 1 1 2 2
+:::{grid-item-card} Outcome 1
+:class-header: bg-primary text-white
+**QUBO Formulation**
+
+Formulate a combinatorial optimization problem as a QUBO from scratch: define binary variables, write the objective function, add constraint penalties, and calibrate penalty weights. Demonstrate on at least one routing, scheduling, or portfolio problem.
 :::
-:::{card} Outcome 2: Case Analysis
-**Analyze** the Volkswagen, Goldman Sachs, DHL, and ExxonMobil cases at the level of problem type, solution method, and measured outcome — distinguishing what was achieved with quantum hardware vs. what was achieved with quantum-inspired classical methods.
+
+:::{grid-item-card} Outcome 2
+:class-header: bg-primary text-white
+**Ocean SDK**
+
+Use D-Wave's Ocean SDK to build a QUBO or CQM, select an appropriate sampler, submit to D-Wave Leap, and interpret the sampleset output including timing breakdown and solution quality metrics.
 :::
-:::{card} Outcome 3: ROI Calculation
-**Calculate** projected ROI for a quantum-inspired optimization pilot in a specified industry scenario, using the four-step framework: cost envelope × solution quality gap × recovery factor vs. pilot cost.
+
+:::{grid-item-card} Outcome 3
+:class-header: bg-primary text-white
+**Stride vs. Direct QPU**
+
+Distinguish when to use the Stride hybrid solver vs. direct QPU access, using problem variable count and solution quality requirements as the primary decision criteria.
 :::
-:::{card} Outcome 4: Pilot Framework
-**Recommend** a three-phase pilot plan for a quantum optimization initiative in your specific industry, including success metrics, go/no-go decision criteria, and an explicit kill-switch trigger for transitioning to true quantum hardware.
+
+:::{grid-item-card} Outcome 4
+:class-header: bg-primary text-white
+**Enterprise Case Analysis**
+
+Analyze the BASF, Volkswagen, Mastercard, and Verge Ag cases: what problem was solved, how was it formulated, what hardware/solver was used, and what was the measured operational outcome.
 :::
-:::{card} Outcome 5: Genuine vs. Marketed Advantage
-**Distinguish** genuine quantum advantage (problems where quantum physics delivers better solutions than any classical method) from classical improvements marketed as quantum (ordinary heuristic improvements rebranded using quantum terminology).
+
+:::{grid-item-card} Outcome 5
+:class-header: bg-warning text-white
+**ROI Framework**
+
+Calculate projected ROI for a quantum optimization pilot using the four-step framework: cost envelope × quality gap × improvement factor vs. pilot cost. Present as a one-page CFO memo with explicit go/no-go criteria.
 :::
 ::::
 
 ---
 
-## 6.13 Lab 6 (Regular): Optimizing a Small World
+## Lab 6A (Regular): Your First D-Wave Stride Job
 
-**Estimated time:** 45 minutes
-**Tool:** IBM Quantum Composer (free account required)
-**Skill level:** No prior quantum programming experience needed
+**Duration:** 60–75 minutes  
+**Tool:** D-Wave Leap — [cloud.dwavesys.com](https://cloud.dwavesys.com) (free developer account + credits)  
+**Deliverable:** Results notebook + 300-word operations memo
 
 ### Overview
 
-In this lab, you will run a real quantum optimization algorithm — QAOA — on IBM's quantum hardware, solving a toy combinatorial optimization problem from scratch. You will compare quantum results against classical brute-force, observe how problem scaling changes both solution quality and computational cost, and build intuition for when quantum optimization earns its keep.
+You will formulate a small job scheduling problem as a QUBO, submit it to D-Wave's Leap hybrid solver using Ocean SDK, and interpret the results. This is the same technical workflow used in BASF's production deployment — scaled to a size appropriate for a single lab session.
 
-### Background: The Max-Cut Problem
+### Prerequisites
 
-The **Maximum Cut (Max-Cut)** problem is one of the most studied combinatorial optimization benchmarks. Given a graph (nodes connected by edges), find the partition of nodes into two groups that *maximizes* the number of edges between the groups (edges that "cross the cut"). It maps directly to portfolio diversification (maximize difference between asset groups), network partitioning (maximize traffic between subnets), and circuit design.
-
-### Step-by-Step Instructions
-
-**Step 1: Set Up**
-Create a free account at [quantum.ibm.com](https://quantum.ibm.com). Navigate to IBM Quantum Composer. Open a new circuit.
-
-**Step 2: Classical Baseline — 4 Nodes**
-Download the provided QAOA template circuit (link in course resources). Before running quantum, use the brute-force classical solver (provided as a Python snippet). For a 4-node graph, enumerate all $2^4 = 16$ possible partitions. Record the maximum cut value and which partition achieves it.
-
-**Step 3: Quantum Run — 4 Nodes**
-Load the 4-node QAOA circuit in Composer. Run on the `ibm_kyoto` backend (or similar). Run 1,000 shots. Record the histogram of results — how often does the circuit find the optimal partition?
-
-**Step 4: Scale to 6 Nodes**
-Modify the circuit for the 6-node graph (template provided). Classical brute-force now checks $2^6 = 64$ combinations — still manageable. Run QAOA on the 6-node graph. Compare: does the QAOA circuit find the optimum more or less reliably? Why?
-
-**Step 5: Deliverable — ROI Memo**
-Write a one-page memo addressed to your organization's COO. Assume you have a logistics routing problem with 1,000 binary variables. Extrapolate from your 4-node and 6-node observations: what changes at 1,000 nodes in (a) classical brute-force feasibility, (b) quantum circuit depth and error rate, (c) quantum-inspired solver performance? What would you recommend as the next step, and why?
-
-```{admonition} What to Expect
-:class: note
-On a 4-node Max-Cut problem, a well-tuned QAOA circuit (p=2 layers) should find the optimal solution in 30–60% of shots. Classical brute-force always finds it. The interesting insight: at 6 nodes, QAOA's relative advantage increases because classical brute-force grows exponentially while QAOA's circuit size grows linearly. This is the scaling intuition that drives quantum optimization's long-term promise.
+```bash
+pip install dwave-ocean-sdk
 ```
 
----
+Or use the Google Colab link below (no installation required).
 
-## 6.14 Lab 6 (Optional Advanced): Portfolio Optimization with QAOA
-
-**Estimated time:** 90–120 minutes
-**Tools:** Python 3, Qiskit, provided `ch06-returns.csv`
-**Skill level:** Intermediate Python; no prior quantum programming required
-
-<a href="https://colab.research.google.com/github/liquid-books/applied-quantum-computing/blob/main/notebooks/ch06-portfolio-qaoa.ipynb" target="_blank">
+<a href="https://colab.research.google.com/github/liquid-books/applied-quantum-computing/blob/main/notebooks/ch06-lab-stride-intro.ipynb" target="_blank">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" style="margin-bottom: 1rem;"/>
 </a>
 
-### Overview
+### The Problem: 4-Job Scheduling
 
-You will build a complete quantum portfolio optimization pipeline: load six real assets, compute the classical Markowitz efficient frontier, reformulate the portfolio selection problem as a QUBO, and solve it using Qiskit's QAOA implementation. You will compare the classical and quantum portfolios on Sharpe ratio, risk exposure, and computational cost — and write a rigorous analysis of when a portfolio manager should care about the quantum approach.
+You are a hospital operations manager. You have 4 surgeries to schedule across 2 operating rooms, across 2 time slots. Each surgery has a priority (1 = low, 5 = high). Surgery A and Surgery C cannot run simultaneously (shared equipment). Surgery B and Surgery D cannot run simultaneously (shared anesthesiologist).
 
-### Setup
+| Surgery | Priority | Duration |
+|---|---|---|
+| A | 5 (urgent) | Slot 1 |
+| B | 3 | Slot 1 |
+| C | 4 | Slot 2 |
+| D | 2 | Slot 2 |
+
+### Step 1: Formulate the QUBO
 
 ```python
-pip install qiskit qiskit-aer qiskit-algorithms numpy pandas matplotlib scipy
+import dimod
+from dwave.system import LeapHybridSampler
+
+# Binary variables: x[surgery, OR, time_slot]
+# x_A1_1 = Surgery A in OR 1 at Slot 1
+# x_A2_1 = Surgery A in OR 2 at Slot 1
+# etc.
+
+# Build QUBO dictionary
+Q = {}
+
+# Objective: maximize priority scores
+# (minimize negative priority score)
+priorities = {'A': 5, 'B': 3, 'C': 4, 'D': 2}
+variables = ['A_OR1_S1', 'A_OR2_S1', 'A_OR1_S2', 'A_OR2_S2',
+             'B_OR1_S1', 'B_OR2_S1', 'B_OR1_S2', 'B_OR2_S2',
+             'C_OR1_S1', 'C_OR2_S1', 'C_OR1_S2', 'C_OR2_S2',
+             'D_OR1_S1', 'D_OR2_S1', 'D_OR1_S2', 'D_OR2_S2']
+
+# Reward for scheduling high-priority surgeries
+for var in variables:
+    surgery = var.split('_')[0]
+    Q[(var, var)] = -priorities[surgery]
+
+# Penalty: each surgery scheduled exactly once
+lambda_assign = 10  # penalty weight
+for surgery in 'ABCD':
+    surgery_vars = [v for v in variables if v.startswith(surgery + '_')]
+    for i, vi in enumerate(surgery_vars):
+        Q[(vi, vi)] = Q.get((vi, vi), 0) + lambda_assign * (1 - 2)
+        for vj in surgery_vars[i+1:]:
+            Q[(vi, vj)] = Q.get((vi, vj), 0) + 2 * lambda_assign
+
+# Penalty: A and C cannot be in same slot (shared equipment)
+lambda_conflict = 15
+for or_room in ['OR1', 'OR2']:
+    for slot in ['S1', 'S2']:
+        va = f'A_{or_room}_{slot}'
+        vc = f'C_{or_room}_{slot}'
+        if va in variables and vc in variables:
+            Q[(va, vc)] = Q.get((va, vc), 0) + lambda_conflict
+
+# Submit to Stride
+sampler = LeapHybridSampler()
+sampleset = sampler.sample_qubo(Q, label='Hospital Scheduling Lab', time_limit=10)
+
+# Display results
+best = sampleset.first
+scheduled = {var: val for var, val in best.sample.items() if val == 1}
+print("Scheduled:", scheduled)
+print("Energy:", best.energy)
+print("Timing:", sampleset.info.get('timing', {}))
 ```
 
-### Part 1: Classical Markowitz Optimization
+### Step 2: Run and Record
 
-Load `ch06-returns.csv` containing five years of daily returns for six assets (two equities, one bond, one REIT, one commodity ETF, one international equity). Compute the covariance matrix and expected return vector. Use `scipy.optimize.minimize` with the SLSQP method to find the maximum-Sharpe-ratio portfolio. Record: portfolio weights, expected annual return, annual volatility, Sharpe ratio.
+Submit to Leap. Record:
+- Which surgeries were scheduled, in which ORs, at which times
+- The energy (cost) of the best solution
+- The QPU access time from the timing breakdown
+- Were all constraints satisfied? (No A+C conflict, no B+D conflict?)
 
-### Part 2: QUBO Reformulation
+### Step 3: Experiment
 
-Reformulate the portfolio selection as a binary optimization: each of 6 assets is either "included" (binary 1) or "excluded" (binary 0). Constraint: exactly 3 assets selected (cardinality-constrained portfolio). Objective: minimize portfolio variance minus $\lambda$ × expected return. Build the 6×6 QUBO matrix Q. Verify that the QUBO minimum corresponds to the optimal cardinality-3 portfolio.
-
-### Part 3: QAOA Solution
-
-Using Qiskit's `QAOAAnsatz` and `COBYLA` classical optimizer, run QAOA with p=1, p=2, and p=3 layers on the Qiskit Aer statevector simulator. For each depth: record the most probable bitstring, the corresponding portfolio, its Sharpe ratio, and total optimization runtime.
-
-### Part 4: Comparison and Analysis
-
-Build a comparison chart showing: classical Sharpe ratio (unconstrained), QAOA Sharpe ratio (cardinality-3), brute-force optimal Sharpe ratio (cardinality-3), and QAOA probability of finding optimal. Write a 600-word analysis addressing: at what portfolio size does QAOA's advantage over brute-force become significant? What would it take for a portfolio manager to deploy this in production? What are the three critical improvements needed in today's quantum hardware to make this workflow competitive with classical cardinality-constrained solvers?
+Try changing the penalty weights:
+- Reduce `lambda_conflict` to 1. What happens to the solution?
+- Increase `lambda_conflict` to 100. Does it affect solution quality?
 
 ### Deliverable
 
-Submit: (1) working notebook with all outputs, (2) comparison chart with labeled axes and clear title, (3) 600-word analysis in the memo template provided in the notebook.
+Write a 300-word operations memo to the hospital CMO:
+1. What schedule did the solver produce?
+2. Were all constraints satisfied?
+3. How does this approach scale to a real hospital scheduling problem with 200 surgeries?
+4. What would need to change in the formulation to add a constraint for surgeon lunch breaks?
 
 ---
 
-## 6.15 Discussion Guidelines
+## Lab 6B (Optional Advanced): BASF Scheduling in Miniature
 
-**Prompt:** Volkswagen's Lisbon pilot was widely covered as a quantum computing milestone. The subsequent deployment of *quantum-inspired classical solvers* — not quantum hardware — in production received almost no media attention, despite arguably being the more significant business decision. Drawing on at least two peer-reviewed sources or industry reports, analyze: (1) Why does the media systematically over-cover quantum hardware milestones and under-cover quantum-inspired classical deployments? (2) What is the business risk of the resulting perception gap for executives who form their quantum strategy based on media coverage rather than deployment data?
+<a href="https://colab.research.google.com/github/liquid-books/applied-quantum-computing/blob/main/notebooks/ch06-lab-basf-mini.ipynb" target="_blank">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" style="margin-bottom: 1rem;"/>
+</a>
 
-**Requirements:**
-- Minimum 300 words
-- Cite at least two sources (peer-reviewed articles, industry reports, or credible news analysis — use APA 7 format)
-- **Respond substantively to TWO classmates' posts:** engage with their argument, add evidence they haven't cited, or respectfully challenge a claim with counter-evidence. Responses of "I agree, great point" do not qualify.
-- Posts due by end of Week 6 Sunday; responses due by end of Week 7 Wednesday.
+**Duration:** 90–120 minutes  
+**Tool:** D-Wave Ocean SDK + Leap (Python)  
+**Deliverable:** Complete QUBO formulation + results analysis + CFO memo
 
-**Suggested Sources:**
-- Farhi, E., Goldstone, J., & Gutmann, S. (2014). A quantum approximate optimization algorithm. *arXiv preprint arXiv:1411.4028*.
-- Harrigan, M. P., et al. (2021). Quantum approximate optimization of non-planar graph problems on a planar superconducting processor. *Nature Physics, 17*(3), 332–336.
-- Ajagekar, A., & You, F. (2019). Quantum computing for energy systems optimization. *Energy, 179*, 76–89.
-- D-Wave Systems. (2021). *Application notes: Vehicle routing with D-Wave hybrid solvers*. D-Wave Technical Documentation.
+Build a miniature version of BASF's manufacturing scheduling problem using Ocean's CQM interface. You are given 10 chemical processes, 4 reactors, 3 time shifts, and a set of precedence constraints (process A must complete before process B). Your objective: maximize throughput (processes completed per shift) while satisfying all safety and sequencing constraints.
+
+The notebook provides the process data, constraint list, and starter CQM code. Your task:
+1. Complete the CQM formulation (objective + all constraints)
+2. Submit to Stride with time limits of 10s, 30s, and 120s — compare solution quality
+3. Compare Stride results against a classical greedy baseline (provided)
+4. Write a 500-word CFO memo: what would this approach look like at BASF's scale? What is the one-year ROI projection?
 
 ---
 
-## 6.16 Glossary
+## Discussion Guidelines
 
-```{glossary}
-Combinatorial Optimization
-  A class of mathematical problems in which the goal is to find the best solution from a finite but exponentially large set of possible solutions. Examples include routing, scheduling, portfolio selection, and packing problems.
+**Prompt:** BASF's production deployment of D-Wave Stride for manufacturing scheduling is the most well-documented enterprise quantum optimization deployment as of 2026. Drawing on the case study in this chapter and at least two additional sources (D-Wave's published application notes, academic papers on quantum annealing for scheduling, or industry reports), analyze:
 
-QUBO (Quadratic Unconstrained Binary Optimization)
-  A mathematical formulation that represents optimization problems as minimizing a quadratic function of binary variables. The standard encoding used for quantum annealing and quantum-inspired solvers.
+1. What made BASF's formulation work? What were the three most critical technical decisions their team made?
+2. What is the single most significant constraint on replicating BASF's results at a different industrial facility — and how would you address it?
+3. At what problem scale does quantum annealing on the Advantage2 definitively outperform the best available classical solver for job shop scheduling? Cite evidence.
 
-Ising Model
-  A physics model from statistical mechanics, equivalent to QUBO, that represents optimization problems as finding the lowest-energy configuration of binary spin variables. The native language of quantum annealers.
+**Requirements:** 400+ words. Cite at least two sources (APA 7). Respond substantively to two classmates — engage with their specific claims, add evidence they haven't cited, or challenge a conclusion.
 
-Quantum Annealing
-  A quantum optimization method that uses quantum tunneling to escape local energy minima and find global optima. Implemented commercially by D-Wave Systems. Particularly suited for QUBO problems.
+---
 
-QAOA (Quantum Approximate Optimization Algorithm)
-  A hybrid quantum-classical algorithm that runs parameterized quantum circuits to find approximate solutions to combinatorial optimization problems. Designed for NISQ-era gate-based quantum hardware.
+## Glossary
 
-Quantum-Inspired Solver
-  A classical computer algorithm whose mathematical structure is derived from quantum physics (particularly quantum annealing and Ising models). Captures 60–80% of quantum optimization advantage without quantum hardware. Examples include Fujitsu's Digital Annealer and Toshiba's Simulated Bifurcation Machine.
+**QUBO (Quadratic Unconstrained Binary Optimization)** — The mathematical problem format for quantum annealers. A minimization over binary variables with a quadratic cost function encoding both the objective and all constraints as penalty terms.
 
-Energy Landscape
-  A geometric representation of an optimization problem in which the "height" at each point represents the cost (or energy) of that solution. Optimal solutions correspond to the lowest valleys. Used to visualize how quantum annealers search for solutions.
+**Ising Model** — The physics energy model equivalent to QUBO, using spin variables {−1, +1} instead of binary {0, 1}. The native language of D-Wave's Advantage2 hardware.
 
-Quantum Tunneling
-  A quantum mechanical phenomenon in which a particle can pass through an energy barrier that would be impenetrable classically. Exploited by quantum annealers to escape local minima in the energy landscape.
+**Energy Landscape** — A geometric representation of an optimization problem where solution cost corresponds to physical energy. The annealer finds the lowest-energy (best) configuration.
 
-Simulated Bifurcation Machine (SBM)
-  Toshiba's quantum-inspired algorithm that simulates quantum bifurcation dynamics on classical hardware. Achieves competitive solution quality on Ising-type optimization problems with very high speed on GPU hardware.
+**Quantum Tunneling** — The quantum mechanical phenomenon that allows the annealer to pass through energy barriers, escaping local minima that trap classical hill-climbing algorithms.
 
-Fujitsu Digital Annealer
-  Fujitsu's quantum-inspired classical hardware optimized to solve QUBO problems with up to 100,000 variables. Uses a fully connected digital architecture that mimics quantum annealing dynamics.
+**Ocean SDK** — D-Wave's open-source Python library for formulating and submitting QUBO problems to D-Wave hardware and solvers. Available at `pip install dwave-ocean-sdk`.
 
-Vehicle Routing Problem (VRP)
-  A combinatorial optimization problem seeking the most efficient set of routes for a fleet of vehicles delivering to a set of customers. One of the most studied and commercially important optimization problems in operations research.
+**Sampler** — Ocean's abstraction for any quantum or classical solver. Common samplers: `LeapHybridSampler` (Stride), `DWaveSampler` (direct QPU), `SimulatedAnnealingSampler` (classical baseline).
 
-Max-Cut Problem
-  A graph partitioning problem in which nodes are divided into two groups to maximize the number of edges between groups. A benchmark problem for quantum optimization algorithms including QAOA.
+**LeapHybridSampler** — Ocean's interface to D-Wave's Stride hybrid solver. The recommended sampler for enterprise-scale problems.
 
-Traveling Salesman Problem (TSP)
-  A classical combinatorial optimization problem: find the shortest tour visiting a set of cities exactly once and returning to the start. Prototype for all routing and sequencing optimization problems.
+**Constrained Quadratic Model (CQM)** — A higher-level Ocean problem formulation that accepts explicit constraints without manual penalty construction. Handled by `LeapHybridCQMSampler`.
 
-Markowitz Mean-Variance Optimization
-  The classical framework for portfolio construction, formulated by Harry Markowitz in 1952. Finds the portfolio with maximum expected return for a given level of risk (or minimum risk for a given return). Becomes computationally challenging at scale with integer constraints.
+**Sampleset** — The result object returned by an Ocean sampler. Contains all solutions found, their energies, timing information, and metadata.
 
-Quantum Kill-Switch
-  An explicit decision criterion that triggers migration from quantum-inspired classical solvers to true quantum hardware. Typically defined as a specific threshold of solution quality improvement, problem size, or cost-per-solve advantage on the target problem class.
+**Stride Hybrid Solver** — D-Wave's production classical-quantum hybrid solver that decomposes large QUBO problems into QPU-tractable subproblems, coordinates results classically, and returns the best solution found. Handles millions of variables.
 
-Local Minimum
-  In optimization, a solution that is better than all neighboring solutions but not the global optimum. Classical hill-climbing algorithms get trapped in local minima; quantum annealing and quantum-inspired methods are designed to escape them.
+**Embedding** — The process of mapping a QUBO's logical variable graph onto the Advantage2's physical Pegasus qubit topology. Handled automatically by `EmbeddingComposite` in Ocean.
 
-Hybrid Quantum-Classical Solver
-  An optimization system that combines quantum hardware (for sub-problem solving) with classical computers (for problem decomposition, parameter optimization, and result processing). Used to extend effective quantum problem size beyond current hardware limits.
+**Penalty Weight (λ)** — The multiplier applied to a constraint penalty term in a QUBO. Must be large enough to force constraint satisfaction but not so large that it dominates the objective. Calibrated empirically.
 
-NISQ (Noisy Intermediate-Scale Quantum)
-  The current era of quantum hardware, characterized by 50–1,000 qubits with significant error rates and no full error correction. QAOA is designed to be useful in the NISQ era.
+**QAOA (Quantum Approximate Optimization Algorithm)** — A hybrid quantum-classical gate-model algorithm for optimization. Currently research-stage; not yet competitive with D-Wave Stride for production-scale problems.
+
+**Quantum-Inspired Solver** — A classical optimization algorithm whose mathematical structure derives from quantum physics (annealing, bifurcation dynamics). Captures 60–80% of quantum optimization advantage without quantum hardware. Examples: Fujitsu Digital Annealer, Toshiba SBM.
+
+**Time Limit** — The Stride hybrid solver parameter controlling maximum solve time. Longer limits produce higher solution quality. Typical production range: 60–300 seconds.
+
+**Combinatorial Optimization** — A class of problems seeking the best selection or arrangement from a finite but exponentially large set of possibilities. The primary application domain for quantum annealing.
+
+**Local Minimum** — A solution better than all immediate neighbors but not the global optimum. Classical optimizers get trapped in local minima; quantum annealing uses tunneling to escape.
+
+**Energy** — In Ocean results, the value of the QUBO cost function for a given solution. Lower energy = better solution. The annealer minimizes energy.
+
+---
+
+## Leader's Takeaway
+
+```{epigraph}
+BASF's scheduling team didn't wait for quantum to be ready. They learned QUBO. The hardware was ready for them.
 ```
 
----
+The pattern that emerges from BASF, Volkswagen, Mastercard, and Verge Ag is consistent and instructive. None of these organizations adopted quantum optimization because the hardware was revolutionary. They adopted it because their optimization problems were real, the ROI was calculable, and the formulation skill — QUBO — was learnable.
 
-## 6.17 Leader's Takeaway
+The hardware was secondary. The math was primary.
 
-The title of this chapter is *The Optimization Goldmine* — and that title is not metaphorical. It is literal.
+Quantum computing's most commercially mature application requires no faith in future hardware milestones, no tolerance for physics speculation, and no budget for experimental technology. It requires the ability to look at a business problem — a scheduling problem, a routing problem, a selection problem — and ask: *Can I express this as a set of binary decisions and a cost function?*
 
-Your organization almost certainly has optimization problems worth tens of millions of dollars per year — routing, scheduling, portfolio construction, dispatch — currently being solved with algorithms designed when punch cards were state-of-the-art. The solution quality gap between your current solver and true optimum represents recoverable value sitting in plain sight, unclaimed.
+If the answer is yes, D-Wave's Stride hybrid solver is ready today. The Advantage2 on this campus is ready today. The Ocean SDK is a `pip install` away.
 
-Quantum computing is going to make that gap much easier to close. The hardware is improving rapidly. The algorithms are maturing. The commercial ecosystem is building out. Quantum advantage in optimization is not a question of *if* — it is a question of *when* and *how much*.
+The executives and engineers who develop QUBO formulation fluency in 2026 will be the ones running production quantum optimization in 2028 while their competitors are still waiting for the technology to "mature." It has already matured, for this problem class. The bottleneck is formulation skill — and that bottleneck is exactly what this chapter, and this course, is designed to close.
 
-But here is the insight that separates leaders from observers: **you don't have to wait.**
+```{admonition} Chapter Summary
+:class: note
 
-The mathematical frameworks that quantum computing brought into commercial awareness — QUBO formulations, energy landscape search, quantum-inspired dynamics — run on classical hardware today. Right now. On cloud infrastructure you already pay for. With tools from Fujitsu, Toshiba, D-Wave, Microsoft, and Amazon that have documented case studies, clear pricing, and implementation partners.
-
-Volkswagen learned this in Lisbon. DHL's retail client learned this without ever buying a qubit. Goldman Sachs is learning it quietly. ExxonMobil is quantifying what a 1% improvement means at LNG scale.
-
-The quantum-inspired advantage is arriving loudly. Most of your competitors haven't noticed. That won't last forever — but the window is open right now, for organizations willing to formulate their most valuable optimization problem as a QUBO and run it against a quantum-inspired solver.
-
-The buses are getting faster. The passengers have no idea. That is precisely the point.
-
-```{admonition} Three Actions for This Week
-:class: tip
-1. **Identify** one combinatorial optimization problem in your organization with an annual cost envelope exceeding \$10 million. Write it down as a concrete decision problem (routing, scheduling, portfolio, dispatch).
-2. **Size** the solution quality gap: what does your current solver leave on the table? Use published benchmarks for your problem class to estimate.
-3. **Request a demo** from Fujitsu Digital Annealer, D-Wave Leap, or Microsoft Azure Quantum. All three offer free trials and working demonstrations on your problem class within 30 days.
+- The most commercially ready quantum application is combinatorial optimization — and it is in production now at BASF, Volkswagen, Mastercard, and Verge Ag.
+- QUBO (Quadratic Unconstrained Binary Optimization) is the mathematical language of quantum annealing. Learning to formulate QUBO is the most practically valuable quantum skill available today.
+- D-Wave's Ocean SDK provides a Python interface for formulating and submitting QUBO problems. The CQM interface handles constraint penalty construction automatically.
+- The Stride hybrid solver handles enterprise-scale problems (millions of variables) by decomposing QUBOs into QPU-tractable subproblems. Direct QPU access is appropriate for small problems (<3,000 variables) and research.
+- Three optimization pathways exist: quantum annealing (production-ready), QAOA on gate-model (research/near-term), quantum-inspired classical (high near-term ROI on existing infrastructure).
+- ROI framework: cost envelope × quality gap × improvement factor vs. pilot cost. Most enterprises with >$50M optimization spend have a compelling pilot ROI.
+- QUBO formulation skills transfer: problems formulated for quantum annealers today run on quantum-inspired classical solvers and will run on larger QPUs as hardware scales.
 ```
-
----
-
-*Chapter 6 of 9 — Applied Quantum Computing: A Leader's Guide to the Next Computing Revolution*
-
-*[← Chapter 5: The Cryptocalypse](ch05-cryptocalypse-y2q.md) | [Chapter 7: The Simulation Revolution →](ch07-simulation-revolution.md)*
