@@ -2,9 +2,9 @@
 title: "Chapter 1: The $850 Billion Question — Why Quantum, Why Now"
 subtitle: "From Physics Experiment to Enterprise Agenda"
 short_title: "Ch. 1: Why Quantum, Why Now"
-description: "Quantum computing has crossed from physics experiment to enterprise agenda item. This chapter explains why — through market forecasts, historical context, three structural accelerants, and a roadmap from NISQ to fault-tolerant systems. Includes the FAU-D-Wave partnership as a landmark case study."
+description: "Quantum computing has crossed from physics experiment to enterprise agenda item. This chapter explains why — through market forecasts, historical context, three structural accelerants, and a roadmap from NISQ to fault-tolerant systems."
 label: ch-01-why-quantum-why-now
-tags: [quantum computing, business strategy, NISQ, fault tolerance, market forecasts, quantum winters, D-Wave, FAU, annealing]
+tags: [quantum computing, business strategy, NISQ, fault tolerance, market forecasts, quantum winters]
 ---
 
 # Chapter 1: The \$850 Billion Question — Why Quantum, Why Now
@@ -20,37 +20,27 @@ tags: [quantum computing, business strategy, NISQ, fault tolerance, market forec
 
 This chapter answers a question that a surprising number of senior executives have quietly postponed: *Should we care about quantum computing yet?* The honest answer is that the question itself is now slightly outdated. The more productive question is: *What happens to organizations that start caring eighteen months after their competitors do?* The gap between those two questions — the space between "not yet" and "already too late" — is precisely where this chapter lives.
 
-If you are reading this at Florida Atlantic University, there is a more immediate framing: a production-grade quantum computer is being installed on your campus. Not at MIT. Not at Caltech. Here. The strategic question is no longer abstract.
+If you are reading this at Florida Atlantic University, the question is more immediate than most textbooks allow: in January 2026, FAU signed a $20 million agreement with D-Wave Quantum Inc. to install a production-grade Advantage2 quantum computer on the Boca Raton campus — making FAU the first university in Florida to publicly host a large, dedicated quantum computer on-site. On the same day, D-Wave announced it would relocate its corporate headquarters to the Boca Raton Innovation Center, four miles from campus. The $850 billion question is no longer hypothetical for this institution. It has already been answered with a nine-figure investment.
 
 ---
 
-## Opening Scene: Two Moments, Six Years Apart
-
-### October 2019 — Mountain View, California
+## Opening Scene: October 2019
 
 The paper landed in *Nature* on October 23, 2019, under a title that read like a physics journal article and hit financial news desks like a press release. Google's team, led by researcher John Martinis and his colleagues at the University of California Santa Barbara, announced that their 53-qubit processor — named Sycamore — had performed a specific computational task in approximately 200 seconds. Their estimate: the same task would take the world's fastest classical supercomputer, Summit at Oak Ridge National Laboratory, roughly 10,000 years.
 
 The phrase embedded in the abstract was deliberate: *quantum supremacy*.
 
-Press coverage was immediate and overwhelming. IonQ stock surged when it eventually went public; IBM, Honeywell, and a constellation of quantum startups saw increased investor attention within days. For one news cycle, it felt as though the future had arrived early and was asking for a parking spot.
+Press coverage was immediate and overwhelming. "Google Achieves Quantum Supremacy, Marking a New Era in Computing" ran across every major technology publication. Financial headlines pivoted the story toward markets: IonQ stock surged when it eventually went public; IBM, Honeywell, and a constellation of quantum startups saw increased investor attention within days. For one news cycle, it felt as though the future had arrived early and was asking for a parking spot.
 
 Then IBM fired back.
 
-Within 24 hours, IBM's research team published a pointed technical rebuttal arguing that Summit could solve the same problem in approximately 2.5 days, not 10,000 years, given optimized classical algorithms and sufficient disk storage. The argument was technically sound. "Quantum supremacy," IBM argued, was a marketing claim dressed as a scientific milestone.
+Within 24 hours, IBM's research team published a blog post — not a peer-reviewed paper, but a pointed technical rebuttal — arguing that Summit could solve the same problem in approximately 2.5 days, not 10,000 years, given optimized classical algorithms and sufficient disk storage. The argument was technically sound: Google's benchmark used a specific random circuit sampling task, and IBM demonstrated that a classical simulation with enough storage and clever optimization could reduce the gap dramatically. "Quantum supremacy," IBM argued, was a marketing claim dressed as a scientific milestone.
 
 Wall Street, characteristically, called it Monday.
 
-Six years later, the Google-IBM dispute feels less like a conflict and more like a parable. Both sides were correct about different things. What mattered most was not the 10,000-year claim. What mattered was that the largest internet company on Earth had deployed over a billion dollars in quantum hardware research, published in the world's most prestigious scientific journal, and used the word *supremacy*. The enterprise world began paying attention.
+Six years later, the argument between Google and IBM feels less like a conflict and more like a parable. Both sides were correct about different things. Google had demonstrated a genuine hardware engineering achievement — fifty-three qubits operating with sufficient coherence to execute a circuit that would be genuinely difficult to simulate classically. IBM correctly noted that the specific benchmark chosen was tuned to favor quantum hardware, and that a better classical algorithm closed the gap significantly. The lesson is not that one side was dishonest. The lesson is that quantum milestone announcements require careful reading — and that lesson will recur many times over the coming decade.
 
-### January 2026 — Boca Raton, Florida
-
-On January 27, 2026, Florida Atlantic University President Adam Hasner stood alongside Alan Baratz, CEO of D-Wave Quantum Inc., at the D-Wave Qubits26 conference — held in Boca Raton — and announced a $20 million agreement to install a D-Wave Advantage2 quantum computer on FAU's Boca Raton campus. FAU became the first university in Florida to publicly host a large, dedicated quantum computer on-site.
-
-On the same day, D-Wave announced it would establish its new corporate headquarters at the Boca Raton Innovation Center, four miles from FAU's main campus. South Florida, in a single morning, became one of the most significant quantum computing hubs in the United States.
-
-For students in this course, the implication is concrete: you have access to production-grade quantum hardware that enterprises around the world are paying hundreds of thousands of dollars per year to access through cloud queues. The Advantage2 system — the same class of machine being used by BASF to compress manufacturing scheduling from hours to seconds, by logistics firms to solve vehicle routing problems with millions of constraints, and by defense organizations to run secure optimization at scale — will be available for your coursework.
-
-The $850 billion question is no longer hypothetical. It is a question this university has already answered with a nine-figure investment.
+What mattered most in the long run was not the 10,000-year claim. What mattered was that the largest internet company on Earth had deployed over one billion dollars in quantum hardware research, published in the world's most prestigious scientific journal, and used the word *supremacy*. The enterprise world began paying attention. The companies that ignored the headline are, six years later, scrambling to write quantum strategy decks.
 
 ---
 
@@ -62,9 +52,11 @@ Before we go further, let's answer the question that textbooks often skip: not *
 
 **The bridge.** A quantum computer doesn't run faster through the same maze. It operates on a fundamentally different principle. Each qubit — the quantum equivalent of a classical bit — can exist in a *superposition* of 0 and 1 simultaneously. Not "somewhere in between," but genuinely both, until you measure it. Fifty qubits in superposition can represent 2⁵⁰ possible states (roughly a quadrillion) *all at once*. Quantum algorithms are then carefully designed to use *interference* — the wave-like cancellation and amplification that governs quantum mechanics — to suppress the wrong answers and amplify the right one before measurement.
 
-**Two paradigms, not one.** There are actually two distinct approaches to quantum computing, and both will appear throughout this course. *Gate-model* quantum computers — IBM, Google, IonQ — build computation from sequences of quantum gates, analogous to how classical computers build programs from logic gates. *Quantum annealers* — like FAU's D-Wave Advantage2 — take a different approach: they encode a problem as the lowest-energy configuration of a quantum system and let the system naturally settle toward the answer, exploiting quantum tunneling to escape local minima that trap classical optimizers. Gate-model systems are more general-purpose but more fragile. Annealers are purpose-built for optimization problems and available for production use today.
+**The concept.** This is what "quantum computing" actually means: manipulating probability amplitudes across a vast space of possibilities, using interference to steer toward solutions, rather than checking possibilities sequentially. It is not a faster classical computer. It is a different computational paradigm.
 
-**Why this matters for business.** Quantum's advantage is *structural*, not just quantitative. For problems where the solution space grows exponentially — drug molecule simulation, portfolio optimization across thousands of correlated assets, logistics routing with millions of constraints, breaking public-key encryption — no amount of classical engineering closes the gap. The organizations investing in quantum today are not betting that classical computers will run out of steam. They are betting that specific high-value problems in their industries belong to the class where quantum's different architecture delivers qualitatively better answers.
+**Where the analogy breaks down.** Qubits aren't magic: measurement collapses all those superposed possibilities to a single answer. Quantum algorithm design is the art of engineering the interference so the right answer is the one that survives the collapse. This is extraordinarily hard, which is why quantum algorithms exist for only a narrow (but commercially important) class of problems.
+
+**Why this matters for business.** Quantum's advantage is *structural*, not just quantitative. For problems where the solution space grows exponentially — drug molecule simulation, portfolio optimization across thousands of correlated assets, breaking public-key encryption — no amount of classical engineering closes the gap. The organizations investing in quantum today are not betting that classical computers will run out of steam. They are betting that specific high-value problems in their industries belong to the class where quantum's different architecture delivers qualitatively better answers.
 :::
 
 ---
@@ -81,9 +73,9 @@ Quantum computing appears to be the exception, for three reasons that will occup
 
 First, the strategic preparation required for quantum advantage is long-lead. Identifying which business processes are genuinely quantum-amenable, retraining technical staff, building vendor relationships, and beginning cryptographic migration all take years. Starting that preparation when quantum hardware matures means starting too late.
 
-Second, the competitive landscape is not waiting. As of 2026, JPMorgan Chase employs a team of quantum researchers. BASF uses D-Wave hybrid solvers in production manufacturing scheduling. Volkswagen has run quantum optimization pilots for logistics routing. The organizations that treat quantum computing as a "2030 problem" are competing against organizations that started treating it as a "2024 investment."
+Second, the competitive landscape is not waiting. As of 2025, JPMorgan Chase employs a team of quantum researchers. Airbus has run quantum-enhanced aerodynamic optimization pilots. BMW has partnered with quantum chemistry firms to model hydrogen fuel cell reactions at the molecular level. The organizations that treat quantum computing as a "2030 problem" are competing against organizations that started treating it as a "2024 investment."
 
-Third, and most urgently: the cryptographic threat is not contingent on quantum computers being useful for optimization or simulation. A quantum computer capable of running Shor's algorithm at scale breaks most of the public-key cryptography currently protecting the internet. Adversaries are harvesting encrypted data today. The migration window has already opened.
+Third, and most urgently for any organization that handles sensitive data: the cryptographic threat is not contingent on quantum computers being useful for optimization or simulation. A quantum computer capable of running Shor's algorithm at scale breaks most of the public-key cryptography currently protecting the internet. Adversaries are harvesting encrypted data today, with the explicit strategy of decrypting it when sufficiently powerful quantum hardware arrives. The window for cryptographic migration has already opened.
 
 ```{admonition} The Core Tension
 :class: important
@@ -106,17 +98,17 @@ Before examining the numbers, it is worth establishing a discipline that should 
 **Quantum Computing Market Projections, 2024–2035.** The wide uncertainty bands reflect genuine disagreement about adoption timelines, hardware scaling, and application unlock dates — not analytical imprecision. Conservative estimates project \$450B by 2035; optimistic scenarios reach \$850B. Source: McKinsey Global Institute (2021), BCG Quantum Advantage report (2023).
 :::
 
-The headline figure of \$850 billion comes from McKinsey Global Institute's 2021 analysis, projecting that quantum computing could generate between \$450 billion and \$850 billion in value across four sectors by 2035: pharmaceuticals and chemicals, finance, logistics and mobility, and materials science. The range — nearly a factor of two — reflects three genuinely uncertain variables: hardware scaling timelines, application discovery rates, and competitive market dynamics.
+The headline figure of \$850 billion comes from McKinsey Global Institute's 2021 analysis, which projected that quantum computing could generate between \$450 billion and \$850 billion in value across four sectors by 2035: pharmaceuticals and chemicals, finance, logistics and mobility, and materials science. The range — nearly a factor of two — is not a sign of analytical sloppiness. It reflects three genuinely uncertain variables: hardware scaling timelines, application discovery rates, and competitive market dynamics.
 
-BCG's parallel analysis, updated in 2023, projected a more conservative base case of \$450 billion but noted that the pharmaceutical sector alone could see \$50–\$100 billion in value creation from accelerated drug discovery. Goldman Sachs revised its quantum forecast upward in 2023, citing accelerating hardware progress and the post-NIST urgency around cryptographic migration. IBM's market projections suggest a "quantum utility" inflection point arriving in the late 2020s for specific narrow applications.
+Boston Consulting Group's parallel analysis, updated in 2023, projected a more conservative base case of \$450 billion but noted that the pharmaceutical sector alone could see \$50–\$100 billion in value creation from accelerated drug discovery. IBM's internal market projections, shared with enterprise clients, suggest a "quantum utility" inflection point — the moment when quantum computers solve commercially meaningful problems faster than classical alternatives — arriving in the late 2020s for specific narrow applications.
 
 What do these ranges tell a strategist? Several things:
 
-**The sectors are consistent across forecasters.** Every major analysis identifies the same four domains as primary value capture zones: (1) pharmaceutical simulation, where quantum chemistry can model molecular interactions at a level of fidelity inaccessible to classical computers; (2) financial optimization, where portfolio construction, risk modeling, and derivative pricing involve combinatorial problems that scale poorly classically; (3) logistics and supply chain, where route optimization and scheduling represent tractable near-term quantum applications — including on D-Wave annealing hardware today; and (4) materials science and battery chemistry, where quantum simulation of electron behavior could unlock next-generation energy storage.
+**The sectors are consistent across forecasters.** Every major analysis identifies the same four domains as primary value capture zones: (1) pharmaceutical simulation, where quantum chemistry can model molecular interactions at a level of fidelity inaccessible to classical computers; (2) financial optimization, where portfolio construction, risk modeling, and derivative pricing involve combinatorial problems that scale poorly classically; (3) logistics and supply chain, where route optimization and scheduling represent tractable near-term quantum applications; and (4) materials science and battery chemistry, where quantum simulation of electron behavior could unlock next-generation energy storage.
 
-**The timelines are wide and honestly so.** The difference between a \$450 billion and \$850 billion outcome by 2035 largely depends on whether certain hardware thresholds are crossed in 2028 or 2032. Nobody knows. Forecasters who offer narrower ranges are making unstated assumptions about hardware progress they cannot fully justify.
+**The timelines are wide and honestly so.** The difference between a \$450 billion and \$850 billion outcome by 2035 largely depends on whether certain hardware thresholds are crossed in 2028 or 2032. Nobody knows. Forecasters who offer narrower ranges are making unstated assumptions about hardware progress that they cannot fully justify.
 
-**The floor is nonzero and rising.** Even pessimistic scenarios project meaningful quantum value creation. The era when the honest answer was "possibly never" has passed. The question is when and how much, not whether.
+**The floor is nonzero and rising.** Even pessimistic scenarios now project meaningful quantum value creation. The era when the honest answer was "possibly never" has passed. The question is when and how much, not whether.
 
 ```{admonition} A Note on Forecast Credibility
 :class: tip
@@ -141,22 +133,22 @@ Any honest assessment of quantum computing must grapple with the field's history
 
 **The First Quantum Winter (approximately 1985–1994)** followed the initial wave of enthusiasm after Richard Feynman's 1982 proposal of a quantum simulator and David Deutsch's 1985 formalization of the quantum Turing machine. The theoretical foundations were stunning. The hardware was nonexistent. Academic funding agencies, unable to point to a physical quantum computer, gradually shifted resources toward more tractable problems. The field survived primarily in university physics departments.
 
-**The Mid-Cycle Thaw and Second Cooling (1994–2015)** began dramatically when Peter Shor published his polynomial-time quantum algorithm for integer factorization in 1994. The implications were immediate: a sufficiently powerful quantum computer could break RSA encryption. DARPA, NSA, and corporate research labs injected significant funding. But hardware progress was brutally slow. Building a stable qubit required isolating a quantum system from all environmental noise — a challenge that consumed two decades of experimental physics. By the mid-2000s, public and private funding had again contracted, though classified government investment continued.
+**The Mid-Cycle Thaw and Second Cooling (1994–2015)** began dramatically when Peter Shor published his polynomial-time quantum algorithm for integer factorization in 1994. The implications were immediate and alarming: a sufficiently powerful quantum computer could break RSA encryption. DARPA, NSA, and a handful of corporate research labs (notably AT&T Bell Labs and IBM Research) injected significant funding. But the hardware progress was brutally slow. Building a stable qubit required isolating a quantum system from all environmental noise — a challenge that consumed two decades of experimental physics. By the mid-2000s, public and private funding had again contracted, though classified government investment (particularly from intelligence agencies worried about cryptographic vulnerability) continued.
 
-**The Current Cycle (2015–present)** is structurally different from both predecessors in four distinct ways.
+**The Current Cycle (2015–present)** is structurally different from both predecessors in four distinct ways:
 
-First, it is funded by *corporate capital*, not primarily by government grants. Google, IBM, Microsoft, Amazon, D-Wave, IonQ, and Quantinuum have each invested billions. This capital does not disappear when a five-year grant cycle ends.
+First, it is funded by *corporate capital*, not primarily by government grants. Google, IBM, Microsoft, Amazon, and Intel have each invested billions in quantum research programs. This capital does not disappear when a five-year grant cycle ends.
 
-Second, there is a clear *near-term application path* — and not just a theoretical one. D-Wave's hybrid quantum-classical solvers are running in production today at companies including BASF, Volkswagen, and Mastercard, solving optimization problems at scales and speeds that classical solvers cannot match. This is not "promising research" — it is deployed enterprise software generating measurable ROI.
+Second, there is a clear *near-term application path*. NISQ-era computers — imperfect, limited, but real — can already run quantum circuits that provide genuine research value for chemistry simulation, optimization heuristics, and quantum machine learning experiments. The field no longer requires waiting for fault-tolerant hardware before delivering any value.
 
-Third, the *geopolitical context* has transformed the funding calculus. China's National Laboratory for Quantum Information Sciences, opened in Hefei in 2020 with an estimated \$10 billion budget, turned quantum computing into a national security priority. The United States responded with the National Quantum Initiative Act (2018, renewed 2023), the CHIPS and Science Act (2022), and a constellation of DOE, DARPA, NSF, and intelligence community programs exceeding \$3 billion in federal commitment.
+Third, the *geopolitical context* has transformed the funding calculus. China's National Laboratory for Quantum Information Sciences, opened in Hefei in 2020 with an estimated \$10 billion budget, has turned quantum computing into a national security priority for every major power. Governments do not defund national security programs the way they defund basic research.
 
-Fourth, the *ecosystem* has matured irreversibly. The International Conference for High Performance Computing (SC — Supercomputing) now features a dedicated quantum computing track, reflecting the consensus that quantum is the natural successor to the high-performance computing paradigm that has driven scientific discovery for four decades. SC26, scheduled for Chicago in November 2026, will feature quantum-HPC hybrid architectures as a primary technical theme — including sessions drawing directly on FAU's on-campus Advantage2 deployment as a case study in institutional quantum integration.
+Fourth, the *ecosystem* has matured irreversibly. Qiskit, IBM's open-source quantum development kit, has been downloaded millions of times. AWS Braket, Azure Quantum, and Google Quantum AI each offer cloud access to real quantum hardware. The developer community building quantum applications is orders of magnitude larger than at any previous point in the field's history. This community creates lock-in that prior waves never achieved. The International Conference for High Performance Computing — SC (Supercomputing) — now features a dedicated quantum track at its annual conference, reflecting the consensus that quantum is the natural next layer of the HPC stack. SC26, scheduled for Chicago in November 2026, will feature quantum-HPC hybrid architectures as a primary technical theme, including sessions drawn from FAU's on-campus Advantage2 deployment.
 
 ```{admonition} Why Past Winters Are Not Predictive
 :class: warning
 
-It is tempting to argue that because quantum computing has disappointed before, it will disappoint again. This reasoning fails to account for structural differences: the current cycle has corporate capital, government security mandates, real production deployments on D-Wave hardware, and a global developer ecosystem. The base case is no longer "wait and see" — it is "prepare while the hardware matures."
+It is tempting to argue that because quantum computing has disappointed before, it will disappoint again. This reasoning fails to account for structural differences: the current cycle has corporate capital, government security mandates, real (if imperfect) hardware, and a global developer ecosystem. The base case is no longer "wait and see" — it is "prepare while the hardware matures."
 ```
 
 ---
@@ -180,28 +172,26 @@ It is tempting to argue that because quantum computing has disappointed before, 
 :width: 100%
 :align: center
 
-**Global Quantum Investment, 2020–2026.** National quantum programs are no longer discretionary research investments — they are strategic infrastructure, treated with the same urgency as semiconductor supply chains and satellite communications.
+**Global Quantum Investment, 2020–2025.** National quantum programs are no longer discretionary research investments — they are strategic infrastructure, treated with the same urgency as semiconductor supply chains and satellite communications.
 :::
 
-The geopolitical dimension of quantum computing is perhaps the least appreciated by enterprise strategists and the most consequential for long-term investment trajectories. Governments fund quantum research because quantum computers offer decisive asymmetric advantages in three national security domains: signals intelligence (breaking adversary communications), materials simulation (advanced weapons design), and optimization (logistics superiority in military operations).
+The geopolitical dimension of quantum computing is perhaps the least appreciated by enterprise strategists and the most consequential for long-term investment trajectories. Governments do not fund quantum research primarily because they expect commercial returns. They fund it because quantum computers offer decisive asymmetric advantages in three national security domains: signals intelligence (breaking adversary communications), materials simulation (nuclear weapons design and advanced conventional weapons), and optimization (logistics superiority in military operations).
 
-The United States National Quantum Initiative Act, signed in 2018 and renewed in 2023, has channeled over \$3 billion in federal quantum commitments across the Department of Energy, NSF, DARPA, NIST, and the intelligence community. The European Union's Quantum Flagship program committed €1 billion over ten years. The United Kingdom published a £2.5 billion National Quantum Strategy in 2023. Australia, Canada, Japan, South Korea, and India each launched national quantum programs between 2021 and 2024.
+The United States National Quantum Initiative Act, signed in 2018, authorized \$1.2 billion over five years. The 2022 CHIPS and Science Act added additional quantum provisions. By 2025, federal quantum commitments exceeded \$3 billion across the Department of Energy, NSF, DARPA, NIST, and the intelligence community. The European Union's Quantum Flagship program committed €1 billion over ten years. The United Kingdom published a £2.5 billion National Quantum Strategy in 2023.
 
-China's investments are harder to audit but by most independent estimates dwarf Western programs. The National Laboratory for Quantum Information Sciences alone reportedly received \$10 billion in initial funding. Chinese researchers publish more quantum computing papers annually than any other nation. The Micius satellite, which demonstrated quantum key distribution at intercontinental distances in 2017, was a signal — both technical and geopolitical — that China is not a follower in this field.
-
-**The HPC-Quantum connection.** For readers coming from a high-performance computing background — including those who have followed SC (Supercomputing) conferences over the years — the quantum investment story is the next chapter of a familiar narrative. The argument for national HPC leadership in the 1990s was the same: computing power is strategic infrastructure, not just a research tool. The organizations and governments that led in HPC built decades-long competitive advantages in weather modeling, nuclear simulation, financial modeling, and drug discovery. Quantum computing is following the same trajectory, with the same national security underpinning and the same commercial spillover potential. SC26's quantum track is a recognition that the HPC community — the people who built and ran supercomputing centers for three decades — is now the natural workforce for quantum-HPC hybrid systems.
+China's investments are harder to audit but by most independent estimates dwarf Western programs. The National Laboratory for Quantum Information Sciences alone reportedly received \$10 billion in initial funding, and Chinese researchers publish more quantum computing papers annually than any other nation. The Micius satellite, which demonstrated quantum key distribution at intercontinental distances in 2017, was a signal — both technical and geopolitical — that China is not a follower in this field.
 
 The enterprise implication is straightforward: when governments treat a technology as a national security priority, the funding does not dry up when commercial timelines slip. The current quantum investment cycle is structurally supported by strategic imperatives that are immune to quarterly earnings pressure.
 
 ### Accelerant Two: AI Convergence
 
-The relationship between quantum computing and artificial intelligence is not one of substitution — quantum computers will not replace AI accelerators — but of *synergistic expansion*. Two convergence pathways matter for business strategy.
+The relationship between quantum computing and artificial intelligence is not one of substitution — quantum computers will not replace AI accelerators — but of *synergistic expansion*. Two convergence pathways are worth distinguishing.
 
-**Quantum-enhanced machine learning** (QML) explores whether quantum circuits can provide computational advantages for specific learning tasks. Theoretical results suggest quadratic speedups for certain linear algebra operations that underlie neural network training. Practical demonstrations remain limited to near-term hardware, but companies like Quantinuum have published QML results suggesting near-term applications in drug discovery and materials classification.
+**Quantum-enhanced machine learning** (QML) explores whether quantum circuits can provide computational advantages for specific learning tasks. Theoretical results suggest quadratic speedups for certain linear algebra operations that underlie neural network training. Practical demonstrations remain limited to toy problems on NISQ hardware, but the research community is large, well-funded, and making measurable progress. Companies like Quantinuum (the merged entity of Honeywell Quantum Solutions and Cambridge Quantum Computing) have published QML results suggesting genuine near-term applications in drug discovery and materials classification.
 
-**Classical AI accelerating quantum development** is the more immediately impactful pathway. Google DeepMind's work on protein structure prediction demonstrated that transformer architectures could tackle problems previously proposed as quantum use cases. More directly: Google's quantum team used machine learning to optimize qubit calibration, error correction protocols, and circuit compilation. IBM uses AI to predict qubit decoherence events and schedule circuit execution accordingly. AI is becoming a critical tool in the quantum engineering toolchain.
+**Classical AI accelerating quantum development** is the more immediately impactful pathway. Google DeepMind's AlphaFold demonstrated that transformer architectures could solve protein structure prediction — a problem that quantum simulation might also address but has not yet. More directly relevant: Google's own quantum team used machine learning to optimize qubit calibration, error correction protocols, and circuit compilation, substantially improving the effective performance of their hardware. AI is becoming a critical tool in the quantum engineering toolchain.
 
-The convergence creates a flywheel: better AI tools accelerate quantum hardware development, which enables more ambitious quantum experiments, which generate training data for AI models that further optimize quantum systems. Organizations with deep AI capabilities — the hyperscalers, large pharmaceutical companies, and research universities — are positioned to benefit from this flywheel more quickly than organizations without them. FAU's dual investment in AI and quantum computing is a direct bet on this flywheel.
+The convergence creates a flywheel: better AI tools accelerate quantum hardware development, which enables more ambitious quantum experiments, which generate training data for AI models that further optimize quantum systems. Organizations with deep AI capabilities — including the hyperscalers and large pharmaceutical companies — are positioned to benefit from this flywheel more quickly than organizations without them.
 
 ### Accelerant Three: Cryptographic Risk
 
@@ -216,16 +206,18 @@ The convergence creates a flywheel: better AI tools accelerate quantum hardware 
 
 Of the three accelerants, cryptographic risk is the only one that creates *current* organizational exposure. It does not require waiting for a quantum computer to become commercially useful.
 
-The mechanism is known as "harvest now, decrypt later" (HNDL). Adversaries — nation-states, primarily — are currently collecting encrypted internet traffic at scale: diplomatic cables, financial transactions, intelligence communications, medical records, trade secrets. All of it is currently encrypted with public-key algorithms (RSA, ECDH) that rely on the mathematical difficulty of factoring large integers. Shor's algorithm, running on a sufficiently large fault-tolerant quantum computer, solves that problem in polynomial time.
+The mechanism is known as "harvest now, decrypt later" (HNDL). Adversaries — nation-states, primarily — are currently collecting encrypted internet traffic at scale. The data they collect today: diplomatic cables, financial transactions, intelligence communications, medical records, trade secrets. All of it is currently encrypted with public-key algorithms (RSA, ECDH, and similar) that rely on the mathematical difficulty of factoring large integers or solving discrete logarithm problems. Shor's algorithm, running on a sufficiently large fault-tolerant quantum computer, solves both problems in polynomial time.
 
-The adversary does not need the quantum computer today. They need it before the data expires. For diplomatic cables, that might be twenty years. For trade secrets, perhaps ten. For medical records, indefinitely.
+The adversary does not need the quantum computer today. They need it before the data expires. For diplomatic cables, that might be twenty years. For trade secrets, perhaps ten. For medical records in some jurisdictions, indefinitely.
 
-NIST finalized the first post-quantum cryptography (PQC) standards in August 2024. The winners — ML-KEM (formerly CRYSTALS-Kyber) for key encapsulation and ML-DSA (formerly CRYSTALS-Dilithium) for digital signatures — are lattice-based algorithms designed to resist both classical and quantum attacks. NIST's guidance is explicit: organizations should begin migration *now*. Most complex organizations need five to ten years for a full cryptographic migration.
+The National Institute of Standards and Technology (NIST) finalized the first post-quantum cryptography (PQC) standards in August 2024, after a seven-year standardization competition. The winners — CRYSTALS-Kyber for key encapsulation and CRYSTALS-Dilithium for digital signatures — are lattice-based algorithms designed to be resistant to both classical and quantum attacks. NIST's guidance is explicit: organizations should begin migration *now*.
+
+Migration is not trivial. Most enterprise systems have cryptographic dependencies buried in software libraries, hardware security modules, VPN concentrators, IoT firmware, and legacy applications. A comprehensive cryptographic inventory and migration takes, by NIST's own estimate, five to ten years for complex organizations. Banks, healthcare systems, defense contractors, and critical infrastructure operators are effectively already late.
 
 ```{admonition} Action Item: Cryptographic Inventory
 :class: important
 
-Any organization that handles data with a useful life exceeding five years should initiate a cryptographic inventory — an audit of all systems using RSA, ECDH, or similar quantum-vulnerable algorithms. This is not a quantum computing project. It is a cybersecurity project motivated by quantum computing.
+Any organization that handles data with a useful life exceeding five years should initiate a cryptographic inventory — an audit of all systems that use RSA, ECDH, or similar quantum-vulnerable algorithms. This is not a quantum computing project. It is a cybersecurity project that happens to be motivated by quantum computing.
 ```
 
 ---
@@ -238,28 +230,28 @@ Any organization that handles data with a useful life exceeding five years shoul
 :width: 100%
 :align: center
 
-**From NISQ to Fault-Tolerant Quantum Computing.** The three-phase roadmap translates physics milestones into enterprise planning horizons.
+**From NISQ to Fault-Tolerant Quantum Computing.** The three-phase roadmap translates physics milestones into enterprise planning horizons. "Now" means deployable experiments and cryptographic preparation. "Soon" means narrow commercial quantum advantage in specific domains. "Later" means broad enterprise transformation.
 :::
 
-The term *NISQ* — Noisy Intermediate-Scale Quantum — was coined by physicist John Preskill in 2018. Understanding the roadmap from NISQ to fault-tolerant systems is essential for calibrating enterprise expectations. Note that *two* quantum paradigms live in this roadmap simultaneously: gate-model hardware (IBM, Google, IonQ) progressing from NISQ toward fault tolerance, and quantum annealing hardware (D-Wave) which has a different maturity profile — D-Wave's Advantage2 is already production-grade for optimization workloads, while gate-model fault tolerance remains years away.
+The term *NISQ* — Noisy Intermediate-Scale Quantum — was coined by physicist John Preskill in 2018 to describe the class of quantum computers that exist today and will exist for the near future: real, programmable quantum processors with 50 to 1,000 qubits, but subject to significant error rates that limit the length and complexity of circuits they can reliably execute. Understanding the roadmap from NISQ to fault-tolerant systems is essential for calibrating enterprise expectations.
 
 ````{tab-set}
-```{tab-item} Now: NISQ + Production Annealing (2024–2028)
-**Gate-model hardware:** 100–1,000+ physical qubits, error rates of 0.1–1% per gate, circuit depth limited to ~100 layers. IBM's Eagle, Heron, and Condor series; Google's Willow (105 qubits, demonstrated below-threshold error correction in December 2024); IonQ Forte.
+```{tab-item} Now: NISQ Era (2020–2027)
+**Hardware:** 50–1,000 physical qubits, error rates of 0.1–1% per gate, circuit depth limited to ~100 layers.
 
-**Annealing hardware (production-ready):** D-Wave Advantage2 — 7,000+ qubits, production-grade hybrid solver (Stride), available on-premises (FAU) and via D-Wave Leap cloud. Enterprise deployments running today at BASF, Volkswagen, Mastercard, and others.
+**Capabilities:** Quantum chemistry simulations for small molecules, optimization heuristics for constrained problems, quantum machine learning research, quantum key distribution (already commercially deployed).
 
-**Enterprise posture:** Build expertise, begin cryptographic migration, run proof-of-concept experiments on cloud quantum hardware. For optimization problems: serious pilots on D-Wave Stride are appropriate now — not "one day." For simulation, chemistry, and ML: research and prototyping posture.
+**Enterprise posture:** Build expertise, begin cryptographic migration, run proof-of-concept experiments on cloud quantum hardware (IBM Quantum, AWS Braket, Azure Quantum, Google Quantum AI). The goal is not to deploy quantum advantage in production — it is to develop the organizational capability to recognize and deploy it when it arrives.
 
-**Key milestone to watch:** Google Willow's demonstration of below-threshold error correction (December 2024) is the most significant hardware milestone in a decade — it confirms the fault-tolerance pathway is physically real.
+**Key milestone to watch:** IBM's goal of 100,000 "quantum volume" metric by 2025, and Quantinuum's \#AQ target on trapped-ion hardware.
 ```
 
 ```{tab-item} Soon: Early Fault Tolerance (2027–2032)
-**Hardware:** 10,000–1,000,000 physical qubits encoding 100–10,000 *logical* qubits with error rates below the fault-tolerance threshold. Error correction overhead reduces effective qubit count by 100–1,000x.
+**Hardware:** 10,000–1,000,000 physical qubits encoding 100–10,000 *logical* qubits with error rates below the fault-tolerance threshold (~0.1%). Error correction overhead reduces the effective qubit count by a factor of 100–1,000.
 
-**Capabilities:** Narrow commercial quantum advantage in pharmaceutical simulation (specific drug-target binding problems), financial optimization (certain portfolio construction tasks), and materials discovery. These advantages are domain-specific and require quantum-native algorithm development.
+**Capabilities:** Narrow commercial quantum advantage in pharmaceutical simulation (specific drug-target binding problems), financial optimization (certain portfolio construction tasks), and materials discovery. These are not general-purpose advantages — they are domain-specific, problem-specific, and require quantum-native algorithm development.
 
-**Enterprise posture:** Organizations with a quantum-ready team and a mapped portfolio of quantum-amenable problems will deploy early commercial applications. Those without are entering a 3–5 year catch-up cycle.
+**Enterprise posture:** Organizations with a quantum-ready team and a mapped portfolio of quantum-amenable problems will be positioned to deploy early commercial applications. Those without are entering a 3–5 year catch-up cycle.
 
 **Key milestone to watch:** First peer-reviewed demonstration of quantum advantage on a commercially relevant problem instance — not a synthetic benchmark.
 ```
@@ -271,86 +263,94 @@ The term *NISQ* — Noisy Intermediate-Scale Quantum — was coined by physicist
 
 **Enterprise posture:** Organizations that have not prepared face existential competitive and security risks. The asymmetry between prepared and unprepared organizations becomes severe.
 
-**Key milestone to watch:** NIST's post-quantum cryptography migration deadline — 2030 for most federal systems, implying 2030–2033 for critical private sector systems.
+**Key milestone to watch:** NIST's post-quantum cryptography migration deadline (currently recommended: 2030 for most federal systems, implying 2030–2033 for critical private sector systems).
 ```
 ````
 
 ```{prf:definition} NISQ Era
 :label: def-nisq-era
 
-A **Noisy Intermediate-Scale Quantum (NISQ)** computer is a quantum processor with 50–1,000 physical qubits operating without full error correction. NISQ devices can run short quantum circuits but accumulate errors that limit circuit depth and problem size.
+A **Noisy Intermediate-Scale Quantum (NISQ)** computer is a quantum processor with 50–1,000 physical qubits operating without full error correction. NISQ devices are capable of running short quantum circuits but accumulate errors that limit circuit depth and problem size. The NISQ era is characterized by *quantum noise* as the primary engineering constraint, as distinct from the *qubit count* constraint that defined earlier experimental systems.
 ```
 
 ```{prf:definition} Fault-Tolerant Quantum Computing
 :label: def-ftqc
 
-A **fault-tolerant quantum computer (FTQC)** encodes logical qubits in redundant arrays of physical qubits using quantum error correction codes. When physical error rates fall below approximately 1%, error correction suppresses errors exponentially as code distance increases, enabling arbitrarily long computations.
+A **fault-tolerant quantum computer (FTQC)** encodes logical qubits in redundant arrays of physical qubits using quantum error correction codes (e.g., the surface code). When physical error rates fall below a threshold of approximately 1%, error correction suppresses errors exponentially as the code distance increases, enabling arbitrarily long computations. Fault tolerance requires roughly 1,000 physical qubits per logical qubit at current error rates.
 ```
 
-:::{note} Plain Language: NISQ vs. Fault-Tolerant vs. Annealing — Three Stages, One Story
+:::{note} Plain Language: NISQ vs. Fault-Tolerant — The Prototype Car vs. the Production Vehicle
 
-These terms describe different stages and paradigms of quantum hardware. Mixing them up is the most common source of confusion in quantum strategy discussions.
+These two terms describe different stages of quantum hardware maturity. The distinction is critical for setting enterprise expectations.
 
-**Think of three vehicle types, not three generations of the same car.**
+**Start with something familiar.** Think about the automotive industry's product development cycle. Before a new car platform reaches showrooms, engineers build a prototype: a vehicle that demonstrably works — it accelerates, steers, and stops — but whose engine cuts out unpredictably, whose steering occasionally drifts, and which requires constant manual recalibration between runs. The prototype is genuinely valuable: it teaches engineers exactly what needs to be fixed before production. But you wouldn't enter it in the 24 Hours of Le Mans.
 
-A **NISQ gate-model computer** is the Formula 1 car under development: blindingly fast at specific tasks, but fragile, expensive to run, requires a specialist crew, and breaks down frequently. It can lap an ordinary car on a closed circuit. You wouldn't use it for a road trip.
+**NISQ computers today are the prototype.** The qubits work — they execute quantum gates and produce quantum results — but errors accumulate with every operation. Run a 10-gate circuit, and you might get a reliable answer. Run a 1,000-gate circuit, and the errors pile up faster than the signal, producing garbage. NISQ devices are real, programmable, and useful for short experiments. They are not reliable enough for the long, complex circuits that crack drug discovery or factorize encryption keys.
 
-A **production quantum annealer** (like FAU's D-Wave Advantage2) is more like a specialized off-road vehicle purpose-built for a specific terrain — optimization problems with millions of variables. It handles that terrain better than anything else available today. It is not trying to be a Formula 1 car. For its intended problem class, it wins. You can rent one right now.
+**Fault-tolerant quantum computers are the production vehicle.** The "fault-tolerant" breakthrough is a clever engineering trick: instead of trying to build a perfect qubit (physically impossible), engineers spread one *logical* qubit across roughly 1,000 *physical* qubits that continuously cross-check each other. Errors still happen at the physical level — but the system detects and corrects them before they accumulate, like RAID storage that can lose a hard drive without losing any data. The result: a logical qubit that can hold its state and execute operations reliably for as long as the computation requires.
 
-A **fault-tolerant quantum computer** is the autonomous vehicle that doesn't exist yet but is clearly coming: a general-purpose quantum system reliable enough to run any quantum algorithm without errors accumulating. When it arrives, it changes everything. For now, it lives on roadmaps.
+**Where the analogy breaks down.** The jump from NISQ to fault-tolerant isn't just adding more qubits — it requires a qualitative leap in error rates per gate (below roughly 1%), fabrication consistency across thousands of qubits, and cryogenic control systems of extraordinary precision. That engineering gap is why the timeline is measured in years, not quarters.
 
-**The enterprise implication.** The mistake most strategy documents make is treating quantum computing as a single, monolithic technology that is either "ready" or "not ready." In reality: quantum annealing for optimization is ready now (D-Wave Advantage2). Gate-model experiments are viable now for research and narrow applications. Fault-tolerant quantum computing is not ready and won't be for years. Each paradigm has its own readiness timeline, its own problem class, and its own enterprise action items.
+**Business implication.** NISQ hardware today is a research and prototyping environment, not a production deployment platform. The organizations running quantum pilots now are doing "garage testing" — identifying the right problems, building the algorithm toolkit, and developing organizational expertise — so they can deploy quickly when the production-grade hardware arrives. The alternative is starting that process after the hardware ships, at which point your competitors are already 3–5 years ahead.
 :::
 
 ---
 
-## Flagship Case Study: FAU and D-Wave — Quantum Comes to Boca Raton
+## Flagship Case Study: Google Sycamore and the \$10,000-Year Question
 
 :::{figure} ../images/ch01-google-sycamore-case-study.png
-:label: fig-ch01-fau-dwave-case-study
-:alt: Case study infographic about FAU's $20 million D-Wave Advantage2 partnership announced January 2026.
+:label: fig-ch01-google-sycamore-case-study
+:alt: Case study infographic about Google Sycamore 2019 quantum supremacy experiment, showing the 200-second vs 10,000-year comparison and IBM's rebuttal.
 :width: 100%
 :align: center
 
-**FAU and D-Wave: A Landmark Institutional Quantum Investment.** The January 2026 agreement positions FAU as Florida's first university to host an on-premises production quantum computer — and Boca Raton as a national quantum hub.
+**Google Sycamore vs. IBM Summit: Both Sides Were Right.** The 2019 quantum supremacy dispute is a masterclass in how to read quantum milestone claims — and a preview of the rhetorical landscape enterprises will navigate for the next decade.
 :::
 
 ### Situation
 
-On January 27, 2026, Florida Atlantic University signed a $20 million agreement with D-Wave Quantum Inc. (NYSE: QBTS) to acquire and install a D-Wave Advantage2 annealing quantum computer on the Boca Raton campus. The announcement was made at D-Wave's Qubits26 conference, held locally — a choice of venue that was itself a signal. On the same day, D-Wave announced it would relocate its corporate headquarters to the Boca Raton Innovation Center, cementing South Florida as a major U.S. quantum technology hub.
-
-FAU became the first university in Florida — and one of a small number of universities in the world — to publicly host a large, dedicated quantum computer on-site. The distinction matters: most university quantum programs access hardware through cloud queues, waiting hours or days for computation time on shared systems. FAU's on-premises deployment means priority access, direct system integration, and the ability to run experiments at the depth and iteration speed that real research and real coursework require.
+In early 2019, a draft of Google's quantum supremacy paper briefly appeared on a NASA server before being taken down — an accidental leak that sent quantum industry observers into a frenzy of speculation for nearly two months before the official *Nature* publication in October. The paper described an experiment in which Google's 53-qubit Sycamore processor was tasked with sampling from the output distribution of a random quantum circuit — a task with no obvious commercial application, specifically designed to be easy for quantum hardware and hard for classical simulators.
 
 ### Quantum Angle
 
-The D-Wave Advantage2 is an annealing quantum computer, not a gate-model system. It contains over 7,000 qubits connected in D-Wave's proprietary Pegasus topology, and it is paired with D-Wave's Stride hybrid solver — a classical-quantum hybrid system that decomposes large optimization problems into subproblems suitable for the quantum annealer, then coordinates the results using a classical optimizer. The combination enables problems with millions of variables and constraints to be solved in seconds to minutes — problem scales that exceed what pure-quantum or pure-classical approaches can match today.
+The specific task — random circuit sampling — was chosen because it sits in a theoretically motivated "sweet spot": quantum computers can generate samples from the output distribution in polynomial time, while classical simulation appears to require exponential resources. Google's claim rested on the assertion that their implementation of this task in 200 seconds would require Summit approximately 10,000 years via known classical simulation methods.
 
-The Advantage2 is the same class of machine currently used in production by:
-- **BASF** — compressing manufacturing scheduling from hours to seconds
-- **Volkswagen** — optimizing paint-shop sequencing in automotive production
-- **Mastercard** — fraud pattern detection across transaction graphs
-- **Verge Ag** — real-time routing for autonomous agricultural equipment
-- **Defense organizations** — classified optimization applications
-
-This is not a research demonstration. These are production deployments generating operational ROI.
+The scientific achievement was genuine. Sycamore demonstrated two-qubit gate fidelities of approximately 99.5% across its 53-qubit array — a hardware engineering feat that represented a decade of progress in superconducting qubit fabrication.
 
 ### Decisions Made
 
-FAU's decision to acquire the Advantage2 rather than relying on cloud access reflects several strategic calculations. First, on-premises access eliminates latency and queue delays that make iterative research impractical in a cloud model. Second, the presence of the physical hardware attracts industry partnerships — companies with quantum optimization problems will partner with the university that has the machine they need. Third, the co-location of D-Wave's headquarters in Boca Raton creates a direct pipeline for student placement, joint research, and curriculum development. FAU is not buying a computer; it is buying an ecosystem position.
+IBM's rebuttal, published the day before Google's paper appeared in *Nature*, was technically careful. IBM's team argued that with 2.5 petabytes of disk storage and optimized simulation techniques, Summit could solve the same problem in approximately 2.5 days — not 10,000 years. They were correct that Google's estimate assumed limited classical storage, and that a different classical algorithm could dramatically reduce the runtime.
 
-The decision also reflects FAU's broader trajectory in advanced computing. The university has operated high-performance computing (HPC) infrastructure for research for over a decade, providing the organizational experience — computational support staff, research computing governance, industry partnership frameworks — that makes the quantum transition operationally feasible. For universities without that HPC foundation, hosting production quantum hardware would be significantly more complex.
+Google's team acknowledged the rebuttal but maintained that their estimate was based on the classical storage available on Summit at the time. Both claims were honest; they were answering slightly different questions.
 
 ### Measured Outcome
 
-At the time of this writing, the Advantage2 installation is pending — expected later in 2026. The outcomes measurable today are organizational: D-Wave's local headquarters presence, the Qubits26 conference held in Boca Raton, and the curricular programs (including this course) being developed around the hardware. The operational outcomes — research publications, industry partnerships, student placements, optimization use cases solved — will accumulate over a 5–10 year horizon.
+The market reaction over the following 18 months revealed something important about how enterprise attention works. IonQ, which went public via SPAC in late 2021, achieved a peak market capitalization exceeding \$6 billion — representing primarily speculative valuation, not revenue. Quantum computing became a fixture of corporate innovation reports, board-level technology briefings, and MBA curriculum. IBM announced its Quantum Roadmap committing to 1,000+ qubit systems by 2023 and 4,000+ qubit systems by 2025. Microsoft, previously quiet on near-term quantum timelines, accelerated its investment in topological qubit research. Venture capital investment in quantum computing reached \$1.4 billion globally in 2021, up from \$400 million in 2019.
 
-What is already measurable is competitive positioning. No other university in Florida offers students hands-on access to production quantum hardware. No other MBA program in the Southeast can claim coursework that runs on a real quantum computer — not a simulator, not a cloud queue — and connects to a corporate ecosystem co-located with the institution.
+None of this was caused directly by Sycamore. But Sycamore was the catalyst that made quantum computing legible to non-physicists. It provided a narrative: "Google did something a supercomputer couldn't."
 
 ### Open Question
 
-FAU's Advantage2 deployment raises a question that every organization considering quantum investment must answer: *What is the right problem to run first?* The Advantage2 excels at combinatorial optimization — vehicle routing, scheduling, portfolio construction, logistics sequencing. FAU's research strengths span engineering, business, ocean science, and medicine. Which of these domains has an optimization problem worth solving at quantum scale?
+The deeper question raised by the Sycamore episode is methodological: how should enterprises evaluate future quantum milestone announcements? The lesson is not that Google overstated its results (it did not) or that IBM was being obstructionist (it was not). The lesson is that quantum milestone claims are made about specific, carefully chosen tasks — and the gap between "faster at this benchmark" and "commercially useful" requires domain expertise to evaluate accurately. Every future announcement of "quantum advantage" should prompt the question: *advantage at what, over what classical alternative, for what problem instance size?*
 
-This is not a rhetorical question. Part of your work in this course is to formulate that answer — to identify a real problem, model it for the Advantage2, and evaluate whether quantum treatment produces results that matter. The hardware is not a demonstration. It is a tool. Your job is to use it well.
+```{admonition} Reading Quantum Headlines
+:class: tip
+
+When a quantum computing announcement claims a speedup over classical methods, ask: (1) What is the exact task? (2) What classical algorithm is being compared? (3) Is this a problem instance anyone cares about commercially? (4) Does the advantage persist as problem size scales? Google-IBM was a preview — expect similar debates for every major milestone announcement over the next decade.
+```
+
+:::{note} Plain Language: Supremacy vs. Advantage vs. Utility — Three Different Finish Lines
+
+The quantum computing field uses three milestone terms that headline writers treat as synonyms. They are not. Confusing them is how executives get misled — and how quantum skeptics dismiss genuine progress.
+
+**Quantum Supremacy** — *"we beat a classical computer at something."* A quantum device performs a specific, carefully chosen task faster than any classical computer, even if that task has no commercial application. Google's random circuit sampling benchmark in 2019 qualifies. The benchmark was specifically designed to be easy for quantum hardware and hard to simulate classically — like a new sprinter challenging an Olympic swimmer to run the 100 meters. Technically a victory; not meaningful for real-world racing. The word "supremacy" has largely fallen out of favor; Google's own team now prefers the phrase "beyond classical." **Business translation:** impressive engineering proof, minimal near-term commercial relevance.
+
+**Quantum Advantage** — *"we beat the best classical alternative at something that matters."* A quantum computer solves a *practically relevant* problem faster, cheaper, or at higher fidelity than the best available classical method on the same problem. This is the milestone that enterprises actually care about. We are not broadly here yet, but narrow advantage — in specific pharmaceutical simulation tasks or certain financial optimization problems — is the expected milestone for early fault-tolerant hardware in the late 2020s. **Business translation:** start building capability now so you can deploy it when advantage arrives in your sector.
+
+**Quantum Utility** — *"we produced useful results a classical computer would struggle to verify."* IBM introduced this term in 2023 alongside a *Nature* paper demonstrating that a 127-qubit quantum processor could simulate a quantum material's behavior at a circuit depth and scale that pushed classical simulation to its limits. IBM was careful not to claim advantage — classical simulation might eventually verify the result — but the quantum system was producing scientifically valuable output in a regime where classical methods strained. **Business translation:** quantum computers are already contributing to scientific research, even before claiming competitive superiority over classical approaches.
+
+**The scorecard for reading future announcements.** Supremacy claim → ask what task and whether anyone cares about it commercially. Utility claim → ask whether the result has scientific or commercial value, even if classical methods might eventually match it. Advantage claim → ask specifically: advantage at what problem, over what classical algorithm, at what problem size, with what statistical confidence? The burden of proof increases as you move up the scale.
+:::
 
 ---
 
@@ -358,7 +358,7 @@ This is not a rhetorical question. Part of your work in this course is to formul
 
 :::{figure} ../images/ch01-industry-snapshots.png
 :label: fig-ch01-industry-snapshots
-:alt: Four-quadrant infographic showing JPMorgan Chase, Mercedes-Benz, Airbus, and BASF adopting quantum computing for specific use cases.
+:alt: Four-quadrant infographic showing JPMorgan Chase, Mercedes-Benz, Airbus, and BMW adopting quantum computing for specific use cases.
 :width: 100%
 :align: center
 
@@ -367,37 +367,51 @@ This is not a rhetorical question. Part of your work in this course is to formul
 
 ### JPMorgan Chase: Portfolio Optimization at Scale
 
-JPMorgan Chase operates one of the largest quantum research programs in the financial services industry. The bank's quantum group has published peer-reviewed research on quantum algorithms for option pricing, portfolio optimization, and Monte Carlo simulation acceleration. Their work on a quantum algorithm for derivative pricing — published in collaboration with IBM in 2019 — demonstrated a theoretically quadratic speedup for a simplified options pricing model.
+JPMorgan Chase operates one of the largest quantum research programs in the financial services industry. The bank's quantum group, based primarily in New York and London, has published peer-reviewed research on quantum algorithms for option pricing, portfolio optimization, and Monte Carlo simulation acceleration. Their work on a quantum algorithm for derivative pricing — published in collaboration with IBM in 2019 — demonstrated a theoretically quadratic speedup for a simplified options pricing model.
 
-The practical implication is not that JPMorgan runs options pricing on a quantum computer today. It is that their quantitative analysts understand the algorithm landscape well enough to recognize, when early fault-tolerant hardware becomes available, whether a specific portfolio construction or risk calculation qualifies for quantum treatment. They are building the organizational antibodies for quantum integration.
+The practical implication is not that JPMorgan runs options pricing on a quantum computer today. The implication is that their quantitative analysts understand the algorithm landscape well enough to recognize, when early fault-tolerant hardware becomes available, whether a specific portfolio construction or risk calculation problem qualifies for quantum treatment. They are building the organizational antibodies for quantum integration.
 
-Separately, JPMorgan has piloted quantum key distribution links between offices as part of post-quantum cryptographic readiness evaluation. Their annual reports have acknowledged cryptographic migration as a top-five cybersecurity priority since 2023.
-
-### BASF: Manufacturing Scheduling in Seconds
-
-BASF, the world's largest chemical company, has deployed D-Wave's hybrid quantum-classical solver in production for chemical plant scheduling — one of the most operationally complex optimization problems in industrial manufacturing. A single BASF plant runs thousands of interdependent processes with timing constraints, feedstock availability windows, equipment maintenance schedules, and regulatory compliance requirements. Classical scheduling algorithms, even well-tuned heuristics, require hours to generate a feasible schedule for a large plant.
-
-D-Wave's Stride hybrid solver — the same system available on FAU's Advantage2 — reduced BASF's scheduling computation from hours to seconds. The operational impact: the ability to replan in real time when disruptions occur (equipment failures, supply delays, demand spikes), rather than running overnight batch optimization. BASF has described the deployment as a competitive differentiator, not a research experiment.
-
-The BASF case is the most important enterprise quantum case study of the current era because it is unambiguous: quantum hardware running in production, solving a commercial problem, delivering measurable operational ROI. Not a proof of concept. Not a benchmark. A deployed system.
-
-### Airbus: Aerodynamic Optimization
-
-Airbus's quantum computing program illustrates a different entry point: gate-model QAOA for combinatorial optimization. Aircraft loading optimization, fleet scheduling, and supply chain logistics involve combinatorial problems that grow exponentially with problem size under classical approaches.
-
-Airbus has run pilots using QAOA for aircraft loading optimization — determining how to distribute cargo weight across a fleet to minimize fuel consumption while satisfying complex constraints. Early results were honest about the current state: QAOA on today's hardware does not yet outperform state-of-the-art classical solvers for production problem sizes. But the research established that the algorithm structure is sound, and that as qubit counts and circuit depths improve, the advantage gap narrows. Airbus has integrated quantum computing into its digital transformation program, training engineers across multiple business units.
+Separately, JPMorgan has been a leader in quantum communication, piloting quantum key distribution links between their offices as part of a broader program to evaluate post-quantum cryptographic readiness. Their 2023 annual report acknowledged cryptographic migration as a top-five cybersecurity priority.
 
 ### Mercedes-Benz: The Battery Chemistry Frontier
 
-Mercedes-Benz entered a research partnership with IBM Quantum specifically to explore quantum simulation of lithium-sulfur battery chemistry. Lithium-sulfur batteries could offer twice the energy density of lithium-ion at lower cost — but the electron transfer dynamics involve quantum mechanical interactions that classical simulation cannot model accurately for more than ~20 atoms.
+The automotive transition to electric vehicles depends critically on battery chemistry. Current lithium-ion batteries are engineered through a combination of empirical trial-and-error and classical molecular simulation — a process that takes years per material candidate and misses promising compounds because the simulation is too expensive to run at sufficient fidelity.
 
-The program does not expect production-ready quantum simulation capability until the early fault-tolerance era. But beginning the research now means that when the hardware crosses the threshold of utility, Mercedes-Benz researchers already know which problems to run on it, which algorithms to use, and what "quantum advantage" looks like for their specific chemistry questions. The organization that knows exactly which molecular simulation problem it will run on early fault-tolerant hardware has a significant first-mover advantage over the organization that starts problem identification after the hardware arrives.
+Quantum simulation offers a fundamentally different approach. The nitrogen fixation reaction — the same reaction at the heart of biological nitrogen fixation in soil bacteria — involves quantum mechanical interactions between electrons and atomic nuclei that cannot be accurately modeled classically for more than about 20 atoms. Lithium-sulfur batteries, which could offer twice the energy density of lithium-ion at lower cost, involve electron transfer dynamics in the same regime.
+
+Mercedes-Benz entered a research partnership with IBM Quantum in 2020 specifically to explore quantum simulation of lithium-sulfur battery chemistry. The program does not expect production-ready quantum simulation capability until the early fault-tolerance era — but beginning the research now means that when the hardware crosses the threshold of utility, Mercedes-Benz researchers already know which problems to run on it, which algorithms to use, and what "quantum advantage" looks like for their specific chemistry questions.
+
+### Airbus: Aerodynamic Optimization in the Skies
+
+Airbus's quantum computing program illustrates a different entry point: combinatorial optimization rather than quantum simulation. Aircraft route optimization, fleet scheduling, and supply chain logistics all involve combinatorial problems that grow exponentially with problem size under classical approaches. These are sometimes called "NISQ-amenable" problems because quantum approximate optimization algorithms (QAOA) offer potential advantages on near-term hardware, even without full error correction.
+
+Airbus has run pilots using QAOA for aircraft loading optimization — determining how to distribute cargo weight across a fleet to minimize fuel consumption while satisfying complex constraint systems. Early results, published in 2021, were honest about the current state: QAOA on 2021-era hardware did not outperform state-of-the-art classical solvers for problem instances of commercial size. But the research established that the algorithm structure is sound, and that as qubit counts and circuit depths improve, the advantage gap narrows.
+
+More significantly, Airbus has integrated quantum computing into its broader digital transformation program. Their internal quantum center of excellence trains engineers across multiple business units, creating organizational literacy that cannot be purchased off the shelf when the technology matures.
+
+### BMW: Hydrogen at the Molecular Level
+
+BMW's quantum computing investment centers on its hydrogen fuel cell vehicle program, one of the most capital-intensive bets in the automotive hydrogen space. Hydrogen fuel cell efficiency depends critically on catalytic reactions at platinum surfaces — reactions that involve quantum mechanical electron exchange between hydrogen molecules, water, and the platinum catalyst lattice. Classical density functional theory (DFT) simulations, the standard tool for modeling such reactions, break down at the quantum mechanical detail level required to engineer significantly better catalysts.
+
+BMW partnered with Quantinuum and Classiq in 2022 to explore quantum simulation of proton exchange membrane (PEM) fuel cell chemistry. The research program is explicitly exploratory — the team acknowledges that current quantum hardware cannot simulate the full catalytic reaction at useful fidelity. But they have identified specific subproblems within the reaction pathway that may be tractable on early fault-tolerant hardware, and they are developing the algorithmic toolkit to exploit quantum simulation when the hardware is ready.
+
+The BMW case illustrates a strategic posture that will likely define the most successful enterprise quantum programs: *targeted investment in problem identification*, not premature deployment. The organization that knows exactly which molecular simulation problem it will run on an early fault-tolerant quantum computer has a significant first-mover advantage over the organization that starts the problem identification process after the hardware arrives.
+
+### Florida Atlantic University and D-Wave: Quantum Arrives on Campus
+
+On January 27, 2026, FAU signed a $20 million agreement with D-Wave Quantum Inc. to acquire and install a D-Wave Advantage2 annealing quantum computer on the Boca Raton campus. FAU became the first university in Florida — and one of a small number worldwide — to host a large, dedicated quantum computer on-site. The announcement was made at D-Wave's Qubits26 conference, held locally, the same day D-Wave announced it would relocate its corporate headquarters to the Boca Raton Innovation Center.
+
+The Advantage2 is an annealing quantum computer with over 7,000 qubits, paired with D-Wave's Stride hybrid solver — a classical-quantum hybrid system that decomposes large optimization problems into subproblems suitable for the quantum processor. The combination enables problems with millions of variables and constraints to be solved in seconds. This is the same class of machine currently used in production by BASF (manufacturing scheduling), Volkswagen (automotive logistics), Mastercard (fraud detection), and Verge Ag (autonomous vehicle routing).
+
+The FAU deployment is not a research demonstration — it is a production-grade system positioned to serve both the university's research agenda and the commercial ecosystem co-located in South Florida. The presence of D-Wave's headquarters four miles from campus creates a direct pipeline for student placement, joint research, and industry partnerships. For students in this course, the implication is concrete: your coursework runs on the same hardware that enterprises are paying for access to. The strategic question this chapter asks is no longer abstract — it is a question this institution has already answered.
 
 ---
 
 ## Unit Economics: Reading the Forecast Landscape
 
-The \$850 billion headline deserves structural analysis.
+The \$850 billion headline figure deserves structural analysis. How is that number constructed, and what assumptions does it depend on?
+
+McKinsey's 2021 methodology disaggregated the forecast by sector and value type:
 
 | Sector | Low Estimate | High Estimate | Primary Application |
 |--------|-------------|---------------|---------------------|
@@ -407,14 +421,14 @@ The \$850 billion headline deserves structural analysis.
 | Materials Science | \$50B | \$180B | Battery chemistry, semiconductor design |
 | **Total** | **\$450B** | **\$850B** | |
 
-: McKinsey Global Institute quantum value forecast by sector, 2035 horizon. *Source: McKinsey Global Institute (2021). "A Quantum Decade."* {#tbl-ch01-forecast}
+: McKinsey Global Institute quantum value forecast by sector, 2035 horizon. *Source: McKinsey Global Institute (2021). "A Quantum Decade: Navigating the Tradeoffs."* {#tbl-ch01-forecast}
 
-The pharmaceutical number dominates the forecast — bringing a single successful drug to market two years faster is worth several billion dollars in NPV. The logistics number is relevant today: D-Wave's Stride solver is already delivering measurable ROI in routing and scheduling deployments, suggesting the low end of the mobility/logistics estimate may prove conservative.
+The pharmaceutical number dominates the forecast. This reflects the enormous value of accelerating drug discovery: bringing a single successful drug to market faster by even two years is worth several billion dollars in net present value. Quantum chemistry simulation that enables better target identification or reduces failed clinical trials by improving molecular binding predictions could plausibly generate hundreds of billions in pharmaceutical value over a decade.
 
 ```{admonition} What the Forecast Assumes
 :class: note
 
-The McKinsey \$450–850B range depends on at least three structural assumptions: **(1)** Early fault-tolerant hardware capable of useful quantum chemistry simulations arrives in the 2028–2032 window. **(2)** Enterprises deploy quantum-ready workflows within 3–5 years of hardware availability — requiring they start building capability now. **(3)** Classical computing does not achieve equivalent breakthroughs (e.g., AI-accelerated molecular simulation) that close the value gap before quantum hardware matures. Each can be contested. The range captures this uncertainty explicitly.
+The McKinsey \$450–850B range depends on at least three structural assumptions: **(1)** That early fault-tolerant hardware capable of running useful quantum chemistry simulations arrives in the 2028–2032 window. **(2)** That enterprises can deploy quantum-ready workflows within 3–5 years of hardware availability, requiring that they start building capability now. **(3)** That classical computing does not achieve equivalent breakthroughs (e.g., AI-accelerated molecular simulation) that close the value gap before quantum hardware matures. Each of these can be contested. The honest answer is that the range captures this uncertainty explicitly.
 ```
 
 ---
@@ -424,7 +438,7 @@ The McKinsey \$450–850B range depends on at least three structural assumptions
 ```{admonition} Productive Struggle: Load-Bearing Assumptions
 :class: important
 
-**Scenario:** You are a strategy analyst at a large healthcare system. Your CTO has shared the following one-paragraph forecast excerpt:
+**Scenario:** You are a strategy analyst at a large healthcare system. Your CTO has shared the following one-paragraph forecast excerpt from a consulting report:
 
 *"Our base case projects that quantum computing will enable healthcare systems to reduce drug discovery costs by 30% and accelerate time-to-market by 2.5 years by 2035, generating approximately \$85 billion in value globally. This projection assumes that early fault-tolerant systems capable of running quantum chemistry simulations at useful fidelity will be commercially available by 2029, that major pharmaceutical partners will adopt quantum-native workflows within 3 years of hardware availability, and that current AI-based drug discovery tools do not achieve equivalent capabilities independently."*
 
@@ -440,18 +454,18 @@ The McKinsey \$450–850B range depends on at least three structural assumptions
 ::::{dropdown} Discussion Guidance (Open After Completing the Exercise)
 
 **Assumption 1: Fault-tolerant hardware by 2029.**
-*Confidence: Low-to-medium.* IBM's public roadmap targets "quantum-centric supercomputing" milestones by 2029, and Google's December 2024 Willow result demonstrated below-threshold error correction — the most significant hardware milestone in a decade. However, the jump from demonstrating error correction in a controlled benchmark to running commercially useful quantum chemistry at scale requires further engineering progress that has historically taken longer than projected. A bear case in which hardware slips to 2033 pushes the entire value forecast timeline right by 4 years, roughly halving the 2035 NPV.
+*Confidence: Low-to-medium.* IBM's public roadmap targets "quantum-centric supercomputing" milestones by 2029, but publicly stated hardware roadmaps in quantum computing have historically slipped by 2–4 years. The 2029 date assumes no major engineering setbacks in error rate reduction or qubit fabrication yield. A bear case in which hardware slips to 2033 pushes the entire value forecast timeline right by 4 years, roughly halving the 2035 NPV.
 *Monitor:* IBM Quantum, Google Quantum AI, and Quantinuum annual hardware reports; academic publications on surface code error thresholds.
 
 **Assumption 2: 3-year enterprise adoption lag.**
-*Confidence: Low.* Enterprise software adoption timelines routinely exceed projections by 2–3x. Cloud computing adoption took 7–10 years in most large healthcare systems; AI adoption in clinical workflows has lagged commercial availability by 5–8 years in many organizations. A 3-year adoption lag requires that healthcare systems begin building quantum capability *before* the hardware arrives — which is precisely the argument of this chapter.
-*Monitor:* Survey data on enterprise quantum workforce investment; number of quantum-certified developers in target industries.
+*Confidence: Low.* Enterprise software adoption timelines routinely exceed projections by a factor of 2–3x. Cloud computing adoption took 7–10 years in most large healthcare systems; AI adoption in clinical workflows has lagged commercial availability by 5–8 years in many organizations. A 3-year adoption lag requires that healthcare systems begin building quantum capability *before* the hardware arrives — which is precisely the argument of this chapter.
+*Monitor:* Survey data on enterprise quantum workforce investment; number of quantum-certified developers in target industries; hospital CIO quantum strategy disclosures.
 
 **Assumption 3: Classical AI does not close the gap.**
-*Confidence: Medium.* AlphaFold demonstrated that deep learning could solve protein structure prediction — a problem proposed as a quantum use case for a decade. However, electron correlation problems in quantum chemistry involve computational complexity classes that classical AI cannot efficiently approximate. The risk is domain-specific, not global.
-*Monitor:* Publications in *Nature Chemistry* and *Journal of Chemical Theory and Computation* on AI-classical methods for electron correlation.
+*Confidence: Medium.* AlphaFold demonstrated that deep learning could solve protein structure prediction — a problem that had been proposed as a quantum use case for a decade. Similar breakthroughs in molecular dynamics simulation are plausible. However, electron correlation problems in quantum chemistry (the specific domain where quantum simulation offers its most fundamental advantage) have been shown to be in computational complexity classes that classical AI cannot efficiently approximate. The risk is domain-specific, not global.
+*Monitor:* Publications in *Nature Chemistry* and *Journal of Chemical Theory and Computation* on AI-classical methods for electron correlation; breakthrough preprints on arXiv.
 
-**The meta-lesson:** Every market forecast for a long-lead technology rests on assumption chains. The weakest assumption is usually the one about enterprise readiness, not hardware performance.
+**The meta-lesson:** Every market forecast for a technology with long development timelines rests on assumption chains. The forecast is only as strong as its weakest assumption — and the weakest assumption is usually the one about enterprise readiness, not hardware performance.
 ::::
 
 ---
@@ -472,7 +486,7 @@ Describe projected economic impact of quantum computing by sector and horizon, c
 :class-header: bg-primary text-white
 **Quantum Winters**
 
-Distinguish the two prior quantum winters from the current investment cycle by identifying at least three structural differences: corporate capital durability, production D-Wave deployments, and geopolitical security mandates.
+Distinguish the two prior quantum winters from the current investment cycle by identifying at least three structural differences: corporate capital durability, near-term NISQ applications, and geopolitical security mandates.
 :::
 
 :::{grid-item-card} Outcome 3
@@ -486,7 +500,7 @@ Identify and explain the three structural accelerants (geopolitics, AI convergen
 :class-header: bg-primary text-white
 **NISQ-to-FT Roadmap**
 
-Summarize the NISQ-to-fault-tolerance roadmap in executive language, distinguishing gate-model and annealing paradigms, and mapping the three phases to "now, soon, later" enterprise planning horizons.
+Summarize the NISQ-to-fault-tolerance roadmap in executive language, mapping the three phases to "now, soon, later" enterprise planning horizons and articulating the appropriate organizational posture for each phase.
 :::
 
 :::{grid-item-card} Outcome 5
@@ -499,51 +513,54 @@ Given any quantum market-sizing forecast, surface its load-bearing assumptions r
 
 ---
 
-## Lab 1A (Regular): Touring IBM Quantum Platform
+## Lab 1 (Regular): Touring IBM Quantum Platform
 
 ### Overview
 
-IBM Quantum (quantum.ibm.com) provides cloud access to real gate-model quantum processors. This lab introduces you to the platform and the operational realities of quantum computing — error rates, qubit coherence times, and queue dynamics that do not appear in any press release.
+IBM Quantum Experience (quantum.ibm.com) provides cloud access to real quantum processors. This lab introduces you to the platform, its hardware documentation, and the operational realities of quantum computing — error rates, qubit coherence times, and queue dynamics that do not appear in any press release.
 
 ### Prerequisites
 
 - A web browser and an email address
-- No programming experience required
+- No programming experience required for this lab
 
 ### Procedure
 
 **Step 1: Create Your Account**
-Navigate to [quantum.ibm.com](https://quantum.ibm.com) and create a free IBM Quantum account. Verify your email. You will have access to IBM's free-tier processors.
+Navigate to [quantum.ibm.com](https://quantum.ibm.com) and create a free IBM Quantum account. Verify your email. You will have access to IBM's free-tier quantum processors with limited queue priority.
 
 **Step 2: Explore the Hardware Catalog**
-Navigate to "Compute resources." You will see processors — *ibm_brisbane*, *ibm_kyiv*, *ibm_torino* — each showing qubit count, queue depth, and operational status.
+Navigate to the "Compute resources" section. You will see a list of available quantum processors: names like *ibm_brisbane*, *ibm_kyiv*, and *ibm_torino*. Each processor card shows:
+- **Qubit count** (e.g., 127 qubits for Eagle-class processors)
+- **Queue depth** (number of jobs waiting ahead of yours)
+- **Status** (operational, maintenance, calibrating)
 
 **Step 3: Read Calibration Data**
-Click on any operational processor. The calibration table shows:
+Click on any operational processor. You will see a calibration table showing, for each qubit:
 
 | Metric | What It Measures | Typical Value |
 |--------|-----------------|---------------|
-| **T₁ (relaxation time)** | How long a qubit holds its excited state | 50–500 µs |
-| **T₂ (dephasing time)** | How long a qubit maintains coherence | 30–300 µs |
-| **Gate error rate** | Probability of error per two-qubit gate | 0.1–1% |
-| **Readout error** | Probability of misreading a qubit's state | 1–5% |
+| **T₁ (relaxation time)** | How long a qubit holds its excited state before decaying | 50–500 µs |
+| **T₂ (dephasing time)** | How long a qubit maintains quantum coherence | 30–300 µs |
+| **Gate error rate** | Probability of error per two-qubit gate operation | 0.1–1% |
+| **Readout error** | Probability of misreading a qubit's final state | 1–5% |
 
-: IBM Quantum calibration metrics. {#tbl-ch01-calibration}
+: IBM Quantum calibration metrics and their significance. {#tbl-ch01-calibration}
 
-Note the *variation across qubits* on the same chip. This non-uniformity defines NISQ hardware and directly impacts circuit design.
+Note the *variation* across qubits on the same chip. Qubit 4 may have a T₁ of 400 µs while Qubit 17 has a T₁ of 80 µs. This non-uniformity is a defining feature of NISQ hardware and directly impacts circuit design.
 
 **Step 4: Observe Live Jobs**
-Navigate to the queue visualization. Note jobs queued, wait times, and how queue depth varies by time of day. This is a proxy for global quantum research activity.
+Navigate to the job queue visualization. Note how many jobs are queued, what their estimated wait times are, and how queue depth varies by time of day. This queue depth is a proxy for global quantum computing research activity.
 
 **Step 5: Submit a Test Job (Optional)**
-Using Circuit Composer, build a single Hadamard gate on one qubit followed by a measurement. Submit to a real backend. Observe probabilistic output — sometimes 0, sometimes 1 — quantum superposition made visible.
+Using the Circuit Composer (a drag-and-drop interface), build a single Hadamard gate on one qubit followed by a measurement. Submit it to a real backend. Wait for the result. Observe that the output is probabilistic — sometimes 0, sometimes 1, in approximately equal proportion — which is the quantum superposition principle made visible.
 
 ### Deliverable
 
-A 250-word reflection addressing:
+Write a 250-word reflection addressing:
 1. What calibration metric surprised you most, and why?
-2. What does queue depth tell you about current research demand?
-3. Based on error rates observed, what kinds of circuits are *feasible* on this hardware? What kinds are *infeasible*?
+2. What does the queue depth tell you about the current state of quantum research demand?
+3. Based on the error rates you observed, what kinds of circuits would be *feasible* on this hardware? What kinds would be *infeasible*?
 
 ---
 
@@ -551,36 +568,36 @@ A 250-word reflection addressing:
 
 ### Overview
 
-D-Wave Leap (cloud.dwavesys.com) provides cloud access to D-Wave's annealing quantum hardware and hybrid solvers — the same system class as FAU's Advantage2. This lab introduces you to the Leap dashboard, the problem submission interface, and D-Wave's publicly available sample problems.
+D-Wave Leap ([cloud.dwavesys.com](https://cloud.dwavesys.com)) provides cloud access to the same Advantage2 annealing hardware and Stride hybrid solver being installed on FAU's campus. This lab introduces the Leap dashboard, the problem submission interface, and D-Wave's sample problems — all without writing code.
 
 ### Prerequisites
 
 - A web browser and an email address
-- D-Wave Leap offers free developer accounts with initial time credits
+- D-Wave Leap provides free developer accounts with initial compute time credits
 
 ### Procedure
 
 **Step 1: Create a Leap Account**
-Navigate to [cloud.dwavesys.com](https://cloud.dwavesys.com) and register for a free developer account. D-Wave provides initial compute time credits sufficient for this lab.
+Go to [cloud.dwavesys.com](https://cloud.dwavesys.com) and register for a free developer account. D-Wave provides initial time credits sufficient for this lab.
 
 **Step 2: Explore the Dashboard**
-After logging in, review the dashboard. Note:
-- **Available solvers** — you will see both QPU (direct quantum processing unit) and hybrid solver options
-- **Compute time used vs. remaining** — Leap tracks time in microseconds for QPU access and seconds for hybrid solver jobs
+After logging in, note:
+- **Available solvers** — both QPU (direct quantum hardware) and Leap hybrid solver options
+- **Compute time used vs. remaining** — QPU time is measured in microseconds; hybrid solver jobs in seconds
 - **Problem history** — jobs you have submitted and their results
 
 **Step 3: Run a Sample Problem**
-D-Wave's code examples repository includes a map coloring problem, a job scheduling problem, and a bin packing problem — all formulated as QUBO (Quadratic Unconstrained Binary Optimization) problems ready to run on the hybrid solver. Navigate to the examples, pick any one, and execute it.
+D-Wave's examples include a map coloring problem, a job scheduling problem, and a bin packing problem — all pre-formulated as QUBO problems ready to run. Pick one and execute it on the hybrid solver.
 
-**Step 4: Compare QPU and Hybrid Solver**
-If your time budget allows, run the same problem on both the QPU (direct quantum hardware) and the Leap hybrid solver. Note the difference in solution time and problem size capacity.
+**Step 4: Note the Problem Format**
+Open the sample problem code and read the QUBO formulation. You do not need to understand the math yet — just observe how a real-world decision problem (scheduling, routing, packing) gets expressed as a set of binary variables with penalties for constraint violations. This is the language quantum annealers speak.
 
 ### Deliverable
 
 A 250-word reflection addressing:
 1. What problem did you run, and what was the output?
-2. How does the problem formulation (QUBO) differ conceptually from how you would describe the same problem in plain English?
-3. What does the compute time measurement (microseconds for QPU) tell you about the difference between quantum and classical problem-solving?
+2. How does the QUBO formulation differ conceptually from how you would describe the same problem in plain English?
+3. What does the compute time (microseconds for QPU) tell you about the difference between quantum and classical problem-solving?
 
 ---
 
@@ -590,74 +607,78 @@ A 250-word reflection addressing:
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" style="margin-bottom: 1rem;"/>
 </a>
 
-> **No installation needed.** Click the button above to open this lab in Google Colab. Run the first cell to install all dependencies automatically.
+> **No installation needed.** Click the button above to open this lab instantly in Google Colab — free, browser-based, works on any device. Run the first cell to install all dependencies automatically.
 
 ```{admonition} Advanced Lab — Python Required
 :class: tip
 
-This lab is optional and intended for students with Python experience. It produces a quantitative artifact (a plot and memo) suitable as a professional portfolio piece.
+This lab is optional and intended for students with Python experience. It produces a quantitative artifact (a plot and memo) that can serve as a professional portfolio piece.
 ```
 
 ### Overview
 
-You will build a **Quantum Momentum Index (QMI)** — a composite metric combining arXiv paper counts, open-source framework activity, and venture capital investment to track the "temperature" of the quantum computing field over time, overlaid against the Gartner Hype Cycle.
+You will build a **Quantum Momentum Index (QMI)** — a composite metric that combines arXiv paper counts, open-source framework activity, and venture capital investment to track the "temperature" of the quantum computing field over time, and overlay it against the Gartner Hype Cycle.
 
 :::{figure} ../images/ch01-quantum-momentum-index.png
 :label: fig-ch01-quantum-momentum-index
-:alt: Quantum Momentum Index dashboard showing arXiv paper counts, GitHub commit trends, VC funding rounds, and Gartner hype cycle overlay from 2017 to 2026.
+:alt: Quantum Momentum Index dashboard showing arXiv paper counts, GitHub commit trends, VC funding rounds, and Gartner hype cycle overlay from 2017 to 2025.
 :width: 100%
 :align: center
 
-**Target Visualization: The Quantum Momentum Index.** Your lab deliverable should produce a dashboard combining four normalized data streams into a composite index, annotated against the Gartner Hype Cycle.
+**Target Visualization: The Quantum Momentum Index.** Your lab deliverable should produce a dashboard similar to this one, combining four data streams into a single normalized composite index and annotating it against the Gartner Hype Cycle curve.
 :::
 
 ### Data Sources
 
 | Data Stream | Source | Method |
 |------------|--------|--------|
-| arXiv paper counts | arXiv API | `GET https://export.arxiv.org/api/query?search_query=quantum+computing` |
-| Qiskit GitHub commits | GitHub API | `/repos/Qiskit/qiskit/stats/commit_activity` |
-| Cirq GitHub commits | GitHub API | `/repos/quantumlib/Cirq/stats/commit_activity` |
-| D-Wave Ocean commits | GitHub API | `/repos/dwavesystems/dwave-ocean-sdk/stats/commit_activity` |
-| VC funding rounds | CSV provided in `/resources/quantum_funding_2017_2026.csv` | pandas read_csv |
+| arXiv paper counts | arXiv API | `GET https://export.arxiv.org/api/query?search_query=quantum+computing&start=0&max_results=100` |
+| Qiskit GitHub commits | GitHub API | `GET /repos/Qiskit/qiskit/stats/commit_activity` |
+| Cirq GitHub commits | GitHub API | `GET /repos/quantumlib/Cirq/stats/commit_activity` |
+| PennyLane GitHub commits | GitHub API | `GET /repos/PennyLaneAI/pennylane/stats/commit_activity` |
+| VC funding rounds | CSV provided in `/resources/quantum_funding_2017_2025.csv` | pandas read_csv |
 
 ### Procedure
 
 ```python
 # Step 1: Collect arXiv monthly paper counts
-import requests, pandas as pd
+import requests
+import pandas as pd
+from datetime import datetime
 
-def get_arxiv_counts(year_start=2017, year_end=2026):
+def get_arxiv_counts(year_start=2017, year_end=2025):
+    """Query arXiv API for quantum computing papers per month."""
     counts = {}
     for year in range(year_start, year_end + 1):
         for month in range(1, 13):
+            query = f"quantum computing"
             date_range = f"submittedDate:[{year}{month:02d}01 TO {year}{month:02d}28]"
-            url = f"https://export.arxiv.org/api/query?search_query=quantum+computing+AND+{date_range}&max_results=0"
+            url = f"https://export.arxiv.org/api/query?search_query={query}+AND+{date_range}&max_results=0"
             response = requests.get(url)
+            # Parse totalResults from Atom XML response
             counts[f"{year}-{month:02d}"] = parse_total_results(response.text)
     return pd.Series(counts)
 
-# Step 2: Collect GitHub commit activity for Qiskit, Cirq, and D-Wave Ocean SDK
+# Step 2: Collect GitHub commit activity for each framework
 # Step 3: Load VC funding rounds CSV
-# Step 4: Normalize all series to 0-100 scale (min-max normalization)
-# Step 5: Compute QMI as weighted average
-# Step 6: Overlay Gartner Hype Cycle curve
-# Step 7: Annotate key events: Google Sycamore (2019), NIST PQC finalization (2024),
-#          FAU-D-Wave agreement (Jan 2026), Google Willow error correction (Dec 2024)
+# Step 4: Normalize all series to 0-100 scale using min-max normalization
+# Step 5: Compute QMI as weighted average (equal weights as default)
+# Step 6: Overlay Gartner Hype Cycle curve (manual annotation or parameterized sigmoid)
+# Step 7: Plot all series plus QMI composite
 ```
 
 ### Deliverable
 
-1. A single plot (PNG or PDF, minimum 1200×800 pixels) showing all normalized data streams plus the composite QMI, with the Gartner Hype Cycle overlaid and key events annotated.
-2. A 500-word memo: Where is quantum computing on the hype cycle today? What does the trajectory suggest about the next 24 months? Which data stream is most predictive of the others?
+1. A single plot (PNG or PDF, minimum 1200×800 pixels) showing all four normalized data streams plus the composite QMI, with the Gartner Hype Cycle overlaid as a shaded reference region.
+2. A 500-word memo interpreting your findings: Where is quantum computing on the hype cycle today? What does the trajectory suggest about the next 24 months? Which data stream is most predictive of the others?
 
 ---
 
 ## Discussion Guidelines
 
-In your main response (400–500 words), choose one quantum market forecast from a named source (McKinsey, BCG, Goldman Sachs, or IBM) and surface its three most load-bearing assumptions. Assess each assumption as high, medium, or low confidence and explain your reasoning. **Include at least one scholarly or credible citation** — peer-reviewed papers, NIST publications, and named consulting firm reports all qualify.
+This chapter's discussion invites you to apply forecast evaluation skills to a real market-sizing claim. In your main response (400–500 words), choose one quantum market forecast from a named source (McKinsey, BCG, Goldman Sachs, or IBM) and surface its three most load-bearing assumptions. Assess each assumption as high, medium, or low confidence and explain your reasoning. **Include at least one scholarly or credible citation** in your main response — peer-reviewed papers, NIST publications, and named consulting firm reports all qualify.
 
-**Respond to at least TWO peers** with substantive feedback that goes beyond agreement. Engage with the specific assumptions your classmate identified, offer alternative confidence assessments, introduce a data point they did not mention, or challenge their forecast source choice.
+**You are expected to respond to at least TWO peers with substantial feedback** that goes beyond agreement. Substantive peer responses engage with the specific assumptions your classmate identified, offer alternative confidence assessments, introduce a data point your classmate did not mention, or challenge the choice of forecast source. A response that reads "Great analysis, I agree with your assessment" does not satisfy this requirement.
 
 ```{admonition} Discussion Seed Questions
 :class: note
@@ -665,46 +686,64 @@ In your main response (400–500 words), choose one quantum market forecast from
 - If the hardware timeline assumption in your forecast slips by three years, how does that change the sector-level value estimates?
 - Which of the three accelerants (geopolitics, AI convergence, cryptographic risk) do you believe is most likely to independently sustain quantum investment if hardware progress stalls? Why?
 - The Google-IBM dispute over Sycamore turned on a difference in classical algorithm choice. What does this suggest about how enterprises should evaluate future "quantum advantage" announcements?
-- FAU is investing $20M in on-premises quantum hardware. What problem would you prioritize running on it first, and why?
 ```
 
 ---
 
 ## Glossary
 
-**Quantum Supremacy** — The milestone at which a quantum computer executes a specific task faster than any classical computer could in a practical timeframe. Google claimed this in 2019 with the Sycamore processor. The term is benchmark-specific and does not imply general computational superiority.
+```{glossary}
+Quantum Supremacy
+  The milestone at which a quantum computer executes a specific task faster than any classical computer could in a practical timeframe. Google claimed this milestone in 2019 with the Sycamore processor on a random circuit sampling task. The term is controversial because "supremacy" is benchmark-specific and does not imply general computational superiority.
 
-**Quantum Advantage** — The broader milestone at which a quantum computer solves a *practically relevant* problem faster or at lower cost than the best available classical approach. Quantum advantage for optimization is argued today on D-Wave hardware for specific problem classes.
+Quantum Advantage
+  The broader and more commercially meaningful milestone at which a quantum computer solves a *practically relevant* problem faster or at lower cost than the best available classical approach. Quantum advantage is the goal; quantum supremacy is a specific, task-bounded demonstration that does not necessarily imply it.
 
-**Quantum Utility** — IBM's term for the threshold at which quantum computers produce scientifically or commercially useful results, even if classical methods might eventually match them. A deliberately lower bar than quantum advantage, intended to motivate near-term use.
+NISQ
+  Noisy Intermediate-Scale Quantum. A term coined by John Preskill in 2018 to describe quantum processors with 50–1,000 physical qubits that operate without full error correction. NISQ devices are the current state of quantum hardware and are expected to remain the dominant paradigm through approximately 2027.
 
-**NISQ** — Noisy Intermediate-Scale Quantum. Quantum processors with 50–1,000 physical qubits operating without full error correction. The current state of gate-model quantum hardware.
+Qubit
+  A quantum bit — the fundamental unit of quantum information. Unlike a classical bit, which can be in state 0 or 1, a qubit can exist in a superposition of both states simultaneously. When measured, a qubit collapses to either 0 or 1 with probabilities determined by its quantum state.
 
-**Quantum Annealing** — A hardware approach for solving optimization problems by encoding them as the lowest-energy state of a quantum system and letting the system settle toward the solution. D-Wave's technology. Different paradigm from gate-model computing; optimized for combinatorial optimization problems.
+Superposition
+  The quantum mechanical property that allows a quantum system to exist in multiple states simultaneously until measured. For qubits, superposition enables quantum computers to explore many possible solutions to a problem in parallel, which underlies potential quantum speedups.
 
-**D-Wave Advantage2** — D-Wave's current flagship quantum annealing processor, containing 7,000+ qubits in a Pegasus topology. The system being installed at FAU's Boca Raton campus. Pairs with the Stride hybrid solver for production-scale enterprise optimization.
+Entanglement
+  A quantum mechanical correlation between two or more qubits such that the state of one qubit cannot be described independently of the others. Entanglement enables quantum parallelism and is a key resource for quantum algorithms that offer speedups over classical methods.
 
-**Stride Hybrid Solver** — D-Wave's cloud-based hybrid quantum-classical solver that decomposes large optimization problems into subproblems suitable for the Advantage2, coordinates results classically, and enables problem sizes with millions of variables. Production-ready today.
+Decoherence
+  The process by which a qubit loses its quantum properties due to interaction with the environment. Decoherence is the primary engineering challenge in quantum computing and is characterized by two timescales: T₁ (energy relaxation) and T₂ (phase decoherence).
 
-**QUBO** — Quadratic Unconstrained Binary Optimization. The mathematical problem format used to express optimization problems for quantum annealers. Most real-world optimization problems — logistics, scheduling, portfolio construction — can be reformulated as QUBO problems.
+T₁ (Relaxation Time)
+  The characteristic time for a qubit in its excited state to spontaneously decay to its ground state. T₁ limits how long a qubit can hold quantum information. Typical values for superconducting qubits: 50–500 microseconds.
 
-**Qubit** — The fundamental unit of quantum information. Unlike a classical bit, a qubit can exist in superposition of 0 and 1 simultaneously until measured.
+T₂ (Coherence Time)
+  The characteristic time for a qubit to lose phase coherence — the quantum mechanical relationship between the two components of its superposition state. T₂ is always less than or equal to 2T₁. T₂ is typically the binding constraint on circuit depth in NISQ hardware.
 
-**Superposition** — The quantum property allowing a system to exist in multiple states simultaneously. Enables quantum computers to explore many possible solutions in parallel.
+Fault-Tolerant Quantum Computing (FTQC)
+  A quantum computing architecture in which logical qubits are encoded in redundant arrays of physical qubits using error-correcting codes, enabling arbitrary-length computations by continuously detecting and correcting errors. Fault tolerance requires physical error rates below approximately 1% (the threshold theorem).
 
-**Entanglement** — A quantum correlation between qubits such that the state of one cannot be described independently of the others. A key resource for quantum algorithms.
+Surface Code
+  The most widely studied quantum error correction code for fault-tolerant quantum computing. The surface code arranges qubits on a 2D lattice and detects errors by measuring stabilizer operators, without measuring the logical qubit state directly. It requires approximately 1,000 physical qubits per logical qubit at current error rates.
 
-**Decoherence** — The process by which a qubit loses quantum properties due to environmental interaction. The primary engineering challenge in gate-model quantum computing.
+Shor's Algorithm
+  A quantum algorithm published by Peter Shor in 1994 that factors large integers in polynomial time — compared to the best known classical algorithms, which require exponential (sub-exponential) time. Shor's algorithm, if run on a sufficiently large fault-tolerant quantum computer, would break RSA encryption.
 
-**Fault-Tolerant Quantum Computing (FTQC)** — A quantum architecture encoding logical qubits in redundant arrays of physical qubits. When physical error rates fall below ~1%, error correction suppresses errors exponentially. Enables arbitrarily long computations.
+Post-Quantum Cryptography (PQC)
+  Cryptographic algorithms designed to be secure against attacks from both classical and quantum computers. NIST finalized the first PQC standards in 2024, based on mathematical problems (lattice problems, hash functions) that are believed to be hard even for quantum computers. Migration to PQC is the primary near-term action item for most organizations.
 
-**Shor's Algorithm** — A quantum algorithm that factors large integers in polynomial time, threatening RSA encryption. Requires fault-tolerant hardware to run at commercially relevant key sizes.
+Harvest Now, Decrypt Later (HNDL)
+  An attack strategy in which an adversary collects encrypted data today with the intention of decrypting it in the future when quantum computers become capable of breaking current public-key encryption. HNDL creates present-day urgency for post-quantum cryptographic migration even though quantum computers capable of breaking RSA do not yet exist.
 
-**Post-Quantum Cryptography (PQC)** — Cryptographic algorithms designed to resist quantum attacks. NIST finalized ML-KEM and ML-DSA as standards in 2024.
+Quantum Error Correction (QEC)
+  A set of techniques that protect quantum information from errors by encoding logical qubits in entangled states of multiple physical qubits and measuring error syndromes without collapsing the logical qubit state. QEC is the enabling technology for fault-tolerant quantum computing.
 
-**Harvest Now, Decrypt Later (HNDL)** — An attack where adversaries collect encrypted data today to decrypt it when quantum computers become capable of breaking public-key encryption. Creates present-day urgency for PQC migration.
+Quantum Volume
+  A metric developed by IBM to characterize the overall performance of a quantum computer, accounting for qubit count, connectivity, error rates, and circuit compilation efficiency. Higher quantum volume indicates a more capable device. Quantum volume doubles approximately every year for current leading systems.
 
-**SC (Supercomputing Conference)** — The International Conference for High Performance Computing, Networking, Storage, and Analysis. The premier annual HPC event, now featuring a dedicated quantum computing track. SC26 is scheduled for Chicago, November 2026.
+Quantum Chemistry Simulation
+  The use of quantum computers to model the quantum mechanical behavior of molecules and materials. This is considered the "killer app" of quantum computing because many industrially important problems — drug discovery, battery chemistry, catalyst design — involve electron correlation that cannot be accurately modeled classically for more than ~20 atoms.
+```
 
 ---
 
@@ -714,13 +753,13 @@ In your main response (400–500 words), choose one quantum market forecast from
 You don't need to predict when quantum arrives. You need to predict the year your competitors start acting as if it has.
 ```
 
-The strategic insight of this chapter is not that quantum computers are coming — they already exist, in two distinct paradigms, with different maturity profiles and different problem domains. D-Wave annealing systems are running in production today. Gate-model systems are in serious research deployment. Fault-tolerant systems are on a credible hardware roadmap for the late 2020s.
+The strategic insight of this chapter is not that quantum computers are coming — they already exist, however imperfectly. It is that *enterprise readiness* for quantum computing has a longer lead time than quantum hardware development, and that the asymmetry between preparedness and unpreparedness compounds over time.
 
-The enterprise vanguard — JPMorgan Chase, BASF, Airbus, Mercedes-Benz — is not waiting. And as of January 2026, Florida Atlantic University is not waiting either. The question for every executive and every student reading this chapter is the same: *What is your organization's quantum literacy today?*
+The organizations in the enterprise vanguard — JPMorgan Chase, Mercedes-Benz, Airbus, BMW — are not running quantum computers in production. They are building the organizational antibodies: the technical staff, the problem vocabulary, the vendor relationships, and the algorithmic intuition that will allow them to recognize and deploy quantum advantage when it arrives in their specific domain. They are also, critically, addressing cryptographic risk today, before it becomes urgent.
 
-Not your hardware investment. Your literacy. Do your data scientists understand the difference between annealing and gate-model systems? Does your CISO have a cryptographic migration plan? Does your R&D function know which of its problems are quantum-amenable, and on which hardware paradigm?
+The question for every executive reading this chapter is simpler than the physics suggests: What is your organization's quantum literacy today? Not your hardware investment — your literacy. Do your data scientists understand the difference between NISQ and fault-tolerant capability? Does your CISO have a cryptographic migration plan? Does your R&D function know which of its problems are quantum-amenable?
 
-If the answer to these questions is no, the relevant action is not to purchase quantum hardware. The relevant action is to start building quantum literacy — through education, through pilot experiments on cloud platforms and on FAU's Advantage2, through a cryptographic inventory, and through a structured assessment of which business processes might benefit from quantum acceleration.
+If the answer to these questions is no, the relevant action is not to purchase quantum hardware. The relevant action is to start building quantum literacy — through education, through pilot experiments on cloud quantum platforms, through a cryptographic inventory, and through a structured assessment of which business processes might benefit from quantum acceleration.
 
 The cost of beginning that process today is modest. The cost of beginning it eighteen months after your competitors is compounding.
 
@@ -728,10 +767,9 @@ The cost of beginning that process today is modest. The cost of beginning it eig
 :class: note
 
 - Quantum computing has crossed from physics experiment to enterprise agenda item, driven by three structural accelerants: geopolitics, AI convergence, and cryptographic risk.
-- Two distinct quantum paradigms matter for enterprise strategy: gate-model systems (IBM, Google, IonQ) on a NISQ-to-fault-tolerance roadmap, and quantum annealing (D-Wave) which is already production-ready for optimization.
-- FAU's $20M D-Wave Advantage2 deployment — the first on-campus quantum computer in Florida — makes this course unique: students work on production-grade hardware, not simulators.
-- Market forecasts project \$450–850B in quantum value creation by 2035, with logistics and optimization value (the annealing domain) potentially arriving sooner than pharmaceutical simulation value (the gate-model domain).
-- The current investment cycle is structurally different from prior quantum winters: corporate capital, production deployments, geopolitical mandates, and an HPC community transitioning to quantum-HPC hybrid systems.
-- Cryptographic risk creates present-day organizational exposure through HNDL attacks. PQC migration should begin regardless of broader quantum strategy.
-- Reading quantum milestone announcements requires asking: what task, what classical baseline, what problem size, what paradigm?
+- Market forecasts project \$450–850B in quantum value creation by 2035, with pharmaceuticals and finance as the primary sectors. Treat these as ranges, not point estimates.
+- The current quantum investment cycle is structurally different from prior quantum winters: it is funded by corporate capital, supports near-term NISQ applications, and is sustained by national security mandates.
+- The NISQ-to-fault-tolerance roadmap translates to three enterprise planning horizons: *now* (build literacy, begin cryptographic migration), *soon* (deploy early commercial experiments), and *later* (broad transformation).
+- The cryptographic risk from quantum computing creates present-day organizational exposure through the harvest-now-decrypt-later threat. Organizations should begin post-quantum cryptographic migration regardless of their broader quantum strategy.
+- The Google Sycamore episode teaches the essential skill of reading quantum milestone announcements: ask what task, what classical baseline, and what problem size before drawing strategic conclusions.
 ```
