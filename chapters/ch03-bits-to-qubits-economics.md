@@ -1,13 +1,13 @@
 ---
-title: "Chapter 3: From Bits to Qubits — The New Economics of Computation"
-subtitle: "Frameworks for Reading Any Quantum Price Sheet, Now and in 2031"
-short_title: "Ch. 3: Quantum Economics"
-description: "Quantum is not a faster classical computer — it is a different cost curve. This chapter builds an evergreen framework for quantum unit economics, TCO, pricing archetypes, and break-even analysis that survives any vendor change."
+title: "Chapter 3: The Quantum Cloud Economy — Access, Ecosystem, and Enterprise Adoption"
+subtitle: "From QaaS Platforms to Break-Even Models: Everything You Need Before the First Vendor Proposal"
+short_title: "Ch. 3: Quantum Cloud Economy"
+description: "Quantum computing is now a cloud service — available today from D-Wave, IBM, Google, AWS, and Microsoft. This chapter maps the full QaaS ecosystem, explains each provider's access model and pricing, covers D-Wave Leap in depth, and builds the evergreen economic frameworks executives need to evaluate any vendor proposal."
 label: ch-03-bits-to-qubits-economics
-tags: [quantum economics, TCO, pricing, unit economics, break-even, quantum advantage, quantum utility]
+tags: [quantum economics, QaaS, D-Wave Leap, AWS Braket, Azure Quantum, IBM Quantum, Google QAI, TCO, pricing, break-even, quantum advantage, quantum utility, enterprise adoption]
 ---
 
-# Chapter 3: From Bits to Qubits — The New Economics of Computation
+# Chapter 3: The Quantum Cloud Economy — Access, Ecosystem, and Enterprise Adoption
 
 ::::{figure} ../images/ch03-explainer-infographic.png
 :label: fig-ch03-explainer-infographic
@@ -16,7 +16,125 @@ tags: [quantum economics, TCO, pricing, unit economics, break-even, quantum adva
 **Chapter 3 Illustrated Explainer.** Quantum is not a faster classical computer — it is a different cost curve. This chapter gives you the frameworks to read any quantum price sheet that exists today or will exist in 2031.
 ::::
 
-Quantum computing vendors are excellent at generating excitement. They are less excellent at generating invoices you can actually explain to your board. This chapter fixes that. By the end, you will have a durable framework — not a price sheet — for evaluating quantum economics across any provider, any hardware generation, and any point in the next decade.
+Quantum computing is no longer something you visit at a national laboratory. It is a cloud service you can access right now — on a credit card or a purchase order — from five major platforms that are actively competing for enterprise customers. D-Wave's Leap cloud gives you access to the same Advantage2 annealing hardware being installed on FAU's campus. IBM Quantum Network provides access to 100+ qubit gate-model processors. AWS Braket is a hardware-agnostic marketplace connecting you to IonQ, Rigetti, QuEra, and IQM from a single API. Azure Quantum brings IBM hardware into the Microsoft enterprise stack. Google Quantum AI offers research partnerships and limited cloud access to Willow-class processors.
+
+The problem is not access. The problem is that quantum vendors are excellent at generating excitement and less excellent at generating invoices you can actually explain to your board. This chapter fixes both. The first half maps the QaaS ecosystem and explains how each platform works, what it costs, and when to use it. The second half builds the durable economic framework — pricing archetypes, TCO, break-even models — that survives any vendor change across any point in the next decade.
+
+## The Quantum-as-a-Service Ecosystem
+
+Quantum computing has followed cloud computing's path: from exclusive national laboratory access (CERN, Oak Ridge, IBM Watson) to self-service cloud APIs that any developer or enterprise can consume. "Quantum-as-a-Service" (QaaS) describes this model — hardware accessed remotely, billed by usage, managed by the provider. Understanding the QaaS landscape is prerequisite to every procurement, pilot, or strategic evaluation discussion.
+
+Five platforms dominate the enterprise QaaS market as of 2026. Each targets a different buyer, offers different hardware, and prices differently.
+
+---
+
+### D-Wave Leap — Production Annealing and Hybrid Optimization
+
+**URL:** cloud.dwavesys.com  
+**Hardware:** D-Wave Advantage2 (7,000+ qubits, Pegasus topology) + Leap hybrid solver (Stride)  
+**Paradigm:** Quantum annealing + classical-quantum hybrid  
+**Best for:** Combinatorial optimization — routing, scheduling, portfolio construction, logistics sequencing  
+
+D-Wave Leap is the most commercially mature QaaS platform for business optimization problems. It provides two modes of access: direct QPU (quantum processing unit) access — submitting optimization problems directly to the Advantage2 annealer and receiving results in microseconds — and the Stride hybrid solver, which handles problems too large for the QPU alone by decomposing them classically and routing subproblems to the quantum hardware.
+
+The Stride hybrid solver is the relevant tool for enterprise use today. It accepts problems formulated as QUBO (Quadratic Unconstrained Binary Optimization) — a mathematical format into which a vast range of business problems (vehicle routing, staff scheduling, warehouse slotting, financial portfolio construction) can be expressed. The solver handles problems with millions of variables and constraints, running in seconds to minutes rather than the hours required by classical heuristics.
+
+**Pricing (2026):** Leap offers a free developer tier with initial QPU time credits suitable for coursework and prototyping. Enterprise tiers are available on a pay-per-second (QPU) and hybrid-solver-job basis, with reserved access contracts for production deployments. See the Market Snapshot appendix for current pricing.
+
+**FAU connection:** The Advantage2 system being installed on FAU's Boca Raton campus is the same hardware class as D-Wave Leap's cloud offering. Students in this course will use both — Leap for cloud-accessible work and, when available, the on-premises system for lower-latency production-scale experiments.
+
+**Enterprise track record:** D-Wave Leap powers production deployments at BASF (manufacturing scheduling), Volkswagen (paint-shop sequencing), Mastercard (transaction graph optimization), and Verge Ag (autonomous vehicle routing). These are not pilots — they are running in production, replacing classical schedulers and optimizers.
+
+---
+
+### IBM Quantum Network — Gate-Model Research and Enterprise Integration
+
+**URL:** quantum.ibm.com  
+**Hardware:** IBM Eagle (127 qubits), Heron r2 (133 qubits), Condor (1,121 qubits), Flamingo (in development)  
+**Paradigm:** Gate-model (superconducting qubits)  
+**Best for:** Quantum chemistry simulation, QML research, algorithm development, cryptography research  
+
+IBM Quantum is the most accessible gate-model platform for developers and researchers. The free Open Plan tier provides access to 5–7 qubit simulators and limited real hardware with no payment required — the entry point for most university quantum education programs, including this course's Lab 1A.
+
+The IBM Quantum Network is IBM's enterprise tier: a membership program connecting organizations to dedicated hardware access, co-development opportunities with IBM Research, and priority queue access. Members include JPMorgan Chase, Daimler, Boeing, ExxonMobil, and over 200 universities globally. Network membership is typically structured as an annual fee plus usage.
+
+IBM's hardware roadmap is the most publicly detailed in the industry, with specific qubit count and error rate targets published through 2033. The December 2024 demonstration of below-threshold error correction on the Willow-class processor (by Google, not IBM — but confirming the roadmap feasibility) reinforced confidence in the gate-model pathway to fault tolerance.
+
+**Pricing (2026):** Free Open Plan for education and prototyping (queue-limited). Premium plans (Pay-As-You-Go and Premium) for production research access. IBM Quantum Network membership for enterprise co-development.
+
+**Ecosystem:** Qiskit, IBM's open-source quantum SDK, is the most widely used quantum programming framework globally. Python-based, well-documented, with an active community. Qiskit Runtime (a serverless execution model) reduces queue overhead for iterative workloads.
+
+---
+
+### AWS Braket — Hardware-Agnostic Quantum Marketplace
+
+**URL:** aws.amazon.com/braket  
+**Hardware:** IonQ Forte (trapped-ion), Rigetti Ankaa-3 (superconducting), QuEra Aquila (neutral-atom), IQM Garnet (superconducting)  
+**Paradigm:** Multi-vendor marketplace — gate-model and analog simulation  
+**Best for:** Organizations that want hardware vendor flexibility, AWS-integrated enterprises, multi-modal comparison workloads  
+
+AWS Braket is not a quantum hardware manufacturer — it is a distribution layer. Amazon provides a unified API and billing interface that abstracts across multiple quantum hardware vendors. From one AWS console, you can submit the same circuit to a trapped-ion machine (IonQ), a superconducting machine (Rigetti), a neutral-atom machine (QuEra), and a classical simulator — and compare results.
+
+Braket's value proposition is vendor flexibility and AWS ecosystem integration. For organizations already running workloads on AWS (S3, SageMaker, Lambda), Braket plugs into existing IAM, billing, and security frameworks. Quantum workloads can be triggered by Lambda functions, results stored in S3, and fed into SageMaker ML pipelines — all within a single AWS account.
+
+**Pricing (2026):** Per-task fee + per-shot fee, varying by hardware provider. Classical simulators (SV1, TN1, DM1) are billed per-minute of compute. No membership required — pure pay-as-you-go.
+
+**HPC connection:** AWS Braket integrates with AWS HPC services (ParallelCluster, Batch), enabling hybrid quantum-classical workloads where the classical HPC component runs on AWS and the quantum component runs on Braket. For organizations with existing HPC workloads on AWS, this is the lowest-friction entry point for quantum experimentation.
+
+---
+
+### Azure Quantum — Microsoft's Enterprise Quantum Stack
+
+**URL:** azure.microsoft.com/products/quantum  
+**Hardware:** IonQ (trapped-ion), Quantinuum H-Series (trapped-ion), Rigetti (superconducting); Microsoft's own topological qubit hardware (in development)  
+**Paradigm:** Multi-vendor, with a long-term bet on topological qubits  
+**Best for:** Microsoft-centric enterprise environments, organizations using Azure AI, hybrid quantum-classical in Azure pipelines  
+
+Azure Quantum mirrors AWS Braket's marketplace model — multiple hardware vendors under one cloud provider's billing and identity framework — but with a stronger enterprise software integration story and a long-term hardware roadmap centered on Microsoft's proprietary topological qubit program.
+
+Microsoft's topological qubit approach (using Majorana zero modes) has been a long-running and controversial research program, delayed multiple times. A 2023 peer-reviewed paper in *Nature* provided credible evidence of topological qubit signatures, but production hardware remains years away. In the near term, Azure Quantum's value is its enterprise integration story (Azure AD, Defender, Purview) and access to Quantinuum's H-Series, which currently achieves the highest gate fidelities available commercially.
+
+**Pricing (2026):** Azure Credits for quantum apply to IonQ and Rigetti access. Quantinuum access is structured as Quantum Credits (H-Units). Topological hardware is not yet available.
+
+**SDK:** Q# (Microsoft's quantum language) + QDK (Quantum Development Kit). Also supports Qiskit and Cirq for hardware-agnostic circuit submission.
+
+---
+
+### Google Quantum AI — Research Partnerships and Willow Access
+
+**URL:** quantumai.google  
+**Hardware:** Willow (105 qubits, demonstrated below-threshold error correction, December 2024)  
+**Paradigm:** Gate-model (superconducting); research-partnership access model  
+**Best for:** Academic research partnerships, quantum AI research, organizations with existing Google Cloud relationships  
+
+Google Quantum AI is structurally different from the other platforms: it is not a self-service cloud product. Access to Google's quantum hardware is primarily through research partnerships (Google Quantum AI Research Program), with limited API access available through Google Cloud for qualified collaborators. This reflects Google's strategy of using its quantum hardware primarily for internal research (quantum error correction, quantum simulation of materials) and selective external partnerships rather than broad commercial access.
+
+Google's December 2024 Willow result — demonstrating that error rates decrease as qubit count increases, confirming below-threshold operation — is the most significant hardware milestone in quantum computing since Google's 2019 supremacy claim. It places Google's error correction roadmap on credible footing and suggests fault-tolerant computation in the early 2030s.
+
+**Enterprise implication:** For most organizations, Google Quantum AI is a "watch and research" platform rather than a procurement target today. The exception: organizations engaged in quantum chemistry, materials simulation, or quantum AI research at a scale that justifies a research partnership application.
+
+---
+
+### Platform Selection Framework
+
+The choice of QaaS platform should match the organization's problem domain, existing cloud infrastructure, and workload maturity. The following framework helps narrow the decision:
+
+| If your goal is... | Start here | Why |
+|---|---|---|
+| Solve optimization problems today | **D-Wave Leap** | Production-ready hybrid solver, real enterprise deployments, QUBO formulation is accessible |
+| Gate-model algorithm development | **IBM Quantum** | Best documentation, largest community, Qiskit ecosystem, free access |
+| Multi-vendor hardware comparison | **AWS Braket** | Single API, multiple hardware types, AWS ecosystem integration |
+| Enterprise Microsoft stack integration | **Azure Quantum** | Azure AD, Defender, and Purview compatibility; Quantinuum's best-in-class gate fidelity |
+| Quantum chemistry / materials research | **Google Quantum AI** (partnership) | Willow hardware, research program access |
+| FAU coursework and labs | **D-Wave Leap + IBM Quantum** | Course uses both; Leap for optimization labs, IBM for gate-model labs |
+
+:::{admonition} The Make-vs.-Buy Decision
+:class: important
+
+**On-premises vs. cloud access** is the quantum equivalent of the classic HPC make-vs.-buy decision. Cloud QaaS (all five platforms above) is appropriate for: exploration, prototyping, proof-of-concept, and most production optimization workloads where latency is not critical. On-premises hardware (FAU's Advantage2) is appropriate for: research requiring rapid iteration, education where queue time is a barrier, and organizations where data sovereignty requirements prevent cloud submission of sensitive problem instances. FAU's on-premises deployment eliminates the queue delays that make iterative research impractical on cloud tiers — the primary operational advantage of local hardware ownership.
+:::
+
+---
 
 ## Opening Scene: Moore's Law Is Dead — and Your CFO Doesn't Know It Yet
 
@@ -713,6 +831,59 @@ Write a one-page memo addressed to a fictional CFO with the following structure:
 
 ---
 
+## Lab 3B (Regular): Comparing Platforms — D-Wave Leap vs. IBM Quantum for a Scheduling Problem
+
+**Duration:** ~60 minutes  
+**Tools:** D-Wave Leap (cloud.dwavesys.com) + IBM Quantum (quantum.ibm.com) — both free tier  
+**Deliverable:** Platform comparison memo using the TCO framework
+
+### Overview
+
+You will run the *same conceptual problem* — a small job scheduling task — on both D-Wave Leap (annealing) and IBM Quantum (gate-model), then build a side-by-side TCO comparison using the framework from this chapter. The point is not to determine a winner — it is to experience the operational difference between paradigms and apply the economic model to real platform costs.
+
+### Part 1: The Problem
+
+**Job Scheduling Scenario:** You have 4 jobs (A, B, C, D) and 2 machines. Each job takes one time slot. Jobs A and C cannot run simultaneously (they share a resource). Jobs B and D cannot run simultaneously. Find a valid schedule that minimizes the number of time slots used.
+
+This is a small graph coloring / constraint satisfaction problem — exactly the class D-Wave's annealer handles natively, and also expressible as a quantum circuit.
+
+### Part 2: D-Wave Leap (Annealing)
+
+1. Log into D-Wave Leap (cloud.dwavesys.com) with your free developer account
+2. Navigate to the **Examples** section and find the "Job Shop Scheduling" or "Graph Coloring" demo
+3. Run it on the Leap hybrid solver — record:
+   - **Solve time** (shown in the result)
+   - **QPU access time** (microseconds shown in timing breakdown)
+   - **Compute time used** (from your account dashboard)
+   - **Solution quality** (was a valid schedule found?)
+
+### Part 3: IBM Quantum (Gate-Model)
+
+1. Log into IBM Quantum (quantum.ibm.com)
+2. In Circuit Composer, note that the same scheduling problem would require encoding as a QAOA circuit — this is a research-level task, not a drag-and-drop exercise. Instead:
+   - Run a simple 2-qubit entanglement circuit (Hadamard + CNOT + measure) on a simulator and a real backend
+   - Record **queue time** from submission to result on the real backend
+   - Record **result distribution** (note noise vs. simulator)
+
+### Part 4: Build the TCO Comparison
+
+Using the six-stage TCO framework, complete the following table:
+
+| Stage | D-Wave Leap | IBM Quantum (simulator) | IBM Quantum (real HW) |
+|---|---|---|---|
+| Problem formulation effort | QUBO (minutes with examples) | QAOA circuit (hours, research-level) | Same |
+| Submission cost | From your usage dashboard | $0 (free tier) | $0 (free tier) |
+| Queue time | ~seconds (hybrid solver) | ~0 (simulator) | Record yours |
+| Solve time | From result output | ~seconds | ~seconds |
+| Result quality | Valid schedule? | N/A (different circuit) | Note noise artifacts |
+| Post-processing needed | Minimal | Statistical aggregation | Error mitigation needed |
+
+### Deliverable
+
+A one-page memo structured as a platform recommendation to a logistics manager who needs to solve vehicle routing problems with 500+ variables. Which platform would you recommend, and why? Use the TCO framework explicitly.
+
+---
+
 ## Lab 3 (Optional Advanced): Build Your Own Quantum TCO Calculator
 
 **Duration:** ~2–3 hours  
@@ -939,6 +1110,22 @@ The economics of quantum computing sit at the intersection of technology assessm
 
 
 ## Glossary
+
+**Quantum-as-a-Service (QaaS)** — A cloud delivery model in which quantum computing hardware is accessed remotely via API, billed by usage, and managed by the provider. The five major QaaS platforms as of 2026 are D-Wave Leap, IBM Quantum, AWS Braket, Azure Quantum, and Google Quantum AI.
+
+**D-Wave Leap** — D-Wave's cloud quantum computing service providing access to the Advantage2 annealing hardware and the Stride hybrid solver. The same hardware class as FAU's on-premises Advantage2 system.
+
+**Stride Hybrid Solver** — D-Wave's production-grade quantum-classical hybrid solver that decomposes large optimization problems into subproblems for the quantum annealer and coordinates results classically. Handles problems with millions of variables in seconds.
+
+**AWS Braket** — Amazon Web Services' hardware-agnostic quantum cloud marketplace providing unified API access to IonQ (trapped-ion), Rigetti (superconducting), and QuEra (neutral-atom) hardware. Best for multi-vendor comparison and AWS-integrated workloads.
+
+**Azure Quantum** — Microsoft's quantum cloud platform integrating IonQ, Quantinuum, and Rigetti hardware within the Azure enterprise stack. Long-term bet on topological qubits.
+
+**IBM Quantum Network** — IBM's enterprise quantum access and co-development program, providing priority hardware access, IBM Research collaboration, and dedicated system reservations to member organizations.
+
+**Google Quantum AI** — Google's quantum computing research division and hardware program. Access primarily through research partnerships rather than self-service cloud. Home of the Willow processor (December 2024: demonstrated below-threshold error correction).
+
+**Make-vs.-Buy (Quantum)** — The decision between on-premises quantum hardware (capital expenditure, low latency, data sovereignty) and cloud QaaS access (operational expenditure, managed infrastructure, shared queues). FAU's Advantage2 is an on-premises deployment.
 
 ```{glossary}
 Shot
