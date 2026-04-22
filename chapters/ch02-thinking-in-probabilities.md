@@ -567,6 +567,82 @@ Submit: screenshot + written explanation.
 
 ---
 
+## Lab 2B (Regular): Quantum Annealing in Action — Your First D-Wave Run
+
+**Tool:** D-Wave Leap — [cloud.dwavesys.com](https://cloud.dwavesys.com) (free developer account)  
+**Time required:** 30–45 minutes  
+**Prerequisites:** A web browser and an email address. No programming required.
+
+::::{admonition} Lab Objectives
+:class: tip
+
+By the end of this lab, you will have:
+
+1. Observed quantum annealing solving an optimization problem on real hardware
+2. Connected the annealing process to superposition and interference concepts from this chapter
+3. Compared the annealing paradigm to the gate-model circuits in Lab 2A
+4. Written a 200-word explanation of what annealing "looks like" conceptually
+
+::::
+
+### Background: What Does Annealing Have to Do With Superposition?
+
+Chapter 2 introduced superposition as a qubit's ability to hold multiple states simultaneously — and interference as the mechanism that amplifies right answers while canceling wrong ones. Quantum annealing uses both in a specific way.
+
+The annealer starts every qubit in an equal superposition of 0 and 1. At this point, the system is exploring *all possible combinations of answers simultaneously* — every possible assignment of 0s and 1s across thousands of qubits, all at once. The annealing process then slowly evolves the system, applying a problem-specific energy landscape. Solutions that satisfy more constraints have lower energy. Quantum tunneling — a consequence of the wave-like nature of quantum states — allows the system to pass through energy barriers that would trap a classical optimizer in a local minimum. By the end of the anneal, each qubit has collapsed to 0 or 1, and the result is the lowest-energy (best) solution the system found.
+
+The gate-model approach you explored in Lab 2A uses explicit interference: you design circuits that constructively reinforce the right answer. Annealing uses interference implicitly: the problem's energy landscape guides the interference, and the hardware finds the low-energy solution without you specifying gate-by-gate how to get there.
+
+### Part 1: Create Your Leap Account
+
+1. Navigate to [cloud.dwavesys.com](https://cloud.dwavesys.com)
+2. Register for a free developer account — you will receive initial QPU time credits
+3. After logging in, explore the dashboard. Note the **QPU time remaining** in your account — this is the quantum compute budget you are spending
+
+### Part 2: Run a Sample Problem
+
+1. In the Leap interface, navigate to the **Examples** or **Getting Started** section
+2. Select any available optimization example — the "Graph Coloring," "Map Coloring," or "Maximum Cut" problem are ideal if available. Job scheduling or bin packing also work.
+3. Run the example on the **Leap hybrid solver** (Stride) — not the direct QPU
+4. Record from the output:
+   - **Problem size** (how many variables?)
+   - **Solve time** (shown in the results, typically milliseconds to seconds)
+   - **QPU access time** (shown in the timing breakdown — typically microseconds)
+   - **Solution quality** — was the best solution found? How does it compare to classical?
+
+### Part 3: Observe the Timing Breakdown
+
+One of the most instructive outputs in a D-Wave result is the timing breakdown. The result typically shows:
+
+| Component | Typical Value | What It Means |
+|---|---|---|
+| **QPU sampling time** | 20–100 µs | The actual quantum computation — superposition, tunneling, collapse |
+| **QPU access time** | 1–10 ms | Total time the QPU was reserved for your job |
+| **Total wall time** | Seconds | End-to-end time including classical pre/post-processing |
+
+The gap between QPU sampling time (microseconds) and total wall time (seconds) is the classical overhead: problem setup, embedding, and result extraction. The quantum part itself is extraordinarily fast. This reflects a key architectural reality: the quantum annealer is a specialized accelerator embedded in a classical workflow, not a standalone computer.
+
+### Part 4: Connect to Chapter Concepts
+
+In your notes, answer the following three questions — these will form the basis of your deliverable:
+
+1. **Superposition:** At the start of the anneal, all qubits are in superposition. What does this mean for how many possible solutions the system is "considering" simultaneously? If the problem has 100 binary variables, how many possible solutions exist? (Hint: 2¹⁰⁰)
+
+2. **Interference/Tunneling:** Classical optimizers can get "stuck" in locally good but globally suboptimal solutions. Quantum tunneling allows the annealer to pass through these barriers. Can you identify a moment in the sample problem's solution where a classical optimizer might have gotten stuck?
+
+3. **Measurement/Collapse:** The anneal ends with every qubit collapsing to 0 or 1. Compare this to the measurement step in your Quirk Bell state from Lab 2A. How is the collapse similar? How is it different?
+
+### Deliverable
+
+Write a **200-word explanation** addressed to a supply chain manager who has never studied quantum physics. Explain:
+- What quantum annealing is, in one non-technical sentence
+- Why the quantum part takes microseconds while the total run takes seconds
+- What problem you ran, and what the result means
+
+Submit: your timing breakdown screenshot + the 200-word explanation.
+
+---
+
 ## Lab 2 (Optional Advanced): The Bell Inequality from Scratch
 
 <a href="https://colab.research.google.com/github/liquid-books/applied-quantum-computing/blob/main/notebooks/ch02-bell-inequality-chsh.ipynb" target="_blank">
