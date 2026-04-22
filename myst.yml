@@ -37,38 +37,42 @@ project:
   # Table of contents
   toc:
     - file: index.md
-    - title: "Chapter 1: The $850 Billion Question"
-      file: chapters/ch01-why-quantum-why-now.md
-    - title: "Chapter 2: The Quantum Mindset"
-      file: chapters/ch02-thinking-in-probabilities.md
-    - title: "Chapter 3: The New Economics of Computation"
-      file: chapters/ch03-bits-to-qubits-economics.md
-    - title: "Chapter 4: The Quantum Hardware Race"
-      file: chapters/ch04-hardware-race.md
-    - title: "Chapter 5: The Cryptocalypse"
-      file: chapters/ch05-cryptocalypse-y2q.md
-    - title: "Chapter 6: The Optimization Goldmine"
-      file: chapters/ch06-optimization-goldmine.md
-    - title: "Chapter 7: The Simulation Revolution"
-      file: chapters/ch07-simulation-revolution.md
-    - title: "Chapter 8: Quantum + AI"
-      file: chapters/ch08-quantum-ai-hybrid.md
-    - title: "Chapter 9: The Quantum-Ready Enterprise"
-      file: chapters/ch09-quantum-ready-enterprise.md
-    - title: "Appendix A: Glossary"
-      file: chapters/appendix-a-glossary.md
-    - title: "Appendix B: Quantum Bookshelf"
-      file: chapters/appendix-b-bookshelf.md
-    - title: "Appendix C: Vendor-Neutral Evaluation Rubric"
-      file: chapters/appendix-c-evaluation-rubric.md
-    - title: "Appendix D: Supplementary Case Library"
-      file: chapters/appendix-d-case-library.md
-    - title: "Appendix E: Assessment Toolkit"
-      file: chapters/appendix-e-assessment-toolkit.md
-    - title: "Appendix F: Market Snapshot"
-      file: chapters/appendix-f-market-snapshot.md
-    - title: "Appendix G: Lab Setup Guide"
-      file: chapters/appendix-g-lab-setup.md
+    - part: "Chapters"
+      chapters:
+        - title: "Chapter 1: The $850 Billion Question"
+          file: chapters/ch01-why-quantum-why-now.md
+        - title: "Chapter 2: The Quantum Mindset"
+          file: chapters/ch02-thinking-in-probabilities.md
+        - title: "Chapter 3: The New Economics of Computation"
+          file: chapters/ch03-bits-to-qubits-economics.md
+        - title: "Chapter 4: The Quantum Hardware Race"
+          file: chapters/ch04-hardware-race.md
+        - title: "Chapter 5: The Cryptocalypse"
+          file: chapters/ch05-cryptocalypse-y2q.md
+        - title: "Chapter 6: The Optimization Goldmine"
+          file: chapters/ch06-optimization-goldmine.md
+        - title: "Chapter 7: The Simulation Revolution"
+          file: chapters/ch07-simulation-revolution.md
+        - title: "Chapter 8: Quantum + AI"
+          file: chapters/ch08-quantum-ai-hybrid.md
+        - title: "Chapter 9: The Quantum-Ready Enterprise"
+          file: chapters/ch09-quantum-ready-enterprise.md
+    - part: "Appendices"
+      chapters:
+        - title: "Appendix A: Glossary"
+          file: chapters/appendix-a-glossary.md
+        - title: "Appendix B: Quantum Bookshelf"
+          file: chapters/appendix-b-bookshelf.md
+        - title: "Appendix C: Vendor-Neutral Evaluation Rubric"
+          file: chapters/appendix-c-evaluation-rubric.md
+        - title: "Appendix D: Supplementary Case Library"
+          file: chapters/appendix-d-case-library.md
+        - title: "Appendix E: Assessment Toolkit"
+          file: chapters/appendix-e-assessment-toolkit.md
+        - title: "Appendix F: Market Snapshot"
+          file: chapters/appendix-f-market-snapshot.md
+        - title: "Appendix G: Lab Setup Guide"
+          file: chapters/appendix-g-lab-setup.md
 
 site:
   title: "Applied Quantum Computing"
