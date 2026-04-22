@@ -2,562 +2,525 @@
 title: "Chapter 3: The Quantum Cloud Economy — Access, Ecosystem, and Enterprise Adoption"
 subtitle: "From QaaS Platforms to Break-Even Models: Everything You Need Before the First Vendor Proposal"
 short_title: "Ch. 3: Quantum Cloud Economy"
-description: "Quantum computing is now a cloud service — available today from D-Wave, IBM, Google, AWS, and Microsoft. This chapter maps the full QaaS ecosystem, explains each provider's access model and pricing, covers D-Wave Leap in depth, and builds the evergreen economic frameworks executives need to evaluate any vendor proposal."
+description: "Quantum computing is now a cloud service — available today from D-Wave Leap, IBM Quantum, AWS Braket, Azure Quantum, and Google Quantum AI. This chapter maps the full QaaS ecosystem, explains each platform's access model and pricing, covers D-Wave Leap and the Stride hybrid solver in depth, and builds the evergreen economic frameworks executives need to evaluate any vendor proposal."
 label: ch-03-bits-to-qubits-economics
-tags: [quantum economics, QaaS, D-Wave Leap, AWS Braket, Azure Quantum, IBM Quantum, Google QAI, TCO, pricing, break-even, quantum advantage, quantum utility, enterprise adoption]
+tags: [quantum economics, QaaS, D-Wave Leap, Stride, AWS Braket, Azure Quantum, IBM Quantum, Google QAI, TCO, pricing, break-even, quantum advantage, quantum utility, enterprise adoption, QUBO]
 ---
 
 # Chapter 3: The Quantum Cloud Economy — Access, Ecosystem, and Enterprise Adoption
 
-::::{figure} ../images/ch03-explainer-infographic.png
+:::{figure} ../images/ch03-explainer-infographic.png
 :label: fig-ch03-explainer-infographic
-:alt: Chapter 3 illustrated explainer infographic showing quantum economics overview, pricing archetypes, TCO framework, and break-even concept
+:alt: Chapter 3 illustrated explainer infographic showing the five QaaS platforms, quantum economics overview, pricing archetypes, TCO framework, and break-even concept across a quantum cloud landscape
 :width: 100%
-**Chapter 3 Illustrated Explainer.** Quantum is not a faster classical computer — it is a different cost curve. This chapter gives you the frameworks to read any quantum price sheet that exists today or will exist in 2031.
-::::
+:align: center
 
-Quantum computing is no longer something you visit at a national laboratory. It is a cloud service you can access right now — on a credit card or a purchase order — from five major platforms that are actively competing for enterprise customers. D-Wave's Leap cloud gives you access to the same Advantage2 annealing hardware being installed on FAU's campus. IBM Quantum Network provides access to 100+ qubit gate-model processors. AWS Braket is a hardware-agnostic marketplace connecting you to IonQ, Rigetti, QuEra, and IQM from a single API. Azure Quantum brings IBM hardware into the Microsoft enterprise stack. Google Quantum AI offers research partnerships and limited cloud access to Willow-class processors.
+**Chapter 3 at a Glance.** Two revolutions are happening simultaneously: quantum hardware is maturing, and quantum access has moved to the cloud. This chapter gives you the framework to navigate both — knowing which platform to use, what it will cost, and how to build a break-even model that survives vendor changes.
+:::
 
-The problem is not access. The problem is that quantum vendors are excellent at generating excitement and less excellent at generating invoices you can actually explain to your board. This chapter fixes both. The first half maps the QaaS ecosystem and explains how each platform works, what it costs, and when to use it. The second half builds the durable economic framework — pricing archetypes, TCO, break-even models — that survives any vendor change across any point in the next decade.
+There is a question that looks simple and rarely gets a straight answer: *Can I use a quantum computer today?*
 
-## The Quantum-as-a-Service Ecosystem
+The answer is yes. Right now, on a credit card, you can submit an optimization problem to the same class of hardware being installed on FAU's Boca Raton campus and have a result in seconds. You can run a quantum chemistry experiment on IBM's 127-qubit Eagle processor. You can benchmark the same circuit across three different hardware modalities from a single AWS console. Quantum computing is no longer something you visit at a national laboratory. It is a cloud service, it is operational, and it has a pricing page.
 
-Quantum computing has followed cloud computing's path: from exclusive national laboratory access (CERN, Oak Ridge, IBM Watson) to self-service cloud APIs that any developer or enterprise can consume. "Quantum-as-a-Service" (QaaS) describes this model — hardware accessed remotely, billed by usage, managed by the provider. Understanding the QaaS landscape is prerequisite to every procurement, pilot, or strategic evaluation discussion.
+The harder question — the one this chapter answers — is: *What does it actually cost, and when does it make economic sense for your specific workload?* Quantum vendors are excellent at generating excitement. They are considerably less excellent at generating invoices you can explain to your board. The gap between those two things is where enterprise quantum strategies fail.
 
-Five platforms dominate the enterprise QaaS market as of 2026. Each targets a different buyer, offers different hardware, and prices differently.
-
----
-
-### D-Wave Leap — Production Annealing and Hybrid Optimization
-
-**URL:** cloud.dwavesys.com  
-**Hardware:** D-Wave Advantage2 (7,000+ qubits, Pegasus topology) + Leap hybrid solver (Stride)  
-**Paradigm:** Quantum annealing + classical-quantum hybrid  
-**Best for:** Combinatorial optimization — routing, scheduling, portfolio construction, logistics sequencing  
-
-D-Wave Leap is the most commercially mature QaaS platform for business optimization problems. It provides two modes of access: direct QPU (quantum processing unit) access — submitting optimization problems directly to the Advantage2 annealer and receiving results in microseconds — and the Stride hybrid solver, which handles problems too large for the QPU alone by decomposing them classically and routing subproblems to the quantum hardware.
-
-The Stride hybrid solver is the relevant tool for enterprise use today. It accepts problems formulated as QUBO (Quadratic Unconstrained Binary Optimization) — a mathematical format into which a vast range of business problems (vehicle routing, staff scheduling, warehouse slotting, financial portfolio construction) can be expressed. The solver handles problems with millions of variables and constraints, running in seconds to minutes rather than the hours required by classical heuristics.
-
-**Pricing (2026):** Leap offers a free developer tier with initial QPU time credits suitable for coursework and prototyping. Enterprise tiers are available on a pay-per-second (QPU) and hybrid-solver-job basis, with reserved access contracts for production deployments. See the Market Snapshot appendix for current pricing.
-
-**FAU connection:** The Advantage2 system being installed on FAU's Boca Raton campus is the same hardware class as D-Wave Leap's cloud offering. Students in this course will use both — Leap for cloud-accessible work and, when available, the on-premises system for lower-latency production-scale experiments.
-
-**Enterprise track record:** D-Wave Leap powers production deployments at BASF (manufacturing scheduling), Volkswagen (paint-shop sequencing), Mastercard (transaction graph optimization), and Verge Ag (autonomous vehicle routing). These are not pilots — they are running in production, replacing classical schedulers and optimizers.
+This chapter closes that gap. The first half maps the five platforms that define the QaaS landscape and gives you a framework for choosing between them. The second half builds the durable economic model — pricing archetypes, true unit cost, TCO, and break-even analysis — that survives any vendor change, any hardware generation, and any point in the next decade.
 
 ---
 
-### IBM Quantum Network — Gate-Model Research and Enterprise Integration
+## Opening Scene: The Procurement Email Nobody Expected
 
-**URL:** quantum.ibm.com  
-**Hardware:** IBM Eagle (127 qubits), Heron r2 (133 qubits), Condor (1,121 qubits), Flamingo (in development)  
-**Paradigm:** Gate-model (superconducting qubits)  
-**Best for:** Quantum chemistry simulation, QML research, algorithm development, cryptography research  
+In February 2026, the CFO of a South Florida logistics firm — call her Maria Gutierrez — received an email from her VP of Operations. The subject line read: *"Quantum pilot — budget request."*
 
-IBM Quantum is the most accessible gate-model platform for developers and researchers. The free Open Plan tier provides access to 5–7 qubit simulators and limited real hardware with no payment required — the entry point for most university quantum education programs, including this course's Lab 1A.
+The attached memo proposed a \$180,000 pilot using D-Wave's Leap cloud platform to optimize their last-mile delivery routing across the Miami–Fort Lauderdale–Boca Raton corridor. The VP had been at a vendor briefing at FAU's Boca Raton campus, where D-Wave's local presence had given her direct access to application engineers. The proposal included a specific ROI calculation: classical routing software was taking 4–6 hours overnight to produce daily route plans. D-Wave's hybrid solver, on a comparable problem, was producing results in under 90 seconds — a speedup that would enable real-time re-routing when drivers encountered traffic, accidents, or delivery failures.
 
-The IBM Quantum Network is IBM's enterprise tier: a membership program connecting organizations to dedicated hardware access, co-development opportunities with IBM Research, and priority queue access. Members include JPMorgan Chase, Daimler, Boeing, ExxonMobil, and over 200 universities globally. Network membership is typically structured as an annual fee plus usage.
+Maria had three options. She could approve it. She could kill it. Or she could do what most executives in her position do: ask someone to "look into it" — which typically means the proposal sits for six months while the technology window moves.
 
-IBM's hardware roadmap is the most publicly detailed in the industry, with specific qubit count and error rate targets published through 2033. The December 2024 demonstration of below-threshold error correction on the Willow-class processor (by Google, not IBM — but confirming the roadmap feasibility) reinforced confidence in the gate-model pathway to fault tolerance.
+She chose a fourth option: she asked her team to build an economic model before making any decision. Not a feelings model. Not a vendor slide deck. A model with parameters she could update when pricing changed and milestones she could monitor without hiring a quantum physicist.
 
-**Pricing (2026):** Free Open Plan for education and prototyping (queue-limited). Premium plans (Pay-As-You-Go and Premium) for production research access. IBM Quantum Network membership for enterprise co-development.
-
-**Ecosystem:** Qiskit, IBM's open-source quantum SDK, is the most widely used quantum programming framework globally. Python-based, well-documented, with an active community. Qiskit Runtime (a serverless execution model) reduces queue overhead for iterative workloads.
+This chapter gives you that model. And by the end, you will know what Maria's team found — and whether the pilot made economic sense.
 
 ---
 
-### AWS Braket — Hardware-Agnostic Quantum Marketplace
+## The Single Idea: Two Revolutions, One Chapter
 
-**URL:** aws.amazon.com/braket  
-**Hardware:** IonQ Forte (trapped-ion), Rigetti Ankaa-3 (superconducting), QuEra Aquila (neutral-atom), IQM Garnet (superconducting)  
-**Paradigm:** Multi-vendor marketplace — gate-model and analog simulation  
-**Best for:** Organizations that want hardware vendor flexibility, AWS-integrated enterprises, multi-modal comparison workloads  
+```{epigraph}
+Quantum computing has two revolutions happening simultaneously. The hardware is maturing. The access model has already changed. Most enterprises are paying attention to the first and missing the second.
+```
 
-AWS Braket is not a quantum hardware manufacturer — it is a distribution layer. Amazon provides a unified API and billing interface that abstracts across multiple quantum hardware vendors. From one AWS console, you can submit the same circuit to a trapped-ion machine (IonQ), a superconducting machine (Rigetti), a neutral-atom machine (QuEra), and a classical simulator — and compare results.
+The narrative around quantum computing focuses almost entirely on hardware progress: qubit counts, error rates, fault-tolerance milestones. That is the technology revolution, and it is real and important. But there is a second revolution happening in parallel that has received far less attention and is far more immediately relevant to enterprise strategy: **quantum computing has become a cloud service**.
 
-Braket's value proposition is vendor flexibility and AWS ecosystem integration. For organizations already running workloads on AWS (S3, SageMaker, Lambda), Braket plugs into existing IAM, billing, and security frameworks. Quantum workloads can be triggered by Lambda functions, results stored in S3, and fed into SageMaker ML pipelines — all within a single AWS account.
+This transition matters for three reasons.
 
-**Pricing (2026):** Per-task fee + per-shot fee, varying by hardware provider. Classical simulators (SV1, TN1, DM1) are billed per-minute of compute. No membership required — pure pay-as-you-go.
+**First, the barrier to entry has collapsed.** Three years ago, accessing quantum hardware required a research partnership, a university affiliation, or a six-figure enterprise contract. Today, a developer can create a D-Wave Leap account, receive free credits, and submit a real optimization problem to real quantum hardware in under ten minutes. The ecosystem of tools, documentation, and community support around QaaS platforms is comparable to cloud AI in 2018 — early, but functional and growing fast.
 
-**HPC connection:** AWS Braket integrates with AWS HPC services (ParallelCluster, Batch), enabling hybrid quantum-classical workloads where the classical HPC component runs on AWS and the quantum component runs on Braket. For organizations with existing HPC workloads on AWS, this is the lowest-friction entry point for quantum experimentation.
+**Second, the economics are cloud economics.** Quantum hardware itself is extraordinarily capital-intensive — a single dilution refrigerator for superconducting qubits costs over \$1 million, and FAU's Advantage2 represents a \$20 million institutional investment. But enterprises consuming quantum through Leap, Braket, or IBM Quantum pay per use, on demand, with no capital commitment. The total cost of a quantum pilot is no longer determined by hardware acquisition — it is determined by shots, queue time, and engineering hours. Those are costs you can model.
 
----
+**Third, the choice of platform is now a strategic decision.** Not all quantum platforms are equivalent. D-Wave's annealing hardware excels at combinatorial optimization and is production-ready today. IBM's gate-model hardware is the right environment for quantum chemistry research and algorithm development. AWS Braket offers hardware flexibility for organizations that want to compare across modalities. Azure Quantum integrates into the Microsoft enterprise stack. Google Quantum AI provides access to the most advanced error correction hardware but is not a self-service platform. Choosing the wrong platform for your workload is the quantum equivalent of using a GPU cluster to run a spreadsheet — it is not that quantum doesn't work; it is that the architecture is mismatched to the problem.
 
-### Azure Quantum — Microsoft's Enterprise Quantum Stack
-
-**URL:** azure.microsoft.com/products/quantum  
-**Hardware:** IonQ (trapped-ion), Quantinuum H-Series (trapped-ion), Rigetti (superconducting); Microsoft's own topological qubit hardware (in development)  
-**Paradigm:** Multi-vendor, with a long-term bet on topological qubits  
-**Best for:** Microsoft-centric enterprise environments, organizations using Azure AI, hybrid quantum-classical in Azure pipelines  
-
-Azure Quantum mirrors AWS Braket's marketplace model — multiple hardware vendors under one cloud provider's billing and identity framework — but with a stronger enterprise software integration story and a long-term hardware roadmap centered on Microsoft's proprietary topological qubit program.
-
-Microsoft's topological qubit approach (using Majorana zero modes) has been a long-running and controversial research program, delayed multiple times. A 2023 peer-reviewed paper in *Nature* provided credible evidence of topological qubit signatures, but production hardware remains years away. In the near term, Azure Quantum's value is its enterprise integration story (Azure AD, Defender, Purview) and access to Quantinuum's H-Series, which currently achieves the highest gate fidelities available commercially.
-
-**Pricing (2026):** Azure Credits for quantum apply to IonQ and Rigetti access. Quantinuum access is structured as Quantum Credits (H-Units). Topological hardware is not yet available.
-
-**SDK:** Q# (Microsoft's quantum language) + QDK (Quantum Development Kit). Also supports Qiskit and Cirq for hardware-agnostic circuit submission.
+The rest of this chapter addresses both the access landscape and the economic framework you need to navigate it.
 
 ---
 
-### Google Quantum AI — Research Partnerships and Willow Access
+## Part I: The QaaS Landscape
 
-**URL:** quantumai.google  
-**Hardware:** Willow (105 qubits, demonstrated below-threshold error correction, December 2024)  
-**Paradigm:** Gate-model (superconducting); research-partnership access model  
-**Best for:** Academic research partnerships, quantum AI research, organizations with existing Google Cloud relationships  
+### From HPC to Quantum: A Familiar Transition
 
-Google Quantum AI is structurally different from the other platforms: it is not a self-service cloud product. Access to Google's quantum hardware is primarily through research partnerships (Google Quantum AI Research Program), with limited API access available through Google Cloud for qualified collaborators. This reflects Google's strategy of using its quantum hardware primarily for internal research (quantum error correction, quantum simulation of materials) and selective external partnerships rather than broad commercial access.
+For anyone with a background in high-performance computing, the QaaS story is a familiar one. The HPC community went through a structurally similar transition in the 2010s: from dedicated institutional clusters (owned, operated, and queue-managed by the organization) to cloud HPC (AWS HPC, Azure CycleCloud, Google Batch) that democratized access to large-scale parallel compute. The transition did not eliminate on-premises HPC — FAU operates HPC infrastructure today, as do most R1 universities — but it changed the economics fundamentally. Organizations no longer needed to own hardware to conduct HPC-scale research. They needed a model, a workload, and a cloud account.
 
-Google's December 2024 Willow result — demonstrating that error rates decrease as qubit count increases, confirming below-threshold operation — is the most significant hardware milestone in quantum computing since Google's 2019 supremacy claim. It places Google's error correction roadmap on credible footing and suggests fault-tolerant computation in the early 2030s.
+Quantum computing is following the same arc, approximately a decade behind. The national laboratory era is giving way to the QaaS era. Organizations that understand the cloud access model — pricing, queuing, hybrid architectures, platform selection — will move faster than those waiting for the hardware to arrive on their doorstep.
 
-**Enterprise implication:** For most organizations, Google Quantum AI is a "watch and research" platform rather than a procurement target today. The exception: organizations engaged in quantum chemistry, materials simulation, or quantum AI research at a scale that justifies a research partnership application.
+The Supercomputing (SC) community has recognized this transition explicitly. SC26, scheduled for Chicago in November 2026, features quantum-HPC hybrid architectures as a primary technical track — reflecting the consensus that quantum accelerators will integrate into HPC pipelines the same way GPUs did in the 2010s. FAU's Advantage2 deployment is an early instantiation of that integration at the institutional level.
+
+:::{figure} ../images/ch03-hpc-quantum-transition.png
+:label: fig-ch03-hpc-quantum-transition
+:alt: Timeline showing the parallel between HPC cloud transition in 2010s and quantum cloud transition in 2020s, with SC conference milestones annotated
+:width: 100%
+:align: center
+
+**The HPC-to-Quantum Cloud Transition.** High-performance computing moved from dedicated institutional clusters to cloud access over a decade. Quantum computing is following the same arc, with QaaS platforms now enabling enterprise access that previously required national laboratory partnerships or nine-figure institutional investments.
+:::
+
+---
+
+### The Five Platforms
+
+:::{figure} ../images/ch03-qaas-ecosystem-map.png
+:label: fig-ch03-qaas-ecosystem-map
+:alt: Visual map of the five major QaaS platforms (D-Wave Leap, IBM Quantum, AWS Braket, Azure Quantum, Google Quantum AI) positioned by hardware paradigm and access model, with enterprise use case zones indicated
+:width: 100%
+:align: center
+
+**The QaaS Ecosystem Map.** Five platforms define the enterprise quantum cloud market as of 2026. Each occupies a distinct position: D-Wave for production optimization today; IBM for gate-model research and development; AWS for hardware-agnostic access; Azure for Microsoft enterprise integration; Google for research partnerships and advanced error correction.
+:::
+
+---
+
+#### D-Wave Leap — Production Annealing and Hybrid Optimization
+
+**URL:** cloud.dwavesys.com | **Paradigm:** Quantum annealing + classical-quantum hybrid
+
+The most commercially mature QaaS platform for business optimization problems. D-Wave Leap provides two modes of access:
+
+- **Direct QPU access** — problems submitted directly to the Advantage2 annealer. Solves in microseconds. Best for small, well-structured QUBO problems.
+- **Stride hybrid solver** — problems that are too large for the QPU alone are decomposed classically, with subproblems routed to the quantum hardware. Handles millions of variables. Results in seconds to minutes. This is the enterprise-relevant mode.
+
+The Stride solver accepts problems formulated as **QUBO (Quadratic Unconstrained Binary Optimization)** — a mathematical format that a vast range of business decisions can be expressed in: vehicle routing, staff scheduling, warehouse slotting, portfolio construction, production sequencing. You do not need to write quantum circuits. You define the problem as a set of binary decisions and a cost function; the solver finds the lowest-cost assignment.
+
+**Enterprise track record (production deployments):**
+- **BASF** — manufacturing scheduling reduced from hours to seconds
+- **Volkswagen** — paint-shop sequencing optimization
+- **Mastercard** — transaction graph fraud pattern detection
+- **Verge Ag** — real-time routing for autonomous agricultural equipment
+- **Anduril / Davidson Technologies** — defense planning optimization (details classified)
+
+**FAU connection:** The Advantage2 system being installed on FAU's Boca Raton campus is the same hardware class as D-Wave Leap's cloud QPU. D-Wave's corporate headquarters, now at the Boca Raton Innovation Center, provides direct engineering support and co-development partnerships for FAU research programs. Students in this course use Leap for cloud-accessible coursework; when the on-premises system is operational, it eliminates the queue latency that constrains iterative research on cloud tiers.
+
+**Pricing:** Free developer tier with initial QPU time credits (sufficient for coursework and prototyping). Hybrid solver jobs priced per second of solve time. Reserved access contracts available for production deployments. See Appendix F for current pricing.
+
+---
+
+#### IBM Quantum — Gate-Model Research and Enterprise Access
+
+**URL:** quantum.ibm.com | **Paradigm:** Gate-model (superconducting qubits)
+
+The most accessible gate-model platform for developers, researchers, and enterprise teams building quantum algorithm expertise. IBM Quantum offers three tiers:
+
+- **Open Plan (free)** — access to quantum simulators and a subset of real hardware (5–7 qubit systems on free tier, with queue priority limits). Suitable for education and prototyping.
+- **Pay-As-You-Go** — access to IBM's full hardware fleet (Eagle 127 qubits, Heron r2 133 qubits) with priority queuing. Billed by QPU seconds.
+- **Premium / IBM Quantum Network** — enterprise membership with dedicated hardware access, co-development with IBM Research, and priority above standard queue. Members include JPMorgan Chase, Daimler, Boeing, and over 200 universities.
+
+IBM's public hardware roadmap is the most detailed in the industry, with specific qubit count and error rate targets published through 2033. The Heron r2 processor (133 qubits, released 2024) achieved improved two-qubit gate fidelities over prior generations. IBM's Condor processor (1,121 qubits) demonstrated the largest gate-model processor commercially available as of 2026.
+
+**Ecosystem:** Qiskit, IBM's open-source quantum SDK, is the most widely used quantum programming framework globally. Python-based, well-documented, with an active community and extensive course materials. Qiskit Runtime reduces queue overhead for iterative workloads by running parameterized circuits server-side.
+
+**Best for:** Algorithm development, quantum chemistry research, quantum machine learning experiments, workforce training in gate-model programming.
+
+---
+
+#### AWS Braket — Hardware-Agnostic Quantum Marketplace
+
+**URL:** aws.amazon.com/braket | **Paradigm:** Multi-vendor marketplace
+
+AWS Braket is not a quantum hardware manufacturer — it is a distribution layer. Amazon provides a unified API and billing interface that abstracts across multiple hardware vendors:
+
+- **IonQ Forte** — trapped-ion, highest gate fidelities commercially available
+- **Rigetti Ankaa-3** — superconducting, fast gate operations
+- **QuEra Aquila** — neutral-atom, reconfigurable qubit connectivity
+- **IQM Garnet** — superconducting, European hardware
+
+From a single AWS console, you can submit the same circuit to multiple hardware types and compare results — hardware-agnostic circuit testing that no single-vendor platform offers.
+
+**HPC integration:** AWS Braket integrates directly with AWS HPC services (ParallelCluster, Batch), enabling hybrid quantum-classical workflows where the classical HPC component runs on AWS compute and the quantum component runs on Braket. For organizations with existing HPC workloads on AWS — a common configuration for financial services, life sciences, and logistics firms — Braket is the lowest-friction entry point for quantum experimentation.
+
+**Pricing:** Per-task fee + per-shot fee, varying by hardware provider. Classical simulators (SV1, TN1, DM1) billed per compute-minute. No membership required — pure pay-as-you-go.
+
+**Best for:** Multi-vendor comparison, AWS-integrated enterprises, HPC-to-quantum pipeline prototyping.
+
+---
+
+#### Azure Quantum — Microsoft Enterprise Stack Integration
+
+**URL:** azure.microsoft.com/products/quantum | **Paradigm:** Multi-vendor + topological qubit roadmap
+
+Azure Quantum mirrors Braket's marketplace model but with a stronger enterprise software integration story and a long-term hardware bet on Microsoft's proprietary topological qubit program.
+
+Current hardware access:
+- **IonQ** (trapped-ion, via Azure)
+- **Quantinuum H-Series** — currently achieves the highest gate fidelities available commercially; H2-2 processor (56 qubits, fully connected) offers exceptional circuit depth for its qubit count
+- **Rigetti** (superconducting, via Azure)
+
+Microsoft's topological qubit research (using Majorana zero modes) published credible experimental evidence in *Nature* in 2023. Production topological hardware is not yet available but represents Microsoft's long-term differentiation claim. If the physics works at scale, topological qubits offer inherent error resistance that would dramatically reduce error correction overhead.
+
+**Enterprise integration:** Azure Quantum connects to Azure Active Directory, Defender, Purview, and the full Microsoft security and compliance stack — a significant advantage for regulated enterprises (financial services, healthcare, government) with existing Azure deployments.
+
+**SDK:** Q# and the Quantum Development Kit (QDK), plus Qiskit and Cirq compatibility for hardware-agnostic circuit submission.
+
+**Best for:** Microsoft-centric enterprise environments, regulated industries requiring Azure compliance tools, organizations that want access to Quantinuum's best-in-class gate fidelity.
+
+---
+
+#### Google Quantum AI — Research Partnerships and Willow Access
+
+**URL:** quantumai.google | **Paradigm:** Gate-model research (superconducting)
+
+Google Quantum AI is structurally different from the other platforms: it is not a self-service cloud product. Access to Google's quantum hardware — including the Willow processor (105 qubits, December 2024 below-threshold error correction milestone) — is primarily through research partnerships and the Google Quantum AI Research Program. Limited access is available through Google Cloud for qualified collaborators.
+
+**Why it matters despite limited access:** Google's December 2024 Willow result — demonstrating that adding more qubits reduces rather than increases error rates, confirming below-threshold operation — is the most significant hardware milestone in quantum computing in a decade. It places the gate-model fault-tolerance roadmap on physically credible footing. Organizations engaged in quantum chemistry, materials simulation, or AI research at a scale that justifies a research partnership application should monitor Google Quantum AI closely.
+
+**Best for:** Academic research partnerships, quantum AI research, organizations with existing Google Cloud relationships pursuing research-level access.
 
 ---
 
 ### Platform Selection Framework
 
-The choice of QaaS platform should match the organization's problem domain, existing cloud infrastructure, and workload maturity. The following framework helps narrow the decision:
+:::{figure} ../images/ch03-platform-selection-framework.png
+:label: fig-ch03-platform-selection-framework
+:alt: Platform selection decision matrix mapping business goals and existing infrastructure to the optimal QaaS platform, with D-Wave Leap, IBM Quantum, AWS Braket, Azure Quantum, and Google Quantum AI positioned across axes of problem type and enterprise maturity
+:width: 100%
+:align: center
+
+**Platform Selection Framework.** Match platform to problem type, infrastructure, and organizational maturity. The most common mistake is using a gate-model platform for an optimization problem that D-Wave's Stride solver could handle in production today — or over-engineering a research experiment with an enterprise contract before the use case is validated.
+:::
 
 | If your goal is... | Start here | Why |
 |---|---|---|
-| Solve optimization problems today | **D-Wave Leap** | Production-ready hybrid solver, real enterprise deployments, QUBO formulation is accessible |
+| Solve optimization problems in production | **D-Wave Leap** | Stride hybrid solver handles production-scale problems now; no quantum circuits to write |
 | Gate-model algorithm development | **IBM Quantum** | Best documentation, largest community, Qiskit ecosystem, free access |
-| Multi-vendor hardware comparison | **AWS Braket** | Single API, multiple hardware types, AWS ecosystem integration |
-| Enterprise Microsoft stack integration | **Azure Quantum** | Azure AD, Defender, and Purview compatibility; Quantinuum's best-in-class gate fidelity |
-| Quantum chemistry / materials research | **Google Quantum AI** (partnership) | Willow hardware, research program access |
-| FAU coursework and labs | **D-Wave Leap + IBM Quantum** | Course uses both; Leap for optimization labs, IBM for gate-model labs |
+| Multi-vendor hardware comparison | **AWS Braket** | Single API, multiple modalities, AWS HPC pipeline integration |
+| Microsoft enterprise stack integration | **Azure Quantum** | Azure compliance tools; Quantinuum's best-in-class gate fidelity |
+| Quantum chemistry or materials research | **Google Quantum AI** (partnership) | Willow hardware access; research program |
+| FAU coursework and labs | **D-Wave Leap + IBM Quantum** | This course uses both; Leap for optimization, IBM for gate-model concepts |
 
-:::{admonition} The Make-vs.-Buy Decision
+:::{admonition} On-Premises vs. Cloud: The Make-vs.-Buy Decision
 :class: important
 
-**On-premises vs. cloud access** is the quantum equivalent of the classic HPC make-vs.-buy decision. Cloud QaaS (all five platforms above) is appropriate for: exploration, prototyping, proof-of-concept, and most production optimization workloads where latency is not critical. On-premises hardware (FAU's Advantage2) is appropriate for: research requiring rapid iteration, education where queue time is a barrier, and organizations where data sovereignty requirements prevent cloud submission of sensitive problem instances. FAU's on-premises deployment eliminates the queue delays that make iterative research impractical on cloud tiers — the primary operational advantage of local hardware ownership.
+Cloud QaaS is appropriate for exploration, prototyping, and most production optimization workloads where queue latency is acceptable. **On-premises hardware** — like FAU's Advantage2 — is appropriate when: research requires rapid iteration that cloud queues make impractical; data sovereignty requirements prevent cloud submission of sensitive problem instances; or the institution wants to attract industry partners who prefer local hardware access.
+
+FAU's on-premises deployment eliminates the queue delays (typically seconds to minutes on Leap's hybrid solver) that constrain iterative research — a meaningful advantage for the kind of experimental, real-time problem-solving that characterizes both research and executive education coursework.
 :::
 
 ---
 
-## Opening Scene: Moore's Law Is Dead — and Your CFO Doesn't Know It Yet
+## Part II: The New Economics of Quantum
 
-::::{figure} ../images/ch03-moores-law-end.png
+### The Quantum Cost Curve Is Different — Not Just Higher
+
+:::{figure} ../images/ch03-moores-law-end.png
 :label: fig-ch03-moores-law-end
-:alt: Moore's Law ending chart showing transistor count growth flattening with quantum era beginning
+:alt: Chart showing Moore's Law transistor count growth flattening against the physical limit, alongside a new quantum cost curve that does not continue the classical trajectory but introduces a fundamentally different economic structure
 :width: 100%
-**Figure 3.2.** Five decades of exponential transistor growth meet a physical wall. The quantum era does not continue this curve — it replaces it with a fundamentally different cost structure.
-::::
+:align: center
 
-In 1965, Gordon Moore observed that the number of transistors on a chip doubled roughly every two years. For five decades, that observation functioned as a business plan for the entire technology industry. You could buy a faster server, wait two years, and buy a faster one still. Costs fell. Performance compounded. Strategy was easy.
-
-Moore's Law is dead. Not metaphorically dead — physically dead. Transistors are now measured in atoms. There is no room to shrink further. Nvidia knows this; that is why it sells parallelism at scale rather than raw clock speed. The hyperscalers know it; that is why AWS, Azure, and Google Cloud have all opened quantum divisions. The venture community knows it; quantum startups attracted more than \$2 billion in private investment in a recent twelve-month period.
-
-The reason you are reading this book is that your CFO probably has not yet worked out what replaces the Moore's Law cost curve — and someone in your organization will need to brief her before she sees the first vendor proposal.
-
-Here is what she needs to understand: quantum is not a faster classical computer. It is a machine that operates on a fundamentally different cost curve. Classical computing costs scale with transistor counts and clock rates; quantum computing costs scale with error rates, coherence times, and physical-to-logical qubit ratios. The arithmetic is different. The break-even math is different. The risk profile is different.
-
-This chapter gives you a framework for that math — one built to outlast any single vendor's pricing page.
-
----
-
-## The Single Idea: Quantum Is a Different Cost Curve — Not Just a Faster One
-
-::::{admonition} The Core Claim
-:class: important
-Quantum computing does not replace classical computing on the same cost curve. It introduces a *new* cost curve that may intersect the classical curve for specific workloads at specific scales. Your job is not to predict *when* that intersection occurs — it is to build a model that tells you *whether* it occurs for *your* workloads.
-::::
-
-Here is the most common and most costly misunderstanding in quantum computing: **quantum is not a faster classical computer.** It is not a turbocharged server. It does not do the same work faster. For certain classes of problems, it does *fundamentally different work* — and that distinction changes everything about how you evaluate it economically.
-
-### The Locksmith vs. the Brute-Force Safe-Cracker
-
-Imagine you need to open a safe and you don't have the combination. A classical computer's approach is brute force: try 0000, then 0001, then 0002 — through every possible combination in sequence (or in large parallel batches). Given enough time and enough machines, it will eventually succeed. This is how classical computers approach hard problems like factoring large numbers: try, check, try again.
-
-A quantum computer doesn't try harder. It uses a fundamentally different technique: *interference*. It puts the problem into superposition — all possible answers simultaneously — and then applies a sequence of operations that constructively reinforces the *correct* answer while destructively canceling the wrong ones. The mechanism is closer to a skilled locksmith listening to the tumblers than a cracker grinding through combinations.
-
-The locksmith doesn't do more work. The locksmith does *different work* — work that is mathematically structured in a way the brute-force approach cannot replicate.
-
-### The GPS Analogy
-
-Before GPS, finding your location required triangulating from landmarks: spot a water tower, spot a church steeple, find where the sight lines cross. It was sequential, imprecise, and slow. Faster triangulation equipment would give you a faster result — but it would still be triangulation.
-
-GPS doesn't do faster triangulation. It uses simultaneous signals from multiple satellites and the mathematics of trilateration to compute position in an entirely different way. The result isn't just quicker — it's more accurate and works in environments where triangulation is impossible.
-
-Quantum computing's relationship to classical computing is analogous. For specific problem classes — factoring, quantum simulation, certain optimization problems — it isn't doing the same calculation faster. It is using a different mathematical structure entirely, one that classical hardware cannot efficiently emulate.
-
-:::{note} Plain Language
-**What this means for your budget:** Classical hardware improvements (more cores, faster clock speeds, better parallelism) help with every classical problem. Quantum improvements only matter for problems where the *quantum approach* is applicable. The first question is never "how fast is the quantum computer?" — it is "does a quantum algorithm even exist for this problem?"
+**Two Cost Curves, Not One.** The classical Moore's Law trajectory — predictable, continuous, quantifiable — is ending. Quantum computing does not continue that curve. It introduces a different cost structure, shaped by error rates, coherence times, and physical-to-logical qubit ratios rather than transistor counts and clock speeds.
 :::
 
-### The Shape of the Cost Curve Itself Changes
+For fifty years, computing economics followed a simple rule: more transistors, lower cost per operation, better performance per dollar. Gordon Moore's 1965 observation — that transistor counts would double roughly every two years — functioned as a business plan for the entire technology industry. You could forecast server refresh cycles, amortize hardware over three to five years, and benchmark performance against a commodity baseline. Strategy was tractable because the cost curve was predictable.
 
-This isn't a semantic distinction — it has direct economic consequences. On a classical cost curve, throwing more hardware at a problem always helps (until you hit diminishing returns). On certain problems, a quantum computer doesn't just offer a cost advantage at scale — it offers *tractability* where classical hardware offers none.
+That curve is ending. Transistors are now measured in atoms. There is no room to shrink further. The hyperscalers know this — which is why AWS, Azure, and Google have all opened quantum divisions. Your CFO probably does not yet have a framework for what replaces the Moore's Law cost curve. Someone in your organization will need to brief her before the first vendor proposal lands.
 
-RSA encryption, for example, is secure because factoring the large primes underlying it would take classical computers millions of years. Not "very expensive" — impossible within any reasonable human timeframe. A sufficiently capable quantum computer running Shor's algorithm would factor those primes in hours. The cost curve doesn't just shift — it changes *shape*. Problems that were infinitely expensive on the classical curve become finite on the quantum curve.
+Here is what she needs to understand: **quantum is not a faster classical computer**. It is a machine that operates on a fundamentally different cost structure. Classical computing costs scale with transistor counts and clock rates. Quantum computing costs scale with error rates, coherence times, and physical-to-logical qubit ratios. The arithmetic is different. The break-even math is different. The risk profile is different.
 
-This is why "quantum is X times faster" framing misses the point for the workloads that matter most. For those workloads, the quantum advantage isn't speed — it's existence.
+And for the specific case of D-Wave annealing, the cost structure is different again from gate-model quantum — closer to a specialized HPC accelerator than to a general-purpose computer, priced per optimization job rather than per gate operation.
 
-Classical computing has been governed by a predictable economics for fifty years: more transistors, lower cost per operation, better performance per dollar. That predictability made capital planning tractable. You could forecast server refresh cycles, amortize hardware over three to five years, and benchmark performance against a commodity baseline.
+:::{note} Plain Language: The Locksmith vs. the Brute-Force Safe-Cracker
 
-Quantum computing breaks that model in three ways:
+**The problem.** You need to open a safe without the combination. A classical computer's approach is brute force: try 0000, then 0001, through every possible combination in sequence. Given enough speed, it succeeds — but for a trillion-combination safe, "enough speed" means billions of years. You can parallelize with a thousand machines: the problem grows exponentially faster than any speed improvement.
 
-**First**, the unit of cost is not a clock cycle — it is a *shot* through a quantum circuit, multiplied by depth, error rate, and queue time. A "cheap" shot on paper can become an expensive result in practice when you account for the shots wasted to noise.
+**The gate-model quantum approach.** A gate-model quantum computer uses *interference*: it puts the problem into superposition (all possible combinations simultaneously) and applies a sequence of operations that constructively reinforce the correct answer while canceling the wrong ones. It is closer to a skilled locksmith listening to the tumblers than a cracker grinding through combinations. The locksmith doesn't do more work — the locksmith does *different work*, mathematically structured in a way brute force cannot replicate.
 
-**Second**, the hardware you see advertised — the headline qubit count — is almost never the hardware you get to use for real computation. Physical qubits must be converted to logical qubits through error correction, at ratios that today run from hundreds-to-one to thousands-to-one. A 1,000-qubit machine may deliver fewer than ten reliable logical qubits for your workload.
+**The annealing approach.** A quantum annealer like D-Wave's Advantage2 takes a third approach. It encodes the problem as an energy landscape — correct answers correspond to low-energy configurations — and uses quantum tunneling to "roll downhill" toward the solution, passing through energy barriers that would trap classical optimizers in locally good but globally suboptimal answers. Where the locksmith listens for tumblers, the annealer is more like water finding the lowest point in a landscape — but a quantum-mechanical landscape that classical simulation cannot reproduce.
 
-**Third**, quantum hardware is a shared resource accessed over the cloud, which means queue time — the wait before your circuit runs — is itself a cost. In a production environment, that latency has financial consequences.
-
-Understanding these three dynamics is the prerequisite for every pricing and budgeting conversation that follows.
+**For your CFO:** The business implication is that quantum's advantage is *structural*, not just quantitative. For problems where the solution space grows exponentially — logistics routing, portfolio optimization, drug simulation, encryption — no amount of classical engineering closes the gap. The question is not "is quantum faster?" but "does a quantum algorithm exist for my problem, and is the hardware mature enough to run it?"
+:::
 
 ---
 
-## Four Pricing-Model Archetypes
+### The True Cost of a Quantum Result
 
-::::{figure} ../images/ch03-pricing-archetypes.png
-:label: fig-ch03-pricing-archetypes
-:alt: Four quantum cloud pricing archetypes quadrant diagram
+The most dangerous phrase in any quantum vendor conversation is **"cost per qubit."** It is meaningless as a unit of economic analysis because it omits everything that actually determines what you pay for useful computation.
+
+The correct unit is **cost per useful result**, which depends on five multiplicative factors.
+
+:::{figure} ../images/ch03-true-cost-formula.png
+:label: fig-ch03-true-cost-formula
+:alt: Visual formula diagram showing the five multiplicative factors of quantum true unit cost: shot count, circuit depth, error rate, queue time, and yield, with each factor illustrated and its typical range indicated
 :width: 100%
-**Figure 3.3.** The four pricing archetypes used by quantum cloud providers. Providers come and go; these archetypes have persisted across every market generation.
-::::
+:align: center
 
-Cloud quantum providers have tried many pricing experiments since the first commercial access was offered in 2016. Beneath the variation, four archetypes recur reliably. Memorize these archetypes — not any specific vendor's current price card.
+**The True Unit of Quantum Cost.** Five factors multiply together to determine the cost of a useful result. The dominant factor in most near-term workloads is not QPU pricing — it is queue time and engineering overhead around the quantum submission step.
+:::
+
+$$\text{Cost}_{\text{useful}} = \frac{S \cdot D \cdot \varepsilon \cdot Q}{Y}$$
+
+Where:
+- **S** — Shot count required per experiment (hundreds to thousands for statistical confidence)
+- **D** — Circuit depth factor (deeper circuits accumulate more error, requiring more shots or mitigation)
+- **ε** — Error rate per gate (compounds across every operation in the circuit)
+- **Q** — Queue time cost (researcher time waiting for hardware access; frequently the dominant term)
+- **Y** — Yield: fraction of shots producing a usable result
+
+**The compounding problem.** These factors multiply. A circuit requiring 1,000 shots at depth 100 with 0.5% gate error rate and a 3-hour queue does not cost "1,000 shots." It costs a number that reflects the compounding of all five factors simultaneously. For most near-term quantum workloads, queue cost — measured in researcher hours — dominates QPU pricing. A 3-hour queue wait at a \$150/hr researcher rate costs \$450 before a single shot is submitted.
+
+**D-Wave and the shot-count difference.** One reason D-Wave's hybrid solver has a more tractable cost structure than gate-model platforms for optimization problems is that annealing eliminates the shot-count / circuit-depth dynamic entirely for the quantum step. You submit a QUBO problem and receive a solution in one job — not thousands of probabilistic samples. The Stride hybrid solver's pricing reflects job time, not shot count, which dramatically simplifies the cost calculation and makes the economics more predictable for production deployment.
+
+```{prf:definition} Shot
+:label: def-shot
+A **shot** is a single execution of a quantum circuit from initialization through measurement, returning one classical bitstring. Useful gate-model results require averaging across many shots — typically 1,000 to 10,000 for variational algorithms — because quantum measurement is probabilistic.
+```
+
+```{prf:definition} Circuit Depth
+:label: def-circuit-depth
+**Circuit depth** is the number of sequential layers of quantum gates. Each layer accumulates decoherence and gate errors. On today's hardware, circuits deeper than ~100 layers often produce outputs dominated by noise rather than signal.
+```
+
+---
+
+### Four Pricing Archetypes
+
+:::{figure} ../images/ch03-pricing-archetypes.png
+:label: fig-ch03-pricing-archetypes
+:alt: Quadrant diagram of four quantum cloud pricing archetypes positioned by workload volume and maturity, with example platforms for each archetype labeled
+:width: 100%
+:align: center
+
+**The Four Pricing Archetypes.** Providers come and go. These four archetypes have persisted across every market generation. Match archetype to workload maturity: free tier for exploration, pay-per-shot for validation, pay-per-minute for optimization-intensive algorithms, reserved capacity for production.
+:::
+
+Cloud quantum providers have experimented with many pricing structures since commercial access opened in 2016. Four archetypes recur across every platform and generation. Memorize the archetypes, not any vendor's current price card.
 
 ::::{tab-set}
 
 :::{tab-item} Pay-Per-Shot
-**Pay-Per-Shot (Task-Based)**
+**Pay-Per-Shot — Task-Based Pricing**
 
-The provider charges per quantum circuit execution, sometimes called a "job" or "task." Pricing is typically expressed as cost per shot (a single run of the circuit) or cost per second of QPU (quantum processing unit) time.
+Charge per quantum circuit execution (job or task). Typical unit: cost per shot or cost per QPU-second of task execution.
 
-*Favored by:* Exploratory workloads, research teams, proof-of-concept pilots. Any use case where volume is low and unpredictable.
+*On which platforms:* AWS Braket (primary model), IBM Quantum Pay-As-You-Go tier, IonQ access on both Braket and Azure.
 
-*Watch for:* Minimum job fees that make very short circuits disproportionately expensive. Shot-rate caps that create queuing even on paid tiers.
+*Best for:* Exploratory workloads, prototyping, low-volume research. Any stage where volume is unpredictable.
 
-*Break-even risk:* Low fixed cost but high marginal cost at scale. Works well for early-stage investigation; becomes uneconomical for production workloads with high shot requirements.
+*Watch for:* Minimum job fees that make very short circuits disproportionately expensive. Shot-rate caps on free tiers that create queuing even for paid users. Error mitigation overhead that multiplies effective shot count by 3–5×.
+
+*Break-even risk:* High marginal cost at scale. Transitions to pay-per-minute once workload patterns are established.
 :::
 
 :::{tab-item} Pay-Per-Minute
-**Pay-Per-Minute (Time-Based)**
+**Pay-Per-Minute — Time-Based Pricing**
 
-The provider charges for wall-clock time on a quantum processor, regardless of what circuits run during that time. Think of it as renting a quantum computer by the hour.
+Charge for wall-clock time on a quantum processor, regardless of shot count or circuit activity during that time.
 
-*Favored by:* Workloads with dense, back-to-back circuit execution — variational algorithms like VQE or QAOA that require thousands of sequential circuit evaluations. Teams that have already validated their workload and want throughput.
+*On which platforms:* IBM Quantum Network (QPU-seconds), D-Wave Leap QPU access (QPU-microseconds for direct annealing access — effectively the same model at a different time scale).
 
-*Watch for:* Idle time during calibration cycles that is still billed. Minimum reservation windows (often one hour or more) that inflate costs for short runs.
+*Best for:* Dense, back-to-back circuit execution — variational algorithms (VQE, QAOA) that require thousands of sequential evaluations. Workloads with known, predictable execution patterns.
 
-*Break-even risk:* Efficient for known, dense workloads. Expensive when utilization is low or calibration events interrupt execution.
+*Watch for:* Idle time during hardware calibration events that is still billed. Minimum reservation windows (often one hour minimum) that inflate costs for short runs.
+
+*Break-even risk:* Efficient for known, dense workloads; expensive when utilization is low.
+:::
+
+:::{tab-item} Hybrid Solver Jobs
+**Hybrid Solver Jobs — D-Wave Specific**
+
+D-Wave's Stride hybrid solver introduces a pricing model distinct from gate-model platforms: charge per solver job (a single optimization problem submission), measured in seconds of solver time. The job can encompass problems with millions of variables — far larger than direct QPU problems — because the classical-quantum decomposition is handled internally.
+
+*On which platforms:* D-Wave Leap (Stride hybrid solver) exclusively.
+
+*Best for:* Production optimization workloads — routing, scheduling, portfolio construction. Any enterprise problem formulated as QUBO with more than a few thousand variables.
+
+*Watch for:* Problem formulation overhead. Converting a business problem to QUBO requires domain expertise and (for new problem types) engineering time. This is not a QPU cost — it is a one-time modeling investment.
+
+*Break-even advantage:* The hybrid solver's per-job pricing is more predictable than shot-based models because the number of jobs in a production workflow is deterministic. BASF knows how many scheduling runs it does per day; they can model Leap costs as directly as classical software licensing.
 :::
 
 :::{tab-item} Reserved Capacity
-**Reserved Capacity (Committed Use)**
+**Reserved Capacity — Committed Use**
 
-The customer commits to a defined quantum resource — a specific processor, number of qubits, or shot volume — over a fixed term (typically monthly or annually) in exchange for a discounted rate.
+Commit to a defined quantum resource (specific processor, shot volume, or time allocation) over a fixed term (monthly or annual) in exchange for a discounted rate and priority access.
 
-*Favored by:* Production workloads with predictable volume. Organizations running quantum in a production pipeline where uptime and throughput guarantees matter. Enterprises with annual budget cycles.
+*On which platforms:* IBM Quantum Network membership, D-Wave Leap enterprise tier, Azure Quantum dedicated access.
 
-*Watch for:* Utilization thresholds — reserved capacity that goes unused is still paid for. Contractual lock-in to a hardware generation that may be superseded.
+*Best for:* Production workloads with predictable volume. Organizations where queue latency in a standard tier is operationally unacceptable. Enterprises with annual budget cycles who need cost predictability.
 
-*Break-even risk:* Lowest per-shot cost but highest fixed commitment. Requires confidence in volume projections.
-:::
+*Watch for:* Utilization thresholds — reserved capacity that goes unused is still paid for. Lock-in to a hardware generation that may be superseded. Require confident volume projections before committing.
 
-:::{tab-item} Free Tier
-**Free Tier (Research / Simulator Access)**
-
-Providers offer free access to quantum simulators and, in some cases, limited real-hardware shot allocations through academic or developer programs. IBM Quantum's free tier is the most widely used example.
-
-*Favored by:* Education, algorithm prototyping, skill-building. Any stage where you are validating *whether* a quantum approach is feasible before spending money.
-
-*Watch for:* Queue times on free tiers can be extremely long (hours to days for real hardware). Simulators do not expose noise and are therefore optimistic benchmarks.
-
-*Break-even risk:* Zero marginal cost but significant opportunity cost (queue time = researcher time). Not a production model.
+*Break-even risk:* Lowest per-unit cost but highest fixed commitment. Never commit before you have validated your workload's production volume on pay-per-shot or hybrid-solver pricing.
 :::
 
 ::::
 
 :::{admonition} Archetype Selection Heuristic
 :class: tip
-Match archetype to workload maturity: **Free Tier** for exploration, **Pay-Per-Shot** for validation, **Pay-Per-Minute** for optimization-intensive algorithms, **Reserved Capacity** for production. Never commit to reserved capacity until you have validated your workload on pay-per-shot.
+**Free tier** for exploration. **Pay-per-shot** for validation. **Hybrid solver jobs** for D-Wave optimization production. **Pay-per-minute** for dense gate-model workloads. **Reserved capacity** for committed production. Never move to reserved capacity before validating volume on a variable pricing model.
 :::
 
 ---
 
-## The True Unit of Quantum Cost
+### Physical-to-Logical Qubit Overhead: The Number That Ruins Budget Models
 
-::::{figure} ../images/ch03-true-cost-formula.png
-:label: fig-ch03-true-cost-formula
-:alt: Quantum true unit cost formula visualization showing the four cost drivers
-:width: 100%
-**Figure 3.4.** The true unit of quantum cost is not "per qubit" — it is cost per *useful result*, driven by four multiplicative factors.
-::::
-
-### The Restaurant Analogy: Stop Counting Pots
-
-You would not judge a restaurant's quality or pricing by counting how many pots are in the kitchen. A restaurant with 200 pots might produce terrible food at high cost, while a restaurant with 20 pots might produce extraordinary meals at half the price. The pots are inputs. What matters is the finished meal: quality, cost, and whether you actually wanted it.
-
-The phrase "cost per qubit" is the restaurant-pot fallacy applied to quantum computing. It counts the inputs (physical qubits) while ignoring everything that determines whether those inputs produce useful output: how many qubits are doing real computation versus error correction, how deep the circuit is, how noisy the hardware, how long you waited in queue.
-
-When a vendor quotes you a "per qubit" price, ask the same question you'd ask a restaurant: *what does the finished meal cost?* In quantum terms: **what is the cost per useful result?**
-
-:::{note} Plain Language
-**The analogy's limit:** Unlike restaurant pots, qubit counts *do* set a hard ceiling on what problems you can run. You can't cook a meal for 100 if your kitchen only has 2 burners. Similarly, a 10-qubit machine can't run an algorithm that requires 50 logical qubits. So qubit count matters — but as a *constraint*, not as a *price unit*.
-:::
-
-### The True Cost Formula — Five Factors, All Multiplicative
-
-The most dangerous phrase in quantum vendor conversations is "cost per qubit." It is meaningless as a unit of economic analysis because it omits everything that actually determines what you pay for useful computation.
-
-The correct unit is **cost per useful result**, which decomposes as follows:
-
-$$\text{Cost}_{\text{useful}} = \frac{S \cdot D \cdot \epsilon \cdot Q}{Y}$$
-
-Where:
-- **S** = Shot count required per experiment
-- **D** = Circuit depth factor (deeper circuits accumulate more error)
-- **ε** = Error rate per gate (expressed as a multiplier on required shots)
-- **Q** = Queue time cost (researcher/compute time waiting for hardware access)
-- **Y** = Yield — fraction of shots producing a usable result
-
-Each of these factors is **multiplicative**. A circuit that requires 1,000 shots, runs at depth 100, operates on hardware with 0.1% gate error rate, and sits in a 4-hour queue does not cost "1,000 shots worth of money." It costs a number that reflects the compounding of all four factors — and that number can be orders of magnitude larger than the headline shot price suggests.
-
-### Walking Through the Formula — Plain Language
-
-**S — Shot Count: Why one run is never one run**
-
-Quantum measurement is probabilistic. Unlike a classical computer that returns the same answer every time, a quantum computer returns a sample from a probability distribution. If you run a circuit once, you get one bitstring — one random draw. To know the *likely* answer, you need to run it hundreds or thousands of times and look at the distribution.
-
-Think of it like polling. One poll respondent tells you nothing. A thousand respondents gives you a confidence interval. Shot count is the sample size of your quantum experiment. For typical variational algorithms, you need 1,000 to 10,000 shots per experiment for statistically meaningful results.
-
-**D — Circuit Depth: The longer you run, the more noise accumulates**
-
-Circuit depth is the number of sequential gate operations in your circuit. Think of it like a game of telephone: each person in the chain introduces a small chance of error, and the chain's reliability degrades with every additional person. A quantum circuit of depth 10 is like a 10-person chain. A circuit of depth 100 is like a 100-person chain — errors compound at every step.
-
-On today's hardware, circuits deeper than roughly 50–100 gates often produce outputs dominated by noise rather than signal. This is the primary reason why many theoretically powerful quantum algorithms can't be run on current hardware: they require circuits far deeper than the hardware can reliably execute.
-
-**ε — Error Rate: The tax on every gate**
-
-Every gate operation in a quantum circuit has a small probability of introducing an error. Current two-qubit gate error rates on leading hardware range from 0.1% to 1%. That sounds small — until you run a circuit with 100 gates, at which point you're compounding errors across every single operation.
-
-The practical consequence: a high-error-rate machine requires more shots to extract the same signal from noisy results, driving up both S and the error mitigation overhead. When hardware vendors announce improved error rates, this is the number that most directly reduces your cost per useful result.
-
-**Q — Queue Time: The cost that hides in plain sight**
-
-Queue time is the wait between submitting your circuit and its execution on hardware. On free tiers, this can be hours to days. On paid tiers, it ranges from minutes to hours. The reason it's a cost isn't just inconvenience — it's that your researchers are waiting, and their time is billable.
-
-As Exercise 3.2 will demonstrate, queue cost frequently dominates the entire cost equation, dwarfing QPU pricing. A 3-hour queue at a \$150/hr researcher rate costs \$450 — before you've paid for a single shot.
-
-**Y — Yield: Not all shots are useful shots**
-
-Even after you've collected your shots, not all of them contribute to a usable result. Noise, decoherence, and measurement errors can corrupt a shot entirely. Yield is the fraction of shots that produce a bitstring you can trust. A 70% yield means 30% of your shots were wasted — effectively increasing the true cost per useful result by 43%.
-
-:::{note} Plain Language
-**The punchline:** These five factors multiply together. Improving any single factor helps, but the biggest gains come from attacking the dominant factor. In most near-term quantum workloads, that dominant factor is queue time — not QPU pricing. Securing reserved access that eliminates queue time will often do more for your unit economics than negotiating a 50% discount on per-shot rates.
-:::
-
-:::{prf:definition} Shot
-:label: def-shot
-A **shot** is a single execution of a quantum circuit, from initialization through measurement. The result of a shot is a classical bitstring (e.g., `011010`). Because quantum measurement is probabilistic, useful results require averaging across many shots — typically hundreds to thousands for variational algorithms.
-:::
-
-:::{prf:definition} Circuit Depth
-:label: def-circuit-depth
-**Circuit depth** is the number of sequential layers of quantum gates in a circuit. Deeper circuits run for longer on hardware, accumulating decoherence and gate errors. A circuit of depth 50 on today's hardware may produce outputs dominated by noise rather than signal.
-:::
-
-### Why Error Rate Is the Most Important Variable
-
-Error rate is the dominant variable in the true cost formula because quantum hardware is noisy. Every gate operation has a probability of introducing an error. Those errors compound with depth. At current error rates (roughly 0.1–1% per two-qubit gate on leading hardware), a circuit of depth 100 with 50 two-qubit gates will experience significant error accumulation.
-
-The business implication: as hardware improves and error rates fall, the true cost per useful result drops — even if the headline shot price stays constant. A model that locks in today's error rates will overestimate future costs. Build your model to accept error rate as a parameter, not a constant.
-
----
-
-## Physical-to-Logical Qubit Overhead
-
-::::{figure} ../images/ch03-physical-logical-overhead.png
+:::{figure} ../images/ch03-physical-logical-overhead.png
 :label: fig-ch03-physical-logical-overhead
-:alt: Physical to logical qubit overhead iceberg diagram showing 1000:1 ratio
+:alt: Iceberg diagram showing the physical-to-logical qubit ratio, with the headline qubit count (physical qubits) visible above the waterline and the much smaller logical qubit count available for computation visible below
 :width: 100%
-**Figure 3.5.** The physical-to-logical qubit iceberg. The headline qubit count a vendor advertises is the visible tip; the logical qubits available for your computation are the much smaller submerged portion.
-::::
+:align: center
 
-### The Skyscraper Scaffolding Analogy
-
-When you build a skyscraper, the scaffolding surrounding the structure can use more steel than the building itself. Workers, safety systems, support beams — all of it exists to make construction of the real thing possible. The scaffolding is essential. It is not the building.
-
-Physical qubits are the scaffolding. The overwhelming majority of them are doing error correction — holding the fragile quantum state together, detecting errors, compensating for noise. The **logical qubits** are the finished floors: the reliable, usable computation space you actually get to work with.
-
-When a quantum hardware vendor announces "1,000 qubits," that number describes physical qubits — individual quantum systems that can hold a superposition state. It does not describe the number of *reliable* qubits available for your computation.
-
-### The Headline Trap — Why Qubit Counts Are Almost Always Misleading
-
-Physical qubits are fragile. They decohere (lose their quantum state) and suffer gate errors. To perform reliable computation, multiple physical qubits must be combined into a single **logical qubit** through quantum error correction. The overhead for this conversion is enormous by current standards.
-
-Here is the arithmetic that every board presentation gets wrong: for fault-tolerant computation using the Surface Code (the most widely researched error correction approach), you currently need roughly **1,000 physical qubits to produce one reliable logical qubit**.
-
-Read that again. A "1,000-qubit processor" — the kind that generates press releases and stock price movements — gives you approximately **one** logical qubit for fault-tolerant computation.
-
-This is not a rounding error or a conservative estimate. It is the state of the technology. The vendors know it. The researchers know it. The gap between headline qubit count and usable logical qubits is the single largest source of overhyped quantum claims in the market.
-
-:::{note} Plain Language
-**For your next vendor meeting:** When a vendor says "our 1,000-qubit processor," your response should be: "How many logical qubits does that deliver for fault-tolerant computation at your current physical error rate?" If they don't have an immediate answer, you've found the edge of their honest knowledge.
+**The Physical-to-Logical Qubit Iceberg.** The headline qubit count vendors advertise is the visible tip. The logical qubits available for your computation are the submerged portion — currently 100 to 1,000 times smaller, depending on hardware quality and error correction overhead.
 :::
 
-| Error Correction Code | Physical Qubits per Logical Qubit | Notes |
-|---|---|---|
-| Surface Code (current hardware) | 1,000–10,000 | Most widely researched; requires very low physical error rates |
-| Surface Code (near-term target) | 100–1,000 | Requires ~0.1% physical gate error rate |
-| Color Code | 200–2,000 | More efficient in some geometries |
-| No correction (NISQ regime) | 1:1 | Noisy results; limited circuit depth |
+When a quantum hardware vendor announces "1,000 qubits," that number describes physical qubits — individual quantum systems capable of holding a superposition state. It does not describe the number of *reliable* qubits available for your computation.
 
-The table reveals the scale of the problem. A quantum computer advertised with 1,000 physical qubits, running with today's error correction overhead, may deliver fewer than ten logical qubits suitable for fault-tolerant computation.
+Physical qubits are fragile. They decohere and suffer gate errors. To perform reliable computation, multiple physical qubits must be combined into a single **logical qubit** through quantum error correction. The overhead for this conversion at current error rates: roughly **1,000 physical qubits per logical qubit** for the Surface Code.
+
+Read that again: a "1,000-qubit processor" provides approximately **one reliable logical qubit** for fault-tolerant computation.
+
+| Error Correction Code | Physical Qubits per Logical Qubit | Current Status |
+|---|---|---|
+| Surface Code (current hardware) | 1,000–10,000 | Most widely researched |
+| Surface Code (near-term target, ~0.1% error rate) | 100–1,000 | Roadmap target for late 2020s |
+| Color Code | 200–2,000 | Some geometries more efficient |
+| No correction (NISQ regime) | 1:1 | Noisy; limited circuit depth |
+| D-Wave annealing | N/A | No error correction needed for optimization; different paradigm |
+
+The last row is important. D-Wave's annealing paradigm does not use quantum error correction codes. The Advantage2's optimization is inherently probabilistic — the annealer finds good solutions rather than exact answers, which is appropriate for most real-world optimization problems. This sidesteps the physical-to-logical overhead problem entirely for the optimization problem class. It is one reason D-Wave deployments are production-viable today while fault-tolerant gate-model computation remains years away.
 
 :::{admonition} Board Briefing Rule
 :class: warning
-**Never quote the headline qubit count to your board.** The number to quote is the estimated number of *logical qubits* available for your specific workload, given the hardware's current physical error rate and the error correction overhead your algorithm requires. That number is almost always smaller — often by three orders of magnitude.
+Never quote the headline qubit count to your board for gate-model hardware. The number to quote is the estimated number of *logical qubits* available for your workload, given current error correction overhead. That number is usually smaller by two to three orders of magnitude. For D-Wave optimization problems, the relevant metric is not qubit count — it is problem variable count and solve time.
 :::
-
-The overhead ratio is not fixed. As physical error rates improve, the overhead shrinks. The trajectory of hardware progress is toward lower overhead, not higher. A budget model that assumes 1,000:1 overhead in 2024 should be parameterized to accept a lower ratio in 2026 or 2028 — without rebuilding the model.
 
 ---
 
-## TCO Framework for Hybrid Workloads
+### TCO Framework: The Six-Stage Pipeline
 
-::::{figure} ../images/ch03-tco-framework.png
+:::{figure} ../images/ch03-tco-framework.png
 :label: fig-ch03-tco-framework
-:alt: Quantum TCO framework pipeline showing six stages of hybrid workload cost
+:alt: Six-stage quantum TCO pipeline diagram showing data ingestion, pre-processing, quantum submission, error mitigation, post-processing, and validation as sequential stages with cost drivers and common mistakes labeled at each stage
 :width: 100%
-**Figure 3.6.** The quantum TCO pipeline. Every stage contributes to total cost; most organizations account for only the quantum submission stage when building budgets.
-::::
+:align: center
 
-Quantum computing is never used alone. Every real-world quantum application is a **hybrid workload** — a pipeline that begins and ends with classical computing, with a quantum step in the middle. Total cost of ownership must account for every stage of that pipeline.
+**The Quantum TCO Pipeline.** Every quantum workload — gate-model or annealing — is a hybrid pipeline. The quantum submission stage is typically the *minority* of total cost. Most organizations budget only for quantum submission and are surprised by the cost of the stages surrounding it.
+:::
 
-The six stages of the quantum TCO framework:
+Every real-world quantum application is a **hybrid workload** — a pipeline that begins and ends with classical computing, with a quantum step in the middle. Total cost of ownership must account for all six stages.
 
 ::::{grid} 2
 
 :::{grid-item-card} 1. Data Ingestion
-**What happens:** Classical data is collected, cleaned, and formatted for quantum processing. This may include encoding classical data as quantum states (a non-trivial algorithmic step).
+**Cost drivers:** Storage, network transfer, data encoding design.
 
-**Cost drivers:** Storage, network transfer, engineering time for encoding design.
-
-**Common mistake:** Ignoring encoding cost. Quantum amplitude encoding, for example, can require circuit depth proportional to the data size — eliminating quantum advantage before the algorithm even runs.
+**Watch for:** For gate-model workloads, quantum amplitude encoding can require circuit depth proportional to data size — eliminating quantum advantage before the algorithm runs. D-Wave's QUBO formulation sidesteps this; the classical problem description is the input.
 :::
 
 :::{grid-item-card} 2. Pre-Processing
-**What happens:** Classical preprocessing that reduces the problem size or reformulates it for quantum hardware. May include dimensionality reduction, problem decomposition, or compilation of the quantum circuit.
+**Cost drivers:** Classical compute time, circuit compilation, problem decomposition.
 
-**Cost drivers:** Classical compute time, software licensing, compiler optimization passes.
-
-**Common mistake:** Underestimating compilation overhead. A circuit designed for a 100-qubit abstract machine may require 10x more gates when compiled for a specific hardware topology.
+**Watch for:** Gate-model circuits compiled for abstract machines may require 10× more gates when mapped to a specific hardware topology. D-Wave problems require QUBO formulation — a one-time modeling investment but a real upfront cost.
 :::
 
 :::{grid-item-card} 3. Quantum Submission
-**What happens:** The compiled circuit is submitted to the quantum processor via cloud API. The processor executes the circuit for the specified number of shots and returns bitstring results.
+**Cost drivers:** Shot count × QPU rate + queue time (gate-model); hybrid solver job time (D-Wave).
 
-**Cost drivers:** Shot count × QPU rate + queue time. This is the stage most organizations focus on — and it is typically the *minority* of total TCO.
-
-**Common mistake:** Treating QPU cost as total cost. In early-stage workloads, engineering time around the QPU submission often exceeds the QPU cost itself.
+**Common mistake:** Treating this as total cost. It is often the minority of TCO. Engineering time around the submission stage frequently exceeds QPU costs in early-stage workloads.
 :::
 
 :::{grid-item-card} 4. Error Mitigation
-**What happens:** Post-processing techniques are applied to raw shot results to reduce the impact of noise. Zero-noise extrapolation, probabilistic error cancellation, and symmetry verification are common methods.
+**Cost drivers:** Additional shots for mitigation (2–10× base shot count), classical post-processing.
 
-**Cost drivers:** Additional shots required for error mitigation (often 2–10× the base shot count), classical compute for post-processing, algorithm design time.
-
-**Common mistake:** Budgeting only for base shots without error mitigation overhead. For near-term hardware, error mitigation routinely multiplies the effective shot count by a factor of 3–5.
+**D-Wave note:** Annealing-based optimization does not require error mitigation in the gate-model sense. The hybrid solver handles solution quality internally. This is a meaningful cost advantage for optimization workloads.
 :::
 
 :::{grid-item-card} 5. Post-Processing
-**What happens:** Quantum measurement results (bitstrings) are decoded back into classical outputs. Statistical analysis, result aggregation, and comparison to classical baselines.
+**Cost drivers:** Classical compute, statistical aggregation, result decoding.
 
-**Cost drivers:** Classical compute, storage, statistical validation time.
-
-**Common mistake:** Treating this as negligible. For optimization workloads, post-processing to extract the best solution from a distribution of results can be non-trivial.
+**Watch for:** For optimization workloads (D-Wave), post-processing is typically minimal — the solver returns a solution directly. For variational algorithms (gate-model), statistical analysis over thousands of shots is required.
 :::
 
 :::{grid-item-card} 6. Validation
-**What happens:** The quantum result is verified against a classical baseline or domain benchmark. For novel workloads, validation itself is a research problem.
+**Cost drivers:** Classical simulation for small-scale verification, domain expert time, comparison to baseline.
 
-**Cost drivers:** Classical simulation for small-scale validation (exponentially expensive as problem size grows), domain expert time for result interpretation.
-
-**Common mistake:** Skipping validation. Without a validated result, the quantum output has no business value regardless of its theoretical correctness.
+**Watch for:** Validation is often the most expensive stage in terms of researcher time. A quantum result that cannot be validated against a classical baseline has no business value regardless of theoretical correctness.
 :::
 
 ::::
 
 :::{admonition} TCO Rule of Thumb
 :class: note
-For early-stage quantum projects, budget the following allocation: 20% QPU time, 30% engineering and integration, 25% error mitigation and post-processing, 25% validation and iteration. Adjust as the workload matures and QPU costs decline.
+For early-stage quantum projects: 20% QPU/solver time, 30% engineering and integration, 25% error mitigation and post-processing (gate-model) or QUBO formulation (D-Wave), 25% validation and iteration. D-Wave optimization workloads typically have lower mitigation overhead and faster time-to-result, shifting the distribution toward validation and formulation.
 :::
 
 ---
 
-## Quantum Advantage, Utility, and Supremacy: Three Terms You Must Not Conflate
+### Quantum Advantage, Utility, and Supremacy: Three Terms You Must Not Conflate
 
-::::{figure} ../images/ch03-advantage-vs-utility.png
+:::{figure} ../images/ch03-advantage-vs-utility.png
 :label: fig-ch03-advantage-vs-utility
-:alt: Quantum advantage vs utility vs supremacy comparison diagram with three zones
+:alt: Three-zone spectrum diagram showing quantum supremacy (task-specific, not commercially useful), quantum utility (novel scientific results), and quantum advantage (commercially useful problem solved better than classical), with D-Wave optimization positioned at the advantage boundary for specific problem classes
 :width: 100%
-**Figure 3.7.** Advantage, utility, and supremacy occupy distinct positions on the quantum capability spectrum. Conflating them is the fastest way to lose credibility in a board presentation.
-::::
+:align: center
 
-Quantum computing vendors, press releases, and even peer-reviewed papers use the terms *advantage*, *utility*, and *supremacy* interchangeably. They are not interchangeable. Each describes a different threshold, a different kind of claim, and a different standard of evidence. Confusing them is the fastest route to a credibility-destroying board presentation.
-
-### The Rubik's Cube Analogy
-
-Imagine a competition with three levels of achievement:
-
-**Level 1 — Supremacy:** You are the fastest person alive at solving a Rubik's cube *blindfolded in one hand while reciting the alphabet backwards*. Nobody has ever been faster. Nobody else can even attempt it. This is an extraordinary technical feat. It is also a task nobody pays for.
-
-**Level 2 — Utility:** You are faster than most humans at solving a normal Rubik's cube in a normal way. People genuinely pay for fast Rubik's cube solvers in certain contexts. You're commercially relevant, even if dedicated machines can eventually do it faster.
-
-**Level 3 — Advantage:** You are faster than any human *and* any machine at *brain surgery*. You are better than the best available alternative at a task that matters profoundly and generates significant commercial value. This is the holy grail.
-
-Google's 2019 Sycamore experiment achieved Level 1. It was blindfolded Rubik's cube solving — technically extraordinary, practically useless. IBM's 2023 utility demonstration approached Level 2. Level 3 — quantum advantage on a commercially meaningful problem — remains largely unachieved as of this writing.
-
-:::{note} Plain Language
-**Why this matters for procurement:** Vendors almost never tell you which level they're claiming. "Our quantum computer achieved a breakthrough" could mean Level 1, Level 2, or (rarely) approaching Level 3. Your due diligence is to identify which level applies — because only Level 3 generates a positive ROI for a production investment.
+**Advantage, Utility, Supremacy — Three Different Finish Lines.** D-Wave's production deployments (BASF, Volkswagen, Mastercard) are argued as demonstrated quantum advantage for specific optimization workloads. Gate-model hardware is generally at the utility stage. Supremacy is a benchmark milestone, not a commercial claim.
 :::
 
-:::{prf:definition} Quantum Supremacy
+These three terms are used interchangeably in press releases and incorrectly in most board presentations. They are not interchangeable.
+
+```{prf:definition} Quantum Supremacy
 :label: def-quantum-supremacy
-**Quantum supremacy** (sometimes called *quantum advantage over classical simulation*) is achieved when a quantum computer performs a specific computation faster than any classical computer could, even in principle, within a practical timeframe. The canonical claim is Google's 2019 Sycamore experiment. Critically: the task in a supremacy demonstration is typically **not useful** — it is chosen precisely because it is hard for classical computers, not because anyone wants the answer.
-:::
+A quantum computer performs a specific computation faster than any classical computer within a practical timeframe. The task is typically chosen *because* it is hard to simulate classically — not because anyone wants the answer commercially. Google's 2019 Sycamore experiment is the canonical example.
+```
 
-:::{prf:definition} Quantum Advantage
+```{prf:definition} Quantum Advantage
 :label: def-quantum-advantage
-**Quantum advantage** describes the condition where a quantum computer solves a *practically useful* problem faster, cheaper, or more accurately than the best available classical alternative. This is the threshold that matters for business. As of the time of writing, demonstrated quantum advantage for commercially relevant problems remains limited and contested.
-:::
+A quantum computer solves a *practically useful* problem faster, cheaper, or more accurately than the best available classical alternative. This is the threshold that matters for business investment decisions.
+```
 
-:::{prf:definition} Quantum Utility
+```{prf:definition} Quantum Utility
 :label: def-quantum-utility
-**Quantum utility** is a lower bar introduced by IBM in 2023: a quantum computer produces results that are difficult or impossible to verify by classical simulation at scale, even if it is not yet faster than the best classical algorithm. A quantum computer in the utility regime is *useful for research* — it explores regimes inaccessible to classical computers — without necessarily being the best tool for any production task.
-:::
+A quantum computer produces results that are difficult or impossible to verify by classical simulation, contributing novel scientific insight even if not definitively faster than all classical methods. IBM's 2023 *Nature* paper demonstrated this on a 127-qubit system simulating a quantum material.
+```
 
-The practical consequence of these distinctions:
+**Where D-Wave fits:** D-Wave's production deployments — BASF scheduling, Volkswagen paint-shop sequencing — are argued as demonstrated quantum *advantage* for specific optimization problem classes: the hybrid solver produces better solutions faster than the classical alternatives previously used. This claim is contested in the academic literature (classical solvers have improved significantly) but the production metrics are real: BASF reports scheduling computation reduced from hours to seconds. Whether that is "quantum advantage" in a strict computational complexity sense is an academic debate; whether it delivers operational ROI is not.
 
-| Claim Type | Vendor Usually Means | What to Actually Verify |
+| Claim Type | Vendor Usually Means | What to Verify |
 |---|---|---|
-| "Quantum supremacy" | We ran a benchmark faster than classical | Was the benchmark useful? Is the comparison fair? |
-| "Quantum advantage" | We solved a real problem better | What is the best classical alternative? Over what problem size? |
-| "Quantum utility" | Our machine produces novel results | Is this relevant to your workload? Does it translate to production value? |
-
-:::{admonition} Due-Diligence Checklist
-:class: tip
-When a vendor claims quantum advantage for your workload: (1) Ask for the classical baseline algorithm and its performance. (2) Ask at what problem size the advantage emerges. (3) Ask whether the advantage is in time, cost, accuracy, or all three. (4) Ask whether the advantage survives error correction overhead. Four questions. Most vendor claims fail at least one.
-:::
+| "Quantum supremacy" | We beat a classical computer at a benchmark | Was the benchmark useful? Is the comparison fair? |
+| "Quantum advantage" | We solved a real problem better | What classical baseline? At what problem size? |
+| "Quantum utility" | Our machine produces novel results | Is this relevant to your workload? |
+| "Production deployment" (D-Wave) | We are running in enterprise operations | What are the operational metrics? What classical alternative was replaced? |
 
 ---
 
-## The Evergreen Break-Even Template
+### The Evergreen Break-Even Template
 
-::::{figure} ../images/ch03-break-even-template.png
+:::{figure} ../images/ch03-break-even-template.png
 :label: fig-ch03-break-even-template
-:alt: Quantum break-even analysis template showing cost curve intersection
+:alt: Break-even analysis chart showing the intersection of quantum and classical cost curves as problem size increases, with D-Wave and gate-model curves plotted separately against the classical baseline, and the break-even threshold zones marked
 :width: 100%
-**Figure 3.8.** The break-even template. The intersection point of the classical and quantum cost curves defines the problem scale at which quantum becomes economically rational. Build your model so the pricing parameters live in a single configuration block.
-::::
+:align: center
 
-A break-even analysis for quantum computing must survive vendor changes, hardware generations, and pricing revisions. The template below achieves this by separating **workload parameters** (stable, determined by your problem) from **vendor parameters** (volatile, determined by the market).
+**The Break-Even Template.** Separate workload parameters (stable, determined by your problem) from vendor parameters (volatile, updated annually). The intersection of the quantum and classical cost curves defines when quantum becomes economically rational. D-Wave optimization workloads often reach break-even at smaller problem sizes than gate-model workloads because the hybrid solver is production-ready today.
+:::
 
-### Template Structure
+A break-even analysis for quantum must survive vendor changes and hardware generations. The template below achieves this by separating **workload parameters** (stable — your problem defines these) from **vendor parameters** (volatile — update annually).
 
 ```python
 # ============================================================
@@ -565,649 +528,412 @@ A break-even analysis for quantum computing must survive vendor changes, hardwar
 # ============================================================
 
 # --- WORKLOAD PARAMETERS (stable — your problem defines these) ---
-PROBLEM_SIZE = 100          # e.g., number of assets in portfolio
-SHOTS_REQUIRED = 10_000     # shots per experiment for acceptable statistics
-CIRCUIT_DEPTH = 50          # gate layers in your compiled circuit
-EXPERIMENTS_PER_RUN = 20    # variational iterations or problem instances
-CLASSICAL_COST_PER_RUN = 0.85  # USD — best classical alternative (benchmark this!)
+PROBLEM_SIZE = 100             # e.g., number of variables, assets, nodes
+SHOTS_REQUIRED = 10_000        # gate-model only; D-Wave: set to 1 (one job)
+CIRCUIT_DEPTH = 50             # gate-model only; D-Wave: N/A
+EXPERIMENTS_PER_RUN = 20       # optimization iterations or problem instances
+CLASSICAL_COST_PER_RUN = 0.85  # USD — BEST classical alternative, not legacy
 
-# --- VENDOR PARAMETERS (volatile — update this block annually) ---
-VENDOR_COST_PER_SHOT = 0.00001      # USD per shot — check vendor pricing page
-GATE_ERROR_RATE = 0.005             # fractional error per two-qubit gate
-QUEUE_OVERHEAD_HOURS = 2.0          # average queue wait on your tier
-RESEARCHER_HOURLY_COST = 150        # USD — your team's fully-loaded hourly rate
-ERROR_MITIGATION_MULTIPLIER = 3.0   # shots multiplier for error mitigation
+# --- VENDOR PARAMETERS — Gate-Model (update annually) ---
+QPU_COST_PER_SHOT = 0.00001        # USD; from vendor pricing page
+GATE_ERROR_RATE = 0.005            # fractional error per two-qubit gate
+QUEUE_OVERHEAD_HOURS = 2.0         # average queue wait on your tier
+RESEARCHER_HOURLY_COST = 150       # USD — fully-loaded team rate
+ERROR_MITIGATION_MULTIPLIER = 3.0  # shots multiplier for error mitigation
 
-# --- DERIVED CALCULATIONS (do not modify) ---
+# --- VENDOR PARAMETERS — D-Wave Hybrid Solver (update annually) ---
+DWAVE_SOLVER_COST_PER_SECOND = 0.00015   # USD; from D-Wave Leap pricing
+DWAVE_SOLVE_TIME_SECONDS = 5.0           # typical hybrid solver job time
+DWAVE_QUEUE_OVERHEAD_HOURS = 0.05        # minimal on hybrid solver tier
+
+# --- DERIVED: Gate-Model ---
 effective_shots = SHOTS_REQUIRED * ERROR_MITIGATION_MULTIPLIER
-qpu_cost = effective_shots * EXPERIMENTS_PER_RUN * VENDOR_COST_PER_SHOT
-queue_cost = QUEUE_OVERHEAD_HOURS * RESEARCHER_HOURLY_COST
-total_quantum_cost = qpu_cost + queue_cost
+qpu_cost_gm = effective_shots * EXPERIMENTS_PER_RUN * QPU_COST_PER_SHOT
+queue_cost_gm = QUEUE_OVERHEAD_HOURS * RESEARCHER_HOURLY_COST
+total_gm = qpu_cost_gm + queue_cost_gm
 
+# --- DERIVED: D-Wave ---
+solver_cost_dw = DWAVE_SOLVE_TIME_SECONDS * DWAVE_SOLVER_COST_PER_SECOND * EXPERIMENTS_PER_RUN
+queue_cost_dw = DWAVE_QUEUE_OVERHEAD_HOURS * RESEARCHER_HOURLY_COST
+total_dw = solver_cost_dw + queue_cost_dw
+
+# --- Classical Baseline ---
 classical_total = CLASSICAL_COST_PER_RUN * EXPERIMENTS_PER_RUN
 
-break_even_ratio = total_quantum_cost / classical_total
-
-print(f"Quantum cost per run: ${total_quantum_cost:.4f}")
-print(f"Classical cost per run: ${classical_total:.4f}")
-print(f"Quantum/Classical ratio: {break_even_ratio:.2f}x")
-print(f"Status: {'QUANTUM ADVANTAGE' if break_even_ratio < 1 else 'CLASSICAL PREFERRED'}")
+print(f"Gate-model quantum: ${total_gm:.4f} ({total_gm/classical_total:.2f}x classical)")
+print(f"D-Wave hybrid:      ${total_dw:.4f} ({total_dw/classical_total:.2f}x classical)")
+print(f"Classical baseline: ${classical_total:.4f}")
 ```
 
-The key design principle: every volatile assumption lives in the **VENDOR PARAMETERS** block. When a provider changes its pricing, when hardware improves error rates, or when a new vendor enters the market, you update eight lines — not the entire model.
-
-:::{admonition} Break-Even Template Golden Rule
+:::{admonition} The Most Important Parameter
 :class: important
-The classical baseline cost (`CLASSICAL_COST_PER_RUN`) is the most important parameter in the model — and the one most organizations get wrong. It must represent the **best available classical algorithm**, not legacy infrastructure. If you benchmark quantum against a poorly optimized classical approach, your break-even analysis is theater.
+`CLASSICAL_COST_PER_RUN` is the most important number in the model and the one most organizations get wrong. It must represent the **best available classical algorithm** — not legacy infrastructure, not the solver you've used for ten years, not what you currently pay. If you benchmark quantum against a poorly optimized classical approach, your break-even analysis is theater.
 :::
 
 ---
 
-## Flagship Case Study: A Mid-Cap Pharma CFO Builds the First Quantum Budget Line
+## Part III: Bringing It Together
 
-::::{figure} ../images/ch03-pharma-cfo-case.png
-:label: fig-ch03-pharma-cfo-case
-:alt: Pharma CFO quantum budget case study infographic
+### Flagship Case Study: Maria Gutierrez Builds the Model
+
+:::{figure} ../images/ch03-pharma-cfo-case.png
+:label: fig-ch03-logistics-cfo-case
+:alt: Case study infographic showing logistics CFO Maria Gutierrez building a D-Wave break-even model for last-mile delivery routing optimization, with the model's key parameters and outcomes illustrated
 :width: 100%
-**Figure 3.9.** The mid-cap pharma quantum budget case. The CFO's key insight: structure the model so the vendor layer is a swappable parameter, not a structural assumption.
-::::
+:align: center
+
+**Case Study: The Logistics CFO's Break-Even Model.** Maria Gutierrez chose a fourth option when the quantum proposal landed: build a model before deciding. The model revealed that D-Wave's hybrid solver was already cost-competitive for her routing workload — but only if she could quantify the classical baseline accurately.
+:::
 
 ### Situation
 
-The CFO of a \$4B specialty pharmaceutical company — call her Dr. Chen — received a proposal from a quantum computing vendor in late 2023. The proposal promised "quantum-accelerated molecular simulation" that could reduce drug discovery cycle time by 30%. The ask was a \$2.1M pilot contract, with a \$12M three-year committed-use agreement as the follow-on.
-
-Dr. Chen had no quantum computing expertise on staff. Her CTO was enthusiastic. Her head of computational chemistry was skeptical. Her board was asking whether the company was "keeping up with quantum."
+Maria Gutierrez, CFO of a South Florida logistics firm, received the memo from the opening scene: a \$180,000 D-Wave pilot to optimize last-mile routing across the Miami–Fort Lauderdale–Boca Raton corridor. Classical routing software was taking 4–6 hours overnight to produce daily route plans. D-Wave's hybrid solver was producing comparable results in under 90 seconds.
 
 ### Quantum Angle
 
-The vendor's target workload was variational quantum eigensolver (VQE) for small-molecule simulation — a genuinely quantum-relevant application. The promise of quantum for molecular simulation is well-grounded in theory; the question is always whether the available hardware is mature enough to deliver practical advantage over classical density functional theory (DFT) or coupled-cluster methods.
+The problem — vehicle routing with time windows, driver constraints, and dynamic traffic inputs — is a classical QUBO workload. It does not require gate-model quantum hardware. It does not require fault tolerance. It requires a solver that handles large combinatorial optimization problems faster than the classical alternatives — which D-Wave's Stride hybrid solver demonstrably does at this problem scale.
+
+### The Model Maria's Team Built
+
+**Classical baseline (correctly computed):** The firm was paying \$0.22 per routing run using their existing solver — but the operations team's time waiting for the 4–6 hour overnight computation was the real cost. When fully loaded (scheduler time + delayed decision-making), the true cost per routing cycle was \$8.40 — not \$0.22.
+
+This changed the break-even calculation fundamentally.
+
+**D-Wave hybrid solver cost:** At D-Wave Leap enterprise pricing, the team estimated \$0.08–\$0.14 per routing job (90-second solve time × solver rate). No error mitigation overhead. No shot count. One job submission, one result.
+
+**Quantum-to-classical ratio:** \$0.11 quantum / \$8.40 classical = **0.013×** — quantum was 77× cheaper per run when correctly accounting for the full classical cost.
+
+**The model output:** At current problem size (200 vehicles, 1,800 delivery points), D-Wave's hybrid solver was already cost-competitive and operationally superior. The \$180,000 pilot would pay back in under four months at the firm's routing volume.
 
 ### Decisions Made
 
-Dr. Chen hired a quantum computing consultant for four weeks — not to evaluate the science, but to build a vendor-agnostic cost model. The deliverables she requested:
+Maria approved the pilot — but structured it as a 90-day proof of value with three specific outcome gates:
+1. Solve time under 3 minutes for the production problem size ✓
+2. Route quality (total distance) within 5% of classical overnight solver ✓
+3. Integration with the firm's TMS (Transportation Management System) demonstrated ✓
 
-1. **A TCO spreadsheet** structured around the six-stage framework, with all vendor-specific parameters isolated in a single tab labeled "Vendor Assumptions."
-2. **A break-even analysis** benchmarked against the company's existing DFT pipeline (not generic classical compute).
-3. **A milestone framework** defining what hardware capability (expressed in logical qubits and error rates) would need to exist before the committed-use agreement made economic sense.
+The committed production contract followed after all three gates cleared.
 
-The outcome of the four-week engagement: the pilot was approved at a reduced budget of \$400,000 — reframed as a "quantum readiness" investment rather than a production deployment. The \$12M committed-use agreement was declined. The decision to decline was based on the break-even model showing that the workload required approximately 50 error-corrected logical qubits to demonstrate advantage over the classical baseline — a threshold no available hardware met.
+**What she got right:**
+- She computed the classical baseline as a *fully loaded business cost*, not just software licensing
+- She isolated the quantum submission cost from the engineering integration cost
+- She structured the pilot with measurable outcome gates before committing to production
 
-**What she funded:** A proof-of-concept using the pay-per-shot tier to validate that the company's chemists could formulate their molecules as quantum circuits. A six-month internal capability-building program. A vendor-monitoring cadence (quarterly pricing and hardware review).
-
-**What she cut:** The committed-use contract. A \$300,000 line item for "quantum-ready infrastructure upgrades" that the vendor had included in the proposal (the consultants identified this as unnecessary for cloud-based access). A headcount request for a "quantum applications engineer" that predated a validated use case.
-
-**What she got wrong:** She underestimated queue time as a cost. Her team's first three months of the pilot were dominated by hardware queue waits averaging 18 hours, which consumed researcher time and compressed the timeline for producing results. In retrospect, the TCO model should have included a queue-time sensitivity analysis as a mandatory table, not a footnote.
+**What she got wrong:**
+- She underestimated the QUBO formulation effort for the TMS integration. Converting the firm's routing problem to D-Wave's Ocean SDK format took a D-Wave engineer 3 weeks — a cost not included in the original proposal. The pilot still made economic sense, but the model should have included a formulation budget.
 
 ### Measured Outcome
 
-At the end of the \$400,000 pilot, Dr. Chen's team had:
-- Validated two molecular simulation circuits on quantum hardware
-- Confirmed that the company's target molecules required more logical qubits than any available hardware could provide
-- Built a reusable cost model that her team could update when hardware improved
-- Trained three computational chemists in quantum circuit formulation
-- Established a quarterly review cadence tied to specific hardware capability milestones
-
-The quantum spend was not wasted — it bought readiness. The \$11.6M that was *not* spent on the committed-use contract was the real return on the four-week consulting engagement.
+At the close of the pilot: routing computation reduced from 4–6 hours overnight to under 90 seconds. Dynamic re-routing (previously impossible with overnight batch processing) became operationally feasible. The firm activated D-Wave Leap's enterprise tier and is now running production routing on the hybrid solver.
 
 ### Open Question
 
-Dr. Chen's model projects that her target workload becomes economically rational when hardware achieves 50 fault-tolerant logical qubits with error rates below 0.01%. Multiple vendors have roadmaps suggesting this milestone could be reached within this decade. The open question: when that threshold is crossed, will the company's chemists be ready to exploit it — or will they be starting from scratch?
+The pilot optimized routing across a fixed geography. The next question for Maria's team: can the same QUBO approach handle *network design* optimization — not just routing on a fixed network, but simultaneously optimizing the delivery network topology, depot locations, and vehicle assignments? The problem scale grows significantly; preliminary conversations with D-Wave's Boca Raton engineering team (co-located with FAU) suggest it is feasible but would require a dedicated formulation engagement.
 
 ---
 
-## Industry Snapshots
+### Industry Snapshots
 
-### Snapshot 1: The Hyperscaler's Internal TCO Framework
+**The Hyperscaler's Internal Framework.** A major cloud provider's quantum product team built a TCO framework for internal pricing that the external sales team was explicitly *not* allowed to use in customer conversations. The reason: the framework made clear that for workloads below a certain problem size, the honest recommendation was to use the provider's classical HPC service instead. The framework's key insight was a "quantum premium curve" — the ratio of quantum TCO to classical TCO as a function of problem size. Below a threshold (the "breakover point"), quantum was always more expensive. Above it, quantum could be competitive. The breakover point shifted left (toward smaller problem sizes) as hardware improved — requiring the framework to be re-run every hardware generation.
 
-A major cloud provider's internal quantum product team, preparing to price a new hardware generation, built a TCO framework that the external sales team was explicitly *not* allowed to use in customer conversations. The reason: the framework made clear that for workloads under a certain problem size, the honest recommendation was to use the provider's classical high-performance computing (HPC) service instead.
-
-The framework's key insight was what the team called the "quantum premium curve" — the ratio of quantum TCO to classical TCO, plotted against problem size. Below a threshold they called the "breakover point," quantum was always more expensive. Above it, quantum could be competitive. The breakover point shifted left (toward smaller problem sizes) as hardware improved — which meant the framework had to be re-run every hardware generation.
-
-The business lesson: cloud providers know the breakover exists. The best ones build it into their internal planning. You should build it into yours.
-
-### Snapshot 2: The Bank That Skipped the Early Contract
-
-A large retail bank's innovation team was presented with an early quantum contract from a hardware vendor in 2021. The application was portfolio optimization — a genuinely quantum-relevant domain. The contract was structured as a \$3.5M two-year research partnership with the vendor.
-
-The bank's decision committee declined on a single basis: the TCO model, built by the quant team, showed that the optimization problem sizes that mattered to the bank required hardware that did not yet exist. Not "would cost too much" — did not exist. The logical qubit count required was two orders of magnitude beyond what any hardware offered.
-
-The bank instead allocated \$200,000 to an internal quantum literacy program and established a vendor-agnostic monitoring process. In 2024, the same quant team ran the analysis again with updated hardware parameters. The breakover point had moved significantly. The team is now in active evaluation — but with two years of internal expertise that the teams who signed early contracts spent on vendor-specific integrations that had to be rebuilt.
-
-The lesson: knowing *when not to invest* is itself a quantum strategy. The cheapest quantum path is the one that does not commit before the hardware is ready.
+**The Bank That Skipped the Early Contract.** A large retail bank's innovation team was presented with a gate-model quantum contract in 2021 for portfolio optimization. The contract was structured as a \$3.5M two-year research partnership. The bank's quant team declined on a single basis: the TCO model showed the optimization problem sizes that mattered required logical qubit counts two orders of magnitude beyond any available hardware. The bank allocated \$200,000 to internal quantum literacy instead. In 2025, the same team re-ran the analysis with updated hardware parameters; the breakover point had moved significantly. They are now in active evaluation — with two years of internal expertise that the teams who signed early contracts spent on vendor-specific integrations requiring complete rebuilds.
 
 ---
 
-## Productive-Struggle Problem: Build a Break-Even for Portfolio Optimization
+## Productive-Struggle Problem
 
-::::{dropdown} Problem Statement (click to expand)
+```{admonition} Productive Struggle: Build the Break-Even
+:class: important
 
-**Scenario:** Your firm runs a classical mean-variance portfolio optimization on a universe of 150 assets. The current classical solution uses a commercial solver that costs \$0.12 per optimization run and returns a solution in 45 seconds. You are evaluating whether quantum optimization (specifically, a QAOA-based approach) could reduce cost or improve solution quality at this scale.
+**Scenario:** You are a strategy analyst at a logistics firm evaluating D-Wave Leap for vehicle routing optimization. Your current classical solver costs \$2.10 per routing run (fully loaded) and takes 3 hours. D-Wave's hybrid solver is estimated at \$0.09 per job based on your problem size.
 
-**Your Task:** Build a two-page break-even analysis following these constraints:
+**Build a two-page break-even analysis:**
+1. All pricing in a single parameter block — updating vendor pricing should require changing one section only
+2. Apply the six-stage TCO framework — account for all stages, not just solver cost
+3. Include a sensitivity table: what happens if (a) classical solver improves by 50%, (b) QUBO formulation costs double, (c) D-Wave pricing doubles
+4. State your break-even condition: at what routing volume per month does D-Wave become cost-positive?
+5. State what would change your recommendation — what hardware or pricing event would reverse the decision?
 
-1. **All pricing lives in a single parameter block** — structure your spreadsheet or code so that updating vendor pricing requires changing exactly one section.
-2. **Use the TCO six-stage framework** — account for all six stages, not just QPU cost.
-3. **Include a sensitivity table** showing cost per useful result if:
-   - Error rates drop by 10×
-   - Required shots drop by half
-   - Queue time doubles
-4. **State your break-even condition** explicitly: what hardware capability (logical qubits, error rate) must exist for quantum to match classical cost?
-5. **Use current pricing from the Market Snapshot appendix** — but write your model so any reader can substitute next year's prices in under 30 seconds.
-
-**Deliverable:** A two-page document (one page model, one page narrative) structured as a memo to your CFO.
-
-::::
-
-::::{dropdown} Solution Framework (click to reveal after attempting)
-
-**Break-Even Parameter Setup**
-
-```
-WORKLOAD PARAMETERS (do not change annually)
-- Problem size: 150 assets
-- Classical cost per run: \$0.12
-- Classical solution time: 45 seconds
-- Required optimization quality: Sharpe ratio ≥ classical baseline
-
-QUANTUM PARAMETERS (update annually — single block)
-- Shots per experiment: 8,000
-- Circuit depth (QAOA, p=2): ~300 gates
-- Two-qubit gate error rate: [from Market Snapshot]
-- QPU cost per shot: [from Market Snapshot]
-- Error mitigation multiplier: 3×
-- Queue time (hours): [from current tier]
-- Researcher rate ($/hr): your value
-
-DERIVED: Cost per useful result
-= (8,000 shots × 3× mitigation) × QPU_rate
-  + queue_hours × researcher_rate
+**Deliverable:** Two-page memo to your CFO, structured as: What we analyzed → What the model shows → Key assumptions → Recommendation → Monitoring triggers.
 ```
 
-**Sensitivity Table**
+::::{dropdown} Discussion Guidance
 
-| Scenario | Shots | Error Rate | Queue (hr) | Quantum Cost | vs Classical |
-|---|---|---|---|---|---|
-| Baseline | 8,000 | Current | 2h | Calculated | Ratio |
-| Error ÷10 | 8,000 | Current/10 | 2h | Lower | Better |
-| Shots ÷2 | 4,000 | Current | 2h | Lower | Better |
-| Queue ×2 | 8,000 | Current | 4h | Higher | Worse |
+**The formulation cost trap.** Most break-even models for D-Wave undercount the QUBO formulation cost — the engineering time to express the business problem in the format the solver accepts. For a routing problem that has never been run on D-Wave, formulation typically takes one to three weeks of a domain expert's time. This is a fixed cost (not recurring), but at \$150/hr it can represent \$12,000–\$24,000 upfront. Include it as an amortized cost across the expected production lifetime.
 
-**Break-Even Condition**
-Quantum matches classical when:
-`QPU_rate × 24,000 + queue_cost = 0.12`
+**The classical baseline trap.** The single most common error in quantum break-even models is benchmarking quantum against an unoptimized classical system. If your classical solver is poorly tuned, quantum will look attractive even when it shouldn't be. The classical baseline must represent the best available classical alternative — including modern heuristics, commercial solvers, and cloud HPC options.
 
-Solve for QPU_rate: this gives you the price at which quantum becomes competitive *today*, with today's error rates and shot requirements. Then compute the logical qubit count needed: 150-asset QAOA at p=2 requires approximately 150+ qubits. Compare to hardware roadmaps.
-
-**CFO Memo Guidance**
-- Lead with the break-even condition, not the current cost comparison
-- State the hardware milestone required (qubits + error rate)
-- Give a timeline confidence range, not a point estimate
-- Recommend a specific monitoring trigger (re-run this analysis when hardware reaches X)
-
+**The monitoring trigger.** A well-built break-even model includes a monitoring trigger: a specific hardware or pricing event that would change the recommendation. For gate-model optimization, the trigger might be "when logical qubit count exceeds X." For D-Wave, it might be "when hybrid solver pricing drops below Y per second." Build the trigger into the model, not just the memo.
 ::::
 
 ---
 
 ## Module-Level Outcomes
 
-By completing this chapter and its labs, you should be able to:
+By the end of this chapter, you should be able to:
 
-1. **Compare pricing-model archetypes** and match each to workload characteristics — distinguishing pay-per-shot, pay-per-minute, reserved-capacity, and free-tier models, and explaining why archetype choice depends on workload maturity and volume predictability.
+::::{grid} 1 1 2 2
+:::{grid-item-card} Outcome 1
+:class-header: bg-primary text-white
+**Platform Selection**
 
-2. **Calculate a break-even** using a template that survives provider change — building a model with a single, updatable vendor-parameter block and validating it against a classical baseline benchmark.
+Compare the five QaaS platforms (D-Wave Leap, IBM Quantum, AWS Braket, Azure Quantum, Google Quantum AI) and select the appropriate platform for a given workload, explaining the rationale in terms of problem type, pricing model, and enterprise integration requirements.
+:::
 
-3. **Decompose true computation cost** into its four drivers — shot count, circuit depth, error rate, and queue time — and explain how each factor compounds in the cost-per-useful-result formula.
+:::{grid-item-card} Outcome 2
+:class-header: bg-primary text-white
+**Pricing Archetypes**
 
-4. **Assess error-correction overhead** on cost-per-useful-qubit — explaining the physical-to-logical qubit conversion, current overhead ratios, and how overhead reduction changes break-even economics.
+Distinguish the four pricing archetypes — pay-per-shot, pay-per-minute, hybrid solver jobs, and reserved capacity — and match each to workload maturity and volume characteristics.
+:::
 
-5. **Distinguish advantage, utility, and supremacy** and use each correctly in vendor evaluation, board presentations, and investment decisions.
+:::{grid-item-card} Outcome 3
+:class-header: bg-primary text-white
+**True Unit Cost**
+
+Decompose quantum cost per useful result into its five multiplicative factors (shot count, circuit depth, error rate, queue time, yield) and explain how D-Wave's hybrid solver changes this calculation for optimization workloads.
+:::
+
+:::{grid-item-card} Outcome 4
+:class-header: bg-primary text-white
+**TCO Framework**
+
+Apply the six-stage TCO framework to a quantum workload, identifying all cost drivers — not just QPU or solver time — and building a model with isolated vendor parameters that can be updated without rebuilding the analysis.
+:::
+
+:::{grid-item-card} Outcome 5
+:class-header: bg-warning text-white
+**Break-Even Analysis**
+
+Build a break-even model distinguishing gate-model and D-Wave annealing cost structures, benchmark against the best classical alternative (not legacy systems), and articulate the monitoring triggers that would change the investment recommendation.
+:::
+::::
 
 ---
 
-## Lab 3 (Regular): Running Your First Quantum Circuit and Reading the Bill
+## Lab 3A (Regular): Running Your First Quantum Circuit and Reading the Bill
 
-**Duration:** ~45 minutes  
-**Tool:** IBM Quantum Composer (free tier at quantum.ibm.com)  
-**Deliverable:** One-page memo to a CFO using the TCO framework
+**Duration:** ~45 minutes | **Tool:** IBM Quantum (quantum.ibm.com) — free tier  
+**Deliverable:** One-page TCO memo
 
 ### Instructions
 
-**Part 1: Build Your Circuit (~10 minutes)**
+**Part 1: Build and Run the Circuit**
 
 1. Create a free IBM Quantum account at quantum.ibm.com
-2. Open the Quantum Composer (visual circuit editor)
-3. Build a 3-qubit circuit with the following structure:
-   - Apply a Hadamard gate to qubit 0
-   - Apply a CNOT gate with qubit 0 as control, qubit 1 as target
-   - Apply a CNOT gate with qubit 1 as control, qubit 2 as target
+2. In Quantum Composer, build a 3-qubit GHZ state circuit:
+   - Hadamard gate on qubit 0
+   - CNOT (control: qubit 0, target: qubit 1)
+   - CNOT (control: qubit 1, target: qubit 2)
    - Measure all three qubits
-4. This creates a 3-qubit GHZ state — a maximally entangled state that should produce only `000` and `111` outcomes with equal probability.
+3. Run on **ibmq_qasm_simulator** (1,024 shots). Record results.
+4. Run the same circuit on a **real backend** (any available). Record queue time.
 
-**Part 2: Run on Simulator (~5 minutes)**
-
-1. Select the **ibmq_qasm_simulator** backend
-2. Set shots = 1,024
-3. Run the circuit. Record:
-   - Result distribution (what fraction of shots returned `000`? `111`? Other states?)
-   - Execution time
-   - Cost (should be zero on free tier simulator)
-4. An ideal GHZ state should show approximately 50% `000` and 50% `111`. Note any deviation.
-
-**Part 3: Submit to Real Hardware (~15 minutes including queue)**
-
-1. Select a real quantum backend (any available 5+ qubit device)
-2. Use the same circuit and shot count
-3. Submit and **record the queue time** — the time from submission to execution start
-4. Once complete, record:
-   - Result distribution (compare to simulator)
-   - Which states appeared that shouldn't (these are noise artifacts)
-   - Total elapsed time from submission to result
-
-**Part 4: Fill the Unit Economics Worksheet**
+**Part 2: Fill the Cost Worksheet**
 
 | Metric | Simulator | Real Hardware |
 |---|---|---|
 | Shots submitted | 1,024 | 1,024 |
-| Circuit depth | ___ | ___ |
-| Queue time | ~0 sec | ___ min |
+| Queue time | ~0 sec | Record yours |
 | Cost (USD) | \$0 | \$0 (free tier) |
-| % correct results (000 or 111) | ~100% | ___% |
-| Effective yield | 1.0 | ___ |
+| % correct results (`000` or `111`) | ~100% | Record yours |
 | Cost per useful result | \$0 | Calculate |
 
-**Part 5: Write the CFO Memo (~15 minutes)**
-
-Write a one-page memo addressed to a fictional CFO with the following structure:
-- **Subject:** Quantum Circuit Pilot — Unit Economics Summary
-- **What we did:** (one paragraph)
-- **What it cost:** (use the TCO framework — all six stages)
-- **What the noise means for production:** (one paragraph interpreting the hardware results)
-- **Recommendation:** (one paragraph on whether to proceed to next phase)
-
-### Learning Objectives
-- Experience the gap between simulator and real-hardware results
-- Calculate cost-per-useful-result on actual hardware
-- Apply the TCO framework to a real (if tiny) quantum workload
+**Part 3: Write the CFO Memo** (one page, six-stage TCO framework)
 
 ---
 
-## Lab 3B (Regular): Comparing Platforms — D-Wave Leap vs. IBM Quantum for a Scheduling Problem
+## Lab 3B (Regular): D-Wave Break-Even for a Routing Problem
 
-**Duration:** ~60 minutes  
-**Tools:** D-Wave Leap (cloud.dwavesys.com) + IBM Quantum (quantum.ibm.com) — both free tier  
-**Deliverable:** Platform comparison memo using the TCO framework
+**Duration:** ~60 minutes | **Tools:** D-Wave Leap + spreadsheet  
+**Deliverable:** Platform comparison memo
 
 ### Overview
 
-You will run the *same conceptual problem* — a small job scheduling task — on both D-Wave Leap (annealing) and IBM Quantum (gate-model), then build a side-by-side TCO comparison using the framework from this chapter. The point is not to determine a winner — it is to experience the operational difference between paradigms and apply the economic model to real platform costs.
+You will run a D-Wave sample optimization problem, record the actual cost metrics from the Leap dashboard, and build a simple break-even model comparing D-Wave's hybrid solver to a classical alternative.
 
-### Part 1: The Problem
+### Part 1: Run the Sample Problem
 
-**Job Scheduling Scenario:** You have 4 jobs (A, B, C, D) and 2 machines. Each job takes one time slot. Jobs A and C cannot run simultaneously (they share a resource). Jobs B and D cannot run simultaneously. Find a valid schedule that minimizes the number of time slots used.
+1. Log into D-Wave Leap (cloud.dwavesys.com)
+2. Navigate to Examples → select a routing or scheduling problem
+3. Run on the Leap hybrid solver. Record:
+   - **Problem size** (number of variables)
+   - **Solve time** (seconds, from timing breakdown)
+   - **QPU access time** (microseconds, from timing breakdown)
+   - **Compute time used** (from account dashboard — your actual cost deducted from credits)
 
-This is a small graph coloring / constraint satisfaction problem — exactly the class D-Wave's annealer handles natively, and also expressible as a quantum circuit.
+### Part 2: Build the Break-Even Model
 
-### Part 2: D-Wave Leap (Annealing)
+Using the break-even template from this chapter, populate the D-Wave parameters from your actual run. Then set the classical baseline as "a classical greedy heuristic solving the same problem size in 45 seconds at \$0.04 per run" (a reasonable estimate for small routing problems).
 
-1. Log into D-Wave Leap (cloud.dwavesys.com) with your free developer account
-2. Navigate to the **Examples** section and find the "Job Shop Scheduling" or "Graph Coloring" demo
-3. Run it on the Leap hybrid solver — record:
-   - **Solve time** (shown in the result)
-   - **QPU access time** (microseconds shown in timing breakdown)
-   - **Compute time used** (from your account dashboard)
-   - **Solution quality** (was a valid schedule found?)
+Calculate: at what problem *size* does D-Wave's solver become cost-competitive with classical heuristics? Use the problem size axis — run the calculation for 50, 100, 500, and 1,000 variables.
 
-### Part 3: IBM Quantum (Gate-Model)
+### Part 3: Write the Comparison Memo
 
-1. Log into IBM Quantum (quantum.ibm.com)
-2. In Circuit Composer, note that the same scheduling problem would require encoding as a QAOA circuit — this is a research-level task, not a drag-and-drop exercise. Instead:
-   - Run a simple 2-qubit entanglement circuit (Hadamard + CNOT + measure) on a simulator and a real backend
-   - Record **queue time** from submission to result on the real backend
-   - Record **result distribution** (note noise vs. simulator)
-
-### Part 4: Build the TCO Comparison
-
-Using the six-stage TCO framework, complete the following table:
-
-| Stage | D-Wave Leap | IBM Quantum (simulator) | IBM Quantum (real HW) |
-|---|---|---|---|
-| Problem formulation effort | QUBO (minutes with examples) | QAOA circuit (hours, research-level) | Same |
-| Submission cost | From your usage dashboard | $0 (free tier) | $0 (free tier) |
-| Queue time | ~seconds (hybrid solver) | ~0 (simulator) | Record yours |
-| Solve time | From result output | ~seconds | ~seconds |
-| Result quality | Valid schedule? | N/A (different circuit) | Note noise artifacts |
-| Post-processing needed | Minimal | Statistical aggregation | Error mitigation needed |
-
-### Deliverable
-
-A one-page memo structured as a platform recommendation to a logistics manager who needs to solve vehicle routing problems with 500+ variables. Which platform would you recommend, and why? Use the TCO framework explicitly.
+One-page memo to a logistics manager. Recommend whether to use D-Wave Leap for a routing problem with 200 delivery points and 15 vehicles. Justify with your model.
 
 ---
 
 ## Lab 3 (Optional Advanced): Build Your Own Quantum TCO Calculator
 
-**Duration:** ~2–3 hours  
-**Tools:** Python 3, pandas, (optional) streamlit  
-**Deliverable:** Working calculator + README + 400-word memo
+**Duration:** ~2–3 hours | **Tools:** Python 3, pandas | **Deliverable:** Working calculator + README + 400-word memo
 
-### Overview
-
-Build a reusable quantum TCO calculator that accepts workload parameters, loads vendor pricing from an external configuration file, and outputs a cost comparison table across provider archetypes.
-
-### Starter Code
+Build a reusable quantum TCO calculator that accepts workload parameters, loads vendor pricing from an external `vendor_config.json` file, and outputs cost comparisons across gate-model and D-Wave pricing models.
 
 ```python
 #!/usr/bin/env python3
 """
-quantum_tco.py — Quantum TCO Calculator
+quantum_tco.py — Quantum TCO Calculator (Gate-Model + D-Wave)
 Update vendor_config.json annually; workload params stay stable.
 """
 
-import json
-import pandas as pd
+import json, pandas as pd
 from dataclasses import dataclass
-from typing import Dict
 
-# ── Workload Parameters (stable — your problem defines these) ──────────────
 @dataclass
 class WorkloadParams:
-    shots_per_experiment: int = 10_000
+    shots_per_experiment: int = 10_000      # gate-model
     experiments_per_run: int = 20
-    circuit_depth: int = 50
-    logical_qubits_required: int = 10
-    classical_cost_per_run_usd: float = 0.85
+    circuit_depth: int = 50                 # gate-model
     researcher_hourly_rate_usd: float = 150.0
-    
-# ── Vendor Config (load from file — update annually) ──────────────────────
-def load_vendor_config(path: str = "vendor_config.json") -> Dict:
-    """Load vendor pricing. All volatile params live here."""
+    classical_cost_per_run_usd: float = 0.85
+
+def load_vendor_config(path="vendor_config.json"):
     try:
-        with open(path) as f:
-            return json.load(f)
+        with open(path) as f: return json.load(f)
     except FileNotFoundError:
-        # Default config — replace with current vendor pricing annually
         return {
-            "pay_per_shot": {
+            "gate_model": {
                 "cost_per_shot_usd": 0.00001,
                 "avg_queue_hours": 2.0,
-                "min_job_fee_usd": 0.50,
-                "notes": "Update from vendor pricing page"
-            },
-            "pay_per_minute": {
-                "cost_per_minute_usd": 0.10,
-                "avg_queue_hours": 0.5,
-                "min_reservation_minutes": 60,
-                "notes": "Assumes dense circuit packing"
-            },
-            "reserved_capacity": {
-                "monthly_fee_usd": 5000.0,
-                "included_shots": 5_000_000,
-                "overage_per_shot_usd": 0.000008,
-                "notes": "Amortized over typical monthly volume"
-            },
-            "hardware": {
-                "physical_error_rate": 0.005,
-                "physical_to_logical_ratio": 1000,
                 "error_mitigation_multiplier": 3.0
+            },
+            "dwave_hybrid": {
+                "cost_per_second_usd": 0.00015,
+                "avg_solve_time_seconds": 5.0,
+                "avg_queue_hours": 0.05
             }
         }
 
-# ── Cost Calculation ───────────────────────────────────────────────────────
-def calculate_tco(
-    workload: WorkloadParams,
-    vendor: Dict,
-    archetype: str
-) -> Dict:
-    """Calculate TCO for a given archetype."""
-    hw = vendor["hardware"]
-    em_multiplier = hw["error_mitigation_multiplier"]
-    effective_shots = workload.shots_per_experiment * em_multiplier
-    total_shots = effective_shots * workload.experiments_per_run
-    
-    if archetype == "pay_per_shot":
-        cfg = vendor["pay_per_shot"]
-        qpu_cost = max(
-            total_shots * cfg["cost_per_shot_usd"],
-            cfg["min_job_fee_usd"]
-        )
-        queue_cost = cfg["avg_queue_hours"] * workload.researcher_hourly_rate_usd
-        
-    elif archetype == "pay_per_minute":
-        cfg = vendor["pay_per_minute"]
-        # Estimate circuit time: ~100 microseconds per depth layer per shot
-        circuit_time_min = (
-            total_shots * workload.circuit_depth * 0.0001 / 60
-        )
-        billed_minutes = max(circuit_time_min, cfg["min_reservation_minutes"])
-        qpu_cost = billed_minutes * cfg["cost_per_minute_usd"]
-        queue_cost = cfg["avg_queue_hours"] * workload.researcher_hourly_rate_usd
-        
-    elif archetype == "reserved_capacity":
-        cfg = vendor["reserved_capacity"]
-        # Amortize monthly fee over runs per month (assume 200 runs/month)
-        runs_per_month = 200
-        qpu_cost = cfg["monthly_fee_usd"] / runs_per_month
-        if total_shots > cfg["included_shots"] / runs_per_month:
-            overage = total_shots - cfg["included_shots"] / runs_per_month
-            qpu_cost += overage * cfg["overage_per_shot_usd"]
-        queue_cost = 0  # Reserved capacity = minimal queue
-    else:
-        raise ValueError(f"Unknown archetype: {archetype}")
-    
-    total_quantum = qpu_cost + queue_cost
-    classical = workload.classical_cost_per_run_usd * workload.experiments_per_run
-    
-    return {
-        "archetype": archetype,
-        "qpu_cost_usd": round(qpu_cost, 4),
-        "queue_cost_usd": round(queue_cost, 4),
-        "total_quantum_usd": round(total_quantum, 4),
-        "classical_baseline_usd": round(classical, 4),
-        "quantum_vs_classical": round(total_quantum / classical, 2),
-        "effective_shots": int(total_shots),
-        "status": "QUANTUM ADVANTAGE" if total_quantum < classical else "CLASSICAL PREFERRED"
-    }
+def calculate_gate_model_tco(w: WorkloadParams, v: dict) -> dict:
+    gm = v["gate_model"]
+    shots = w.shots_per_experiment * gm["error_mitigation_multiplier"] * w.experiments_per_run
+    qpu = shots * gm["cost_per_shot_usd"]
+    queue = gm["avg_queue_hours"] * w.researcher_hourly_rate_usd
+    total = qpu + queue
+    classical = w.classical_cost_per_run_usd * w.experiments_per_run
+    return {"model": "Gate-Model", "qpu_cost": round(qpu,4),
+            "queue_cost": round(queue,4), "total": round(total,4),
+            "classical": round(classical,4), "ratio": round(total/classical,2)}
 
-# ── Sensitivity Analysis ───────────────────────────────────────────────────
-def sensitivity_table(workload: WorkloadParams, vendor: Dict) -> pd.DataFrame:
-    """Show how cost changes under optimistic/pessimistic scenarios."""
-    scenarios = {
-        "Baseline": {},
-        "Error rate ÷10": {"error_multiplier_override": 
-                           vendor["hardware"]["error_mitigation_multiplier"] / 10},
-        "Shots ÷2": {"shots_override": workload.shots_per_experiment // 2},
-        "Queue ×2": {"queue_multiplier": 2.0},
-    }
-    
-    rows = []
-    for scenario_name, overrides in scenarios.items():
-        for archetype in ["pay_per_shot", "pay_per_minute", "reserved_capacity"]:
-            # Apply overrides (simplified for illustration)
-            result = calculate_tco(workload, vendor, archetype)
-            result["scenario"] = scenario_name
-            rows.append(result)
-    
-    df = pd.DataFrame(rows)[
-        ["scenario", "archetype", "total_quantum_usd", "quantum_vs_classical", "status"]
-    ]
-    return df
+def calculate_dwave_tco(w: WorkloadParams, v: dict) -> dict:
+    dw = v["dwave_hybrid"]
+    solver = dw["avg_solve_time_seconds"] * dw["cost_per_second_usd"] * w.experiments_per_run
+    queue = dw["avg_queue_hours"] * w.researcher_hourly_rate_usd
+    total = solver + queue
+    classical = w.classical_cost_per_run_usd * w.experiments_per_run
+    return {"model": "D-Wave Hybrid", "solver_cost": round(solver,4),
+            "queue_cost": round(queue,4), "total": round(total,4),
+            "classical": round(classical,4), "ratio": round(total/classical,2)}
 
-# ── Main ───────────────────────────────────────────────────────────────────
 if __name__ == "__main__":
-    workload = WorkloadParams()
-    vendor = load_vendor_config()
-    
-    print("=" * 60)
-    print("QUANTUM TCO CALCULATOR")
-    print("=" * 60)
-    print(f"Classical baseline: ${workload.classical_cost_per_run_usd * workload.experiments_per_run:.2f} per run\n")
-    
-    for archetype in ["pay_per_shot", "pay_per_minute", "reserved_capacity"]:
-        result = calculate_tco(workload, vendor, archetype)
-        print(f"[{archetype.upper()}]")
-        print(f"  QPU cost:        ${result['qpu_cost_usd']:.4f}")
-        print(f"  Queue cost:      ${result['queue_cost_usd']:.4f}")
-        print(f"  Total quantum:   ${result['total_quantum_usd']:.4f}")
-        print(f"  vs Classical:    {result['quantum_vs_classical']}x")
-        print(f"  Status:          {result['status']}\n")
-    
-    print("\nSENSITIVITY ANALYSIS:")
-    print(sensitivity_table(workload, vendor).to_string(index=False))
+    w = WorkloadParams()
+    v = load_vendor_config()
+    gm = calculate_gate_model_tco(w, v)
+    dw = calculate_dwave_tco(w, v)
+    print(f"\nGate-Model: ${gm['total']:.4f} ({gm['ratio']}x classical)")
+    print(f"D-Wave:     ${dw['total']:.4f} ({dw['ratio']}x classical)")
+    print(f"Classical:  ${gm['classical']:.4f}")
 ```
 
-### vendor_config.json Template
-
-```json
-{
-  "pay_per_shot": {
-    "cost_per_shot_usd": 0.00001,
-    "avg_queue_hours": 2.0,
-    "min_job_fee_usd": 0.50,
-    "notes": "Update from vendor pricing page — current as of [date]"
-  },
-  "pay_per_minute": {
-    "cost_per_minute_usd": 0.10,
-    "avg_queue_hours": 0.5,
-    "min_reservation_minutes": 60,
-    "notes": "Assumes dense circuit packing"
-  },
-  "reserved_capacity": {
-    "monthly_fee_usd": 5000.0,
-    "included_shots": 5000000,
-    "overage_per_shot_usd": 0.000008,
-    "notes": "Amortized over 200 runs/month"
-  },
-  "hardware": {
-    "physical_error_rate": 0.005,
-    "physical_to_logical_ratio": 1000,
-    "error_mitigation_multiplier": 3.0
-  }
-}
-```
-
-### Deliverable Requirements
-
-1. **Working calculator:** The script must run with `python quantum_tco.py` and produce a cost comparison table and sensitivity analysis
-2. **README.md:** Explain how to update `vendor_config.json` with current pricing, how to modify `WorkloadParams` for a new workload, and what each output metric means
-3. **400-word memo:** Addressed to a CFO; explain what the model shows, what assumptions drive the result most, and what hardware milestone would change the recommendation
+**Deliverable:** Working script + `vendor_config.json` template + 400-word CFO memo.
 
 ---
 
 ## Discussion Guidelines
 
-The economics of quantum computing sit at the intersection of technology assessment and strategic finance — a domain where most participants have expertise in one but not both.
+**Prompt 1:** The BASF case (D-Wave hybrid solver reducing manufacturing scheduling from hours to seconds) is cited as a production quantum deployment. Using the three-term framework (supremacy, advantage, utility), evaluate whether this constitutes genuine quantum advantage or a well-engineered classical-quantum hybrid that is primarily a classical optimization improvement. Cite at least one scholarly or technical source.
 
-**Prompt 1:** IBM's 2023 "quantum utility" demonstration (reported in *Nature*, Kim et al., 2023) claimed results on a 127-qubit processor that were difficult to verify by classical simulation at the same scale. Critics argued the results did not demonstrate *advantage* for a commercially useful task. Using the three-term framework from this chapter (supremacy, advantage, utility), evaluate whether IBM's claim was accurate — and whether it was appropriate to publicize in the way it was. Cite at least one scholarly or technical source in your response.
+**Prompt 2:** A colleague argues: "D-Wave is quantum in name only — the real computation is classical, and the quantum part is just a heuristic subroutine." Using what you know about quantum annealing, quantum tunneling, and the physical-to-logical overhead section, construct a response. Does the architecture classification matter for enterprise investment decisions?
 
-**Prompt 2:** A colleague argues that quantum pricing models are pointless because "quantum costs will just follow the same exponential decline as classical hardware — we'll figure it out when the time comes." Using the physical-to-logical overhead concept and the TCO framework, construct a specific, evidence-based rebuttal. What makes quantum cost decline structurally different from classical Moore's Law scaling?
-
-**Peer Response Guidelines:**
-- Respond substantively to at least **two** peers' posts — not just agreement or disagreement, but engagement with their reasoning. Challenge an assumption, extend their argument with a scenario they did not consider, or offer a counter-example from a different industry.
-- Peer responses should be at minimum 150 words and should reference specific claims from the original post.
-- Shallow responses ("Great point!") do not count toward the participation requirement.
+**Peer response requirement:** Respond substantively to at least two peers. Engage with their specific claims — challenge an assumption, introduce evidence they did not cite, or extend their argument to a domain they did not consider. Minimum 150 words per response.
 
 ---
 
-
 ## Glossary
 
-**Quantum-as-a-Service (QaaS)** — A cloud delivery model in which quantum computing hardware is accessed remotely via API, billed by usage, and managed by the provider. The five major QaaS platforms as of 2026 are D-Wave Leap, IBM Quantum, AWS Braket, Azure Quantum, and Google Quantum AI.
+**Quantum-as-a-Service (QaaS)** — A cloud delivery model providing remote access to quantum hardware, billed by usage. The five major QaaS platforms are D-Wave Leap, IBM Quantum, AWS Braket, Azure Quantum, and Google Quantum AI.
 
-**D-Wave Leap** — D-Wave's cloud quantum computing service providing access to the Advantage2 annealing hardware and the Stride hybrid solver. The same hardware class as FAU's on-premises Advantage2 system.
+**D-Wave Leap** — D-Wave's cloud quantum platform providing access to the Advantage2 annealing hardware and Stride hybrid solver. The same hardware class as FAU's on-premises system. Production-ready for combinatorial optimization today.
 
-**Stride Hybrid Solver** — D-Wave's production-grade quantum-classical hybrid solver that decomposes large optimization problems into subproblems for the quantum annealer and coordinates results classically. Handles problems with millions of variables in seconds.
+**Stride Hybrid Solver** — D-Wave's production hybrid quantum-classical solver. Decomposes large optimization problems classically, routes subproblems to the Advantage2 QPU, and returns solutions in seconds. Handles problems with millions of variables.
 
-**AWS Braket** — Amazon Web Services' hardware-agnostic quantum cloud marketplace providing unified API access to IonQ (trapped-ion), Rigetti (superconducting), and QuEra (neutral-atom) hardware. Best for multi-vendor comparison and AWS-integrated workloads.
+**QUBO (Quadratic Unconstrained Binary Optimization)** — The mathematical problem format accepted by quantum annealers. A wide range of business problems — routing, scheduling, portfolio construction — can be expressed as QUBO. The formulation step (converting a business problem to QUBO) is a one-time modeling investment.
+
+**AWS Braket** — Amazon's hardware-agnostic quantum marketplace providing unified API access to IonQ, Rigetti, QuEra, and IQM hardware. Best for multi-vendor comparison and AWS-integrated enterprises.
 
 **Azure Quantum** — Microsoft's quantum cloud platform integrating IonQ, Quantinuum, and Rigetti hardware within the Azure enterprise stack. Long-term bet on topological qubits.
 
-**IBM Quantum Network** — IBM's enterprise quantum access and co-development program, providing priority hardware access, IBM Research collaboration, and dedicated system reservations to member organizations.
+**IBM Quantum Network** — IBM's enterprise quantum access and co-development program. Priority hardware, IBM Research collaboration, dedicated access.
 
-**Google Quantum AI** — Google's quantum computing research division and hardware program. Access primarily through research partnerships rather than self-service cloud. Home of the Willow processor (December 2024: demonstrated below-threshold error correction).
+**Google Quantum AI** — Google's quantum research division and Willow processor program. Research partnership access model; demonstrated below-threshold error correction December 2024.
 
-**Make-vs.-Buy (Quantum)** — The decision between on-premises quantum hardware (capital expenditure, low latency, data sovereignty) and cloud QaaS access (operational expenditure, managed infrastructure, shared queues). FAU's Advantage2 is an on-premises deployment.
+**Shot** — A single execution of a gate-model quantum circuit, returning one classical bitstring. Useful results require hundreds to thousands of shots.
 
-```{glossary}
-Shot
-  A single execution of a quantum circuit from initialization through measurement, producing one classical bitstring result. Useful quantum results require averaging across many shots.
+**Circuit Depth** — The number of sequential gate layers in a quantum circuit. Deeper circuits accumulate more noise. On current hardware, circuits beyond ~100 layers often produce noise-dominated results.
 
-Circuit Depth
-  The number of sequential layers of quantum gate operations in a circuit. Deeper circuits accumulate more error due to decoherence and gate noise.
+**Physical Qubit** — An individual quantum system subject to noise and decoherence. The unit vendors advertise.
 
-Physical Qubit
-  An individual quantum system (superconducting, trapped ion, photonic, etc.) capable of holding a superposition state. Subject to noise and decoherence.
+**Logical Qubit** — An error-corrected qubit built from ~1,000 physical qubits. The unit relevant for fault-tolerant computation.
 
-Logical Qubit
-  An error-corrected qubit constructed from multiple physical qubits. Provides reliable quantum computation at the cost of significant physical-qubit overhead.
+**Physical-to-Logical Ratio** — The number of physical qubits required per logical qubit. Currently 100–10,000 depending on hardware quality and error correction code.
 
-Physical-to-Logical Ratio
-  The number of physical qubits required to implement one logical qubit under a given error correction code. Currently ranges from hundreds to thousands.
+**Error Mitigation** — Classical post-processing to reduce noise impact without full error correction. Requires 2–10× additional shots. Not required for D-Wave annealing workloads.
 
-Error Mitigation
-  Classical post-processing techniques applied to noisy quantum results to reduce the impact of hardware errors without full error correction. Includes zero-noise extrapolation and probabilistic error cancellation.
+**Quantum Supremacy** — Performing a specific computation faster than any classical computer. Task is usually not commercially useful. Google Sycamore 2019.
 
-Zero-Noise Extrapolation (ZNE)
-  An error mitigation technique that runs the circuit at multiple artificially scaled noise levels and extrapolates to the zero-noise limit. Requires additional shots (typically 2–5×).
+**Quantum Advantage** — Solving a practically useful problem better than the best available classical alternative. The commercially relevant threshold.
 
-Quantum Supremacy
-  The condition in which a quantum computer performs a specific computation faster than any classical computer could within a practical timeframe. The task is typically not practically useful.
+**Quantum Utility** — Producing results that classical simulation cannot easily verify, enabling novel research. IBM 2023 *Nature* paper. Lower bar than advantage.
 
-Quantum Advantage
-  The condition in which a quantum computer solves a practically useful problem faster, cheaper, or more accurately than the best available classical alternative.
+**TCO (Total Cost of Ownership)** — Complete cost across all six pipeline stages: ingestion, pre-processing, quantum submission, error mitigation, post-processing, validation. QPU/solver time is typically the minority of TCO.
 
-Quantum Utility
-  A condition (lower bar than advantage) in which a quantum computer produces results that are difficult or impossible to verify by classical simulation, enabling novel research even without demonstrated speedup.
+**Break-Even Point** — The problem scale or hardware capability at which quantum cost equals classical cost. The core metric for quantum investment decisions.
 
-Total Cost of Ownership (TCO)
-  The complete cost of a quantum workload across all six pipeline stages: ingestion, pre-processing, quantum submission, error mitigation, post-processing, and validation.
+**Pay-Per-Shot** — QPU pricing per circuit execution. Optimal for low-volume, exploratory workloads.
 
-Pay-Per-Shot
-  A quantum cloud pricing archetype where cost is charged per circuit execution (shot or job). Optimal for low-volume, exploratory workloads.
+**Hybrid Solver Job** — D-Wave's per-job pricing for Stride hybrid solver submissions. More predictable than shot-based models for production optimization.
 
-Pay-Per-Minute
-  A quantum cloud pricing archetype where cost is charged for wall-clock time on a quantum processor. Optimal for dense, back-to-back circuit execution.
+**Reserved Capacity** — Committed quantum resource for a fixed term at a discounted rate. Appropriate for production workloads with predictable volume.
 
-Reserved Capacity
-  A quantum cloud pricing archetype where a defined quantum resource is committed for a fixed term at a discounted rate. Optimal for production workloads with predictable volume.
-
-Break-Even Point
-  The problem scale or hardware capability threshold at which quantum cost equals classical cost. The business-relevant frontier for quantum investment decisions.
-
-Variational Quantum Eigensolver (VQE)
-  A hybrid quantum-classical algorithm for finding the ground-state energy of a quantum system. A primary candidate workload for near-term quantum advantage in chemistry and materials science.
-
-QAOA (Quantum Approximate Optimization Algorithm)
-  A hybrid quantum-classical algorithm for combinatorial optimization problems. A candidate workload for quantum advantage in logistics, finance, and scheduling.
-
-Queue Time
-  The wait between submitting a quantum circuit job and its execution on hardware. A significant and often underestimated cost driver in quantum TCO.
-
-NISQ (Noisy Intermediate-Scale Quantum)
-  The current era of quantum computing, characterized by devices with 50–1,000 physical qubits operating without full error correction. Results are noisy and circuit depth is limited.
-
-Surface Code
-  The most widely researched quantum error correction code. Requires a 2D grid of physical qubits and achieves high fault tolerance at the cost of large physical-to-logical overhead.
-```
+**Make-vs.-Buy (Quantum)** — The decision between on-premises quantum hardware (capital expenditure, low latency, data sovereignty) and cloud QaaS (operational expenditure, managed infrastructure). FAU's Advantage2 is an on-premises deployment.
 
 ---
 
 ## Leader's Takeaway
 
-::::{figure} ../images/ch03-sensitivity-analysis.png
-:label: fig-ch03-sensitivity-analysis
-:alt: Quantum TCO sensitivity analysis table showing how cost changes under different scenarios
-:width: 100%
-**Figure 3.10.** Sensitivity analysis reveals which cost driver to attack first. In most near-term quantum workloads, queue time dominates — not QPU pricing. That changes the operational decision from "negotiate a better rate" to "secure reserved access."
-::::
+```{epigraph}
+The most expensive quantum strategy is the one that commits too early. The second most expensive is the one that starts too late to build expertise before the hardware is ready.
+```
 
-The lesson every executive takes away from their first quantum vendor meeting is the wrong one. They walk out thinking: *quantum is expensive, so we need a better price.*
+The lesson of this chapter is that quantum computing has two parallel timelines, and most enterprise strategies are calibrated to only one of them.
 
-The lesson this chapter teaches is different: quantum is expensive in a specific way, for specific reasons, that are changing at different rates. QPU pricing is falling. Error rates are improving. Queue times on premium tiers are decreasing. Physical-to-logical overhead is on a long but measurable improvement trajectory.
+The first timeline — fault-tolerant gate-model quantum — is measured in years to decades. It requires patience, capability building, cryptographic preparation, and careful monitoring of hardware milestones. It should not receive committed production investment before the hardware reaches the problem scales your workloads require.
 
-The correct executive question is not "what does quantum cost today?" It is: "which of my workloads will cross the break-even line first, and what hardware milestone triggers that crossing?"
+The second timeline — quantum annealing and hybrid optimization — is already here. D-Wave's hybrid solver is running in production at BASF, Volkswagen, Mastercard, and a growing list of logistics and financial services firms. The hardware has crossed the break-even threshold for specific optimization problem classes. The economics work today for the right workloads. The question is not "when will D-Wave be ready?" It is "which of my optimization problems are ready for D-Wave?"
 
-Build your model around that question. Put vendor pricing in one swappable block. Benchmark against the best classical alternative, not legacy systems. Account for all six TCO stages. Distinguish advantage from utility from supremacy so you can evaluate vendor claims correctly.
+Maria Gutierrez's routing firm did not need to wait for fault tolerance. It needed a model, a problem, and a pilot with outcome gates. The model revealed that the quantum economics were already favorable — not because the technology was exotic, but because the classical baseline had hidden costs that the vendor comparison ignored.
 
-And remember the most durable insight from this chapter: **the cheapest quantum strategy is the one that knows which of your workloads *shouldn't* go quantum.** The bank that declined the 2021 contract did not lose two years — it bought two years of optionality. The pharma CFO who built the vendor-agnostic model did not waste \$400,000 — she bought the right to act decisively when the hardware matures.
+Build the model. Know your classical baseline — fully loaded, best available. Match platform to problem type. Monitor hardware milestones rather than press releases. And remember: the cheapest quantum strategy is the one that knows which of your workloads *should not* go quantum yet. Optionality compounds. The bank that declined the 2021 gate-model contract did not lose two years — it bought two years to build expertise without carrying the technical debt of premature commitment.
 
-Quantum economics rewards preparation more than commitment. Prepare the model. Monitor the milestones. Commit when the numbers say so — not when the vendor does.
+```{admonition} Chapter Summary
+:class: note
+
+- Quantum computing is a cloud service today. Five platforms compete for enterprise customers: D-Wave Leap (optimization, production-ready), IBM Quantum (gate-model development), AWS Braket (multi-vendor), Azure Quantum (Microsoft stack), Google Quantum AI (research partnerships).
+- D-Wave's Stride hybrid solver runs production optimization workloads at BASF, Volkswagen, Mastercard, and others today. FAU's Advantage2 is the same hardware class.
+- Quantum economics are not classical economics. True cost = shots × depth × error rate × queue time, divided by yield. For D-Wave, cost = jobs × solver time — simpler and more predictable.
+- Physical-to-logical qubit overhead (currently ~1,000:1 for gate-model) makes headline qubit counts misleading. D-Wave annealing sidesteps this overhead for optimization workloads.
+- TCO has six stages; QPU/solver time is typically the minority. Engineering, formulation, and validation costs dominate early-stage projects.
+- Advantage, utility, and supremacy are not synonyms. Only advantage matters for production investment decisions.
+- The break-even template separates stable workload parameters from volatile vendor parameters. Update the vendor block annually; never rebuild the model.
+```

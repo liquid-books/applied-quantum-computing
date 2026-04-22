@@ -1,367 +1,366 @@
 ---
-title: "Chapter 4: The Quantum Hardware Race — Reading the Tea Leaves"
-subtitle: "Five Architectures, One Evaluation Framework, Zero Brand Loyalty"
+title: "Chapter 4: The Hardware Race — Two Paradigms, Six Architectures"
+subtitle: "Reading the Tea Leaves on Annealing, Superconducting, Trapped-Ion, Neutral-Atom, Photonic, and Topological Quantum Hardware"
 short_title: "Ch. 4: The Hardware Race"
-description: "There is no single quantum computer. Five competing hardware architectures are racing toward commercial viability — each with different physics, failure modes, and timelines. This chapter gives you the vendor-neutral evaluation framework that works regardless of who wins."
+description: "There is no single quantum computer. Two distinct paradigms — annealing and gate-model — and six competing hardware architectures are racing toward commercial viability. FAU's Advantage2 annealing system is one of them. This chapter builds the vendor-neutral evaluation framework that works regardless of who wins."
 label: ch-04-hardware-race
-tags: [quantum hardware, superconducting, trapped-ion, neutral-atom, photonic, topological, vendor evaluation, roadmap analysis]
+tags: [quantum hardware, annealing, D-Wave Advantage2, superconducting, trapped-ion, neutral-atom, photonic, topological, vendor evaluation, roadmap analysis, QUBO, FAU]
 ---
 
-# Chapter 4: The Quantum Hardware Race — Reading the Tea Leaves
+# Chapter 4: The Hardware Race — Two Paradigms, Six Architectures
 
 :::{figure} ../images/ch04-explainer-infographic.png
-:name: ch04-explainer-infographic
-:alt: Chapter 4 illustrated explainer infographic showing five quantum hardware architectures in a race
+:label: fig-ch04-explainer-infographic
+:alt: Chapter 4 illustrated explainer infographic showing two quantum paradigms and six hardware architectures in a technology race
 :width: 100%
+:align: center
 
-**Chapter 4 at a Glance.** Five physical architectures — superconducting, trapped-ion, neutral-atom, photonic, and topological — are competing to become the dominant quantum computing platform. This chapter gives you the vendor-neutral rubric to evaluate all of them, regardless of who is currently leading.
+**Chapter 4 at a Glance.** Before you can evaluate any quantum vendor claim, you need to understand that quantum computing has two fundamentally different paradigms — annealing and gate-model — and six competing hardware architectures. One of those paradigms, running on FAU's campus, is production-ready today. The others are maturing toward fault tolerance on timelines measured in years to decades.
 :::
 
-The quantum hardware race isn't about which qubit is "best." It's about which qubit is *best for your problem* — and which vendor's roadmap you can actually trust. By the end of this chapter, you'll have the evaluation framework to answer both questions, regardless of who is currently winning.
+The quantum hardware race is not about which qubit is "best." It is about which qubit is *best for your problem* — and whether you are asking the right question in the first place.
+
+Most executives come to quantum hardware discussions with a single mental model: gate-model quantum computers, inspired by classical computers, manipulating qubits with sequences of quantum gates. This model is accurate but incomplete. There is a second paradigm — quantum annealing — that does not use gates at all, excels at an entirely different class of problems, and is already running in production at BASF, Volkswagen, and Mastercard. It is being installed on FAU's Boca Raton campus right now.
+
+Understanding both paradigms — and knowing which one applies to your workload — is the most practically important hardware insight in this chapter. Everything else is framework.
 
 ---
 
-## Opening Scene: Betamax Was Better. It Still Lost.
+## Opening Scene: Two Different Races
+
+### The Betamax Parallel
 
 The year is 1977. Sony's engineers are justifiably proud. Betamax cassettes deliver sharper picture resolution, better audio fidelity, and a more elegant form factor than the competing VHS format from JVC. In side-by-side technical tests, Betamax wins almost every metric.
 
 You know how this story ends.
 
-VHS captured a longer recording time — initially four hours versus Betamax's one hour. Hollywood studios chose VHS for rental distribution. Once the installed base tipped toward VHS, the game was over. Sony kept making better Betamax machines for years. They kept losing.
+VHS captured longer recording time. Hollywood studios chose VHS for rental distribution. Once the installed base tipped, the game was over. Sony kept making better Betamax machines for years. They kept losing.
 
-Today, five quantum hardware camps are making the same bet Sony made: *the better technology will win.*
+Today, five gate-model hardware architectures are making the same bet Sony made: *the technically superior technology will win*. History disagrees. In every major technology transition — VHS vs. Betamax, TCP/IP vs. OSI, AC vs. DC power — the winner was rarely the technically superior option at the moment of decision. Winners are shaped by ecosystem effects, manufacturing costs, regulatory support, and occasionally pure luck.
 
-History disagrees. In every major technology transition — VHS vs. Betamax, TCP/IP vs. OSI, AC vs. DC power — the winner was rarely the technically superior option at the moment of decision. Winners are shaped by ecosystem effects, manufacturing costs, regulatory support, and occasionally pure luck.
+### The Parallel Race Nobody Mentions
 
-The executive who studied only technical specs in 1977 bought a Betamax factory. The executive who studied *adoption dynamics* made money on VHS.
+Here is what the Betamax analogy misses: while five gate-model architectures race each other for the general-purpose quantum computing market, a sixth architecture — quantum annealing — is running a completely different race with completely different rules, against classical optimizers, not against gate-model systems.
 
-You are here to become the second kind of executive.
+D-Wave's Advantage2 annealer does not compete with IBM's Eagle processor the way Betamax competed with VHS. They are not targeting the same workload. An annealer solves combinatorial optimization problems — vehicle routing, manufacturing scheduling, portfolio construction — with a physical process that has no classical equivalent. A gate-model computer could theoretically solve the same problems using QAOA, but at current error rates and qubit counts, the gate-model approach cannot match the annealer's practical performance on production-scale problem instances.
+
+This means the quantum hardware landscape is not a single race. It is two parallel contests:
+
+1. **The Gate-Model Race:** Five architectures competing to reach fault-tolerant scale — the era when gate-model computers can run Shor's algorithm, accurate molecular simulation, and deep quantum ML. Timeline: late 2020s to mid-2030s.
+
+2. **The Annealing Race:** D-Wave's Advantage2 vs. classical optimization software — a race that D-Wave's hybrid solver is already winning on specific workload classes. Timeline: now.
+
+FAU has taken a position in the second race. That position, the \$20 million Advantage2 deployment, is not a bet on quantum computing's future. It is an investment in quantum computing's present.
 
 ---
 
 ## The Single Idea
 
-:::{admonition} Core Thesis
-:class: important
+```{epigraph}
+There is no single "quantum computer." There are two fundamentally different quantum paradigms and six competing hardware architectures. The annealing paradigm is production-ready today. The gate-model paradigm is maturing toward fault tolerance. Learning which is which — and which applies to your workload — is the most important hardware skill in this course.
+```
 
-There is no single "quantum computer." There are **five competing physical architectures**, each with different failure modes, cost curves, and commercial windows. The vendor leaderboard will change every year. The **criteria by which you evaluate the leaderboard** will not. Learn the criteria.
-:::
-
-This chapter is not about memorizing which company has the most qubits today. That number will be obsolete before this page loads. This chapter is about building the mental model that lets you evaluate *any* hardware claim, from *any* vendor, at *any* point in the next decade.
-
-Think of it like learning to read financial statements. You don't need to memorize Apple's revenue from last quarter. You need to know what revenue, margin, and cash flow *mean* — so you can evaluate any company, any time.
+This chapter is not about memorizing qubit counts. It is about building the mental model that lets you evaluate any hardware claim from any vendor at any point in the next decade. The metrics do not change. The analytical rubric does not change. Only the numbers filling the rubric change.
 
 ---
 
-## Why Are There Five Different Approaches?
+## Part I: The Two Paradigms
 
-::::{admonition} 🎓 9th Grader Test: Why So Many Hardware Types?
-:class: tip
+Before examining individual architectures, you need to understand the fundamental split that most quantum introductions obscure.
 
-**Start with what you know:** Think about cars. You can get from New York to Miami in an internal combustion car, an electric vehicle, or a hydrogen fuel cell car. Same destination. Totally different engines, fuel sources, maintenance requirements, and infrastructure needs.
-
-**Build the bridge:** Quantum computers face the same situation. Engineers want to build machines that can hold and manipulate quantum states. But the laws of physics allow *multiple different physical systems* to do this — trapped ions, superconducting circuits, photons of light, neutral atoms, and exotic quantum materials. Each approach uses completely different physics, runs at different temperatures, scales differently, and breaks down in different ways.
-
-**The technical term:** These different physical implementations are called **quantum hardware modalities** — different physical substrates for encoding and processing quantum information.
-
-**Where the analogy breaks down:** Unlike cars that all use the same roads, different quantum modalities may ultimately be better suited to *different kinds of problems*. A hybrid future — where you choose your modality like you choose your tool — may be more likely than one winner-takes-all platform.
-
-**SELL THE REVOLUTION:** The existence of five competing modalities is not a weakness in the quantum industry — it's the most exciting feature. Here's why: when semiconductor computing had only one viable approach (silicon CMOS), progress was constrained by the physics of that single substrate. Quantum computing, by contrast, has five distinct physics engines racing in parallel. Each breakthrough in one modality creates pressure on the others to respond. Industries from pharmaceutical discovery to financial portfolio optimization to cryptographic security are watching this race and hedging across all five lanes. The organization that understands *when* to bet on which horse — and *how much* to hedge — will have a structural advantage measured in years, not months, against competitors who are waiting for a single winner to emerge. The global quantum hardware market is projected to exceed \$450 billion by 2040. That money will not flow to one modality. It will flow to whoever has the framework to navigate all five.
-::::
-
-:::{figure} ../images/ch04-five-modalities-comparison.png
-:name: ch04-five-modalities-comparison
-:alt: Comparison table of five quantum computing hardware modalities
+:::{figure} ../images/ch04-two-paradigms.png
+:label: fig-ch04-two-paradigms
+:alt: Side-by-side comparison of quantum annealing and gate-model quantum computing paradigms, showing different physical approaches, problem classes, and commercial maturity
 :width: 100%
+:align: center
 
-**The Five Modalities at a Glance.** Each architecture has distinct tradeoffs in coherence time, gate speed, fidelity, scalability, and operating requirements. No single modality dominates all dimensions.
+**Two Paradigms, One Field.** Quantum annealing and gate-model quantum computing use different physics to solve different problem classes on different timelines. The common mistake is evaluating them by the same metrics — like comparing a Formula 1 car to an off-road truck by top speed alone.
+:::
+
+### Paradigm 1: Quantum Annealing
+
+Quantum annealing does not use quantum gates. Instead, it encodes an optimization problem as the energy landscape of a physical quantum system. The system begins in a superposition of all possible states simultaneously. It then slowly evolves — "anneals" — toward its lowest-energy configuration, using quantum tunneling to pass through energy barriers that would trap classical optimizers in locally good but globally suboptimal solutions.
+
+The result: the physical state of the system, when measured, corresponds to a high-quality (often optimal or near-optimal) solution to the encoded problem.
+
+**What types of problems does annealing solve?** Any problem that can be expressed as QUBO — Quadratic Unconstrained Binary Optimization. A QUBO is a cost function over binary variables (each variable is 0 or 1) that you want to minimize. A remarkable range of enterprise problems fits this description:
+
+- Vehicle routing: which trucks take which routes to minimize total distance and time?
+- Staff scheduling: which employees take which shifts to satisfy constraints and minimize cost?
+- Portfolio construction: which assets in which proportions maximize return at a given risk level?
+- Manufacturing sequencing: which machines process which jobs in which order to minimize throughput time?
+- Fraud detection: which transaction patterns indicate coordinated fraud across a transaction graph?
+
+**Current hardware:** D-Wave Advantage2 (7,000+ qubits, Pegasus topology) + Stride hybrid solver. FAU's on-campus system.
+
+**Commercial maturity:** Production-ready for optimization workloads today. BASF, Volkswagen, Mastercard, Verge Ag running in production.
+
+**Key limitation:** Purpose-built for optimization. Not a general-purpose computer. Cannot run quantum chemistry simulation, Shor's algorithm, or quantum ML.
+
+---
+
+### Paradigm 2: Gate-Model Quantum Computing
+
+Gate-model quantum computers work more like classical computers. They initialize qubits, apply sequences of quantum gates to manipulate those qubits, and measure the result. The gates are the quantum equivalent of logic gates — they rotate qubit states, create superpositions, and generate entanglement.
+
+Gate-model systems are general-purpose: in principle, any quantum algorithm can be expressed as a quantum circuit. In practice, the circuits required for commercially useful algorithms — molecular simulation, Shor's factoring, deep QAOA — require circuit depths, qubit counts, and error rates that today's hardware cannot reliably sustain.
+
+The five architectures racing to solve these engineering challenges are: superconducting, trapped-ion, neutral-atom, photonic, and topological. Each uses different physics; each has different tradeoffs.
+
+**Current hardware:** IBM (superconducting, up to 1,121 qubits), Google (superconducting, Willow 105 qubits), IonQ (trapped-ion), Quantinuum (trapped-ion), QuEra (neutral-atom), PsiQuantum (photonic, pre-commercial), Microsoft (topological, pre-commercial).
+
+**Commercial maturity:** Research and near-term applications. No production deployments at gate-model equivalents of BASF or Volkswagen yet.
+
+**Key strength:** General-purpose. Can run any quantum algorithm given sufficient qubits and fidelity.
+
+---
+
+:::{note} Plain Language: Annealing vs. Gate-Model for Executives
+
+**Think of two different expert problem-solvers.**
+
+A **quantum annealer** is like a world-class sommelier who has been training for thirty years to identify the best wine in any cellar. You show them the cellar (the problem), they explore it using their trained intuition (quantum tunneling), and they return with an excellent selection (a high-quality solution). Fast, accurate for its purpose, limited to wine problems.
+
+A **gate-model quantum computer** is like a general-purpose genius who can solve any problem — if given sufficient time to learn the domain and write the algorithm. For a wine problem, they could match or beat the sommelier — eventually. For a molecular chemistry problem, only they can help. They are not production-ready for most tasks yet; the sommelier is.
+
+**The practical implication:** For optimization problems that can be expressed as QUBO — logistics, scheduling, portfolio construction — the sommelier (D-Wave annealer) is available today, on FAU's campus, and delivering measurable ROI at BASF and Volkswagen. For quantum chemistry, QML, and cryptography applications — the genius (gate-model) is who you ultimately need, but you will need to wait while the engineering catches up.
+
+Do not use the wrong expert for your problem.
 :::
 
 ---
 
-## The Metrics That Matter
+## Part II: The Evaluation Metrics
 
-Before we examine each modality, you need the evaluation rubric. These five metrics apply to every hardware platform, every roadmap, and every vendor claim you will encounter.
-
-### Coherence Time
-
-::::{admonition} 🎓 9th Grader Test: Coherence Time
-:class: tip
-
-**Start with what you know:** Imagine you're building an elaborate sand castle on a beach. You have a limited window — maybe 20 minutes — before the tide comes in and the waves destroy your work. Every detail you add to that castle uses up some of your time. If your wall-building is slow, you might only get a simple structure before the tide arrives. If you're lightning fast, you can build something remarkable.
-
-**Build the bridge:** Quantum computers face an identical challenge. A qubit in a quantum superposition is extraordinarily fragile. The slightest interaction with the environment — a vibration, a stray electromagnetic field, even a passing cosmic ray — destroys the quantum state. The time a qubit can maintain its quantum state before the "tide" of environmental interference washes it away is called its **coherence time**. Every gate operation you perform "uses up" some of that beach time. More coherence time = more complex circuits = more powerful computations.
-
-**The technical term:** **Coherence time** is measured in two components: T₁ (how long a qubit stays excited before relaxing to ground state) and T₂ (how long a qubit maintains phase coherence). Both matter. T₂ ≤ 2T₁ always. Practical circuit depth is roughly T₂ ÷ gate time.
-
-**Where the analogy breaks down:** Unlike tides, decoherence is not perfectly predictable — it's probabilistic, and its sources are complex enough that even small improvements in isolation can yield disproportionate gains in circuit depth.
-
-**SELL THE REVOLUTION:** Coherence time is the single biggest engineering bottleneck between where quantum computing is today and where it needs to be. Current superconducting qubits maintain coherence for roughly 100–500 microseconds. Trapped ions reach tens of milliseconds. The quantum error correction algorithms that would allow us to run million-operation circuits — the circuits needed to simulate novel drugs, break cryptographic keys, or optimize global supply chains — require coherence times or error rates roughly 10–100× better than today's best systems. Every microsecond of additional coherence time engineers extract translates directly into more complex computable problems. The pharmaceutical industry alone spends over \$2.6 trillion annually on drug development, with a 90% clinical trial failure rate largely attributable to our inability to accurately simulate molecular interactions. Coherence time improvements are the engineering lever that unlocks that simulation capability. This is why the world's best quantum engineering teams — at IBM, Google, IonQ, Quantinuum, and a dozen startups — wake up every morning trying to squeeze more microseconds out of their qubits.
-::::
-
-:::{figure} ../images/ch04-coherence-time-analogy.png
-:name: ch04-coherence-time-analogy
-:alt: Sand castle analogy for coherence time showing time window for quantum operations
-:width: 100%
-
-**Coherence Time as a Sand Castle.** The coherence window determines how many gate operations you can perform before environmental noise destroys the quantum state. Longer coherence = deeper circuits = more powerful computations.
-:::
-
-### Gate Fidelity
-
-::::{admonition} 🎓 9th Grader Test: Gate Fidelity
-:class: tip
-
-**Start with what you know:** You've played the telephone game. Twenty people sit in a circle. The first person whispers "The quantum computer simulated the protein fold." By the time the message reaches the 20th person, it might come out as "The quantum computer stimulated the protein cold." Each whisper introduces a tiny error. Over enough rounds, the message becomes unrecognizable.
-
-**Build the bridge:** Quantum gate operations work exactly like this. Each time a quantum gate manipulates a qubit — flipping it, entangling it, rotating its state — there is a small probability of error. Modern gates achieve 99.9% fidelity, meaning a 0.1% error rate per operation. That sounds impressive until you chain 1,000 operations together: your overall accuracy drops to (0.999)^1000 = 36.8%. A calculation with 10,000 gates at 99.9% fidelity gives you essentially noise.
-
-**The technical term:** **Gate fidelity** is the probability that a quantum gate performs its intended operation correctly. 1Q gate fidelity (single-qubit operations) and 2Q gate fidelity (two-qubit entangling operations) are tracked separately — 2Q gates are harder and generally less accurate.
-
-**Where the analogy breaks down:** Unlike the telephone game, quantum errors can sometimes be *detected and corrected* using quantum error correction codes — but only if your physical qubit fidelity is high enough to make the overhead worthwhile (above roughly 99.9% for the surface code threshold).
-
-**SELL THE REVOLUTION:** Gate fidelity is the most powerful commercial lever in quantum hardware. Here's the math that matters: moving from 99% to 99.9% 2Q gate fidelity doesn't sound like much — it's a 0.9 percentage point improvement. But it means the error rate dropped by 10×, which means useful circuit depth increased by roughly 10×. That single jump unlocks an entirely new class of algorithms. The financial services industry has been unable to deploy quantum advantage for portfolio optimization not because the algorithms don't exist — they do — but because the circuits are too deep for today's error rates. Quantinuum's trapped-ion systems recently achieved 99.9%+ two-qubit gate fidelity, a milestone that directly expands the set of commercially tractable problems. Every 0.1 percentage point of fidelity improvement is worth billions in addressable market. Fidelity improvements are the single biggest lever for unlocking commercial quantum value.
-::::
-
-:::{figure} ../images/ch04-gate-fidelity-analogy.png
-:name: ch04-gate-fidelity-analogy
-:alt: Telephone game analogy showing cumulative error growth with gate count
-:width: 100%
-
-**Gate Fidelity as a Telephone Game.** Each gate operation introduces a small error. The cumulative effect grows rapidly with circuit depth. High fidelity per gate is the difference between commercially useful quantum circuits and expensive noise generators.
-:::
-
-### The Full Metrics Framework
+These five metrics apply to every hardware platform, every roadmap, and every vendor claim you will encounter. The metrics apply differently to annealing and gate-model systems — but both paradigms can be evaluated against some version of all five.
 
 :::{list-table} The Five Metrics That Define Hardware Quality
 :header-rows: 1
 :widths: 20 25 30 25
 
 * - Metric
-  - What It Measures
-  - Why It Matters
+  - Gate-Model Meaning
+  - Annealing Meaning
   - Watch Out For
 * - **Coherence Time** (T₁, T₂)
-  - How long qubits stay quantum
-  - Limits circuit depth and complexity
-  - "Best qubit" vs. system average
-* - **Gate Fidelity** (1Q, 2Q)
-  - Error rate per operation
-  - Determines useful circuit depth
-  - Reported on best pairs, not all pairs
+  - How long qubits stay quantum; limits circuit depth
+  - Anneal time; controls solution quality vs. speed tradeoff
+  - "Best qubit" vs. system average for gate-model
+* - **Gate / Anneal Fidelity**
+  - Error rate per gate operation
+  - Solution quality vs. optimal; repeat-run consistency
+  - Reported on best pairs, not all pairs (gate-model)
 * - **Connectivity**
   - Which qubits can interact directly
-  - Affects compilation overhead
-  - Claimed vs. measured connectivity
+  - Pegasus topology for Advantage2; affects QUBO embedding
+  - Claimed vs. measured for gate-model; embedding overhead for annealing
 * - **Qubit Count**
   - Physical qubits available
-  - Necessary but not sufficient
-  - Physical ≠ logical qubits
-* - **Logical Qubit Count**
-  - Error-corrected, fault-tolerant qubits
-  - Actual computational capacity
-  - Almost always 0 today; watch timelines
+  - Physical qubits; ~7,000 on Advantage2 but not all available per problem
+  - Physical ≠ logical for gate-model; embedding overhead for annealing
+* - **Problem Scale**
+  - Circuit depth + qubit count determines problem size
+  - Variables + constraints in QUBO determines problem size
+  - Both paradigms have practical limits far below headline specs
 :::
 
 :::{admonition} The Most Important Distinction in Quantum Hardware
 :class: warning
 
-**Physical qubits ≠ Logical qubits.**
+**Physical qubits ≠ Logical qubits (gate-model)** and **Physical qubits ≠ Embedded variables (annealing).**
 
-A physical qubit is raw hardware — noisy, fragile, imperfect. A logical qubit is a *group* of physical qubits working together to simulate one perfect, error-corrected qubit using quantum error correction codes. Today's most advanced machines have thousands of physical qubits but *zero* fully fault-tolerant logical qubits. When vendors announce qubit counts, they are almost always reporting physical qubits. When analysts project quantum advantage timelines, they are usually discussing logical qubits. These two numbers can differ by a factor of 1,000 or more.
+For gate-model systems: a physical qubit is raw, noisy hardware. A logical qubit requires ~1,000 physical qubits for error correction. When vendors announce qubit counts, they mean physical qubits.
+
+For annealing systems: the Advantage2 has 7,000+ qubits, but embedding a QUBO problem onto the Pegasus topology requires multiple physical qubits per logical variable. A problem with 1,000 binary variables may require 3,000–5,000 physical qubits for embedding. The Stride hybrid solver sidesteps this limit for large problems by decomposing them classically.
+
+Never use headline qubit counts as the primary metric for evaluating either paradigm.
 :::
 
 ---
 
-## The Five Modalities: A Deep Dive
+## Part III: D-Wave Advantage2 — The Production Annealing System
+
+FAU's Advantage2 deserves a dedicated section. This is the hardware your coursework runs on. Understanding its architecture is not optional background — it is the foundation for Chapters 6 and every lab involving optimization.
+
+:::{figure} ../images/ch04-dwave-advantage2-architecture.png
+:label: fig-ch04-dwave-advantage2-architecture
+:alt: D-Wave Advantage2 architecture diagram showing the Pegasus qubit topology, the dilution refrigerator housing, and the classical-quantum interface for the Stride hybrid solver
+:width: 100%
+:align: center
+
+**D-Wave Advantage2 Architecture.** The Advantage2 QPU operates at 15 mK inside a dilution refrigerator, with 7,000+ superconducting flux qubits connected in the Pegasus topology. The Stride hybrid solver provides a classical-quantum interface that decomposes large problems into QPU-tractable subproblems.
+:::
+
+### The Physical Hardware
+
+The Advantage2 QPU uses **superconducting flux qubits** — a different type of superconducting qubit than IBM or Google use. Where IBM's transmon qubits are designed for high-fidelity gate operations, D-Wave's flux qubits are designed for the annealing process: encoding a cost function as a magnetic energy landscape and letting the system find its lowest-energy state.
+
+The Advantage2 contains **7,000+ flux qubits** connected in D-Wave's **Pegasus topology** — a 3D graph structure where each qubit connects to up to 15 neighbors. This connectivity pattern is denser than the Chimera topology of older D-Wave systems, enabling more complex QUBO problems to be embedded without excessive qubit overhead.
+
+Like all superconducting systems, the Advantage2 QPU operates at **approximately 15 millikelvin** — colder than outer space. FAU's deployment includes the full dilution refrigerator infrastructure required for this cooling, housed in a dedicated facility on the Boca Raton campus.
+
+### The Annealing Process
+
+A computation on the Advantage2 follows a specific sequence:
+
+1. **Problem encoding:** The QUBO cost function is translated into the physical energy parameters of the QPU — the bias of each qubit and the coupling strength between connected qubits pairs.
+2. **Initialization:** All qubits are set to equal superposition (50% probability of being 0 or 1). This is the quantum starting state.
+3. **Annealing:** The system slowly evolves from a quantum state (dominated by a transverse magnetic field that maintains superposition) toward a classical state (dominated by the problem-specific energy landscape). Quantum tunneling during this evolution allows the system to explore the solution landscape more efficiently than classical hill-climbing.
+4. **Measurement:** At the end of the anneal, each qubit collapses to 0 or 1. The resulting bitstring represents one candidate solution.
+5. **Sampling:** The anneal is repeated many times (default: 1,000 reads). The lowest-energy solution across all reads is returned as the best result.
+6. **Post-processing:** Classical algorithms refine the QPU output.
+
+A single anneal takes **20–200 microseconds**. Including programming, sampling, and readout, a complete QPU job typically runs in **1–10 milliseconds**.
+
+### The Stride Hybrid Solver
+
+For problems larger than the QPU can handle natively (most enterprise problems), D-Wave's **Stride hybrid solver** provides the production interface.
+
+Stride operates as a classical orchestration layer that:
+1. Receives a large QUBO problem (potentially millions of variables)
+2. Decomposes it into subproblems that fit within the QPU's variable capacity
+3. Submits each subproblem to the Advantage2 QPU via D-Wave Leap
+4. Aggregates and coordinates QPU results using classical optimization
+5. Iterates until a stopping criterion is met
+6. Returns the best solution found
+
+From the enterprise perspective, Stride looks like a black-box optimization solver: you submit a QUBO problem, you receive a solution in seconds to minutes. The quantum computation happens internally and automatically. No quantum circuit writing, no qubit management, no error mitigation.
+
+**This is why BASF uses Stride for production manufacturing scheduling.** The operational interface is a classical API. The quantum advantage (faster exploration of large solution spaces through tunneling) happens transparently.
+
+### Embedded vs. Logical Variables
+
+When you submit a QUBO problem to the QPU directly (bypassing Stride), your problem variables must be *embedded* onto the Pegasus topology — each logical variable in your problem is represented by one or more physical qubits, depending on connectivity requirements. This embedding overhead means you can solve problems with fewer variables than the physical qubit count suggests.
+
+**Practical rule of thumb:** The Advantage2 can handle QUBO problems with roughly 1,000–3,000 logical binary variables on the QPU directly. The Stride hybrid solver removes this limit — it handles millions of variables by decomposing the problem.
+
+:::{admonition} The FAU Advantage
+:class: important
+
+FAU's on-premises Advantage2 deployment provides two advantages over cloud-only D-Wave Leap access:
+
+1. **Latency:** Direct QPU access without cloud queuing. Iterate on QUBO formulations in seconds rather than waiting in shared queues. This is critical for research workflows that require rapid experimentation.
+2. **Partnership:** D-Wave's corporate headquarters is four miles away at the Boca Raton Innovation Center. Direct access to D-Wave application engineers for problem formulation support, optimization tuning, and co-development. A benefit unavailable to cloud-only customers.
+:::
+
+---
+
+## Part IV: The Five Gate-Model Architectures
 
 ::::{tab-set}
 
 :::{tab-item} ⚡ Superconducting
 ### Superconducting Qubits: The Formula 1 Car
 
-::::{admonition} 🎓 9th Grader Test: Superconducting Qubits
-:class: tip
+**The analogy:** A Formula 1 car is the fastest vehicle on the planet. It needs a pit crew of 50 people, controlled environment, and millions in infrastructure. Extraordinary performance, extraordinary support requirements.
 
-**Start with what you know:** Think about a Formula 1 race car. It's the fastest vehicle on the planet. It can accelerate from 0 to 200 mph in seconds. But it needs a pit crew of 50 people, specialized track conditions, a controlled environment, and millions of dollars of support infrastructure. You cannot take it to a gas station. You cannot drive it on a rainy highway. Its extraordinary performance is completely dependent on extraordinary support.
+Superconducting qubits operate at 15 millikelvin. At that temperature, certain metals lose all electrical resistance and enter a quantum state. Engineers create artificial "atoms" on a chip using standard semiconductor fabrication — called transmon qubits — controlled with microwave pulses. Gate operations execute in nanoseconds.
 
-**Build the bridge:** Superconducting qubits are the Formula 1 cars of quantum computing. They operate at 15 millikelvin — colder than outer space (space is about 2.7 Kelvin; these machines run at 0.015 Kelvin). At that temperature, certain metals lose all electrical resistance and enter a quantum mechanical state that allows engineers to create artificial "atoms" on a chip using standard semiconductor fabrication techniques. These artificial atoms — called transmon qubits — can be controlled with microwave pulses and can execute gate operations in nanoseconds (billionths of a second).
+**Key players:** IBM (Eagle, Heron, Condor, Flamingo roadmap), Google (Sycamore, Willow), Rigetti, OQC, Alice & Bob
 
-**The technical term:** **Superconducting qubits** are quantum bits implemented using superconducting circuits, most commonly the Josephson junction — a quantum mechanical element that gives the circuit non-linear inductance. IBM, Google, and Rigetti all use superconducting architectures.
-
-**Where the analogy breaks down:** Unlike F1 cars that can be tuned without changing the fundamental physics, superconducting qubits face fundamental coherence limits from the chip's material properties — limits that require new fabrication techniques, not just tuning, to overcome.
-
-**SELL THE REVOLUTION:** IBM and Google have collectively invested over \$4 billion in superconducting quantum hardware — not because they are naive, but because the speed advantage is real and compounding. When quantum error correction matures, superconducting systems' nanosecond gate times mean they can run millions of error-correction cycles per second, using speed to compensate for noise. Google's Willow processor recently demonstrated below-threshold error correction — meaning adding more qubits *reduced* error rates rather than amplifying them. That is the breakthrough the entire field has been waiting for. Industries that require real-time quantum optimization — high-frequency trading, logistics routing, climate modeling — need systems fast enough to compute answers in operationally relevant timeframes. Superconducting may be the only architecture fast enough to meet that bar. The question is whether the cooling infrastructure can be industrialized. Several startups are working on modular dilution refrigerators that could reduce costs by 90% over the next decade.
-::::
-
-**Key players:** IBM (Eagle, Heron, Flamingo roadmap), Google (Sycamore, Willow), Rigetti, OQC, Alice & Bob
-
-**Typical specs (2024–2025):**
+**Specs (2025):**
 - Gate time: 10–100 ns (1Q), 100–500 ns (2Q)
 - Coherence time: T₁ = 100–500 μs, T₂ = 50–300 μs
 - Gate fidelity: 1Q ~99.9%, 2Q ~99–99.5%
 - Scale: 100–1,000+ physical qubits
-- Operating temperature: 15 mK
+- Temp: 15 mK (dilution refrigerator required)
 
-**Best for:** Speed-critical applications, large qubit counts, integration with classical HPC workflows
+**Biggest milestone (Dec 2024):** Google's Willow processor demonstrated below-threshold error correction — the first time adding more qubits reduced rather than amplified error rates. The entire field has been waiting for this milestone.
+
+**Best for:** Speed-critical applications, large qubit counts, IBM/Google ecosystem integration
 **Biggest challenge:** Coherence, cooling infrastructure, manufacturing yield at scale
 :::
 
 :::{tab-item} 🔬 Trapped-Ion
 ### Trapped-Ion Qubits: The Swiss Watch
 
-::::{admonition} 🎓 9th Grader Test: Trapped-Ion Qubits
-:class: tip
+**The analogy:** A Swiss watch doesn't go 200 mph. But it keeps perfect time for 50 years without a pit crew, at room temperature, with extraordinary precision from a fundamentally stable system.
 
-**Start with what you know:** Compare a Formula 1 car to a Swiss watch. The watch doesn't go 200 mph. But it keeps perfect time for 50 years without a pit crew. It works at room temperature. It doesn't need a specialized track. Its precision comes from extraordinarily careful engineering of a fundamentally stable system, not from pushing the limits of speed.
+Trapped-ion systems use individual atoms (typically ytterbium or barium ions) levitated in a vacuum by electromagnetic fields. Natural atoms are identical — nature's quality control. Laser pulses perform gate operations with extraordinary precision. Gates are slower than superconducting but error rates are dramatically lower and coherence times are orders of magnitude longer.
 
-**Build the bridge:** Trapped-ion quantum computers use individual atoms — typically ytterbium or barium ions — levitated in a vacuum chamber by electromagnetic fields. These natural atoms are identical to each other (nature's quality control), so every qubit starts with perfect uniformity. Laser pulses manipulate the quantum states of these suspended ions with extraordinary precision. The gates are slower than superconducting — microseconds rather than nanoseconds — but the error rates are dramatically lower and the coherence times are orders of magnitude longer.
+**Key players:** IonQ (NYSE: IONQ), Quantinuum (Honeywell + Cambridge Quantum), Oxford Ionics
 
-**The technical term:** **Trapped-ion qubits** use the internal electronic states of ions (electrically charged atoms) as qubits. All-to-all connectivity (every qubit can interact with every other) is achievable within small chains, which reduces compilation overhead dramatically.
-
-**Where the analogy breaks down:** Swiss watches scale to maybe 1,000 moving parts. Scaling trapped ions to thousands of interacting qubits faces serious challenges — shuttling ions and maintaining coherence in larger chains is an unsolved engineering problem.
-
-**SELL THE REVOLUTION:** For applications where accuracy beats raw speed — molecular simulation for drug discovery, financial risk modeling, cryptographic protocol verification — trapped-ion systems may reach commercial advantage years before superconducting systems can match their fidelity. IonQ and Quantinuum have demonstrated two-qubit gate fidelities above 99.9%, a threshold that superconducting systems are only now beginning to approach. The pharmaceutical industry's inability to accurately simulate drug-protein interactions costs an estimated \$50 billion annually in failed clinical trials. A trapped-ion system with 50 high-fidelity logical qubits running accurate molecular dynamics simulations could change that equation entirely — and that system may be achievable before 2030. Financial firms that deploy quantum risk models on trapped-ion platforms today are building the algorithmic expertise that will be decisive competitive moats when larger systems arrive.
-::::
-
-**Key players:** IonQ, Quantinuum (Honeywell + Cambridge Quantum), Oxford Ionics
-
-**Typical specs (2024–2025):**
+**Specs (2025):**
 - Gate time: 1–10 μs (1Q), 50–500 μs (2Q)
-- Coherence time: seconds to minutes (T₂ > 10 s achievable)
-- Gate fidelity: 1Q >99.99%, 2Q >99.9%
-- Scale: 20–50 physical qubits (current), 1,000+ (roadmap)
-- Operating temperature: Room temperature (trap itself); laser system required
+- Coherence time: Seconds to minutes (T₂ > 10 s achievable)
+- Gate fidelity: 1Q >99.99%, 2Q >99.9% (Quantinuum H2: 99.8%+)
+- Scale: 20–56 physical qubits (current commercial)
+- Temp: Room temperature (vacuum system + laser infrastructure)
 
-**Best for:** High-fidelity circuits, chemistry simulation, financial optimization
-**Biggest challenge:** Gate speed, scaling beyond ~100 qubits in a single trap
+**Best for:** High-fidelity circuits, quantum chemistry, financial optimization, near-term quantum advantage
+**Biggest challenge:** Gate speed, scaling beyond ~100 qubits in a single ion chain
 :::
 
 :::{tab-item} ⚛️ Neutral-Atom
 ### Neutral-Atom Qubits: The Programmable Grid
 
-Neutral-atom quantum computers use arrays of uncharged atoms (typically rubidium or cesium) held in place by optical tweezers — focused laser beams that trap individual atoms at programmable positions. Because the atoms are neutral, they don't interact strongly with each other by default, which makes them easy to isolate and control. To create entanglement, atoms are temporarily excited to highly energetic "Rydberg" states where they interact strongly.
+Neutral-atom systems use arrays of uncharged atoms held by optical tweezers — focused laser beams trapping individual atoms at programmable positions. Atoms are neutral, so they don't interact strongly by default (easy to isolate). Entanglement is created by temporarily exciting atoms to high-energy Rydberg states where they interact strongly.
 
-**The defining advantage:** Reconfigurability. Unlike superconducting chips with fixed connectivity, neutral-atom systems can physically rearrange their qubits mid-computation, creating arbitrary connectivity patterns on demand.
+**The defining advantage:** Reconfigurability. Unlike fixed-chip architectures, neutral-atom systems can physically rearrange their qubits mid-computation, creating arbitrary connectivity on demand. This dramatically reduces compilation overhead for certain algorithm classes.
 
-**Key players:** QuEra (Harvard spinout), Pasqal, Atom Computing, Microsoft (investing)
+**Key players:** QuEra (Harvard spinout), Pasqal, Atom Computing
 
-**Typical specs (2024–2025):**
+**Specs (2025):**
 - Gate time: ~0.5–5 μs (1Q), ~0.5–10 μs (2Q via Rydberg)
 - Coherence time: ~1–10 s (nuclear spin qubits can reach minutes)
 - Gate fidelity: 1Q ~99.5%, 2Q ~99–99.5% (improving rapidly)
-- Scale: 256–10,000+ physical qubits (atom loading)
-- Operating temperature: ~microkelvin (laser cooling), no dilution fridge
+- Scale: 256–10,000+ physical atoms
+- Temp: Microkelvin (laser cooling only — no dilution fridge)
 
-**Best for:** Combinatorial optimization, analog simulation, quantum networking, large-scale variational algorithms
-**Biggest challenge:** Gate speed, fidelity at scale, loading determinism
+**Landmark (2023):** QuEra's 48-logical-qubit demonstration — the first time any platform demonstrated that many error-corrected logical qubits running algorithms. The field is watching this space closely.
 
-:::{admonition} The Neutral-Atom Inflection Point
-:class: note
-Neutral-atom systems are the most rapidly evolving modality as of 2024–2025. QuEra's 48-logical-qubit demonstration in 2023 was a landmark — the first time any platform demonstrated more than a handful of logical qubits running error-corrected algorithms. The field is watching this space extremely closely.
-:::
+**Best for:** Combinatorial optimization, analog simulation, quantum networking, large variational algorithms
+**Biggest challenge:** Gate speed, fidelity at scale, deterministic atom loading
 :::
 
 :::{tab-item} 💡 Photonic
 ### Photonic Qubits: Room Temperature, Network Native
 
-Photonic quantum computers encode quantum information in individual photons — particles of light. Photons naturally travel at the speed of light, don't interact with the environment in ways that cause decoherence, and can be transmitted over optical fiber networks. These properties make photonic systems uniquely suited for quantum communication and networking.
+Photonic quantum computers encode quantum information in individual photons. Photons travel at the speed of light, don't interact with the environment in ways that cause decoherence, and can be transmitted over optical fiber. These properties make photonic systems uniquely suited for quantum communication and networking.
 
-**Key players:** PsiQuantum (aiming for utility-scale via silicon photonics manufacturing), Xanadu (PennyLane SDK), QuiX Quantum
+**Key players:** PsiQuantum (silicon photonics manufacturing bet), Xanadu (PennyLane), QuiX Quantum
 
-**Typical specs (2024–2025):**
-- Operating temperature: Room temperature (no dilution fridge)
+**The manufacturing bet:** PsiQuantum has raised over \$700 million on the thesis that GlobalFoundries' silicon photonics manufacturing process can produce millions of photonic qubits — leapfrogging all other architectures at scale. If manufacturing yields hit targets, the approach is transformative. If not, the capital may be unrecoverable.
+
+**Specs:**
+- Operating temp: Room temperature (no dilution fridge)
 - Coherence: Very long (photons don't thermalize easily)
-- Gate model: Measurement-based (different computational model)
-- Scale: Current systems are small; PsiQuantum's bet is manufacturing scale
-- Key advantage: Silicon photonics fabrication leverages existing \$500B semiconductor manufacturing infrastructure
+- Computation model: Measurement-based (different from circuit model)
+- Current scale: Small (PsiQuantum's bet is on manufacturing scale, not today's demos)
 
 **Best for:** Quantum networking, quantum key distribution, distributed quantum computation
-**Biggest challenge:** Deterministic single-photon sources, photon loss in gates, scaling measurement-based computation
-
-:::{admonition} PsiQuantum's Manufacturing Bet
-:class: warning
-PsiQuantum has raised over \$700 million on the thesis that manufacturing millions of photonic qubits via GlobalFoundries' silicon photonics process is the fastest path to fault-tolerant scale. They are not building today's useful systems — they are engineering for a future where silicon photonics fab yield provides millions of physical qubits. This is a high-risk, high-reward bet on a 2027–2030 timeline. If it works, the photonic approach leapfrogs everyone. If the manufacturing yields don't hit targets, the capital investment may be unrecoverable.
-:::
+**Biggest challenge:** Deterministic single-photon sources, photon loss in gates
 :::
 
 :::{tab-item} 🔮 Topological
 ### Topological Qubits: Highest Risk, Highest Reward
 
-Topological quantum computers would use exotic quantum states — specifically, quasi-particles called Majorana zero modes — to encode quantum information in a way that is inherently protected from local errors. The key insight: if the quantum information is stored in the *topology* of a quantum state rather than the state of any individual particle, local disturbances cannot corrupt it. It's like writing a message in a knot: you can stretch or wiggle the rope, but you cannot accidentally change what the knot *is* without deliberately cutting and retying it.
+Topological quantum computers would encode information in exotic quantum states — Majorana zero modes — where the information is stored in the *topology* of a quantum state rather than the state of any individual particle. Local disturbances cannot corrupt topological information: it is like writing a message in a knot — you cannot accidentally change what the knot *is* without deliberately cutting and retying it.
 
-**Key players:** Microsoft (Topological Core / Azure Quantum), small academic groups worldwide
+**Key players:** Microsoft (primary backer, Azure Quantum roadmap)
 
-**Typical specs:** Still largely in experimental validation phase as of 2025
-- Microsoft demonstrated the first topological qubit in a paper published February 2025, claiming to have observed Majorana zero modes on a semiconductor nanowire — a result that triggered intense scientific scrutiny
-- Commercial viability: Estimated 5–10+ years
+**Status (2025):** Microsoft published a *Nature* paper in February 2025 claiming to have observed Majorana zero modes on a semiconductor nanowire. The result triggered significant scientific scrutiny — independent replication is ongoing. Commercial viability: 5–10+ years.
 
-**Best for:** *Theoretically*, all-purpose fault-tolerant computation with dramatically lower overhead than surface codes
-**Biggest challenge:** Majorana zero mode verification, materials fabrication, gate implementation — fundamental physics still being validated
+**If it works:** Topological systems could achieve fault-tolerant computation with 10–100× fewer physical qubits than surface codes require — compressing the timeline to practical utility dramatically. That is the bet.
 
-:::{admonition} The Topological Wildcard
-:class: important
-Topological qubits are the highest-risk, highest-reward bet in quantum hardware. If the physics works as theorized, topological systems could achieve fault-tolerant computation with 10–100× fewer physical qubits than competing approaches, compressing the timeline to practical utility dramatically. Every well-managed quantum portfolio includes a small, monitored position in topological developments — not as a primary bet, but as an option on a paradigm shift.
-:::
+**Best for:** If validated — all-purpose fault-tolerant computation with dramatically lower overhead
+**Biggest challenge:** Fundamental physics still being validated; materials fabrication; gate implementation
 :::
 ::::
-
-:::{figure} ../images/ch04-superconducting-architecture.png
-:name: ch04-superconducting-architecture
-:alt: Superconducting qubit dilution refrigerator architecture diagram
-:width: 100%
-
-**Superconducting Architecture.** The dilution refrigerator must maintain temperatures colder than outer space — 15 millikelvin — to allow superconducting circuits to function. This cooling requirement is the primary manufacturing and cost challenge for at-scale deployment.
-:::
-
-:::{figure} ../images/ch04-trapped-ion-architecture.png
-:name: ch04-trapped-ion-architecture
-:alt: Trapped-ion quantum computer architecture with ion trap and laser system
-:width: 100%
-
-**Trapped-Ion Architecture.** Individual ions levitated in a vacuum trap by electromagnetic fields. Laser pulses perform gate operations with extraordinary precision. The system operates at room temperature but requires complex laser and vacuum infrastructure.
-:::
-
-:::{figure} ../images/ch04-neutral-atom-architecture.png
-:name: ch04-neutral-atom-architecture
-:alt: Neutral atom quantum computer with optical tweezer array
-:width: 100%
-
-**Neutral-Atom Architecture.** Optical tweezers hold individual atoms in programmable grid patterns. The reconfigurable nature of the array allows dynamic qubit connectivity — a unique advantage over fixed-chip architectures.
-:::
-
-:::{figure} ../images/ch04-photonic-topological.png
-:name: ch04-photonic-topological
-:alt: Photonic and topological quantum computing architectures side by side
-:width: 100%
-
-**Photonic and Topological Architectures.** Photonic systems (left) operate at room temperature using light as the quantum carrier — enabling network integration. Topological systems (right) remain largely theoretical but promise inherently error-protected computation via exotic quantum states.
-:::
 
 ---
 
-## Reading a Roadmap Like an Analyst, Not a Fan
+## Part V: Reading a Roadmap Like an Analyst
 
-::::{admonition} 🎓 9th Grader Test: The Roadmap Reading Skill
-:class: tip
-
-**Start with what you know:** You've seen movie trailers. A trailer for a mediocre movie can make it look like the greatest film ever made. Dramatic music, the best 90 seconds of footage, narration that promises "an unforgettable journey." Then you see the actual film and... it's fine. The trailer was technically accurate — those scenes *are* in the movie — but it created a completely misleading impression of the whole.
-
-**Build the bridge:** Quantum vendor roadmaps are movie trailers. They show the best-case demos. They list impressive milestone names without always clarifying whether those milestones have been *achieved* or merely *planned*. They use language like "demonstrated," "achieved," "launched" for things that happened, and "target," "planned," "expected" for things that haven't. The difference between those two categories is enormous — and easy to miss when you're excited about quantum computing.
-
-**The technical term:** The skill of reading roadmaps analytically is called **vendor roadmap evaluation** — separating trailing indicators (things already demonstrated) from leading indicators (things promised on a future timeline), and weighting both appropriately given the technical risk at each step.
-
-**Where the analogy breaks down:** Unlike movie trailers, roadmap accuracy is observable over time. Vendors who consistently miss milestones are giving you data. Build a personal database of vendor roadmap commits vs. actual delivery — it will be the most valuable research asset you own.
-
-**SELL THE REVOLUTION:** Every executive who can read a quantum roadmap critically has a 3-year head start on every executive who cannot. Here is the edge in concrete terms: in 2023, multiple quantum vendors announced systems with "1,000+ qubits." Most analysts celebrated. Informed analysts read the footnotes and discovered that most of these systems had useful depths of fewer than 20 operations — because fidelity hadn't kept pace with qubit count. The "1,000 qubit" headlines were technically accurate and commercially misleading simultaneously. The organizations that understood this distinction didn't waste procurement cycles evaluating systems that couldn't serve their needs. That's the value of roadmap literacy — not just knowing which vendor is ahead, but knowing what "ahead" actually means. In a field where misinformed capital allocation decisions routinely run into eight figures, this skill is worth more than any single technical insight.
-::::
+Quantum vendor roadmaps are movie trailers. They show the best-case demos. They use "demonstrated" for things that happened and "targets" and "plans" for things that haven't. The difference between those two categories is enormous — and easy to miss when you're excited.
 
 :::{figure} ../images/ch04-roadmap-reading-framework.png
-:name: ch04-roadmap-reading-framework
-:alt: Quantum vendor roadmap analysis framework with evaluation rubric
+:label: fig-ch04-roadmap-reading-framework
+:alt: Quantum vendor roadmap analysis framework showing green-yellow-red evaluation rubric applied to timeline milestones
 :width: 100%
+:align: center
 
-**The Roadmap Reading Framework.** Separate demonstrated milestones from planned ones. Apply the traffic-light rubric to any vendor's roadmap to get a calibrated view of near-term, mid-term, and speculative capability.
+**The Roadmap Reading Framework.** Every roadmap claim falls into one of three categories: demonstrated (trust), announced (verify), or projected (discount). Apply this rubric to any vendor's roadmap to get a calibrated view of near-term, mid-term, and speculative capability.
 :::
 
 ### The Evergreen Roadmap Rubric
@@ -371,9 +370,9 @@ Topological qubits are the highest-risk, highest-reward bet in quantum hardware.
 :widths: 25 25 25 25
 
 * - Claim Type
-  - Green (Trust)
-  - Yellow (Verify)
-  - Red (Discount)
+  - ✅ Green (Trust)
+  - 🟡 Yellow (Verify)
+  - 🔴 Red (Discount)
 * - **Achievement language**
   - "Demonstrated," "published," "peer-reviewed"
   - "Announced," "showed," internal report
@@ -384,337 +383,227 @@ Topological qubits are the highest-risk, highest-reward bet in quantum hardware.
   - No fidelity reported; qubit count only
 * - **Timeline**
   - Milestone already delivered
-  - 6–18 month horizon with named dependencies
+  - 6–18 months with named dependencies
   - 2+ years, vague dependencies
 * - **Demo scope**
   - Full-system benchmark on standard circuit
   - Subsystem demo extrapolated to system
   - Theoretical projection, no hardware demo
+* - **D-Wave specific**
+  - Production deployment named, metrics cited
+  - Pilot completion announced
+  - Advantage projected from lab benchmark
 :::
 
-### The Five Red Flags in Vendor Roadmaps
+### The Five Red Flags
 
-1. **Qubit count without fidelity.** A million low-fidelity qubits are worth less than 100 high-fidelity ones. Always ask: what is the system-average two-qubit gate error rate?
-
-2. **"Quantum advantage" without specification.** Advantage over *what*, on *which problem*, measured *how*? Unspecified quantum advantage claims are marketing, not milestones.
-
-3. **Demo on one algorithm.** A system optimized to perform well on the demonstration algorithm may perform very differently on your actual workload. Ask for benchmarks on *your* use case class.
-
-4. **The hockey stick at year 3.** Roadmaps that show flat progress through years 1–2 and then a sudden vertical climb at year 3 should be scrutinized carefully. Quantum engineering doesn't hockey stick; it compounds.
-
-5. **"Logical qubits" without overhead disclosure.** If a vendor claims logical qubits, ask how many physical qubits each logical qubit costs. A 1,000-physical-qubit system with 1,000-to-1 overhead has one logical qubit. That's a milestone, but not a commercial platform.
+1. **Qubit count without fidelity.** A million low-fidelity qubits are worth less than 100 high-fidelity ones. Always ask for system-average two-qubit gate error rate.
+2. **"Quantum advantage" without specification.** Advantage over *what*, on *which problem*, measured *how*? Unspecified claims are marketing.
+3. **Demo on one algorithm.** A system optimized for one benchmark may perform very differently on your workload. Ask for benchmarks on your use-case class.
+4. **The hockey stick at year 3.** Roadmaps that show flat progress through years 1–2 then sudden vertical climb at year 3 deserve scrutiny. Quantum engineering compounds; it doesn't hockey stick.
+5. **"Logical qubits" without overhead.** Ask how many physical qubits each logical qubit costs. A 1,000-qubit system at 1,000-to-1 overhead has one logical qubit. That is a milestone — not a commercial platform.
 
 ---
 
-## The Portfolio Approach to Modality Risk
+## Part VI: Matching Hardware to Workload
+
+The paradigm and architecture that is right for drug simulation is wrong for logistics routing.
+
+:::{figure} ../images/ch04-workload-matching.png
+:label: fig-ch04-workload-matching
+:alt: Workload-to-hardware matching matrix showing which quantum hardware paradigm and architecture is best suited to different enterprise use cases across axes of problem type and timeline
+:width: 100%
+:align: center
+
+**Matching Hardware to Workload.** The most common and most expensive quantum strategy mistake is using the wrong hardware paradigm for a given problem. Annealing (D-Wave) for today's optimization problems. Gate-model for tomorrow's simulation and cryptographic applications.
+:::
+
+:::{list-table} Paradigm-to-Workload Matching Guide
+:header-rows: 1
+:widths: 28 20 22 15 15
+
+* - Workload Type
+  - Paradigm
+  - Best Architecture
+  - Timeline
+  - FAU Hardware?
+* - Vehicle routing, scheduling
+  - **Annealing**
+  - D-Wave Advantage2
+  - Now
+  - ✅ Yes
+* - Portfolio optimization
+  - **Annealing** (near-term); Gate-model (future)
+  - D-Wave Stride; Superconducting (QAOA)
+  - Now / 2027+
+  - ✅ Yes
+* - Manufacturing sequencing
+  - **Annealing**
+  - D-Wave Advantage2
+  - Now
+  - ✅ Yes
+* - Drug simulation (molecular)
+  - Gate-model
+  - Trapped-ion, Neutral-atom
+  - 2026–2030
+  - ❌ No
+* - Battery / materials chemistry
+  - Gate-model
+  - Superconducting, Trapped-ion
+  - 2028–2033
+  - ❌ No
+* - Quantum ML / classification
+  - Gate-model
+  - All (algorithm-dependent)
+  - Speculative / research
+  - ❌ No
+* - RSA / cryptographic break
+  - Gate-model (fault-tolerant)
+  - Superconducting (Shor's)
+  - 2035+
+  - ❌ No
+* - Quantum networking / QKD
+  - Photonic
+  - Photonic
+  - Available now (limited)
+  - ❌ No
+:::
+
+---
+
+## Part VII: The Portfolio Approach
 
 :::{admonition} Mental Model: Your Quantum Strategy Is a Seed Fund
 :class: important
 
-A well-managed venture capital seed fund doesn't bet everything on one startup. It takes 20–30 positions across different sectors, sizes, and stages. It tracks leading indicators for each portfolio company. It has pre-defined criteria for increasing allocation ("doubling down") and pre-defined criteria for writing off a position ("kill switch"). It rebalances annually.
+A well-managed venture capital seed fund doesn't bet everything on one startup. It takes 20–30 positions, tracks leading indicators, has pre-defined kill-switch criteria, and rebalances annually.
 
-Your organization's quantum hardware strategy should work exactly the same way. Diversify across modalities. Define kill-switch criteria before you deploy capital. Rebalance annually as the landscape shifts.
+Your quantum hardware strategy should work the same way. Diversify across paradigms and architectures. Define kill-switch criteria before you deploy capital. Rebalance annually as the landscape shifts.
 :::
 
-### Suggested Portfolio Framework by Risk Tolerance
+### Suggested Portfolio Allocation by Risk Tolerance
 
-::::{grid} 1 2 3 3
-
+::::{grid} 1 1 3 3
 :::{card} Conservative
-:header: 🛡️ **Conservative**
 :class-header: bg-primary text-white
 
-**Focus: Deployed capability today**
+**🛡️ Conservative**
 
-- 60% Superconducting (IBM/Google access)
-- 30% Trapped-Ion (IonQ/Quantinuum service)
-- 10% Monitor neutral-atom progress
+- **D-Wave Leap** cloud access — production optimization pilots
+- **IBM Quantum** free tier — gate-model literacy
+- Monitor neutral-atom progress
 
-*Use case: Cloud API access only. No hardware procurement. Build algorithms now.*
+*Cloud API access only. No hardware procurement. Build QUBO and gate-model skills now.*
 :::
-
 :::{card} Balanced
-:header: ⚖️ **Balanced**
 :class-header: bg-warning text-dark
 
-**Focus: Near-term + option value**
+**⚖️ Balanced**
 
-- 40% Superconducting (service contracts)
-- 30% Trapped-Ion (private placement consideration)
-- 20% Neutral-Atom (early access programs)
-- 10% Photonic (networking projects)
+- **D-Wave Stride** service contract — production workloads
+- **IBM/IonQ** service — gate-model pilots
+- **Neutral-atom** early access program
+- Monitor photonic and topological
 
-*Use case: Workload-specific pilots. Evaluate multiple backends. Track kill-switch criteria.*
+*Workload-specific pilots. Multiple backends. Explicit kill-switch criteria.*
 :::
-
 :::{card} Aggressive
-:header: 🚀 **Aggressive**
 :class-header: bg-danger text-white
 
-**Focus: Long-term positioning**
+**🚀 Aggressive**
 
-- 30% Superconducting
-- 25% Trapped-Ion
-- 20% Neutral-Atom
-- 15% Photonic
-- 10% Topological (monitor)
+- **On-premises annealing** (like FAU) — production + research
+- **Trapped-ion** private placement consideration
+- **Neutral-atom** early access
+- **Photonic** strategic monitoring position
+- **Topological** watch brief
 
-*Use case: Strategic investment + talent acquisition. Position for fault-tolerant era. Accept 5–10 year horizon.*
+*Long-term positioning, talent acquisition, 5–10 year horizon.*
 :::
 ::::
 
 ### Kill-Switch Criteria
 
-:::{admonition} Define These Before You Deploy Capital
-:class: warning
+Define before deploying capital:
 
-For each modality position, define:
-
-1. **Technical kill switch:** "If [modality] fails to achieve [specific fidelity/qubit/coherence target] by [date], we reduce allocation by [X%]."
-2. **Commercial kill switch:** "If no use case in [our industry vertical] demonstrates measurable ROI by [date], we exit service contracts."
-3. **Competitive kill switch:** "If a competing modality achieves [threshold], we shift [X%] of this position to the leader."
-
-Without pre-defined kill switches, confirmation bias will keep you in losing positions.
-:::
-
----
-
-## Matching Modality to Workload
-
-Not all quantum problems are created equal. The modality that's right for drug simulation may be wrong for financial optimization.
-
-:::{list-table} Modality-to-Workload Matching Guide
-:header-rows: 1
-:widths: 30 25 25 20
-
-* - Workload Type
-  - Best Modality
-  - Reason
-  - Timeline
-* - Molecular simulation (pharma/materials)
-  - Trapped-Ion, Neutral-Atom
-  - High fidelity, long coherence
-  - 2026–2030
-* - Financial portfolio optimization
-  - Superconducting, Trapped-Ion
-  - QAOA circuit depth needs
-  - 2027–2032
-* - Cryptographic key search
-  - Superconducting (fault-tolerant era)
-  - Shor's requires millions of gates
-  - 2035+
-* - Quantum networking / QKD
-  - Photonic
-  - Fiber-native, room temperature
-  - Available now (limited)
-* - Combinatorial optimization (logistics)
-  - Neutral-Atom, Superconducting
-  - Scale, connectivity
-  - 2027–2030
-* - Climate/fluid dynamics simulation
-  - Superconducting (large-scale)
-  - Speed-critical, large Hilbert space
-  - 2030–2035
-* - Machine learning (quantum ML)
-  - All modalities (algorithm-dependent)
-  - Depends on circuit structure
-  - Speculative; near-term: NISQ era
-:::
+1. **Technical:** "If [platform] fails to achieve [target] by [date], reduce allocation by [X%]"
+2. **Commercial:** "If no ROI demonstrated in [industry] by [date], exit service contracts"
+3. **Competitive:** "If competing paradigm achieves [threshold], shift [X%] from this position"
 
 ---
 
 ## Flagship Case Study: A Sovereign Wealth Fund's Quantum Hardware Portfolio
 
-:::{figure} ../images/ch04-swf-portfolio-case.png
-:name: ch04-swf-portfolio-case
-:alt: Sovereign wealth fund quantum portfolio allocation diagram
-:width: 100%
+In early 2023, a \$400 billion sovereign wealth fund's technology investment committee convened to develop a formal quantum computing strategy. Peer SWFs in Singapore, Norway, and the Gulf Cooperation Council were beginning to take positions in quantum hardware companies. The committee faced a fundamental challenge: no single quantum hardware approach had yet demonstrated commercial advantage at scale — and waiting for a winner risked missing the early-mover benefits.
 
-**The SWF Quantum Portfolio.** A sovereign wealth fund structures diversified quantum exposure across all five modalities using a mix of public equities, private placements, and service contracts — managing risk while maintaining optionality across a rapidly evolving landscape.
-:::
+**The Committee's Framework**
 
-### Situation
-
-In early 2023, a \$400 billion sovereign wealth fund's technology investment committee convened to develop a formal quantum computing strategy. The fund had observed peer SWFs in Singapore, Norway, and the Gulf Cooperation Council beginning to take positions in quantum hardware companies. The committee faced a fundamental challenge: no single quantum hardware modality had yet demonstrated commercial advantage, yet waiting for a winner to emerge risked missing the early-mover benefits — talent pipelines, preferential access to research partnerships, and below-market entry into private placements.
-
-The committee appointed a four-person Quantum Technology Working Group (QTWG) with a mandate to design a portfolio strategy that would (a) provide meaningful exposure to quantum hardware value creation, (b) manage the risk of backing the wrong modality, and (c) include objective kill-switch criteria to prevent sunk-cost thinking.
-
-### Quantum Angle
-
-The QTWG's central insight was that evaluating quantum hardware companies required a fundamentally different analytical framework from traditional technology investment. Standard metrics — revenue growth, market share, gross margin — were irrelevant for pre-commercial platforms. What mattered was:
+The Quantum Technology Working Group (QTWG) rejected the standard technology investment rubric (revenue growth, market share, gross margin — irrelevant for pre-commercial platforms). Instead they built a proprietary scoring rubric based on:
 
 - **Milestone velocity:** How quickly was each platform advancing on the five key technical metrics?
 - **Roadmap credibility:** What fraction of past roadmap commitments had been delivered on schedule?
 - **Ecosystem depth:** Were industry partners, algorithm developers, and government programs anchoring around this platform?
-- **Defensibility:** Did the platform's physics or manufacturing approach provide durable competitive advantage, or could it be replicated quickly?
+- **Paradigm fit:** Were near-term commercial applications available now (annealing) or speculative future (gate-model)?
 
-Using this framework, the QTWG built a proprietary scoring rubric — essentially the Roadmap Evaluation Rubric from this chapter — and applied it to 23 quantum hardware companies.
+**Portfolio Structured in Three Tiers**
 
-### Decisions Made
+*Tier 1 — Public Equity (\$800M):* IBM (\$500M — superconducting roadmap credibility and cloud infrastructure) + IonQ (\$300M — trapped-ion fidelity advantages)
 
-The QTWG structured the portfolio in three tiers:
+*Tier 2 — Private Placements (\$250M):* PsiQuantum (\$150M — manufacturing thesis, high-risk) + Quantinuum (\$100M — strongest fidelity track record, pharmaceutical enterprise contracts)
 
-**Tier 1 — Public Equity Exposure (\$800 million):**
-- IBM (NYSE: IBM): Largest position, based on roadmap credibility score (IBM has consistently delivered on its superconducting roadmap milestones) and cloud access infrastructure. \$500 million.
-- IonQ (NYSE: IONQ): Second position, reflecting trapped-ion's fidelity advantages for near-term applications. \$300 million.
+*Tier 3 — Service Contracts (\$50M over 3 years):* IBM Quantum Network + Quantinuum H-Series cloud + QuEra early-access + **D-Wave Leap enterprise** (added in 2024 rebalancing after BASF deployment validation)
 
-**Tier 2 — Private Placements (\$250 million):**
-- PsiQuantum: \$150 million participation in Series C. Rationale: the manufacturing thesis — that silicon photonics scale would leapfrog all other approaches — was high-risk but potentially paradigm-shifting. The QTWG limited this to a 3% portfolio position with a specific kill switch tied to GlobalFoundries yield metrics.
-- Quantinuum: \$100 million in a strategic investment round. Rationale: strongest fidelity track record in the industry, with enterprise chemistry simulation contracts already signed with three pharmaceutical companies.
+**The 18-Month Rebalancing**
 
-**Tier 3 — Service Contracts (\$50 million over 3 years):**
-- IBM Quantum Network membership: Access to latest devices, research partnership rights, priority queue access.
-- Quantinuum H-Series cloud access: Benchmark access for algorithm development.
-- QuEra early-access program: Neutral-atom monitoring position.
+By Q3 2024, the QTWG's kill-switch criteria triggered a rebalancing. PsiQuantum's manufacturing yields missed internal targets — the QTWG reduced the position from \$150M to \$80M, preserving \$70M for redeployment. QuEra's 48-logical-qubit demonstration exceeded expectations — the QTWG increased their neutral-atom position. D-Wave's BASF production deployment was independently validated — a D-Wave Leap enterprise contract was added to Tier 3.
 
-**Kill-Switch Criteria Established:**
-- PsiQuantum position: Exit if GlobalFoundries photonic qubit yield does not reach [redacted] by Q4 2025.
-- IonQ position: Reduce by 50% if system-average 2Q fidelity does not reach 99.5% by Q2 2026.
-- All positions: Rebalance annually at the June committee meeting, triggered by milestone scorecard review.
+**Open Question**
 
-### Measured Outcome (18 Months Later)
+The QTWG's June 2025 committee meeting faces a question with no clean answer: should the photonic position be exited entirely (kill-switch criteria triggered) or maintained (management argues 12-month slip, not failure)? The kill-switch exists precisely to prevent sunk-cost thinking. The data says apply it. Sentiment says wait.
 
-By Q3 2024, the QTWG's first annual rebalancing was triggered. The scorecard revealed a mixed landscape:
-
-- **IBM** had delivered the Heron processor on schedule, with measurable connectivity and fidelity improvements. Tier 1 position maintained.
-- **IonQ** had made strong fidelity progress but faced commercial revenue shortfalls. The QTWG debated whether to apply the commercial kill switch; ultimately maintained position with a 90-day watch period.
-- **PsiQuantum** had experienced manufacturing yield challenges at GlobalFoundries that put the internal kill-switch timeline at risk. The committee convened an emergency review and — critically — did *not* average down. They applied their pre-defined criteria and reduced the position from \$150 million to \$80 million. This discipline preserved \$70 million that was redeployed into neutral-atom positions.
-- **Neutral-atom (QuEra):** The QTWG increased their early-access commitment and opened a private placement discussion, based on QuEra's 48-logical-qubit demonstration exceeding expectations.
-
-### Open Question
-
-The QTWG's June 2025 committee meeting faces a question with no clean answer: **Should the portfolio's photonic position be exited entirely, or is the manufacturing timeline merely delayed rather than failed?** The kill-switch criteria established in 2023 are triggering, but PsiQuantum's management argues that yield improvements are on track for a revised 2028 timeline — a 12-month slip, not a fundamental failure.
-
-This is the exact situation kill-switch criteria are designed to prevent sunk-cost thinking from distorting. The data suggests the criteria should be applied. Sentiment — the billions already deployed — suggests waiting. What would you recommend?
-
-:::{admonition} Discussion Anchor
-:class: note
-When analyzing this case, focus on process, not outcome. The QTWG made defensible decisions under genuine uncertainty. Evaluate whether their framework was well-designed, whether they applied it consistently, and whether the kill-switch approach served its intended function — independent of whether the specific bets ultimately paid off.
-:::
-
----
-
-## Industry Snapshots
-
-### Snapshot 1: IBM vs. IonQ vs. Quantinuum — Reading Three Roadmaps
-
-:::::{tab-set}
-
-::::{tab-item} IBM
-**IBM Quantum Roadmap — Evaluation**
-
-IBM has published arguably the most consistently credible public quantum roadmap in the industry. Key milestones:
-
-- **Eagle (127 qubits, 2021):** ✅ Delivered on schedule
-- **Osprey (433 qubits, 2022):** ✅ Delivered on schedule
-- **Condor (1,121 qubits, 2023):** ✅ Delivered on schedule
-- **Heron (133 qubits, new coupling architecture, 2023):** ✅ Delivered
-- **Flamingo / modular systems (2025+):** 🟡 In progress — modular interconnects are the critical dependency
-
-**Roadmap credibility score:** High. IBM has a strong trailing indicator record. The shift from qubit count to quality metrics (error-per-gate, circuit layer operations per second) in 2023 was analytically mature — they stopped optimizing for the misleading headline metric and started optimizing for useful computation.
-
-**Key risk:** IBM's superconducting roadmap requires modular interconnects to scale beyond ~1,000 qubits. That engineering challenge has no peer-reviewed demonstration yet.
-::::
-
-::::{tab-item} IonQ
-**IonQ Roadmap — Evaluation**
-
-IonQ is publicly traded (NYSE: IONQ) and publishes its roadmap with unusual transparency for a public company. Key metric: Algorithmic Qubits (#AQ), their proprietary metric combining qubit count and fidelity into a single performance measure.
-
-- **#AQ 20 (2022):** ✅ Demonstrated
-- **#AQ 35 (2023):** ✅ Demonstrated (Forte system)
-- **#AQ 64 (2025):** 🟡 Claimed for Forte Enterprise; peer verification pending
-- **#AQ 1000 (2028):** 🔴 Highly speculative; depends on photonic interconnect and ion shuttling breakthroughs not yet demonstrated
-
-**Roadmap credibility score:** Moderate-High for near-term milestones; Low-Moderate for 2027+ projections. IonQ's #AQ metric is useful but proprietary — always ask for system-average 2Q gate fidelity alongside it.
-
-**Key risk:** Scaling trapped-ion beyond ~100 physical qubits in a single trap is an unsolved engineering problem. IonQ's 2027+ roadmap depends on photonic interconnects that are still in R&D phase.
-::::
-
-::::{tab-item} Quantinuum
-**Quantinuum Roadmap — Evaluation**
-
-Quantinuum (formed from Honeywell Quantum Solutions + Cambridge Quantum) has the highest gate fidelity track record in the industry. Their H-Series systems have consistently achieved best-in-class two-qubit gate fidelity.
-
-- **H1-1 (20 qubits, 99.1% 2Q fidelity, 2021):** ✅ Delivered
-- **H2 (32 qubits, 99.8%+ 2Q fidelity, 2023):** ✅ Delivered — historic milestone
-- **H3 (56+ qubits, 2025):** 🟡 In progress
-- **1,000-qubit fault-tolerant system (2029):** 🔴 Highly ambitious; requires breakthrough in ion chain scaling
-
-**Roadmap credibility score:** High for fidelity milestones; Moderate for scale milestones. Quantinuum's consistent over-delivery on fidelity targets is their strongest signal. Their scale roadmap requires solving ion-chain scalability, which is a hard problem.
-
-**Key differentiator:** Quantinuum is the only hardware vendor with signed pharmaceutical simulation contracts at commercial rates — a strong leading indicator of near-term commercial relevance.
-::::
-:::::
-
-### Snapshot 2: PsiQuantum's Manufacturing Bet
-
-PsiQuantum's strategic thesis is worth understanding as a standalone case study in quantum strategy. Their argument:
-
-1. Fault-tolerant quantum computing requires millions of physical qubits (surface code overhead)
-2. No one will build millions of qubits by hand-crafting each one in a research fab
-3. The only path to millions of qubits is commercial semiconductor manufacturing scale
-4. Silicon photonics is the only quantum modality compatible with existing semiconductor fabs
-5. Therefore, the winning quantum architecture will be silicon photonic, built by GlobalFoundries
-
-This thesis is either completely correct or completely wrong — there is no middle scenario. If manufacturing yields hit targets, PsiQuantum has a scale advantage that no research lab can replicate. If photonic gate operations cannot be made deterministic at the required rate, the entire thesis fails.
-
-PsiQuantum has raised over \$700 million and secured manufacturing agreements. They have been deliberately opaque about intermediate technical milestones, which is itself a yellow flag in the roadmap rubric — the absence of verifiable intermediate milestones makes the timeline difficult to evaluate.
-
-**Portfolio implication:** Small position with explicit yield-based kill switch. Not a core holding until manufacturing demonstrations are publicly validated.
+What would you recommend?
 
 ---
 
 ## Productive-Struggle Problem
 
-:::{admonition} Productive-Struggle Problem: Three Redacted Roadmaps
-:class: seealso
+:::{admonition} Three Redacted Roadmaps
+:class: important
 
-Below are three anonymized vendor roadmaps (Vendor A, B, and C). Using only the chapter's evaluation rubric, rank them by **plausibility** and **commercial relevance**. Flag every line between demonstrated and promised capability.
+Using the chapter's evaluation rubric, rank these three anonymized vendor roadmaps by plausibility and commercial relevance. Flag every line between demonstrated and promised capability.
 
 **Vendor A:**
-- "Achieved 500-qubit system with average 2Q gate error rate of 0.8% (2022)" — *source: internal benchmark, not peer-reviewed*
-- "Delivered 1,000-qubit system (2023)" — *source: press release*
-- "Demonstrated quantum advantage on portfolio optimization (2023)" — *problem size and classical baseline not specified*
+- "Achieved 500-qubit system with average 2Q gate error rate of 0.8% (2022)" — *internal benchmark, not peer-reviewed*
+- "Delivered 1,000-qubit system (2023)" — *press release*
+- "Demonstrated quantum advantage on portfolio optimization (2023)" — *problem size and classical baseline unspecified*
 - "Plans 10,000-qubit system with 0.1% error rate by 2026"
-- "Fault-tolerant logical qubit demonstration expected 2027"
 
 **Vendor B:**
 - "Published 2Q gate fidelity of 99.5% on 25-qubit system in Nature (2022)" — *peer-reviewed*
-- "Demonstrated 35 algorithmic qubits with 99.6% average 2Q fidelity (2023)" — *confirmed by independent benchmarking*
-- "40-qubit system with 99.7%+ fidelity in customer access (2024)"
-- "100 physical qubit system (2025 target)"
-- "1,000 physical qubit system using photonic interconnects (2028 target)"
+- "Demonstrated 35 algorithmic qubits with 99.6% average 2Q fidelity (2023)" — *independent benchmarking confirmed*
+- "40-qubit system in customer access (2024)"
+- "100 physical qubits (2025 target); 1,000 with photonic interconnects (2028)"
 
-**Vendor C:**
-- "Operational 2,000-atom neutral-atom array (2024)" — *published*
-- "Demonstrated 48 error-corrected logical qubits (2023)" — *Nature paper*
-- "Site-selective entanglement with 99.5% average 2Q fidelity on arbitrary qubit pairs (2024)" — *conference presentation, independent replication pending*
-- "10,000-atom system planned for 2026"
-- "1,000 error-corrected logical qubits planned for 2028"
+**Vendor C (Annealing):**
+- "Production deployment at BASF: manufacturing scheduling from 4 hours to 90 seconds (2023)" — *press release; BASF confirmed publicly*
+- "7,000+ qubit Advantage2 system; Pegasus topology (2024)" — *published specs*
+- "Stride hybrid solver handles problems with millions of variables (2024)" — *Volkswagen, Mastercard named as production customers*
+- "On-premises installation at FAU Boca Raton (2026)" — *announced Qubits26*
 
+Rank the three vendors. Apply the rubric. For each: what is the strongest evidence for their claims, what is the biggest unresolved question, and what kill-switch criterion would you set?
 :::
 
-:::{dropdown} Answer Key (Instructor View)
-**Ranking: B > C > A**
+:::{dropdown} Answer Key
 
-**Vendor A Analysis — Rank 3 (Lowest Plausibility):**
-- Red flags: Internal benchmark only, no peer review. "Quantum advantage" claim with no specified problem size or classical baseline — the definition of the "demo trap." The 2026 target of 10× fidelity improvement with 10× qubit scaling in 3 years is implausible given industry trajectory. The gap between demonstrated (2022–2023) and promised (2026–2027) is too large with too few verifiable intermediate milestones.
-- Demonstrated: qubit count (unverified), some fidelity claim (unverified)
-- Promised: essentially everything of commercial value
+**Ranking: C > B > A**
 
-**Vendor C Analysis — Rank 2 (Moderate Plausibility):**
-- Green: Nature paper on logical qubits is strong. Large atom count (2,000) is consistent with neutral-atom physics. 
-- Yellow: "Independent replication pending" on the 2Q fidelity claim is a meaningful caveat.
-- Red: 1,000 logical qubits by 2028 is an extremely aggressive target — a 20× increase in 4 years. Plausible if neutral-atom progress continues its current trajectory, but requires multiple simultaneous engineering breakthroughs.
-- Verdict: Strong near-term credibility, aggressive but not implausible mid-term roadmap.
+**Vendor C (Annealing):** Highest near-term commercial credibility. Every production claim has a named customer who confirmed it publicly. The BASF and Volkswagen deployments are independently verifiable. The FAU installation is a matter of public record. Vendor C's claims are specific, falsifiable, and verified. The unresolved question: does the annealing advantage persist as classical optimization software improves? Kill-switch: "If a specific classical solver matches Stride's solve time and quality on the same BASF problem class within 18 months, reduce annealing service contract."
 
-**Vendor B Analysis — Rank 1 (Highest Plausibility):**
-- Green: Peer-reviewed fidelity data, independent benchmarking, granular intermediate milestones, conservative timeline. Every near-term claim has a verification method.
-- Yellow: Photonic interconnect dependency for 2028 scale — this is real and hard.
-- Verdict: This roadmap is consistent with trapped-ion physics, has strong verification, and the gap between demonstrated and promised is bridgeable by identified engineering work. This is how credible roadmaps look.
+**Vendor B (Trapped-Ion):** Strong near-term credibility from peer-reviewed fidelity data and independent benchmarking. The photonic interconnect dependency for 2028 scale is real and hard — but the roadmap acknowledges it rather than hiding it. Near-term claims are verifiable; mid-term claims are aggressive but traceable. Kill-switch: "If 2Q fidelity does not reach 99.7% system-average by Q4 2026, reduce Tier 2 position."
 
-**The Key Insight:** Vendor A has the most impressive-sounding milestones ("10,000 qubits," "quantum advantage") but the weakest evidence. Vendor B has the most modest near-term claims but the strongest evidence. In quantum, the vendor with the most verifiable milestones is almost always the most trustworthy — and usually the most commercially relevant.
+**Vendor A (Gate-Model):** Lowest plausibility. Internal benchmark without peer review. "Quantum advantage" claim with no specified problem size or classical baseline — the cardinal sin of quantum marketing. The 2026 targets require simultaneous 10× improvements in fidelity and qubit count — implausible given industry trajectory. Kill-switch triggers immediately: no independent verification of any claim.
+
+**The meta-lesson:** Vendor C — the annealing system — ranks highest because it has the most verifiable production evidence. Vendor A — the gate-model system with the biggest qubit count claim — ranks lowest because it has the least verifiable evidence. Headline qubit count is inversely correlated with roadmap credibility in this example. That is not always true, but it is true often enough to be a useful prior.
 :::
 
 ---
@@ -723,122 +612,104 @@ Below are three anonymized vendor roadmaps (Vendor A, B, and C). Using only the 
 
 By completing this chapter, you can:
 
-1. **Compare** the five modalities on coherence time, gate fidelity, scalability, and error rates — identifying the tradeoffs each makes
-2. **Interpret** any quantum vendor roadmap using the evergreen rubric: trailing vs. leading indicators, qualified vs. unqualified milestones, the demo trap
-3. **Separate** demonstrated capability (published, peer-reviewed, independently replicated) from marketing promises (targeted, planned, expected)
-4. **Match** a modality to a workload based on circuit depth requirements, fidelity needs, connectivity demands, and timeline
-5. **Design** a multi-vendor hedging strategy with explicit kill-switch criteria, appropriate to a given organization's risk tolerance
+::::{grid} 1 1 2 2
+:::{grid-item-card} Outcome 1
+:class-header: bg-primary text-white
+**Paradigm Distinction**
+
+Distinguish quantum annealing from gate-model quantum computing: different physics, different problem classes, different commercial timelines. Explain why D-Wave's Advantage2 is production-ready today while gate-model systems remain in research/near-term deployment.
+:::
+
+:::{grid-item-card} Outcome 2
+:class-header: bg-primary text-white
+**D-Wave Architecture**
+
+Describe the Advantage2 architecture — flux qubits, Pegasus topology, annealing process, Stride hybrid solver — at a level sufficient to evaluate vendor claims and formulate optimization problems for submission.
+:::
+
+:::{grid-item-card} Outcome 3
+:class-header: bg-primary text-white
+**Gate-Model Modalities**
+
+Compare the five gate-model architectures on coherence time, gate fidelity, scalability, connectivity, and operating requirements — identifying the tradeoffs each makes and the workloads each is best suited for.
+:::
+
+:::{grid-item-card} Outcome 4
+:class-header: bg-primary text-white
+**Roadmap Reading**
+
+Apply the evergreen roadmap rubric to any vendor claim, distinguishing demonstrated milestones from marketing projections and flagging the five red flags.
+:::
+
+:::{grid-item-card} Outcome 5
+:class-header: bg-warning text-white
+**Hardware-Workload Matching**
+
+Given a business workload, select the appropriate quantum paradigm (annealing vs. gate-model) and architecture, justify the selection using the matching framework, and set kill-switch criteria for the recommendation.
+:::
+::::
 
 ---
 
-## Lab 4 (Regular): Reading the Room — Comparing Quantum Backends
+## Lab 4 (Regular): Comparing Quantum Backends — IBM and D-Wave
 
-:::{admonition} Lab 4 Overview
-:class: note
+**Duration:** ~60 minutes | **Platforms:** IBM Quantum + D-Wave Leap (both free tier)  
+**Deliverable:** Backend Selection Memo
 
-**Time:** ~45 minutes  
-**Platform:** IBM Quantum Platform (free tier) at [quantum.ibm.com](https://quantum.ibm.com)  
-**Skills practiced:** Backend evaluation, circuit execution, rubric application  
-**Deliverable:** One-page "Backend Selection Memo"
-:::
+### Overview
 
-### Objective
+You will evaluate quantum hardware from both paradigms — IBM gate-model and D-Wave annealing — using the chapter's evaluation rubric. The goal is to experience the operational difference between paradigms and apply the rubric to real hardware, not manufacturer slides.
 
-Experience the chapter's evaluation rubric in practice. You will build a simple quantum circuit, run it on three different backends, and evaluate each backend using the five key metrics — documenting your analysis in a structured memo.
+### Part 1: IBM Gate-Model Backend Evaluation
 
-### Step 1: Create Your Circuit
+1. Log into [quantum.ibm.com](https://quantum.ibm.com) (free account)
+2. In Quantum Composer, build a 3-qubit GHZ state: H gate on qubit 0 → CNOT (0→1) → CNOT (0→2) → Measure all
+3. Run on two available backends — pick one with more qubits, one with lower reported error rate
+4. Record for each backend:
 
-Log into IBM Quantum Platform (free account). In the Quantum Composer, build a 3-qubit GHZ state:
+| Field | Backend 1 | Backend 2 |
+|---|---|---|
+| Name | | |
+| Qubit count | | |
+| T₁ avg (μs) | | |
+| T₂ avg (μs) | | |
+| 2Q error rate (avg) | | |
+| GHZ fidelity (your run) | | |
+| Queue time | | |
 
-```
-Step 1: Apply H (Hadamard) gate to qubit 0
-Step 2: Apply CNOT gate from qubit 0 → qubit 1
-Step 3: Apply CNOT gate from qubit 0 → qubit 2
-Step 4: Measure all three qubits
-```
+### Part 2: D-Wave Annealing Backend Evaluation
 
-This circuit creates a maximally entangled state where all three qubits should measure either all-0 or all-1. Any other measurement outcome is an error.
+1. Log into [cloud.dwavesys.com](https://cloud.dwavesys.com) (free developer account)
+2. Navigate to Examples — run a **graph coloring** or **job scheduling** sample on the Leap hybrid solver
+3. Record:
 
-**Expected ideal result:** 50% `|000⟩`, 50% `|111⟩`
+| Field | D-Wave Stride |
+|---|---|
+| Problem type | |
+| Problem size (variables) | |
+| Solve time (seconds) | |
+| QPU access time (μs, from timing breakdown) | |
+| Solution quality (valid? best found?) | |
+| Compute time used (from dashboard) | |
 
-### Step 2: Select Three Backends
+### Part 3: Apply the Rubric
 
-Choose THREE backends from the IBM Quantum available systems. Try to select:
-- One with the most qubits available to free tier
-- One with the best reported 2Q error rate
-- One that differs from the above (different qubit count range)
+For each of the three backends (2 IBM + 1 D-Wave), fill in the evaluation rubric:
 
-For each backend, record from the properties panel:
-
-:::{list-table} Backend Data Collection Template
-:header-rows: 1
-:widths: 25 15 15 15 15 15
-
-* - Field
-  - Backend 1
-  - Backend 2
-  - Backend 3
-  - Notes
-  - Source
-* - Backend name
-  - 
-  - 
-  - 
-  - 
-  - IBM dashboard
-* - Modality
-  - 
-  - 
-  - 
-  - All IBM = superconducting
-  - 
-* - Qubit count
-  - 
-  - 
-  - 
-  - 
-  - Properties
-* - T₁ (avg, μs)
-  - 
-  - 
-  - 
-  - 
-  - Calibration data
-* - T₂ (avg, μs)
-  - 
-  - 
-  - 
-  - 
-  - Calibration data
-* - 2Q error rate (avg)
-  - 
-  - 
-  - 
-  - 
-  - Calibration data
-* - Measured GHZ fidelity
-  - 
-  - 
-  - 
-  - `|000⟩ + |111⟩` fraction
-  - Your run
-:::
-
-### Step 3: Apply the Rubric
-
-Place each backend on the chapter's evaluation rubric. Score each on a 1–5 scale for:
-- Coherence (T₁/T₂ relative to peer systems)
-- Fidelity (2Q error rate relative to peer systems)
-- Measured accuracy (your GHZ result)
+| Metric | IBM Backend 1 | IBM Backend 2 | D-Wave Stride |
+|---|---|---|---|
+| Coherence (1–5) | | | N/A (annealing) |
+| Fidelity/accuracy (1–5) | | | (solution quality) |
+| Problem scale fit | | | |
+| Queue time | | | |
+| Best suited for | | | |
 
 ### Deliverable: Backend Selection Memo
 
-Write a one-page (400–500 word) "Backend Selection Memo" structured as:
-
-1. **Executive Summary (2 sentences):** Which backend performed best and why
-2. **Rubric Scores Table:** Your scored rubric for all three backends
-3. **Analysis (2–3 paragraphs):** What drove the performance differences? Were the calibration specs predictive of measured results?
-4. **Recommendation:** For a financial optimization workload requiring 20 qubits and 200 two-qubit gates, which backend would you select — and why? Use rubric scores, not brand names.
+One page (400–500 words):
+1. **Which backend performed best for the task you ran, and why?**
+2. **Paradigm comparison:** For a logistics company needing to optimize 200-truck routing daily, which paradigm and platform would you recommend? Which would you *not* recommend, and why?
+3. **Kill-switch criterion:** Write one specific, measurable kill-switch criterion for each platform you recommend.
 
 ---
 
@@ -848,150 +719,98 @@ Write a one-page (400–500 word) "Backend Selection Memo" structured as:
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" style="margin-bottom: 1rem;"/>
 </a>
 
-:::{admonition} Advanced Lab Overview
-:class: note
+Build an automated tool that queries IBM Quantum backends, pulls live calibration data, runs a standardized GHZ benchmark, computes a composite Quality Score, and outputs a ranked Backend Report Card. Then extend to compare a D-Wave hybrid solver job using the same optimization problem submitted both to D-Wave and a classical solver.
 
-**Time:** ~2–3 hours  
-**Tools:** Python 3, Qiskit Runtime, pandas, matplotlib, IBM Quantum account  
-**Skills practiced:** Programmatic backend querying, calibration data analysis, automated benchmarking, composite scoring  
-**Deliverable:** Working benchmarking tool + Backend Report Card + 500-word analytical memo
-:::
-
-### Objective
-
-Build an automated tool that queries all available IBM Quantum backends, pulls live calibration data, runs a standardized GHZ benchmark circuit, computes a composite Quality Score for each, and outputs an auto-generated Backend Report Card.
-
-### Architecture
-
-```python
-# High-level pipeline
-1. service = QiskitRuntimeService(channel="ibm_quantum")
-2. backends = service.backends(operational=True)
-3. For each backend:
-   a. Pull calibration: T1, T2, 1Q error, 2Q error (all pairs)
-   b. Compute median system metrics
-   c. Build standardized GHZ benchmark circuit
-   d. Submit and collect results
-   e. Compute fidelity: fraction of shots in {|000⟩, |111⟩}
-4. Compute Quality Score = w1*(T2/T2_max) + w2*(1-err_2Q/err_max) + w3*fidelity
-5. Generate Report Card: ranked table + visualization
-```
-
-### Quality Score Formula
+**Quality Score Formula:**
 
 $$QS = 0.35 \cdot \frac{T_2}{T_{2,\text{max}}} + 0.40 \cdot \left(1 - \frac{e_{2Q}}{e_{2Q,\text{max}}}\right) + 0.25 \cdot F_{\text{GHZ}}$$
 
-Where:
-- $T_2$ is the median T₂ coherence time across all qubits on the backend
-- $e_{2Q}$ is the median two-qubit gate error rate
-- $F_{\text{GHZ}}$ is the measured GHZ state fidelity (fraction of ideal-state outcomes)
-- Weights (0.35, 0.40, 0.25) reflect the relative importance of coherence, fidelity, and measured performance
-
-### Deliverable
-
-1. **Working Python tool** (submitted as `.py` or Colab notebook)
-2. **Backend Report Card** — auto-generated ranked table comparing all queried backends on all five metrics plus Quality Score, with a matplotlib visualization
-3. **500-word analytical memo** addressing:
-   - Which backend ranked highest and why
-   - Were there backends where calibration specs predicted results well? Poorly? What might explain the discrepancies?
-   - If you were advising a pharmaceutical company evaluating IBM systems for molecular simulation, which backend would you recommend? Justify using Quality Score components, not brand names.
+**Deliverable:** Working Python script + Backend Report Card + 500-word memo comparing gate-model and annealing performance characteristics on their respective problem classes.
 
 ---
 
 ## Discussion Guidelines
 
-Post a 350–500 word initial response to the following prompt. Cite at least two sources (academic papers, vendor technical documentation, or credible news coverage). Respond substantively to **two peers**, engaging with their specific arguments rather than offering general agreement.
+Post 350–500 words. Cite at least two sources. Respond substantively to two peers.
 
 :::{admonition} Discussion Prompt
-:class: seealso
+:class: note
 
-The chapter argues that the criteria for evaluating quantum hardware are more durable than the current leaderboard positions. Do you agree? 
+The chapter argues that quantum annealing (D-Wave) and gate-model quantum computing are parallel paradigms solving different problem classes — not competing approaches racing to the same finish line.
 
-Choose one of the five hardware modalities and make the strongest possible case that it will *not* be a major player in commercial quantum computing by 2035. What would have to go wrong technically? What signals would you watch for? What would cause you to change your assessment?
-
-Then identify one piece of evidence that cuts *against* your own argument, and explain how you weight it.
+Do you agree? Make the strongest possible case for or against this framing. Then address: if you were advising FAU's provost on how to use the Advantage2 system to generate research outcomes with commercial relevance in the next 3 years, what problem domain would you recommend prioritizing, and why? What classical baseline would you benchmark against?
 :::
 
 ---
 
 ## Glossary
 
-```{glossary}
-Coherence time
-  The duration a qubit maintains its quantum state before environmental interaction destroys it. Measured as T₁ (energy relaxation time) and T₂ (dephasing time). T₂ ≤ 2T₁ always. Longer coherence enables deeper, more complex quantum circuits.
+**Quantum Annealing** — A quantum computing paradigm that encodes optimization problems as the energy landscape of a quantum system and uses quantum tunneling to find low-energy (high-quality) solutions. D-Wave's approach. Purpose-built for QUBO optimization problems.
 
-Gate fidelity
-  The probability that a quantum gate performs its intended operation correctly. Expressed as a percentage; 99.9% means 0.1% error probability per gate. 1Q (single-qubit) and 2Q (two-qubit) fidelities are tracked separately; 2Q is harder and typically lower.
+**Gate-Model Quantum Computing** — A quantum computing paradigm that manipulates qubits using sequences of quantum gates, analogous to classical logic gates. General-purpose. IBM, Google, IonQ, Quantinuum, QuEra, PsiQuantum, Microsoft all pursue gate-model approaches.
 
-Physical qubit
-  A raw hardware qubit — noisy, imperfect, subject to decoherence. The qubit counts reported by vendors are almost always physical qubit counts.
+**D-Wave Advantage2** — D-Wave's current flagship quantum annealing processor. 7,000+ flux qubits in Pegasus topology. FAU's on-campus system. Paired with the Stride hybrid solver for enterprise optimization.
 
-Logical qubit
-  An error-corrected qubit formed by encoding quantum information across many physical qubits using quantum error correction. One logical qubit may require hundreds to thousands of physical qubits. Logical qubit counts are almost always near zero on today's systems.
+**Flux Qubit** — A superconducting qubit type used by D-Wave, implemented as a superconducting loop interrupted by Josephson junctions. Designed for annealing, not gate-model computation. Different from IBM's transmon qubits.
 
-Superconducting qubit
-  A qubit implemented using superconducting circuits, typically a Josephson junction-based transmon. Operates at ~15 mK. Fast gates (nanoseconds) but relatively short coherence times. Used by IBM, Google, Rigetti.
+**Pegasus Topology** — The qubit connectivity graph of the D-Wave Advantage2. Each qubit connects to up to 15 neighbors in a 3D graph structure. Denser than older D-Wave topologies, enabling more complex QUBO embeddings.
 
-Trapped-ion qubit
-  A qubit implemented using the internal electronic states of trapped ions (e.g., ytterbium). Very long coherence times, very high gate fidelity, slower gate speeds. All-to-all connectivity possible in small chains. Used by IonQ, Quantinuum.
+**QUBO** — Quadratic Unconstrained Binary Optimization. The mathematical problem format native to quantum annealers. A wide range of business optimization problems — routing, scheduling, portfolio construction — can be expressed as QUBO.
 
-Neutral-atom qubit
-  A qubit using the internal states of neutral (uncharged) atoms held by optical tweezers. Reconfigurable connectivity, scales to hundreds/thousands of atoms, Rydberg blockade for entanglement. Used by QuEra, Pasqal, Atom Computing.
+**Stride Hybrid Solver** — D-Wave's production classical-quantum hybrid solver. Decomposes large QUBO problems into subproblems for the QPU, coordinates results classically, and returns solutions in seconds to minutes. Handles problems with millions of variables.
 
-Photonic qubit
-  A qubit encoded in quantum properties of photons. Room-temperature operation, naturally network-compatible, measurement-based computation model. Used by PsiQuantum, Xanadu.
+**Coherence Time** — How long a qubit maintains its quantum state. Measured as T₁ (energy relaxation) and T₂ (dephasing). Determines maximum useful circuit depth for gate-model systems. T₂ ≤ 2T₁ always.
 
-Topological qubit
-  A theoretical qubit encoding information in topological quantum states (Majorana zero modes) for inherent error protection. Microsoft's primary quantum research direction. Still in experimental validation.
+**Gate Fidelity** — The probability a quantum gate performs correctly. Expressed as a percentage. 1Q (single-qubit) and 2Q (two-qubit) fidelities tracked separately; 2Q is harder and typically lower.
 
-Josephson junction
-  A quantum mechanical tunnel junction between two superconductors, separated by a thin insulating barrier. The nonlinear inductance of the Josephson junction is what gives superconducting circuits their qubit-like, anharmonic energy levels.
+**Physical Qubit** — Raw hardware qubit. Noisy and imperfect. The unit vendors advertise.
 
-Dilution refrigerator
-  A cryogenic cooling device used to achieve millikelvin temperatures required for superconducting quantum computers. Operates on the enthalpy of mixing helium-3 and helium-4 isotopes. Costs \$500K–\$2M and is the primary infrastructure challenge for scaling superconducting quantum computing.
+**Logical Qubit** — Error-corrected qubit built from ~1,000 physical qubits. The unit relevant for fault-tolerant gate-model computation.
 
-Rydberg state
-  A highly energized atomic state used in neutral-atom quantum computers to create temporary strong interactions between nearby atoms, enabling two-qubit gate operations. Named after physicist Johannes Rydberg.
+**Transmon Qubit** — A superconducting qubit type used by IBM and Google, based on a Josephson junction shunted by a large capacitor to reduce charge noise. Used for gate-model computation.
 
-Quantum error correction (QEC)
-  A family of techniques for protecting quantum information from errors by encoding logical qubits in entangled states of many physical qubits, allowing errors to be detected and corrected without measuring (and thus disturbing) the logical qubit directly.
+**Superconducting Qubit** — A qubit implemented using superconducting circuits operating at ~15 mK. Used by IBM (transmon), Google (transmon), and D-Wave (flux). Different subtypes for different paradigms.
 
-Surface code
-  The most widely studied quantum error correction code. Arranges physical qubits in a 2D grid with alternating data and ancilla qubits. Requires error rates below ~1% (the threshold) to be effective. State-of-the-art systems are approaching this threshold.
+**Trapped-Ion Qubit** — A qubit using internal electronic states of levitated ions. Very high fidelity, long coherence, slower gates. Used by IonQ and Quantinuum.
 
-NISQ (Noisy Intermediate-Scale Quantum)
-  Term coined by John Preskill in 2018 for the current era of quantum computing: devices with 50–1,000+ physical qubits but no error correction, limited coherence, and finite gate fidelity. Describes essentially all commercial quantum hardware today.
+**Neutral-Atom Qubit** — A qubit using internal states of neutral atoms held by optical tweezers. Reconfigurable connectivity, scales to thousands of atoms. Used by QuEra and Pasqal.
 
-Quantum volume
-  An IBM-developed metric combining qubit count, connectivity, fidelity, and other factors into a single number representing the effective computational capability of a quantum system. Useful but hardware-specific; most meaningful for comparing IBM systems.
+**Photonic Qubit** — A qubit encoded in photons. Room temperature, network-native. PsiQuantum's manufacturing bet.
 
-Algorithmic Qubits (#AQ)
-  IonQ's proprietary performance metric combining qubit count and fidelity into a single score representing the number of "useful" qubits for real algorithm execution. Useful but proprietary; ask for underlying fidelity data when evaluating.
+**Topological Qubit** — A theoretical qubit using Majorana zero modes for inherent error protection. Microsoft's primary quantum research direction. Still in experimental validation.
 
-Kill-switch criterion
-  A pre-defined, objective trigger condition that mandates reducing or exiting an investment position. In quantum hardware portfolio management, kill-switch criteria prevent sunk-cost thinking from trapping capital in failing modalities.
+**Surface Code** — The most widely studied quantum error correction code. ~1,000 physical qubits per logical qubit at current error rates. Most gate-model fault-tolerance roadmaps target surface code implementation.
 
-Two-qubit gate
-  A quantum gate that operates on two qubits simultaneously, creating entanglement between them. The most error-prone common operation in quantum circuits. The controlled-NOT (CNOT) gate is the most widely used two-qubit gate.
+**Kill-Switch Criterion** — A pre-defined, objective trigger that mandates reducing or exiting an investment position. Prevents sunk-cost thinking in hardware portfolio management.
 
-Fault tolerance
-  The property of a quantum system in which errors can be detected and corrected faster than they accumulate, allowing arbitrarily long computations. Requires logical qubits and error rates below the threshold. Not yet achieved on any commercial platform.
-```
+**Roadmap Credibility** — The fraction of a vendor's past roadmap commitments delivered on schedule. The most durable leading indicator of future roadmap reliability.
 
 ---
 
 ## Leader's Takeaway
 
-:::{epigraph}
-Don't fall in love with a qubit. Fall in love with a workload, and let the qubit earn its place.
-:::
+```{epigraph}
+Don't fall in love with a qubit. Fall in love with a workload, and let the hardware earn its place.
+```
 
-The Betamax lesson is not that better technology loses. It's that "better" is always relative to a specific set of criteria, at a specific moment, in a specific ecosystem. The criteria change. The ecosystem changes. The winner changes.
+The Betamax lesson is not that better technology loses. It is that "better" is always relative to a specific set of criteria, at a specific moment, in a specific ecosystem. The criteria change. The ecosystem changes.
 
-Five quantum hardware modalities are racing toward commercial viability. Each has genuine strengths, genuine weaknesses, and genuine uncertainty in its long-term trajectory. The executive who understands all five — who can read any roadmap, evaluate any fidelity claim, and build a diversified hardware portfolio with pre-defined kill switches — is not the executive who picks the right horse. They're the executive who built the system to re-evaluate the race every twelve months and adjust.
+Two quantum paradigms are running two different races. The annealing race — D-Wave's Advantage2 vs. classical optimization software — has a winner in specific workload classes. That winner is running in production at BASF, Volkswagen, and Mastercard, and it is being installed on this campus.
 
-That system — the evaluation framework in this chapter — doesn't become obsolete when IBM announces a new processor or when a startup achieves a record fidelity. The metrics don't change. The analytical approach doesn't change. Only the numbers filling the rubric change.
+The gate-model race — five architectures competing to reach fault-tolerant scale — has no winner yet. Google's Willow milestone in December 2024 is the most significant hardware progress in a decade, and it confirms the pathway is physically real. But fault-tolerant gate-model quantum computing is still a 2030s story for most commercially relevant applications.
 
-Build the framework. Apply it consistently. Let the technology prove itself against your criteria, not against its own marketing.
+The executive who understands both races — who can evaluate any roadmap, apply the fidelity rubric, match hardware to workload, and build a portfolio with kill-switch criteria — is not the one who picks the right horse. They are the one who built the system to re-evaluate the race every twelve months.
 
-The rest is just maintenance.
+Build the framework. Apply it consistently. Let the hardware prove itself against your criteria, not against its own press releases.
+
+```{admonition} Chapter Summary
+:class: note
+
+- Quantum computing has two paradigms: **annealing** (D-Wave, production-ready for optimization today) and **gate-model** (five architectures, maturing toward fault tolerance).
+- FAU's Advantage2 is a D-Wave annealing system — not a gate-model computer. It excels at QUBO optimization problems: routing, scheduling, portfolio construction, manufacturing sequencing.
+- The Stride hybrid solver is the enterprise interface: submit a QUBO problem, receive a solution in seconds. No quantum circuit writing required.
+- The five gate-model architectures — superconducting, trapped-ion, neutral-atom, photonic, topological — each make different tradeoffs. Superconducting is fastest; trapped-ion is most accurate; neutral-atom is most reconfigurable; photonic is network-native; topological remains experimental.
+- The Roadmap Rubric: demonstrated (peer-reviewed, named customer) > announced (press release) > projected (targeted, planned). Apply it to every vendor claim.
+- Match hardware to workload before choosing a platform. Use annealing for today's optimization. Use gate-model for chemistry, cryptography, and QML research.
+- Portfolio approach with kill-switch criteria prevents sunk-cost thinking in a rapidly evolving landscape.
+```

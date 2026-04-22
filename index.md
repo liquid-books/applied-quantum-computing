@@ -2,8 +2,8 @@
 title: "Applied Quantum Computing: A Leader's Guide to the Next Computing Revolution"
 subtitle: "The Qubit Economy — A Graduate-Level Masterclass for Business Leaders"
 description: >
-  Nine chapters. Nine hands-on labs. One complete quantum-readiness framework.
-  No physics background required.
+  Nine chapters. Twelve hands-on labs. Two quantum paradigms — annealing and gate-model.
+  Built around FAU's on-campus D-Wave Advantage2. No physics background required.
 ---
 
 :::{figure} images/cover.png
@@ -71,31 +71,31 @@ Readers are fluent in financial analysis, strategy, and basic statistics.
 
 By the end of this course, you will be able to:
 
-1. **Evaluate** the current state of quantum computing — hardware modalities, software ecosystems, commercial readiness — to distinguish genuine enterprise capability from marketing narrative.
-2. **Articulate** superposition, entanglement, interference, decoherence, and qubits using plain-language business analogies, without formal mathematics.
-3. **Analyze** the unit economics of quantum computing — cost-per-qubit, cloud pricing, quantum-advantage thresholds, and total cost of ownership — to build defensible business cases.
-4. **Identify and prioritize** high-value use cases across optimization, simulation, machine learning, and cryptography, mapping each to industry-specific revenue, cost, or risk outcomes.
-5. **Assess** the post-quantum cryptographic threat ("Q-Day") and design a crypto-agility roadmap that protects organizational data, contracts, supply chains, and digital trust.
-6. **Develop** a quantum-readiness strategy — talent, partnerships, governance, phased investment — that positions your organization to capture advantage as the technology matures.
+1. **Evaluate** the dual-paradigm quantum landscape — annealing and gate-model hardware — distinguishing production-ready systems (D-Wave Advantage2, Stride hybrid solver) from experimental gate-model research, and separating vendor narrative from operational reality.
+2. **Articulate** foundational quantum mechanics — superposition, entanglement, interference, quantum tunneling, decoherence — using plain-language business analogies, without formal mathematics.
+3. **Formulate and solve** combinatorial optimization problems as QUBO models and execute them on FAU's D-Wave Advantage2 or D-Wave Leap, interpreting results against classical baselines.
+4. **Analyze** the unit economics of quantum computing across both paradigms, applying the six-stage TCO framework to build defensible business cases and break-even models that survive vendor and hardware changes.
+5. **Assess** quantum-era cybersecurity risk using STRIDE threat modeling and the NIST PQC standards (ML-KEM, ML-DSA), and design a crypto-agility migration roadmap.
+6. **Architect** a three-horizon quantum-readiness strategy — platform selection, talent pipeline, governance, and phased investment — calibrated to your organization's industry and risk profile.
 
 ---
 
 ## Course Structure
 
-### 8-Week Pacing
+### 8-Week Module Outline (Executive Education Format)
 
-| Week | Chapters | Theme |
-|------|----------|-------|
-| 1 | 1 & 2 | Why Now + The Quantum Mindset |
-| 2 | 3 | Economics of Computation |
-| 3 | 4 | Hardware Race |
-| 4 | 5 | Cryptocalypse (Midterm) |
-| 5 | 6 | Optimization Use Cases |
-| 6 | 7 | Simulation Use Cases |
-| 7 | 8 | Quantum + AI |
-| 8 | 9 | Strategy & Capstone |
+| Week | Sessions | Theme | Chapters |
+|------|----------|-------|----------|
+| 1 | 1–2 | The Quantum-Enabled Enterprise + The Quantum Mindset | 1 & 2 |
+| 2 | 3–4 | The Quantum Cloud Economy — Platforms, Access, Economics | 3 |
+| 3 | 5–6 | The Hardware Race — Annealing vs. Gate-Model | 4 |
+| 4 | 7–8 | Quantum-Era Cybersecurity — STRIDE + PQC *(Midterm)* | 5 |
+| 5 | 9–10 | The Optimization Engine — QUBO, D-Wave, QAOA | 6 |
+| 6 | 11–12 | Industry Verticals — Finance, Supply Chain, Healthcare, Energy | 7 |
+| 7 | 13–14 | Quantum + AI — QML, Hybrid Systems, Quantum-Inspired | 8 |
+| 8 | 15–16 | Strategy & Capstone — Roadmap, Ethics, Talent, Pitch | 9 |
 
-*16-week version: one chapter every two weeks, with the off-week for a structured case, guest-practitioner session, and graded lab deliverable.*
+*This course maps to FAU's Executive Education special topic format. D-Wave Stride hands-on work runs on FAU's on-campus Advantage2 or D-Wave Leap cloud.*
 
 ---
 
@@ -114,19 +114,22 @@ By the end of this course, you will be able to:
 
 ## Lab Progression at a Glance
 
-| Ch. | Regular Lab | Tool | Optional Advanced Lab |
-|-----|-------------|------|-----------------------|
-| 1 | Tour a real quantum computer | IBM Quantum Platform | Build a Quantum Momentum Index |
-| 2 | Build superposition + entanglement | Quirk (browser) | Bell inequality (CHSH) from scratch |
-| 3 | Run a circuit, read the bill | IBM Quantum Composer | Build your own Quantum TCO Calculator |
-| 4 | Compare three quantum backends | IBM Quantum Platform | Automated backend benchmarking suite |
-| 5 | Run a mini-factoring demo | Quirk / IBM Composer | PQC Migration Scanner |
-| 6 | Optimize a small problem (QAOA) | IBM Composer / hosted notebook | Portfolio QAOA in Qiskit |
-| 7 | Simulate the H₂ molecule | Hosted VQE notebook | LiH ground state (Qiskit Nature) |
-| 8 | Quantum kernel vs. classical | Hosted QML notebook | Honest QML benchmark |
-| 9 | Pitch your quantum pilot | IBM Quantum Platform | Build a vendor-evaluation toolkit |
+| Week | Lab | Platform | D-Wave? |
+|------|-----|----------|---------|
+| 1A | Tour a real quantum computer | IBM Quantum | — |
+| 1B | **First D-Wave Leap run** | D-Wave Leap | ✅ |
+| 2A | Build superposition + Bell state | Quirk (browser) | — |
+| 2B | **Annealing in action — observe & reflect** | D-Wave Leap | ✅ |
+| 3A | Run a circuit, read the bill | IBM Quantum Composer | — |
+| 3B | **Platform comparison — Leap vs. IBM TCO** | D-Wave Leap + IBM | ✅ |
+| 4 | Compare quantum backends + hardware rubric | IBM Quantum + Leap | ✅ |
+| 5 | Mini-factoring demo + PQC key inspection | Quirk / IBM Composer | — |
+| 6 | **Solve an optimization problem on Stride** | D-Wave Leap / Advantage2 | ✅ |
+| 7 | Simulate the H₂ molecule (VQE) | Hosted notebook | — |
+| 8 | Quantum kernel vs. classical | Hosted QML notebook | — |
+| 9 | **Pitch your quantum pilot** | Slides + Advantage2 demo | ✅ |
 
-All regular labs are free, cloud-based, no-install, completable in 30–60 minutes. All advanced labs ship with starter code; expected time 60–120 minutes.
+*All regular labs are free, cloud-based, no-install, completable in 30–60 minutes. D-Wave Leap labs use the free developer tier.*
 
 ---
 
@@ -135,19 +138,19 @@ All regular labs are free, cloud-based, no-install, completable in 30–60 minut
 ::::{grid} 2
 :::{grid-item-card} Chapter 1: The $850 Billion Question
 :link: ./chapters/ch01-why-quantum-why-now.md
-Why quantum, why now — the NISQ-to-fault-tolerant roadmap in executive language. Industry snapshots: JPMorgan, Mercedes-Benz, Airbus. Lab: Tour a real quantum computer on IBM Quantum.
+Why quantum, why now — the NISQ-to-fault-tolerant roadmap, the FAU/D-Wave $20M partnership, SC26/HPC context, and the three structural accelerants. Labs: IBM Quantum tour + D-Wave Leap first run.
 :::
 :::{grid-item-card} Chapter 2: The Quantum Mindset
 :link: ./chapters/ch02-thinking-in-probabilities.md
-Superposition, entanglement, interference, and decoherence explained with business analogies. Lab: Build a Bell state in Quirk. *(Graded Case Study)*
+Superposition, entanglement, interference, tunneling, and decoherence explained with business analogies. Labs: Bell state in Quirk + D-Wave annealing in action. *(Graded Case Study)*
 :::
-:::{grid-item-card} Chapter 3: The New Economics of Computation
+:::{grid-item-card} Chapter 3: The Quantum Cloud Economy
 :link: ./chapters/ch03-bits-to-qubits-economics.md
-Four cloud pricing archetypes, the true unit of quantum cost, TCO framework for hybrid workloads, and the evergreen break-even template. Lab: Run your first circuit and read the bill.
+The five QaaS platforms (D-Wave Leap, IBM, AWS, Azure, Google), four pricing archetypes, TCO framework, and the evergreen break-even model for both annealing and gate-model workloads.
 :::
 :::{grid-item-card} Chapter 4: The Hardware Race
 :link: ./chapters/ch04-hardware-race.md
-Five competing architectures — superconducting, trapped-ion, neutral-atom, photonic, topological. The vendor-neutral evaluation rubric. Lab: Compare three backends. *(Graded Case Study)*
+Five competing architectures — superconducting, trapped-ion, neutral-atom, photonic, topological — plus D-Wave's Advantage2 annealing architecture. The vendor-neutral evaluation rubric. Lab: Compare backends. *(Graded Case Study)*
 :::
 :::{grid-item-card} Chapter 5: The Cryptocalypse
 :link: ./chapters/ch05-cryptocalypse-y2q.md
@@ -208,12 +211,12 @@ Every chapter is anchored by a real, documented flagship case — structured as 
 
 | Chapter | Flagship Case |
 |---------|---------------|
-| 1 | Google Sycamore and the $10,000-Year Question (2019) |
+| 1 | FAU & D-Wave: The $20M Partnership That Brought Quantum to Boca Raton (2026) |
 | 2 *(Graded)* | Swiss Re and the Shape of Correlated Risk |
-| 3 | A Mid-Cap Pharma CFO Builds the First Quantum Budget Line |
+| 3 | A South Florida Logistics CFO Builds the First D-Wave Break-Even Model |
 | 4 *(Graded)* | A Sovereign Wealth Fund's Quantum Hardware Portfolio |
 | 5 | A Global Bank's Four-Year PQC Migration |
-| 6 *(Graded)* | Volkswagen's Lisbon Traffic Optimization and the Quantum-Inspired Pivot |
+| 6 *(Graded)* | BASF: Manufacturing Scheduling from Hours to Seconds with D-Wave Stride |
 | 7 | Boehringer Ingelheim's Quantum Chemistry Partnership |
 | 8 *(Graded)* | A Financial Services Firm's Quantum Kernel Credit-Scoring Pilot |
 | 9 | A Mid-Cap CEO's $1.5M Annual Quantum Readiness Envelope |
