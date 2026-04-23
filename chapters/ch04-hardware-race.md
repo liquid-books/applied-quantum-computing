@@ -484,8 +484,7 @@ Your quantum hardware strategy should work the same way. Diversify across paradi
 ### Suggested Portfolio Allocation by Risk Tolerance
 
 ::::{grid} 1 1 3 3
-:::{card} Conservative
-:class-header: bg-primary text-white
+:::{grid-item-card} Conservative
 
 **🛡️ Conservative**
 
@@ -495,8 +494,7 @@ Your quantum hardware strategy should work the same way. Diversify across paradi
 
 *Cloud API access only. No hardware procurement. Build QUBO and gate-model skills now.*
 :::
-:::{card} Balanced
-:class-header: bg-warning text-dark
+:::{grid-item-card} Balanced
 
 **⚖️ Balanced**
 
@@ -507,8 +505,7 @@ Your quantum hardware strategy should work the same way. Diversify across paradi
 
 *Workload-specific pilots. Multiple backends. Explicit kill-switch criteria.*
 :::
-:::{card} Aggressive
-:class-header: bg-danger text-white
+:::{grid-item-card} Aggressive
 
 **🚀 Aggressive**
 
@@ -614,35 +611,30 @@ By completing this chapter, you can:
 
 ::::{grid} 1 1 2 2
 :::{grid-item-card} Outcome 1
-:class-header: bg-primary text-white
 **Paradigm Distinction**
 
 Distinguish quantum annealing from gate-model quantum computing: different physics, different problem classes, different commercial timelines. Explain why D-Wave's Advantage2 is production-ready today while gate-model systems remain in research/near-term deployment.
 :::
 
 :::{grid-item-card} Outcome 2
-:class-header: bg-primary text-white
 **D-Wave Architecture**
 
 Describe the Advantage2 architecture — flux qubits, Pegasus topology, annealing process, Stride hybrid solver — at a level sufficient to evaluate vendor claims and formulate optimization problems for submission.
 :::
 
 :::{grid-item-card} Outcome 3
-:class-header: bg-primary text-white
 **Gate-Model Modalities**
 
 Compare the five gate-model architectures on coherence time, gate fidelity, scalability, connectivity, and operating requirements — identifying the tradeoffs each makes and the workloads each is best suited for.
 :::
 
 :::{grid-item-card} Outcome 4
-:class-header: bg-primary text-white
 **Roadmap Reading**
 
 Apply the evergreen roadmap rubric to any vendor claim, distinguishing demonstrated milestones from marketing projections and flagging the five red flags.
 :::
 
 :::{grid-item-card} Outcome 5
-:class-header: bg-warning text-white
 **Hardware-Workload Matching**
 
 Given a business workload, select the appropriate quantum paradigm (annealing vs. gate-model) and architecture, justify the selection using the matching framework, and set kill-switch criteria for the recommendation.

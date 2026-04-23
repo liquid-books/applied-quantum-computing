@@ -674,35 +674,30 @@ By the end of this chapter, you should be able to:
 
 ::::{grid} 1 1 2 2
 :::{grid-item-card} Outcome 1
-:class-header: bg-primary text-white
 **Platform Selection**
 
 Compare the five QaaS platforms (D-Wave Leap, IBM Quantum, AWS Braket, Azure Quantum, Google Quantum AI) and select the appropriate platform for a given workload, explaining the rationale in terms of problem type, pricing model, and enterprise integration requirements.
 :::
 
 :::{grid-item-card} Outcome 2
-:class-header: bg-primary text-white
 **Pricing Archetypes**
 
 Distinguish the four pricing archetypes — pay-per-shot, pay-per-minute, hybrid solver jobs, and reserved capacity — and match each to workload maturity and volume characteristics.
 :::
 
 :::{grid-item-card} Outcome 3
-:class-header: bg-primary text-white
 **True Unit Cost**
 
 Decompose quantum cost per useful result into its five multiplicative factors (shot count, circuit depth, error rate, queue time, yield) and explain how D-Wave's hybrid solver changes this calculation for optimization workloads.
 :::
 
 :::{grid-item-card} Outcome 4
-:class-header: bg-primary text-white
 **TCO Framework**
 
 Apply the six-stage TCO framework to a quantum workload, identifying all cost drivers — not just QPU or solver time — and building a model with isolated vendor parameters that can be updated without rebuilding the analysis.
 :::
 
 :::{grid-item-card} Outcome 5
-:class-header: bg-warning text-white
 **Break-Even Analysis**
 
 Build a break-even model distinguishing gate-model and D-Wave annealing cost structures, benchmark against the best classical alternative (not legacy systems), and articulate the monitoring triggers that would change the investment recommendation.

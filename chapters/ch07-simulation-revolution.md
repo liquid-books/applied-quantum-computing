@@ -109,7 +109,7 @@ Classical graph algorithms for this problem scale poorly with network size. Mast
 
 ::::{grid} 3
 
-:::{card} 🟢 Now — Accessible Today
+:::{grid-item-card} 🟢 Now — Accessible Today
 **QUBO portfolio optimization** via D-Wave Stride (50–500 securities, constrained allocation)
 
 **Quantum-inspired Monte Carlo** on classical hardware (Goldman Sachs approach)
@@ -117,7 +117,7 @@ Classical graph algorithms for this problem scale poorly with network size. Mast
 **Fraud graph optimization** via D-Wave hybrid solver (in production at Mastercard)
 :::
 
-:::{card} 🟡 Near-Term (2026–2029)
+:::{grid-item-card} 🟡 Near-Term (2026–2029)
 **Full production portfolio optimization** at institutional scale (1,000+ securities)
 
 **Quantum amplitude estimation** for risk calculations on early fault-tolerant hardware
@@ -125,7 +125,7 @@ Classical graph algorithms for this problem scale poorly with network size. Mast
 **Credit scoring kernels** via quantum machine learning (see Chapter 8)
 :::
 
-:::{card} 🔵 Long-Horizon (2030+)
+:::{grid-item-card} 🔵 Long-Horizon (2030+)
 **Real-time derivatives pricing** at full market complexity
 
 **Portfolio optimization across correlated global asset classes** at trillion-dollar scale
@@ -378,7 +378,7 @@ For supply chain and parts routing optimization (a D-Wave annealing application)
 
 ::::{grid} 3
 
-:::{card} 🟢 Now — Accessible Today
+:::{grid-item-card} 🟢 Now — Accessible Today
 **Production scheduling as QUBO** via D-Wave Stride (BASF model, directly deployable)
 
 **Factory routing optimization** via D-Wave hybrid (Volkswagen QUBO bridge pattern)
@@ -386,7 +386,7 @@ For supply chain and parts routing optimization (a D-Wave annealing application)
 **Parts logistics optimization** via quantum-inspired classical solvers (Digital Annealer)
 :::
 
-:::{card} 🟡 Near-Term (2026–2029)
+:::{grid-item-card} 🟡 Near-Term (2026–2029)
 **Real-time quality control optimization** integrating sensor streams with hybrid quantum-classical decision engines
 
 **Assembly line sequencing** via QAOA on early fault-tolerant hardware for high-constraint aerospace and automotive applications
@@ -394,7 +394,7 @@ For supply chain and parts routing optimization (a D-Wave annealing application)
 **Predictive maintenance scheduling** via quantum ML for anomaly detection in complex multi-machine environments
 :::
 
-:::{card} 🔵 Long-Horizon (2030+)
+:::{grid-item-card} 🔵 Long-Horizon (2030+)
 **Materials discovery for manufacturing** — quantum simulation of advanced alloys, composites, and industrial catalysts via VQE
 
 **Full digital twin optimization** — quantum-native simulation of manufacturing processes at molecular-to-system scale
@@ -432,34 +432,34 @@ You are the Chief Strategy Officer of a \$5 billion company. Your board has aske
 
 ## Module-Level Outcomes
 
-::::{card-carousel} 1
+::::{grid} 1 1 2 2
 
-:::{card} Outcome 1
+:::{grid-item-card} Outcome 1
 **Map quantum techniques to industry verticals.**
 Accurately identify which quantum approach — D-Wave annealing for optimization, VQE for molecular simulation, hybrid quantum-classical — is most appropriate for a given business problem in financial services, supply chain, healthcare, or energy.
 :::
 
-:::{card} Outcome 2
+:::{grid-item-card} Outcome 2
 **Evaluate enterprise quantum deployments critically.**
 Distinguish between what has been announced, what has been published, and what has been commercially deployed in each vertical — applying the framework to assess the maturity and credibility of specific quantum-industry programs.
 :::
 
-:::{card} Outcome 3
+:::{grid-item-card} Outcome 3
 **Construct an R&D acceleration NPV model.**
 Build and defend an R&D acceleration NPV model for a pharmaceutical or materials science quantum application, with explicit assumptions about success probability improvement, timeline acceleration, peak revenue, and discount rate.
 :::
 
-:::{card} Outcome 4
+:::{grid-item-card} Outcome 4
 **Apply QUBO formulation to a supply chain problem.**
 Formulate a vehicle routing or inventory optimization problem as a QUBO, submit it to D-Wave Leap, and interpret the results against a classical baseline — demonstrating that optimization-heavy supply chain applications are accessible today.
 :::
 
-:::{card} Outcome 5
+:::{grid-item-card} Outcome 5
 **Run a VQE simulation on a real quantum device.**
 Execute a VQE calculation for the hydrogen molecule on IBM Quantum hardware, observe convergence, and connect the result to the molecular simulation problem in drug discovery or materials research.
 :::
 
-:::{card} Outcome 6
+:::{grid-item-card} Outcome 6
 **Identify the quantum-inspired bridge for your vertical.**
 For any given industry application, identify whether a quantum-inspired classical algorithm provides near-term value before quantum hardware scales — and articulate the difference between the bridge value and the eventual full quantum advantage.
 :::
@@ -713,43 +713,30 @@ Apply the vertical framework from this chapter to your own organization (or a pu
 ```{glossary}
 VQE (Variational Quantum Eigensolver)
   A hybrid classical-quantum algorithm for finding the ground-state energy of a molecular system. Used in pharmaceutical drug discovery and materials science to compute molecular properties more accurately than classical approximation methods.
-
 Variational Principle
   A theorem from quantum mechanics stating that any trial quantum state has energy equal to or greater than the true ground-state energy. The foundation of VQE: minimizing energy over trial states converges to the exact ground state.
-
 Ground State
   The lowest-energy quantum state of a molecule. The ground-state energy determines all chemical properties — bond strength, reaction rates, binding affinity, and drug-protein interaction geometry.
-
 Ansatz
   A parameterized quantum circuit used in VQE to prepare trial quantum states. Common choices: UCCSD (physically motivated, high accuracy, deep circuit) and hardware-efficient (shallower, more noise-tolerant).
-
 Jordan-Wigner Transformation
   A mathematical mapping from a molecular electronic Hamiltonian (describing electrons) to a qubit Hamiltonian that a quantum computer can process.
-
 Electron Correlation
   The quantum mechanical interaction between electrons that classical mean-field methods (Hartree-Fock, DFT) approximate. Electron correlation governs binding affinity, reaction barriers, and drug-protein interaction strength — the specific properties that classical simulation gets wrong.
-
 DFT (Density Functional Theory)
   The workhorse classical computational chemistry method — efficient but approximate, especially for strongly correlated electron systems relevant to drug-protein binding and materials science.
-
 Potential Energy Surface
   A map of molecular energy as a function of atomic configuration. The foundational output of molecular simulation: its minimum identifies equilibrium geometries, its shape determines reaction pathways, its accuracy determines the reliability of drug design predictions.
-
 FeMoco (Iron-Molybdenum Cofactor)
   The active site of the nitrogenase enzyme, containing approximately 54 strongly correlated electrons. The canonical hard target for quantum simulation — its accurate modeling would enable design of room-temperature nitrogen fixation catalysts.
-
 Nitrogenase
   The enzyme used by nitrogen-fixing bacteria to convert atmospheric nitrogen to ammonia at room temperature. Its industrial equivalent — the Haber-Bosch process — consumes 1–2% of global energy and emits ~450 million tons of CO₂ annually.
-
 MOF (Metal-Organic Framework)
   A class of porous crystalline materials with high internal surface area used for carbon capture, gas storage, and catalysis. MOF CO₂ binding energetics are governed by electron correlation effects that classical DFT calculates with 20–30% error.
-
 QUBO (Quadratic Unconstrained Binary Optimization)
   The mathematical formulation language for D-Wave quantum annealers. Expresses optimization problems — portfolio construction, supply chain routing, inventory allocation — as minimization of a quadratic function of binary variables.
-
 Quantum-Inspired Algorithms
   Classical algorithms that apply mathematical structures derived from quantum mechanics. Deliver near-term optimization value on conventional hardware while quantum hardware matures — the "bridge" strategy demonstrated by Volkswagen's Digital Annealer deployment.
-
 Vehicle Routing Problem (VRP)
   The combinatorial optimization problem of assigning routes to a fleet of vehicles to minimize total distance or cost subject to vehicle capacity, time window, and depot constraints. A canonical D-Wave application in supply chain and logistics.
 ```

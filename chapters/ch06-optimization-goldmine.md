@@ -562,35 +562,30 @@ By completing this chapter and its labs, you should be able to:
 
 ::::{grid} 1 1 2 2
 :::{grid-item-card} Outcome 1
-:class-header: bg-primary text-white
 **QUBO Formulation**
 
 Formulate a combinatorial optimization problem as a QUBO from scratch: define binary variables, write the objective function, add constraint penalties, and calibrate penalty weights. Demonstrate on at least one routing, scheduling, or portfolio problem.
 :::
 
 :::{grid-item-card} Outcome 2
-:class-header: bg-primary text-white
 **Ocean SDK**
 
 Use D-Wave's Ocean SDK to build a QUBO or CQM, select an appropriate sampler, submit to D-Wave Leap, and interpret the sampleset output including timing breakdown and solution quality metrics.
 :::
 
 :::{grid-item-card} Outcome 3
-:class-header: bg-primary text-white
 **Stride vs. Direct QPU**
 
 Distinguish when to use the Stride hybrid solver vs. direct QPU access, using problem variable count and solution quality requirements as the primary decision criteria.
 :::
 
 :::{grid-item-card} Outcome 4
-:class-header: bg-primary text-white
 **Enterprise Case Analysis**
 
 Analyze the BASF, Volkswagen, Mastercard, and Verge Ag cases: what problem was solved, how was it formulated, what hardware/solver was used, and what was the measured operational outcome.
 :::
 
 :::{grid-item-card} Outcome 5
-:class-header: bg-warning text-white
 **ROI Framework**
 
 Calculate projected ROI for a quantum optimization pilot using the four-step framework: cost envelope × quality gap × improvement factor vs. pilot cost. Present as a one-page CFO memo with explicit go/no-go criteria.

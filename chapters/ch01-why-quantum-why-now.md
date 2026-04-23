@@ -462,35 +462,30 @@ By the end of this chapter, you should be able to:
 
 ::::{grid} 1 1 2 2
 :::{grid-item-card} Outcome 1
-:class-header: bg-primary text-white
 **Economic Impact**
 
 Describe projected economic impact of quantum computing by sector and horizon, citing McKinsey Global Institute (2021) and BCG (2023) as named sources, and explain why forecasts are presented as ranges rather than point estimates.
 :::
 
 :::{grid-item-card} Outcome 2
-:class-header: bg-primary text-white
 **Quantum Winters**
 
 Distinguish the two prior quantum winters from the current investment cycle by identifying at least three structural differences: corporate capital durability, production D-Wave deployments, and geopolitical security mandates.
 :::
 
 :::{grid-item-card} Outcome 3
-:class-header: bg-primary text-white
 **Three Accelerants**
 
 Identify and explain the three structural accelerants (geopolitics, AI convergence, cryptographic risk) and describe why cryptographic risk creates present-day organizational exposure independent of quantum hardware maturity.
 :::
 
 :::{grid-item-card} Outcome 4
-:class-header: bg-primary text-white
 **NISQ-to-FT Roadmap**
 
 Summarize the NISQ-to-fault-tolerance roadmap in executive language, distinguishing gate-model and annealing paradigms, and mapping the three phases to "now, soon, later" enterprise planning horizons.
 :::
 
 :::{grid-item-card} Outcome 5
-:class-header: bg-warning text-white
 **Forecast Evaluation**
 
 Given any quantum market-sizing forecast, surface its load-bearing assumptions regarding hardware timeline, enterprise adoption lag, and classical computing alternatives, and assess each assumption's confidence level.

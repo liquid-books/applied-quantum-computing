@@ -352,19 +352,19 @@ The analogy: a house with standard doorframe dimensions can have any door replac
 
 ::::{grid} 2
 
-:::{card} 🔍 Phase 1: Discovery
+:::{grid-item-card} 🔍 Phase 1: Discovery
 Automated inventory of every cryptographic primitive in use: certificates, TLS configurations, code-signing keys, VPN tunnels, HSMs, embedded firmware, third-party APIs. Typically 4–6 months. Always reveals surprises — long-lived keys provisioned years ago and never rotated, vendor systems with hardcoded algorithms, embedded devices with no documented key management.
 :::
 
-:::{card} 📋 Phase 2: Classification
+:::{grid-item-card} 📋 Phase 2: Classification
 Apply the STRIDE threat matrix to each discovered asset. Apply the Mosca Inequality to each data category it protects. Generate a RED/YELLOW/GREEN risk classification and a prioritized migration backlog. RED items (Mosca in deficit + Critical STRIDE category) move to Phase 3 immediately.
 :::
 
-:::{card} 🔀 Phase 3: Hybrid Deployment
+:::{grid-item-card} 🔀 Phase 3: Hybrid Deployment
 Deploy hybrid configurations — running both classical and PQC algorithms simultaneously. Hybrid TLS with ML-KEM provides immediate quantum resistance for new connections. Hybrid signatures provide backward compatibility while migrating relying parties. This phase delivers security value before the migration is complete.
 :::
 
-:::{card} ✅ Phase 4: Migration Execution
+:::{grid-item-card} ✅ Phase 4: Migration Execution
 Systematic replacement of classical algorithms with PQC equivalents, starting with the highest-risk assets from Phase 2. Ongoing monitoring for cryptographic regressions. PQC requirements in all new procurement contracts. Board reporting on migration progress using the Mosca risk profile.
 :::
 
@@ -462,34 +462,34 @@ Draft a one-page PQC business case that changes their mind. You have 300 words a
 
 ## Module-Level Outcomes
 
-::::{card-carousel} 1
+::::{grid} 1 1 2 2
 
-:::{card} Outcome 1
+:::{grid-item-card} Outcome 1
 **Distinguish quantum paradigms for security purposes.**
 Accurately explain why gate-model quantum computers (IBM, Google, IonQ) pose the cryptographic threat via Shor's algorithm, while quantum annealers (FAU's D-Wave Advantage2) cannot run Shor's and are not the encryption threat vector. Apply this distinction correctly in board-level conversations.
 :::
 
-:::{card} Outcome 2
+:::{grid-item-card} Outcome 2
 **Explain the cryptographic threat in plain language.**
 Describe Shor's algorithm's effect on RSA and ECC, Grover's effect on symmetric encryption, and how Harvest Now, Decrypt Later makes both threats operationally present today — for audiences with no physics background.
 :::
 
-:::{card} Outcome 3
+:::{grid-item-card} Outcome 3
 **Apply STRIDE to map quantum-era security threats.**
 Complete a STRIDE analysis for a given organization's cryptographic architecture, identify the highest-priority quantum-era threat categories, specify the PQC control for each, and produce a STRIDE-to-migration priority matrix that any CISO, audit committee, or regulator can evaluate.
 :::
 
-:::{card} Outcome 4
+:::{grid-item-card} Outcome 4
 **Apply the Mosca Inequality to calculate migration urgency.**
 Given a data asset's confidentiality lifetime and an organization's estimated migration timeline, calculate whether the organization is in Mosca deficit relative to Q-Day estimates, and articulate the implication for migration timeline and HNDL risk.
 :::
 
-:::{card} Outcome 5
+:::{grid-item-card} Outcome 5
 **Evaluate NIST PQC standards and their organizational implications.**
 Distinguish ML-KEM, ML-DSA, and SLH-DSA by purpose, mathematical foundation, and STRIDE threat category addressed. Explain what the transition to each standard means for certificates, TLS, code signing, PKI, and identity infrastructure.
 :::
 
-:::{card} Outcome 6
+:::{grid-item-card} Outcome 6
 **Design and optimize a crypto-agility migration program.**
 Outline the four phases of a crypto-agility program, identify the STRIDE/Mosca inputs that drive Phase 2 prioritization, and explain how quantum annealing (Lab 5B) can be used to optimize the migration sequencing problem itself.
 :::
@@ -753,49 +753,34 @@ Prepare your briefing outline addressing:
 ```{glossary}
 Post-Quantum Cryptography (PQC)
   Cryptographic algorithms designed to be secure against both classical and quantum computer attacks. NIST finalized the first three PQC standards in 2024: ML-KEM, ML-DSA, and SLH-DSA.
-
 Shor's Algorithm
   A quantum algorithm published by Peter Shor in 1994 that factors large integers in polynomial time on a fault-tolerant gate-model quantum computer, breaking RSA and ECC encryption. Requires gate-model hardware — does not run on quantum annealers such as the D-Wave Advantage2.
-
 Gate-Model Quantum Computer
   A quantum computing architecture (IBM, Google, IonQ, Quantinuum) that builds computation from sequences of quantum logic gates. General-purpose and capable of running Shor's algorithm on a future fault-tolerant device. The cryptographic threat paradigm.
-
 Quantum Annealer
   A quantum computing architecture (D-Wave Advantage2) purpose-built for combinatorial optimization. Uses quantum tunneling to find low-energy solutions. Cannot run Shor's algorithm and is not the cryptographic threat vector — but can be used to optimize the PQC migration response (Lab 5B).
-
 STRIDE
   A structured threat modeling framework categorizing security threats as Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, and Elevation of Privilege. Applied in this chapter to map quantum-era cryptographic threats to the governance vocabulary that CISOs, audit committees, and regulators speak.
-
 Harvest Now, Decrypt Later (HNDL)
   An attack strategy in which adversaries collect and store encrypted data today with the intention of decrypting it when a fault-tolerant gate-model quantum computer becomes available. Makes the quantum cryptographic threat operationally present today, not merely future.
-
 Mosca Inequality
   The inequality formulated by Michele Mosca: if the data lifetime plus the migration time exceeds the time until Q-Day, the organization is already in deficit. The primary tool for calculating migration urgency with precision.
-
 Q-Day
   The anticipated date when a fault-tolerant gate-model quantum computer capable of running Shor's algorithm at RSA scale becomes operational. Most analyst estimates cluster in the 2030–2035 window.
-
 ML-KEM (Module Lattice Key Encapsulation Mechanism)
   The primary NIST PQC standard for key exchange. Formerly CRYSTALS-Kyber. Based on the Learning With Errors lattice problem. Replaces RSA and ECC in TLS key exchange. Addresses the Information Disclosure STRIDE category.
-
 ML-DSA (Module Lattice Digital Signature Algorithm)
   The primary NIST PQC standard for digital signatures. Formerly CRYSTALS-Dilithium. Replaces ECDSA in code signing, PKI, and identity infrastructure. Addresses Spoofing, Tampering, Repudiation, and Elevation of Privilege STRIDE categories.
-
 SLH-DSA (Stateless Hash-Based Digital Signature)
   A NIST PQC standard for digital signatures based on hash functions rather than lattice mathematics. Formerly SPHINCS+. Provides algorithmic diversity as a hedge against future lattice attacks. Best suited for root certificates and long-lived archive authentication.
-
 Lattice Cryptography
   A family of cryptographic schemes based on mathematical problems in high-dimensional lattice structures. No known quantum algorithm — including Shor's — provides a meaningful speedup for core lattice problems such as Learning With Errors.
-
 Crypto-Agility
   The engineering discipline of building cryptographic systems with abstraction layers that allow algorithms to be replaced without rebuilding the entire system. The organizational capability that determines whether a PQC migration takes 18 months or 7 years.
-
 Hybrid Cryptography
   A deployment strategy running both classical and post-quantum cryptographic algorithms simultaneously for the same operation. Provides quantum resistance for new traffic immediately while legacy systems complete migration.
-
 CNSA 2.0
   NSA's Commercial National Security Algorithm Suite 2.0 (2022), mandating the transition of U.S. national security systems to PQC by 2030–2035 depending on system type.
-
 Open Quantum Safe (OQS)
   An open-source project providing reference implementations of NIST PQC algorithms via the liboqs library. The same codebase used in experimental PQC deployments at Cloudflare, AWS, and Google.
 ```

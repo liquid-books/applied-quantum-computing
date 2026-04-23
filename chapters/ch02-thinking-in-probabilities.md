@@ -461,42 +461,37 @@ The Bayesian testing framework is running interference: at each data update, the
 
 By the end of this chapter, you should be able to:
 
-::::{card-carousel} 1
+::::{grid} 1 1 2 2
 
-:::{card} Outcome 1
-:class-header: bg-primary
+:::{grid-item-card} Outcome 1
 
 **Explain Core Concepts in Business Language**
 
 Articulate superposition, entanglement, and interference using business analogies — portfolio construction, correlated risk, and signal amplification — that are precise enough to anchor a strategy discussion with a non-technical executive.
 :::
 
-:::{card} Outcome 2
-:class-header: bg-primary
+:::{grid-item-card} Outcome 2
 
 **Distinguish Classical Bits from Qubits**
 
 Describe the architectural difference between classical and quantum information representation, explain why qubits require two complex amplitudes rather than one binary digit, and articulate why that difference matters for probabilistic computation.
 :::
 
-:::{card} Outcome 3
-:class-header: bg-primary
+:::{grid-item-card} Outcome 3
 
 **Define Decoherence and Its Implications**
 
 Explain decoherence as the engineering constraint that limits current quantum hardware, connect it to the NISQ era's limitations, and articulate what it means commercially — including the concept of premature commitment as organizational decoherence.
 :::
 
-:::{card} Outcome 4
-:class-header: bg-primary
+:::{grid-item-card} Outcome 4
 
 **Apply Parallel Possibilities**
 
 Take a novel problem from your own domain, identify whether its structure is superposition-like, entanglement-like, or interference-like, and articulate how quantum-native framing might improve the approach — with or without quantum hardware.
 :::
 
-:::{card} Outcome 5
-:class-header: bg-primary
+:::{grid-item-card} Outcome 5
 
 **Articulate the Free Quantum Advantage**
 
@@ -824,52 +819,36 @@ Strong posts will engage with the nuance in the question. The quantum mindset an
 ```{glossary}
 Superposition
   A quantum phenomenon in which a quantum system simultaneously exists in multiple distinct states, described by a weighted combination of those states (a superposition). The weights are complex probability amplitudes. Measurement collapses superposition to a single definite outcome.
-
 Entanglement
   A quantum correlation between two or more particles such that the quantum state of each particle cannot be described independently of the others. Measuring one entangled particle instantly determines information about its partner(s), regardless of distance.
-
 Interference
   The mechanism by which quantum amplitudes combine — constructively (reinforcing) or destructively (canceling) — analogous to wave interference. Quantum algorithms exploit interference to amplify the probability of correct answers and suppress incorrect ones.
-
 Decoherence
   The loss of quantum coherence — superposition, entanglement, and interference — through interaction with the environment. Decoherence is the primary engineering challenge facing current quantum hardware and the reason qubits must be kept near absolute zero.
-
 Qubit
   The fundamental unit of quantum information. Unlike a classical bit (0 or 1), a qubit is described by two complex amplitudes, α and β, where measuring the qubit yields 0 with probability |α|² and 1 with probability |β|². Between measurements, the qubit can exist in any superposition of 0 and 1.
-
 Bloch Sphere
   A geometric representation of the state space of a single qubit. Every pure qubit state corresponds to a unique point on the surface of the unit sphere. The poles represent classical states (0 and 1); all other points represent superposition states. Quantum gates correspond to rotations on the Bloch sphere.
-
 Quantum Amplitude
   A complex number that describes the "weight" of a particular quantum state in a superposition. The squared magnitude of an amplitude gives the probability of measuring that state. Unlike probabilities, amplitudes can be negative or complex — enabling interference.
-
 Bell State
   One of four maximally entangled two-qubit states. The most common, |Φ⁺⟩ = (|00⟩ + |11⟩)/√2, is produced by applying a Hadamard gate to one qubit followed by a CNOT gate. Bell states are the canonical demonstration of quantum entanglement.
-
 CHSH Inequality
   A mathematical inequality (|S| ≤ 2) that must hold for any classical hidden-variable theory. Quantum mechanics violates this bound, achieving S = 2√2 ≈ 2.828 for entangled qubits measured at optimal angles. Experimental violations of the CHSH inequality confirm that quantum correlations cannot be explained classically.
-
 Hadamard Gate
   A quantum gate that creates equal superposition: it transforms a qubit in state |0⟩ into an equal superposition of |0⟩ and |1⟩, and transforms |1⟩ into an equal superposition with a phase flip. Denoted H. Used as the first step in most quantum algorithms.
-
 CNOT Gate
   The controlled-NOT gate: a two-qubit gate that flips the target qubit if and only if the control qubit is in state |1⟩. Combined with the Hadamard gate, CNOT creates entanglement. It is the fundamental two-qubit gate in quantum circuit design.
-
 Grover's Algorithm
   A quantum search algorithm that finds a target item in an unstructured database of N items in O(√N) steps, compared to O(N) for classical sequential search. It achieves this speedup through iterative amplitude amplification — a structured interference process.
-
 Quantum Amplitude Estimation
   A quantum algorithm for estimating the expected value of a function over a large state space with quadratic speedup over classical Monte Carlo sampling. Key application in finance and risk modeling.
-
 NISQ (Noisy Intermediate-Scale Quantum)
   The current era of quantum computing, characterized by devices with 50–1000 qubits that are too noisy for full error correction but large enough to explore potential quantum advantages on carefully chosen problems. Coined by John Preskill in 2018.
-
 Quantum-Inspired Algorithm
   A classical algorithm designed by taking structural insights from quantum computing — such as tensor network methods, amplitude-based representations, or interference-style optimization — and implementing them on classical hardware. Often provides improvements over baseline classical approaches even without quantum hardware.
-
 Probability Amplitude
   See Quantum Amplitude. The term emphasizes the connection to probability: the squared magnitude of an amplitude gives the probability of a measurement outcome. Unlike classical probabilities (always between 0 and 1), amplitudes can be negative or complex.
-
 Coherence Time
   The duration for which a qubit can maintain its quantum state (superposition or entanglement) before decoherence destroys it. Current superconducting qubits have coherence times on the order of microseconds to milliseconds. Longer coherence times are a primary goal of quantum hardware engineering.
 ```
