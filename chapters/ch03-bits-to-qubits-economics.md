@@ -923,13 +923,19 @@ The widely believed (but unproven) relationship: **P ⊆ BQP ⊆ NP**. Quantum c
 
 **Grover's search algorithm** provides a quadratic speedup for unstructured search: searching a database of $N$ entries requires $O(N)$ steps classically and $O(\sqrt{N})$ steps on a quantum computer. Significant, but not exponential.
 
+*In plain terms: If you're searching a billion-record database, a classical computer checks up to 1,000,000,000 records. Grover's algorithm checks up to √1,000,000,000 ≈ 31,623 records. That's ~30,000× faster — real, useful, but not the sci-fi "instant answer" people imagine. It's a square root improvement, not an infinite one.*
+
 **Shor's factoring algorithm** provides an *exponential* speedup for integer factorization: factoring an $n$-bit integer requires $O(2^{n/2})$ classical steps with the best known algorithm, versus $O(n^3)$ quantum steps. This is why RSA encryption — whose security rests on the hardness of factoring — is cryptographically broken by a fault-tolerant quantum computer.
+
+*In plain terms: For a standard 2,048-bit encryption key, the best classical method needs roughly 10³⁴ steps — more operations than there are atoms in the universe, effectively impossible. Shor's algorithm needs roughly 2,048³ ≈ 8.6 billion steps — easy for a computer. That's the difference between "takes longer than the age of the universe" and "done in an afternoon." This is why encryption is in danger.*
 
 ### Why QaaS Pricing Reflects Marginal Cost, Not Value
 
 From a microeconomics perspective, quantum cloud pricing follows a pattern familiar from early cloud computing: vendors price near marginal cost (primarily electricity, cryogenic maintenance, and depreciation per shot) to capture market share and drive adoption, while classical HPC infrastructure has already paid off capital costs. The formula for break-even quantum value — introduced in Chapter 3's TCO framework — formalizes this:
 
 $$\text{Quantum ROI} = \frac{\Delta \text{Solution Quality} \times \text{Business Value per Unit}}{\text{QPU Cost per Run} + \text{Integration Cost}} - 1$$
+
+*In plain terms: This is just a business ROI formula with quantum-specific variables plugged in. The numerator asks "how much better is the quantum solution, and what's that improvement worth in dollars?" The denominator asks "what did it cost to run?" If the improvement is tiny (quantum barely beats classical), the fraction is small and ROI is negative. If D-Wave's cloud cost is near zero (which it often is), even small improvements look great. That's the economic logic behind why D-Wave's Stride solver is winning enterprise deals right now.*
 
 When $\Delta$ Solution Quality is small (quantum finds only marginally better solutions than classical), the denominator dominates and ROI is negative. This is the current state for most NISQ-era gate-model applications. D-Wave's hybrid Stride solver changes the denominator: LeapHybridSampler time is priced near zero for developers, making even modest solution quality improvements ROI-positive — the commercial insight behind every D-Wave enterprise deployment in this book.
 

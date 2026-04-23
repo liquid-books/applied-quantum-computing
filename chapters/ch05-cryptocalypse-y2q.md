@@ -811,11 +811,15 @@ RSA encryption's security rests on a simple asymmetry: multiplying two large pri
 
 $$O\!\left(\exp\!\left(c \cdot (\ln N)^{1/3} (\ln \ln N)^{2/3}\right)\right)$$
 
+*In plain terms: This formula says "the number of steps grows almost-but-not-quite exponentially with the size of the number being factored." In practice for a 2,048-bit key, it comes out to roughly 10³⁴ steps — a number so astronomically large that no classical computer, ever built or conceivable, could complete it in any reasonable timeframe. The universe is only about 4×10¹⁷ seconds old. This is why RSA has been safe — until now.*
+
 For a 2,048-bit key, this is effectively intractable — approximately $10^{34}$ operations on a classical computer.
 
 Shor's algorithm replaces factoring with **period finding** in a modular arithmetic function $f(x) = a^x \bmod N$, exploiting the fact that this function is periodic with period $r$ where $r$ divides $\phi(N) = (p-1)(q-1)$. The algorithm uses the **Quantum Fourier Transform (QFT)** — a quantum circuit implementation of the discrete Fourier transform — to find $r$ in polynomial time $O((\log N)^3)$. Once $r$ is known, the factors $p$ and $q$ are recovered with high probability via:
 
 $$\gcd(a^{r/2} \pm 1, N) \in \{p, q\}$$
+
+*In plain terms: Once you've found the period $r$ (which quantum does fast), this formula is a simple calculation that spits out the secret prime factors. "gcd" means "greatest common divisor" — a basic operation any calculator can do. The hard part (finding $r$) is what quantum solves. The easy part (this formula) is just arithmetic.*
 
 The exponential speedup comes entirely from the QFT's ability to extract periodicity from a superposition of $2^n$ function evaluations simultaneously. A fault-tolerant quantum computer with approximately 4,000 logical qubits (translating to millions of physical qubits with current error correction overhead) could factor a 2,048-bit RSA key in hours.
 
@@ -824,6 +828,8 @@ The exponential speedup comes entirely from the QFT's ability to extract periodi
 The Mosca Inequality frames the urgency of PQC migration as a sum of three time variables:
 
 $$x + y > z \implies \text{act now}$$
+
+*In plain terms: Add together (a) how long your sensitive data needs to stay secret and (b) how long it will take you to upgrade your encryption. If that sum is bigger than (c) how many years until a quantum computer can break today's encryption — you're already in danger. Example: hospital data must be private for 30 years (x=30), migration takes 5 years (y=5), quantum threat arrives in 12 years (z=12). 30+5=35 > 12. The hospital is already late — hackers are stealing the data today to decrypt it in 12 years.*
 
 Where:
 - $x$ = **shelf life** of data that must remain confidential (years from now)

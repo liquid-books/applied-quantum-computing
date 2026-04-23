@@ -713,9 +713,13 @@ In classical computing, a bit is always 0 or 1 — a definite, measurable fact. 
 
 $$|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$$
 
+*In plain terms: A qubit isn't a fixed 0 or 1 — it's a weighted mixture of both at once. The Greek letters α and β are the "weights" on each possibility. Think of it like a coin that is 70% heads and 30% tails simultaneously — until you look at it, at which point it instantly becomes one or the other.*
+
 Where $|0\rangle$ and $|1\rangle$ are the computational basis states (analogous to 0 and 1), and $\alpha, \beta$ are complex numbers called **probability amplitudes**. The constraint is:
 
 $$|\alpha|^2 + |\beta|^2 = 1$$
+
+*In plain terms: The squared weights must add up to 100%. If there's a 70% chance of measuring 0, there must be exactly a 30% chance of measuring 1. The total has to be 1 (certainty) because something must happen when you measure.*
 
 This is the normalization condition — the total probability of measuring *some* outcome must be 1. When you measure the qubit, you get $|0\rangle$ with probability $|\alpha|^2$ and $|1\rangle$ with probability $|\beta|^2$. After measurement, the superposition collapses — the qubit is now definitively one or the other.
 
@@ -724,6 +728,8 @@ This is the normalization condition — the total probability of measuring *some
 Any single-qubit pure state can be visualized on a **Bloch sphere** — a unit sphere where the north pole is $|0\rangle$, the south pole is $|1\rangle$, and every other point on the surface represents a superposition. The parametric form:
 
 $$|\psi\rangle = \cos\!\left(\frac{\theta}{2}\right)|0\rangle + e^{i\phi}\sin\!\left(\frac{\theta}{2}\right)|1\rangle$$
+
+*In plain terms: Every possible qubit state can be mapped to a unique point on the surface of a globe. The top of the globe is "definitely 0," the bottom is "definitely 1," and every other point on the surface is a different superposition. The angle θ tells you how far from the top you are; the angle ϕ tells you which direction around the globe. This is just a convenient way to visualize all the infinite possibilities a single qubit can be in.*
 
 Here $\theta$ is the polar angle (0 at north, π at south) and $\phi$ is the azimuthal angle. The factor $e^{i\phi}$ is a **relative phase** — it doesn't affect measurement probabilities for a single qubit, but it matters deeply when multiple qubits interact. This is why quantum interference (the constructive and destructive combination of probability amplitudes) is a computational resource: you are manipulating phases to make wrong answers cancel and right answers reinforce.
 

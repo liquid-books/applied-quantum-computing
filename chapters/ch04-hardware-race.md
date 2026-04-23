@@ -796,11 +796,15 @@ A quantum algorithm must complete all its operations within $T_2$. Gate executio
 
 **Fidelity** measures how accurately a gate operation is performed. A single-qubit gate fidelity of 99.9% means 1 in 1,000 operations introduces an error. Two-qubit gate fidelity is typically lower: 99.0–99.5% on best-in-class hardware. For a circuit with $d$ gates in sequence, the total fidelity scales roughly as $F_{\text{total}} \approx f^d$, where $f$ is the per-gate fidelity. For $d = 100$ gates at $f = 0.999$: $F \approx 0.999^{100} \approx 0.905$. At $d = 1{,}000$: $F \approx 0.37$. This is why NISQ algorithms are limited to shallow circuits.
 
+*In plain terms: Errors compound like a bad telephone game. If each gate is 99.9% accurate, running 100 gates gives you a 90.5% chance the final answer is right. Run 1,000 gates and you're down to 37% — barely better than a coin flip. This is exactly why today's quantum computers can only run short programs, and why fault tolerance (the ability to run millions of gates) is such a critical milestone.*
+
 ### The D-Wave Ising Hamiltonian
 
 D-Wave's approach is fundamentally different: rather than applying gate sequences, it implements a physical **Hamiltonian** — an energy function — directly in hardware:
 
 $$H = -\sum_{i} h_i \sigma_i^z - \sum_{i<j} J_{ij} \sigma_i^z \sigma_j^z$$
+
+*In plain terms: This is the D-Wave energy landscape encoded as physics. Each qubit ($i$) has a personal "preference" ($h_i$) for being spin-up or spin-down. Each pair of connected qubits has a "relationship" ($J_{ij}$) — they either like to agree or like to disagree. The whole system naturally settles into the lowest-energy state, like a ball rolling downhill. That lowest-energy state is the answer to your optimization problem. You don't program D-Wave — you describe the energy landscape of your problem, and physics solves it for you.*
 
 Where $\sigma_i^z$ is the Pauli-Z operator for qubit $i$, $h_i$ are local biases (linear coefficients), and $J_{ij}$ are qubit-qubit couplings (quadratic coefficients). Finding the ground state of this Hamiltonian — the minimum energy configuration — is exactly equivalent to solving a QUBO problem (Chapter 6). The Advantage2 chip has ~5,000 qubits and over 40,000 couplers physically implemented in superconducting metal.
 

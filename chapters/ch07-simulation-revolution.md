@@ -769,6 +769,8 @@ VQE is based on the **variational principle** from quantum mechanics: for any no
 
 $$E(\theta) = \langle\psi(\theta)|H|\psi(\theta)\rangle \geq E_0$$
 
+*In plain terms: This says "no matter what trial molecule-state you guess (parameterized by θ), the energy you calculate will always be higher than or equal to the true lowest-energy state." This is the key insight: you can never accidentally get an answer that's too low. So the strategy is simple — keep adjusting your guess (θ) to push the energy as low as possible. The lowest you can get it is the true answer. It's like trying to find the bottom of a valley by always walking downhill — you can't walk below the valley floor.*
+
 The VQE algorithm minimizes $E(\theta)$ over the parameters $\theta$ of a parameterized quantum circuit (called an **ansatz**). The quantum processor evaluates $E(\theta)$ by measuring the ansatz circuit output; a classical optimizer (gradient descent or COBYLA) updates $\theta$ to reduce $E(\theta)$; the loop repeats until convergence.
 
 The **molecular Hamiltonian** $H$ is derived from first principles and expressed in the **second-quantization** form using creation/annihilation operators, then mapped to qubit operators via the Jordan-Wigner or Bravyi-Kitaev transformation. For hydrogen ($H_2$) at equilibrium bond length, the full Hamiltonian in the minimal basis (STO-3G) requires just 2 qubits after symmetry reduction — which is why the Lab 7A H₂ simulation is achievable on real NISQ hardware today.

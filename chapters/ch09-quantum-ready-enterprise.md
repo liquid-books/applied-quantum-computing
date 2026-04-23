@@ -822,9 +822,13 @@ The **surface code** is the most experimentally practical QEC code for supercond
 
 The key metric is the **code distance** $d$: a surface code with distance $d$ can correct up to $\lfloor (d-1)/2 \rfloor$ arbitrary errors. The number of physical qubits required is $d^2$ data qubits + $(d^2 - 1)$ syndrome qubits $\approx 2d^2$.
 
+*In plain terms: Code distance is like backup redundancy. A distance-3 code uses 9+8=17 physical qubits to make 1 reliable logical qubit and can fix 1 error. A distance-15 code uses ~450 physical qubits for 1 logical qubit and can fix up to 7 simultaneous errors. More redundancy = more reliable = more physical qubits required. This is why a 4,000-logical-qubit algorithm actually needs ~1.8 million physical qubits — you pay a 450× overhead for reliability.*
+
 The **threshold theorem** establishes that if the physical error rate $p$ is below a threshold $p_{\text{th}} \approx 1\%$ (for surface code), then increasing $d$ exponentially suppresses the logical error rate:
 
 $$p_L \approx \left(\frac{p}{p_{\text{th}}}\right)^{\lceil d/2 \rceil}$$
+
+*In plain terms: Once your hardware is good enough (error rate below ~1%), adding more redundancy makes errors vanishingly rare — exponentially fast. At 0.1% physical error rate with distance 15, you get 10⁻⁷ logical error rate. That's one logical error per 10 million gate cycles — good enough to run billion-gate algorithms. The critical insight: below the threshold, more physical qubits = exponentially more reliable. Above the threshold, more physical qubits = more errors. Getting below that 1% threshold is the engineering challenge that defines the quantum computing race right now.*
 
 For $p = 0.1\%$ and $d = 15$: $p_L \approx (0.1)^7 = 10^{-7}$ logical errors per gate cycle. This is the suppression required for a billion-gate algorithm to succeed with high probability.
 

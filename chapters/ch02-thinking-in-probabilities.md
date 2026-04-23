@@ -882,9 +882,13 @@ The **Hadamard gate** is the most fundamental single-qubit gate. It transforms t
 
 $$H|0\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) \qquad H|1\rangle = \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle)$$
 
+*In plain terms: The Hadamard gate is the "coin-flip" gate. Feed it a definite 0 and it comes out 50/50 between 0 and 1. Feed it a definite 1 and it also comes out 50/50 — but with a hidden sign flip on the 1-part that matters enormously for interference later. The 1/√2 is just the math for "equal probability of each outcome."*
+
 As a matrix:
 
 $$H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$$
+
+*In plain terms: This 2×2 grid of numbers is a complete description of what the Hadamard gate does to any qubit you feed it. Multiply the matrix by the qubit's state vector and you get the new state. Every quantum gate has a matrix like this — that's all a "gate" is.*
 
 Applying $H$ to all $n$ qubits simultaneously creates an equal superposition of all $2^n$ computational basis states — this is the standard initialization step for most gate-model quantum algorithms.
 
@@ -894,9 +898,13 @@ The **CNOT (controlled-NOT)** gate acts on two qubits: a control qubit and a tar
 
 $$\text{CNOT}: |00\rangle \to |00\rangle, \quad |01\rangle \to |01\rangle, \quad |10\rangle \to |11\rangle, \quad |11\rangle \to |10\rangle$$
 
+*In plain terms: The CNOT is an "if-then" gate for quantum computers. "If the first qubit is 1, flip the second qubit. Otherwise leave it alone." The table above shows all four possible two-qubit inputs and what comes out — only the last two rows change because only those have the first qubit as 1.*
+
 Applying Hadamard to a qubit and then CNOT to that qubit and a second qubit in state $|0\rangle$ produces a **Bell state** — a maximally entangled two-qubit state:
 
 $$|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$$
+
+*In plain terms: This says the two qubits are perfectly correlated — they're either both 0 or both 1, each with 50% probability, but they have no individual identity until measured. The moment you check one, the other instantly "decides" too. This is entanglement in its purest mathematical form. The 1/√2 again just means equal probability for each outcome.*
 
 Measuring one qubit instantly determines the state of the other, regardless of distance. This is the entanglement effect that underpins quantum cryptography and quantum teleportation protocols.
 

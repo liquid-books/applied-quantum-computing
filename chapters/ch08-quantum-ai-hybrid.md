@@ -750,6 +750,8 @@ Classical Support Vector Machines (SVMs) find optimal decision boundaries by com
 
 $$k(x_i, x_j) = |\langle \phi(x_i) | \phi(x_j) \rangle|^2 = |\langle 0|U^\dagger(x_i) U(x_j)|0\rangle|^2$$
 
+*In plain terms: A "kernel" is just a measure of similarity between two data points. This formula says: encode data point A as a quantum state, encode data point B as a quantum state, then measure how much the two quantum states overlap. The overlap (squared) is the similarity score. The quantum trick is that the encoding circuit can map data into an astronomically high-dimensional space where patterns are visible that classical methods can't find — but only if your data actually has patterns hiding in that high-dimensional space, which is rare in practice.*
+
 The computational advantage: for certain encoding circuits, $|\phi(x)\rangle$ lives in an exponentially large Hilbert space ($2^n$ dimensional), making the effective feature map exponentially expressive. Classical computers cannot efficiently compute this inner product when $n$ is large, creating a potential quantum advantage — but only if the high-dimensional structure of $k$ is useful for the specific learning task. For most practical tabular business data, standard classical kernels (RBF, polynomial) are equally expressive, which is why quantum kernel advantage has been difficult to demonstrate empirically on real data.
 
 ### QBOOST: D-Wave for Ensemble Learning
@@ -757,6 +759,8 @@ The computational advantage: for certain encoding circuits, $|\phi(x)\rangle$ li
 **QBOOST** (Neven et al., 2012) formulates the boosting ensemble construction problem as a QUBO. In classical AdaBoost, weak classifiers are selected greedily (one at a time). QBOOST selects them jointly by minimizing the total ensemble prediction error:
 
 $$\min_{w \in \{0,1\}^T} \left\| \sum_{t=1}^T w_t h_t(x) - y \right\|^2 + \lambda \|w\|_0$$
+
+*In plain terms: You have 50 simple classifiers (each $h_t$ is one "weak model"). For each one, $w_t$ is a yes/no switch — include it in the team or not. The formula says: find the team of classifiers (which ones to switch on) that minimizes prediction errors, while also keeping the team small (the $\lambda$ term penalizes having too many classifiers). Every possible team is a binary string of 50 yes/no choices — that's 2⁵⁰ ≈ one quadrillion combinations. D-Wave evaluates all of them simultaneously through quantum energy minimization instead of checking them one at a time.*
 
 Where $h_t$ are pre-trained weak classifiers, $w_t \in \{0,1\}$ indicates selection, and $\lambda$ controls sparsity (regularization). The $\ell_0$ norm (count of selected classifiers) makes this NP-hard classically, but the quadratic binary structure maps directly to QUBO. D-Wave selects the optimal ensemble across all $2^T$ classifier subsets simultaneously, rather than greedily one at a time. At $T = 50$ classifiers, the classical exhaustive search has $2^{50} \approx 10^{15}$ candidates; D-Wave evaluates the energy landscape of all simultaneously.
 

@@ -790,6 +790,8 @@ A **Quadratic Unconstrained Binary Optimization (QUBO)** problem is defined by:
 
 $$\min_{x \in \{0,1\}^n} \; x^\top Q x = \min_{x \in \{0,1\}^n} \sum_i Q_{ii} x_i + \sum_{i<j} Q_{ij} x_i x_j$$
 
+*In plain terms: Find the combination of yes/no decisions (each $x_i$ is either 0="no" or 1="yes") that minimizes the total cost. The Q matrix holds all the costs: the diagonal tells you the cost of each individual "yes" decision, and the off-diagonal entries tell you the cost of saying "yes" to two things simultaneously. D-Wave reads this matrix and finds the lowest-cost combination.*
+
 Where:
 - $x \in \{0,1\}^n$ is a binary vector of $n$ decision variables
 - $Q$ is an upper-triangular $n \times n$ matrix of real-valued coefficients
@@ -804,6 +806,8 @@ Suppose a company has 3 projects ($x_1, x_2, x_3$) and can fund at most 2. Each 
 
 $$Q = \begin{pmatrix} -5 & P & P \\ 0 & -8 & P \\ 0 & 0 & -3 \end{pmatrix}$$
 
+*In plain terms: The diagonal (-5, -8, -3) are the project values — negative because we're minimizing cost, so valuable projects make the total go down (which is good). The off-diagonal P entries are penalty costs — if you pick two projects simultaneously, you pay the penalty. With P=20, picking all three costs 44 points, but picking just projects 1 and 2 costs only -13 points. D-Wave finds the -13 solution automatically by searching the energy landscape.*
+
 For $P = 20$, any solution selecting all three projects costs $-5 - 8 - 3 + 20 + 20 + 20 = 44$, making it far worse than the optimum of $x_1 = 1, x_2 = 1, x_3 = 0$ with cost $-5 - 8 + 20 = 7$ (wait — let me re-express: the minimum is actually $x_2 = 1, x_3 = 1$ at $-8 - 3 = -11$ or $x_1 = 1, x_2 = 1$ at $-5 - 8 = -13$, the global minimum). The D-Wave annealer finds this minimum by searching the energy landscape of the corresponding Ising Hamiltonian.
 
 ### Ising Model Equivalence
@@ -811,6 +815,8 @@ For $P = 20$, any solution selecting all three projects costs $-5 - 8 - 3 + 20 +
 QUBO and the **Ising model** are mathematically equivalent via the substitution $s_i = 2x_i - 1$ (mapping $\{0,1\} \to \{-1,+1\}$). This maps the QUBO objective to:
 
 $$E(s) = \sum_i h_i s_i + \sum_{i<j} J_{ij} s_i s_j$$
+
+*In plain terms: This is the exact same problem as QUBO, just expressed in a different language that maps onto the physics of D-Wave's superconducting metal. Instead of 0/1 binary variables, each "spin" is either -1 or +1 (think of magnets pointing up or down). The $h_i$ values nudge each magnet toward a preferred direction; the $J_{ij}$ values say whether each pair of magnets prefer to point the same way or opposite ways. The D-Wave chip physically IS this equation — the metal IS the math.*
 
 Where $h_i = -\frac{1}{2}\left(Q_{ii} + \sum_{j \neq i} Q_{ij}\right)$ and $J_{ij} = \frac{Q_{ij}}{4}$. This is exactly the Ising Hamiltonian implemented in D-Wave's physical hardware (Chapter 4). The Ocean SDK's `BinaryQuadraticModel` (BQM) object handles this transformation automatically when you submit to the LeapHybridSampler — you work in QUBO space, the SDK translates to the Ising Hamiltonian the hardware actually minimizes.
 
