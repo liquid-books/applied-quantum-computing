@@ -2,263 +2,257 @@
 title: "Chapter 9: The Quantum-Ready Enterprise — Strategy, Talent, and Timing"
 subtitle: "The Organizations That Win the Quantum Decade Are Building Their Reflexes Right Now"
 short_title: "Ch. 9: The Quantum-Ready Enterprise"
-description: "Quantum readiness is not a technology project — it is a strategy, talent, and governance project. This capstone chapter synthesizes the entire course into a three-horizon roadmap, a talent architecture, a governance framework, and a one-page quantum investment thesis that every leader can defend to a C-suite."
+description: "Quantum readiness is not a technology project — it is a strategy, talent, and governance project. This capstone chapter synthesizes the entire course into a dual-paradigm three-horizon roadmap, a talent architecture for building quantum-literate organizations, a governance framework covering ethics and regulation, and a one-page quantum investment thesis every leader can defend. The chapter covers SC26 as the annual quantum strategy pulse, FAU's Advantage2 as the on-ramp for Horizon 1 optimization, and Lab 9B: formulating your own organization's optimization problem as a QUBO on D-Wave Leap."
 label: ch-09-quantum-ready-enterprise
-tags: [quantum strategy, quantum readiness, three-horizon, talent, governance, capstone, investment thesis, organizational strategy]
+tags: [quantum strategy, quantum readiness, three-horizon, talent, governance, capstone, investment thesis, D-Wave, FAU Advantage2, SC26, QUBO, dual-use, export controls, ethics, organizational strategy, Centers of Excellence]
 ---
 
 # Chapter 9: The Quantum-Ready Enterprise — Strategy, Talent, and Timing
 
 :::{figure} ../images/ch09-explainer-infographic.png
-:name: fig-ch09-explainer
-:alt: Chapter 9 overview infographic showing the quantum-ready enterprise as a central hub connected to four spokes — Strategy, Talent, Governance, and Partnerships — each feeding into organizational readiness
+:label: fig-ch09-explainer
+:alt: Chapter 9 overview infographic showing the quantum-ready enterprise as a central hub connected to four spokes — Strategy, Talent, Governance, and Partnerships — each feeding into organizational readiness, with the dual-paradigm lens running through the center.
 :width: 100%
+:align: center
 
-**The Quantum-Ready Enterprise at a Glance.** Quantum readiness is not a single technology decision — it is the intersection of strategy, talent, governance, and partnerships. This chapter builds a complete organizational framework: a three-horizon roadmap that tells you *when*, a talent architecture that tells you *who*, a partnership model that tells you *with whom*, and a governance framework that tells you *how to report it*. The capstone deliverable — a one-page quantum investment thesis — integrates all four.
+**The Quantum-Ready Enterprise at a Glance.** Quantum readiness is the intersection of strategy, talent, governance, and partnerships. This chapter builds a complete organizational framework anchored in the dual-paradigm lens that runs through this entire course: annealing hardware (FAU's Advantage2, D-Wave Leap) is accessible in Horizon 1 *today*; gate-model hardware provides the long-horizon advantage. The capstone deliverable — a one-page quantum investment thesis — integrates both paradigms, every chapter's tools, and a defense-ready plan for any C-suite.
 :::
 
-> *"The future is already here — it's just not evenly distributed."*
-> — William Gibson
+Eight chapters built your vocabulary. This chapter is where you use it.
 
-> *"Strategy is not the consequence of planning, but the opposite: its starting point."*
-> — Henry Mintzberg
+You know the difference between a quantum annealer and a gate-model quantum computer — and you know which one is on FAU's campus, which one can run Shor's algorithm, and why that distinction governs every security, optimization, and simulation conversation in your organization. You know how Shor's algorithm dissolves RSA encryption, how QUBO formulation turns logistics and finance problems into quantum-solvable models, how VQE simulates molecular ground states, and how to tell genuine quantum advantage from quantum marketing.
 
-You have come a long way. You started in {ref}`ch-01-why-quantum-why-now` asking whether quantum computing was real or hype — and found the answer was *both, depending on the layer*. You learned to think in probabilities and superpositions in {ref}`ch-02-thinking-in-probabilities`. You built economic intuitions about when quantum beats classical in {ref}`ch-03-bits-to-qubits-economics`, mapped the hardware landscape in {ref}`ch-04-hardware-race`, and came face-to-face with the most urgent near-term risk — the cryptographic cliff — in {ref}`ch-05-cryptocalypse-y2q`. You saw how quantum changes the economics of logistics and finance in {ref}`ch-06-optimization-goldmine`, how it will reshape materials science and pharmaceuticals in {ref}`ch-07-simulation-revolution`, and how it intersects — sometimes genuinely, sometimes deceptively — with artificial intelligence in {ref}`ch-08-quantum-ai-hybrid`.
+What remains is the organizational question that all of those technical tools exist to serve: *What does your organization actually do about it?*
 
-Now comes the question that all of that was preparation for: *What do you actually do about it?*
+This chapter gives you a structured, specific, defensible answer — not a generic "watch the space" recommendation but a three-horizon roadmap split by paradigm, a talent architecture sequenced by organizational maturity, a governance framework built for boards and regulators, and a capstone deliverable that synthesizes every framework in this course into one page that a CFO, a board member, or an investment committee can evaluate.
 
-This chapter is the answer. Not a generic answer — a structured one. By the end, you will have a three-horizon roadmap, a talent architecture, a governance framework, and a one-page quantum investment thesis that you can defend to a C-suite, a board, or an investment committee.
+SC26 — the International Conference for High Performance Computing, Networking, Storage and Analysis — will convene in Chicago in November 2026. Mehran Basiratmand, who designed this course, attended SC for close to a decade as FAU's CTO and watched quantum and HPC converge from inside the room. SC26 is the annual signal event where the frontier of quantum enterprise capability becomes visible. This chapter ends with you prepared to walk into SC26 — or any equivalent strategic moment — and know exactly where your organization stands, what it needs, and what argument to make for the resources to close the gap.
 
 ---
 
-## 9.1 Opening Scene: 1995
+## Opening Scene: Three Companies, One Briefing
 
-Three companies receive the same briefing. A consultant slides a PowerPoint across the conference table. The title reads: *"The World Wide Web: Commercial Implications."*
+It is 1995. Three companies receive the same document. A consultant slides a presentation across the conference table. The title reads: *"The World Wide Web: Commercial Implications."*
 
-The first company's CEO skims the executive summary, nods thoughtfully, and authorizes the hiring of a consultant to study the question further. Six months later, the consultant delivers a report recommending a steering committee. The steering committee meets quarterly for two years. By 1997, they commission a pilot. By 1999, the pilot has a budget. By 2001, the dot-com crash arrives and the whole initiative is quietly killed. They revisit the web in 2004 — five years behind.
+The first company's CEO skims the summary, nods thoughtfully, and authorizes a study. Six months later, a report recommends a steering committee. The committee meets for two years. By 1999, a pilot exists. By 2001, the dot-com crash kills the initiative. They revisit in 2004 — five years behind their industry.
 
-The second company's CIO is intrigued. She assigns the topic to an internal task force. The task force is diligent. They produce a comprehensive risk analysis: regulatory uncertainty, security vulnerabilities, unclear ROI, infrastructure readiness gaps. Their recommendation: monitor the situation and revisit in eighteen months. They revisit in eighteen months and find the same concerns, plus new ones. They revisit again in 1998. By then, their competitors have online storefronts, and they are explaining to the board why they do not.
+The second company's CIO assigns the topic to a task force. The task force is thorough. They produce a risk analysis: regulatory uncertainty, security vulnerabilities, unclear ROI. Their recommendation: monitor and revisit in eighteen months. They revisit in 1998, then again in 1999. By then, their competitors have online storefronts and they are explaining to the board why they do not.
 
-The third company's CEO reads the same briefing, hands it to an engineer on a Thursday afternoon, and says: *"Just build something and report back in ninety days."*
+The third company's CEO reads the briefing, hands it to an engineer on a Thursday afternoon, and says: *"Build something and report back in ninety days."* By 1996, they have a website. By 1998, an e-commerce pilot. By 2005, digital is their primary growth channel.
 
-By 1996, they have a live website. By 1998, they have an e-commerce pilot. By 2000, they are among the three companies in their industry with meaningful online revenue. By 2005, digital is their primary growth channel.
-
-Same briefing. Same year. Three completely different outcomes — not because the technologies were different, but because the *organizational reflexes* were different.
+Same briefing. Same year. Three completely different outcomes — not because the technology was different, but because the *organizational reflexes* were different.
 
 This chapter is about being the third company.
 
 ---
 
-## 9.2 The Single Idea
+## The Single Idea
 
-::::{prf:definition} Quantum Organizational Readiness
-:label: def-quantum-org-readiness
-
-**Quantum organizational readiness** is the capacity of an organization to perceive, evaluate, and act on quantum computing opportunities and risks within an 18-month window of when those opportunities and risks become commercially material — regardless of when that moment arrives. It is a function of strategy clarity, talent depth, governance maturity, and partnership positioning. It is *not* a function of qubit count, vendor relationships, or research citations.
-::::
-
-The single idea of this chapter is simple and important: **quantum readiness is not a technology project.**
-
-It is a strategy project. It is a talent project. It is a governance project. The organizations that win the quantum decade will not necessarily be the ones with the most advanced quantum hardware roadmaps or the deepest research budgets. They will be the ones with the clearest decision frameworks, the most strategically placed human capital, and the governance structures that let them move when the moment arrives.
-
-The companies that missed the internet were not stupid. They were slow — not because their technology teams were under-resourced, but because their organizational reflexes were trained for a world where major technology shifts took decades, not years. Quantum is moving faster. The organizations building their reflexes *now* will be the ones that capitalize on it. The ones waiting for certainty will be the ones writing the retrospective apologies.
+```{epigraph}
+Quantum readiness is not a technology project. It is a strategy project, a talent project, and a governance project. The organizations that win the quantum decade will not necessarily have the deepest research budgets. They will have the clearest decision frameworks, the most strategically placed human capital, and the governance structures that let them move when the moment arrives. And they will already know, from the dual-paradigm lens in this course, that one part of that moment — quantum annealing for optimization — has already arrived.
+```
 
 ---
 
-## 9.3 The Three-Horizon Framework
+## Part I: The Dual-Paradigm Three-Horizon Roadmap
+
+The Three-Horizon Framework is the primary strategic tool for quantum readiness planning. But the version most organizations encounter is paradigm-blind — it treats "quantum computing" as a monolithic technology arriving at some future date and says little about what is available now.
+
+This course has been insistent on the distinction between the two paradigms: gate-model quantum computers (IBM, Google, IonQ) and quantum annealers (D-Wave Advantage2, the hardware on FAU's campus). That distinction does not disappear at the strategy layer. It is the most important lens for a quantum readiness roadmap — because the two paradigms are on different timelines, serve different problem classes, and require different organizational preparation.
 
 :::{figure} ../images/ch09-three-horizon-roadmap.png
-:name: fig-ch09-three-horizons
-:alt: Three-horizon quantum strategy roadmap showing Horizon 1 (0-2 years, awareness and PQC), Horizon 2 (2-5 years, experimentation and partnerships), and Horizon 3 (5-10 years, integration and advantage) on a left-to-right timeline
+:label: fig-ch09-three-horizons
+:alt: Dual-paradigm three-horizon quantum strategy roadmap showing Horizon 1 with D-Wave annealing accessible now and gate-model awareness track, Horizon 2 with optimization pilots expanding and gate-model experimentation beginning, Horizon 3 with full quantum-classical integration across both paradigms.
 :width: 100%
+:align: center
 
-**The Three-Horizon Quantum Roadmap.** Horizon 1 actions build the foundation — cryptographic hygiene, quantum literacy, and monitoring infrastructure. Horizon 2 converts that foundation into experimental capability — pilots, vendor relationships, and talent pipelines. Horizon 3 converts experimental capability into competitive advantage — integrated quantum workflows, differentiated products, and proprietary quantum know-how. You cannot skip horizons; you must earn each one.
+**The Dual-Paradigm Three-Horizon Roadmap.** The most important insight this course adds to the standard three-horizon framework: you do not wait for Horizon 2 to use quantum computing for optimization. D-Wave annealing — the paradigm behind FAU's Advantage2 — is a Horizon 1 tool for organizations with optimization-heavy problems. Gate-model quantum computing is primarily a Horizon 2 and 3 play. Conflating the two produces a strategy that is either too conservative (by waiting for gate-model maturity) or too aggressive (by expecting gate-model performance from NISQ hardware).
 :::
 
-### The 9th-Grader Version
+### Horizon 1 (Now — Years 0 to 2): Protect and Position
 
-A farmer does not wait until summer to plant seeds. She plants in spring, knowing the harvest is months away — and knowing that the seed *planted in spring* is the only seed that *harvests in fall*. You cannot plant in August and harvest in September. The sequence is not negotiable.
+**The central question:** What do we need to secure right now, and where can we already act?
 
-The three-horizon framework works exactly the same way. The actions you take in Horizon 1 (today) are not Horizon 1 payoffs. They are the conditions that make Horizon 2 possible. And Horizon 2 is the condition that makes Horizon 3 possible. You cannot plant in 2029 and harvest quantum advantage in 2031. You have to plant now.
+Horizon 1 is the most action-dense horizon. Two things are true simultaneously: the most urgent quantum risk (cryptographic exposure to Harvest Now, Decrypt Later) is already present, and the most accessible quantum opportunity (optimization via D-Wave annealing) is already deployable.
 
-Where the analogy breaks down: a farmer knows exactly what will grow from a seed. In quantum computing, you are planting in a field where the harvest is partially uncertain. Some seeds will yield more than expected; others less. The framework accounts for this with explicit kill-switch criteria and option-value thinking — you are not committing to a specific harvest, you are buying the right to harvest.
+**Horizon 1, Annealing Paradigm — Act Now:**
 
-**The sell:** The organizations that dominated the internet era did not start building in 2000 — they started in 1995. The organizations that will dominate the quantum era will not start in 2030. They are starting now. The window to be early is not infinite. Every quarter of inaction is a quarter that competitors are spending on quantum literacy, PQC migration, vendor relationships, and talent pipelines. The compounding is real. The gap is already opening.
+For organizations with optimization-heavy operations — logistics routing, production scheduling, financial portfolio construction, workforce allocation — Horizon 1 is not a "wait and watch" horizon. The D-Wave Advantage2 that FAU hosts on its Boca Raton campus (and D-Wave's Leap cloud, which this course's labs have used throughout) is a production-grade optimization tool available today. The case studies in {ref}`ch-06-optimization-goldmine` are not forecasts. They are current deployments: BASF manufacturing scheduling, Mastercard fraud graph optimization, Verge Ag autonomous fleet routing.
 
----
+The Horizon 1 question for the annealing paradigm is not "when will this be ready?" It is: "Which of our highest-value optimization problems can we formulate as a QUBO this quarter, run on D-Wave Leap, and benchmark against our classical baseline before the end of the fiscal year?" Lab 9B — the capstone D-Wave lab — is designed to answer exactly this question for your organization.
 
-### Horizon 1 (Years 0–2): Awareness and Security
+FAU's on-campus Advantage2 access is a unique Horizon 1 resource for this course's students. It is the same hardware class used in every enterprise deployment in Chapter 6, located at your own institution, connected to a D-Wave corporate partner whose headquarters has relocated to the Boca Raton Innovation Center. The on-ramp to Horizon 1 annealing capability is, for FAU students, shorter than at any comparable institution in the region.
 
-**The central question:** What do we need to understand, and what do we need to protect?
+**Horizon 1, Gate-Model Paradigm — Awareness and Security:**
 
-Horizon 1 is not about building quantum capability. It is about building the foundation that makes quantum capability possible — and protecting yourself from the quantum risks that are already real.
+Gate-model quantum computing is not a Horizon 1 production tool for most organizations. Its Horizon 1 role is preparation: building awareness, managing the cryptographic risk it will eventually create, and establishing the vendor relationships and pilot infrastructure that Horizon 2 requires.
 
-**What to do in Horizon 1:**
+The critical Horizon 1 gate-model action is PQC migration. The Mosca Inequality analysis from {ref}`ch-05-cryptocalypse-y2q` applies to gate-model hardware — specifically, to the fault-tolerant gate-model computer that will eventually run Shor's algorithm. The D-Wave annealer on FAU's campus cannot run Shor's. But the IBM, Google, and IonQ machines whose capabilities are improving each year are on a trajectory toward the hardware that will. PQC migration is a Horizon 1 obligation for every organization with long-lived sensitive data — not because the threat has arrived, but because the migration will take 5–10 years and the adversarial collection (Harvest Now, Decrypt Later) is already underway.
 
-::::{grid} 1 2 2 3
-:gutter: 3
+**Horizon 1 Action Checklist:**
 
-:::{card} 🔐 Cryptographic Inventory
-Build a complete map of every encryption system in your organization. Which algorithms are RSA-based? Which use elliptic curve cryptography? Where does data with a 10+ year confidentiality requirement live? This is the input to the Mosca Inequality analysis from {ref}`ch-05-cryptocalypse-y2q`. You cannot protect what you have not mapped.
+::::{grid} 2
+
+:::{card} 🔐 Cryptographic Inventory + PQC Migration Start
+Map every cryptographic system. Run the Mosca Inequality for each data category. Begin PQC migration for Tier 1 (Critical) assets. Budget 3–5 years for full migration. Start this quarter.
+:::
+
+:::{card} ⚡ Annealing Pilot (if optimization-heavy)
+Identify your organization's top optimization problem. Formulate it as a QUBO (Chapter 6 skills apply directly). Run it on D-Wave Leap. Benchmark against your classical baseline. This is the fastest path to a credible, internally funded Horizon 1 quantum result.
 :::
 
 :::{card} 📚 Quantum Literacy Program
-Every executive who makes technology investment decisions needs to understand what quantum computing *is* and *is not* capable of — at the level of this course's first four chapters. This is not about creating physicists. It is about creating leaders who can evaluate claims, ask good questions, and avoid being sold solutions to problems that do not yet exist.
+Train every senior leader who makes technology investment decisions to the level of this course. Target: 3–5 Quantum-Literate Managers in Year 1. Cost: \$5,000–\$15,000 per person in structured programs, or the equivalent of this course.
 :::
 
 :::{card} 👁️ Monitoring Infrastructure
-Establish a process for tracking quantum developments: NIST standards updates, major hardware milestones, competitor announcements, research publications, and regulatory signals. This does not require a dedicated team — it requires designated ownership and a quarterly review cadence.
+Establish a process for tracking quantum developments: NIST standards updates, hardware milestones, SC26 proceedings, competitor announcements. Assign ownership and a quarterly review cadence. SC26 (November annually) is the single most information-dense annual event for quantum enterprise strategy.
 :::
 
-:::{card} 🤝 Vendor Relationships
-Identify which quantum vendors, hyperscalers, and consortia are relevant to your industry. Get access to IBM Quantum, AWS Braket, or Azure Quantum — not because you need to run production workloads, but because familiarity with the access models, pricing, and API structures is the first requirement for any future pilot. The exploration cost is low. The ignorance cost is not.
+:::{card} 🤝 Platform Access
+Get accounts on IBM Quantum, AWS Braket, and D-Wave Leap. Not for production workloads — for familiarity. The organization that has never touched a quantum circuit is not ready to evaluate a quantum vendor pitch. The exploration cost is low. The ignorance cost is not.
 :::
 
-:::{card} 💰 PQC Migration Budget
-Post-quantum cryptography standards from NIST are final. Migration is not optional — it is a regulatory and security necessity. The only question is when. Using the Mosca Inequality framework from {ref}`ch-05-cryptocalypse-y2q`, estimate your migration urgency and begin budgeting for it. Organizations that begin this now will spend less and suffer fewer disruptions than those who begin in 2027 under regulatory pressure.
-:::
-
-:::{card} 📋 Capstone Readiness
-At the end of Horizon 1, your organization should be able to pass a simple test: can your CISO explain your quantum risk exposure? Can your CTO explain what the TCO framework from {ref}`ch-03-bits-to-qubits-economics` implies for your highest-priority workloads? If yes, you are ready for Horizon 2. If not, you have more planting to do.
+:::{card} 💰 Budget Envelope
+Establish an annual quantum readiness budget. The mid-cap reference envelope: \$1–\$2M annually funds a Translator hire, consortium membership, two cloud platform subscriptions, PQC migration tooling, and one active pilot. This is Horizon 1. It is not a research budget. It is an organizational readiness investment.
 :::
 
 ::::
 
 ---
 
-### Horizon 2 (Years 2–5): Experimentation and Partnerships
+### Horizon 2 (Years 2 to 5): Experiment and Partner
 
-**The central question:** Where does quantum create real advantage for us, and who do we need to get there?
+**The central question:** Where does quantum create measurable advantage for us, and who do we need to get there?
 
-Horizon 2 is where the organization moves from observer to participant. The foundation built in Horizon 1 — the cryptographic hygiene, the literacy, the vendor relationships — now becomes the launchpad for structured experimentation.
+Horizon 2 is where the organization moves from observer and early deployer to systematic experimenter. The foundation built in Horizon 1 — cryptographic hygiene, literacy, platform access, and the annealing pilot — now becomes the launchpad for structured investment in both paradigms.
 
-**What to do in Horizon 2:**
+**Horizon 2, Annealing Paradigm:**
+
+If the Horizon 1 annealing pilot produced measurable improvement (even modest — 2–3% in a routing or scheduling problem), Horizon 2 is where that pilot scales to production. This means: moving from D-Wave Leap cloud access to potentially direct on-site access or reserved capacity agreements, formalizing the QUBO formulation capability as an organizational competency (not a one-time experiment), and expanding the application portfolio from one problem to two or three.
+
+The Volkswagen lesson from {ref}`ch-07-simulation-revolution` is the Horizon 2 template: the QUBO formulation language developed in the quantum pilot transfers to quantum-inspired classical solvers when hardware limitations constrain scale. The skill is the durable asset. The hardware is interchangeable.
+
+**Horizon 2, Gate-Model Paradigm:**
+
+Horizon 2 is when gate-model quantum computing enters serious organizational experimentation for most industries. By 2027–2029, IBM, Google, and IonQ hardware roadmaps converge on early fault-tolerant capabilities that are relevant to specific problem classes: quantum kernel methods for high-dimensional classification, early VQE for small molecular fragments in pharma and materials, and QAOA for optimization problems that exceed D-Wave's current problem size limits.
+
+Horizon 2 gate-model activities: run 2–3 structured pilots with external partners (hyperscaler, academic lab, or native quantum startup); build the Quantum Translator capability described in Part II of this chapter; evaluate vendor claims using the five-question governance filter from {ref}`ch-08-quantum-ai-hybrid`; and establish board-level quantum reporting using the framework in Part III.
+
+**Horizon 2 Action Table:**
 
 ```{list-table} Horizon 2 Action Plan
 :header-rows: 1
-:name: table-horizon2
 
 * - Action
   - Owner
   - Success Criterion
   - Kill-Switch
-* - Run 2–3 quantum pilots in highest-priority use cases
-  - Quantum Translator + business unit sponsor
-  - At least one pilot shows measurable improvement vs. classical baseline on a real problem
-  - No pilot shows improvement after 6 months; reallocate budget to PQC migration
-* - Formalize at least one external partnership
-  - Business development + Quantum Translator
+* - Scale annealing pilot to production
+  - Quantum Translator + operations lead
+  - Measurable production improvement vs. classical baseline
+  - No improvement after 12 months at production scale; revert to classical
+* - Run 2 gate-model pilots in priority use cases
+  - Quantum Translator + R&D sponsor
+  - At least one pilot shows measurable improvement over optimized classical baseline
+  - Neither pilot beats baseline after 18 months; redirect budget to annealing or PQC
+* - Formalize one external partnership
+  - Business development + Translator
   - Partnership agreement signed, joint working group active
-  - Partner fails to deliver working joint prototype after 12 months
-* - Build internal quantum talent pipeline
-  - HR + Quantum-Literate Manager
-  - At least one internal team member trained to operate quantum cloud platforms
-  - Training program produces no certified practitioners after 18 months
-* - Develop board-level quantum reporting
-  - CIO/CISO + CFO
-  - Board receives annual quantum risk/opportunity briefing
-  - Board engagement is zero; escalate to CEO as a governance risk
-* - Evaluate hardware modalities for primary use case
-  - Quantum Translator + specialist partner
-  - Hardware rubric score (Ch. 4) applied to 2+ candidate platforms
-  - No platform scores above 60/100 on rubric; defer hardware selection
+  - No joint prototype after 12 months
+* - Complete PQC migration for all Tier 1 assets
+  - CISO + IT
+  - All critical cryptographic endpoints migrated
+  - Migration falls >12 months behind schedule; escalate to board
+* - Institutionalize board quantum reporting
+  - CIO/CISO + Translator
+  - Board receives semi-annual quantum briefing
+  - No board engagement after 4 quarters; escalate to CEO
 ```
 
 ---
 
-### Horizon 3 (Years 5–10): Integration and Advantage
+### Horizon 3 (Years 5 to 10): Integrate and Lead
 
 **The central question:** How does quantum become a source of sustained competitive advantage?
 
-Horizon 3 is where quantum transitions from experiment to operation. This is the harvest. But — critically — you can only harvest what you planted in Horizons 1 and 2. Organizations that arrive at Horizon 3 without the foundation will find themselves in the same position as the companies in 1999 scrambling to build e-commerce platforms while their competitors were already profitable online.
+Horizon 3 is the harvest. Fault-tolerant gate-model hardware arrives. Quantum simulation becomes commercially relevant for pharma, materials, and chemistry. Quantum ML begins to demonstrate genuine advantage for specific high-dimensional classification and sampling problems. The organizations that built Horizons 1 and 2 correctly are positioned to move from experiment to production. The ones that did not are in the same position as the first two companies in the 1995 opening scene.
 
-**Horizon 3 characteristics:**
-
-- Quantum workflows are integrated into core business processes (logistics, risk modeling, drug discovery, materials simulation, financial optimization)
-- The organization has proprietary quantum know-how that competitors cannot easily replicate
-- The quantum talent pipeline is deep enough that loss of any single individual does not create capability loss
-- The governance framework is mature enough that the board receives quarterly updates on quantum risk and opportunity — not annual briefings
-- The quantum investment thesis has been validated by measurable commercial outcomes
+**Horizon 3 characteristics of the quantum-ready enterprise:**
+- Annealing-based optimization is integrated into core operations (not a pilot, not a special project — the standard way the organization routes, schedules, and allocates)
+- Gate-model quantum workflows are live for at least one strategic application: molecular simulation for pharma/materials, quantum kernel methods for high-dimensional classification, or quantum-native risk models for financial services
+- The quantum talent pipeline is deep enough that it is self-sustaining — internal training, academic partnerships, and a recognizable employer brand in the quantum talent market
+- PQC migration is complete; the organization is running forward-secure cryptographic infrastructure
+- Board quantum reporting is a standard governance process, not a special briefing
+- SC26 attendance (or equivalent) is part of the annual strategy calendar — the organization sends people to read the frontier, not to learn what the frontier is
 
 ```{admonition} The Non-Linearity Warning
 :class: warning
 
-Quantum payoffs are **not linear with time.** Organizations that are "80% ready" in Horizon 2 may capture 20% of the available Horizon 3 advantage — because the remaining 20% of readiness (usually talent depth and proprietary data assets) is what enables differentiation. This is the critical insight from the TCO framework in {ref}`ch-03-bits-to-qubits-economics`: the cost curve is steep at the beginning and the value curve is steep at the end. The gap between them is the valley of disillusionment that kills programs. Plan for it explicitly.
+Quantum payoffs are not linear with time or investment. Organizations that are "80% ready" in Horizon 2 may capture 20% of the available Horizon 3 advantage — because the remaining 20% of readiness (talent depth, proprietary quantum know-how, problem formulation IP) is what creates differentiation. The valley of disillusionment — when early pilots underperform initial expectations — is real and must be budgeted for explicitly. Organizations that have not pre-planned for this valley will kill programs at exactly the wrong moment: right before the hardware improvement that would have made the pilot work. Build the valley into the roadmap. Survive it deliberately.
 ```
 
 ---
 
-## 9.4 Talent Architecture: The Four Roles
+## Part II: Talent and Organizational Design
+
+### The Translator at the Center
+
+Every organization that has successfully deployed AI at scale credits one kind of person. Not the researchers. Not the C-suite champion. The translator — the person who could explain gradient descent to the CFO *and* explain IRR constraints to the data scientists, and have both conversations be genuinely useful.
+
+Quantum will be identical. The most important organizational decision any company makes in Horizon 1 is not which quantum platform to buy access to or which vendor to partner with. It is who becomes the quantum translator. The organizations that have their translator in place before they need them will run better pilots, make better vendor decisions, avoid more expensive mistakes, and communicate more effectively to boards and investors.
+
+The translator is not the person you hire after you understand what you need. The translator is the person who helps you understand what you need.
 
 :::{figure} ../images/ch09-talent-architecture.png
-:name: fig-ch09-talent
-:alt: Quantum talent architecture showing four roles as interconnected circles — Quantum-Literate Manager, The Translator (highlighted), Specialist Hire, External Research Partner — with arrow pointing to Translator as the recommended first hire
+:label: fig-ch09-talent
+:alt: Quantum talent architecture pyramid showing four roles — Quantum-Literate Managers at the base (train in Year 1), Quantum Translator in the center (hire first), Quantum Specialist at upper tier (Year 3+), and External Research Partners as a parallel track — with FAU Advantage2 and D-Wave ecosystem highlighted as a unique talent pipeline resource.
 :width: 100%
+:align: center
 
-**The Quantum Talent Architecture.** Most organizations will not need all four roles immediately — and attempting to hire all four at once often results in expensive mis-hires and culture clashes. The recommended sequence is clear: start with the Translator, build literacy among managers, then add specialists as pilots mature. External research partners can be activated at any point as a low-cost, high-signal way to access expertise without a full-time hire.
+**The Quantum Talent Architecture.** The recommended hire sequence is clear: Translator first, Specialist third. The base of Quantum-Literate Managers (trained, not hired) is what makes the Translator's work land with the organization. FAU's Advantage2 partnership with D-Wave creates an unusual talent pipeline resource: graduates of this course have hands-on hardware experience that most corporate quantum programs do not yet offer.
 :::
 
-### The 9th-Grader Version
-
-When Japan opened to Western trade in the 1850s after two centuries of isolation, the situation was extraordinary: enormous commercial opportunity on both sides, and almost no ability to transact. Western merchants had goods to sell and capital to deploy. Japanese officials had resources, markets, and strategic interests. But they could not communicate — not just linguistically, but conceptually. The frameworks, the assumptions, the decision-making processes were completely different.
-
-The most valuable people in that moment were not the Western merchants or the Japanese officials. They were the *translators* — the people who could genuinely speak both languages, navigate both cultural logics, and convert between them in real time. Not a Westerner who had read a book about Japan. Not a Japanese official who had met a few Americans. Someone who genuinely inhabited both worlds.
-
-The quantum translator is exactly this person. Not a quantum physicist who learned some business school vocabulary. Not a business executive who read this book (though that helps). Someone who can explain the Mosca Inequality to a CFO *and* explain IRR to a quantum researcher, and have both conversations be genuinely useful.
-
-Where the analogy breaks down: a human translator in 1850s Japan was rare because language acquisition takes years. A quantum translator today can be developed through structured training — a combination of physics fundamentals, business modeling skills, and deliberate practice bridging between them. The supply is constrained but not fixed.
-
-**The sell:** Every organization that has successfully deployed AI at scale credits one person. Not the AI researchers, not the C-suite champions, but the translator — the person who could explain gradient descent to the CFO and explain ROI targets to the data scientists. Quantum will be identical. The organizations that hire their translator now will have two to three years of advantage when quantum pilots become mainstream. Hire the translator before you think you need one. By the time you *know* you need one, you are already behind.
-
----
-
-### The Four Roles in Detail
+### The Four Roles
 
 **Role 1: The Quantum-Literate Manager**
 
-This person is not a quantum expert. They are a business leader who understands enough quantum computing to make informed decisions — to evaluate vendor claims, assess pilot proposals, interpret progress reports, and ask the right questions when specialists use unfamiliar language. The target literacy level is approximately this course. Every senior leader in technology, operations, finance, and R&D should achieve this level of literacy within Horizon 1.
+A business leader who understands enough quantum computing to make informed decisions — not a specialist, but someone who can evaluate vendor claims, assess pilot proposals, interpret progress reports, and ask the right questions when specialists use unfamiliar language. The target literacy level is this course. Every senior leader in technology, operations, finance, and R&D should achieve this level within Horizon 1.
 
-Cost: Training investment, typically \$5,000–\$15,000 per person in structured programs, or the equivalent of this course.
-
-Signal: Can they pass a 20-question quantum readiness assessment? Can they explain the difference between NISQ and fault-tolerant quantum? Can they identify the three most relevant quantum use cases for their business unit?
+*Signal:* Can they pass a 20-question quantum readiness assessment? Can they explain the difference between annealing and gate-model? Can they identify the three most relevant quantum use cases for their business unit?
 
 **Role 2: The Quantum Translator**
 
-This is the most important and most undervalued hire in quantum readiness. The translator sits at the intersection of quantum science and business strategy — not fully in either world, but fluent in both. They are the person who runs the quantum pilot program, evaluates vendor proposals, briefs the board, manages relationships with academic partners, and serves as the internal anchor for all quantum activity.
+The most important and most undervalued hire in quantum readiness. Sits at the intersection of quantum science and business strategy — genuinely fluent in both. Runs the quantum pilot program, evaluates vendor proposals, briefs the board, manages academic partner relationships, serves as the internal anchor for all quantum activity.
 
-Most organizations need exactly one translator to start. Some large organizations with multiple business units may need two or three. Almost no organization below \$500M in revenue needs more than one in Horizon 1 or Horizon 2.
+Most organizations need exactly one Translator to start. Hire them before Horizon 1 pilots begin — not after.
 
-Cost: Typically \$180,000–\$280,000 total compensation for a strong translator in 2025–2026 markets.
+*Where to find them:* PhD physicists or quantum engineers who spent time in consulting or business development; MBA graduates from programs with quantum computing curricula; quantum startup alumni who have held both product and research roles; science policy professionals with quantum portfolios. FAU students who completed this course and Lab 9B have the kind of hands-on quantum hardware experience that makes them credible translator candidates.
 
-Where to find them: PhD physicists or quantum engineers who spent time in consulting or business development; MBA graduates from programs with quantum computing electives; quantum computing startup alumni who have done both product and research roles; science policy professionals with quantum portfolios.
+*Cost:* \$180,000–\$280,000 total compensation in 2026 markets.
 
-Signal: Give them a real business problem and a quantum vendor pitch deck and ask them to produce a one-page recommendation. If they can do that — identifying what is real, what is hype, what the business case requires, and what the technical risks are — they are your translator.
+*Signal:* Give them a real business problem and a quantum vendor pitch deck. Ask for a one-page recommendation. If they can identify what is real, what is hype, what the business case requires, and what the technical risks are — they are your Translator.
 
-**Role 3: The Specialist Hire**
+**Role 3: The Quantum Specialist**
 
-This person is a quantum scientist or quantum engineer with deep technical expertise in a specific domain: quantum algorithms, quantum error correction, quantum chemistry simulation, quantum cryptography. They are typically appropriate only when an organization has reached late Horizon 2 or early Horizon 3 — when pilots have validated that a specific technical area is genuinely strategic and requires depth beyond what a translator can provide.
+A quantum scientist or engineer with deep technical expertise in a specific domain: algorithms, error correction, quantum chemistry simulation, quantum cryptography. Appropriate only in late Horizon 2 or Horizon 3 — after pilots have validated that a specific technical area is genuinely strategic and requires depth beyond what the Translator can provide.
 
-Hiring a specialist too early is one of the most common expensive mistakes in quantum talent strategy. A specialist without a translator to bridge their work to business problems will spend their time on technically interesting but strategically irrelevant problems. A specialist without management literacy will struggle to communicate value to the people who control their budget.
+Hiring a Specialist too early is one of the most common expensive mistakes in quantum talent strategy. Without a Translator to bridge their work to business problems, a Specialist will spend their time on technically interesting but organizationally irrelevant problems.
 
-Cost: \$250,000–\$500,000+ total compensation depending on specialization and experience.
-
-Signal: They have published research or shipped quantum software in the specific domain you need. Their work is cited or used by others. They can explain their specialty to a technically literate non-specialist (the translator test).
+*Cost:* \$250,000–\$500,000+ total compensation depending on specialization.
 
 **Role 4: The External Research Partner**
 
-Academic laboratories, national quantum research centers, and quantum-focused research consortia offer access to cutting-edge expertise without full-time hire costs. An organization can engage a university quantum computing group for \$50,000–\$200,000 per year and gain access to PhD students, faculty time, early access to research results, and the credibility of academic validation for pilot work.
+Academic laboratories, national quantum research centers, and quantum consortia provide cutting-edge expertise without full-time hire costs. A structured university partnership costs \$50,000–\$200,000 per year and provides PhD-level access, early research visibility, and talent pipeline.
 
-This model is especially valuable for Horizon 1 organizations that need expert input but are not yet ready to commit to a full-time hire. It is also valuable for specialized domains (quantum simulation, quantum error correction) where the talent pool is small and full-time hire costs are extreme.
+For FAU students: the FAU/D-Wave Advantage2 partnership is not only a hardware resource — it is a model for external research partnership. The same structure (institutional access to production-grade quantum hardware, faculty research programs, student internship pipelines) is what your organization should seek to build with a university partner in your region.
 
-The risk: academic timelines and commercial timelines are frequently misaligned. Academic partners optimize for publications and intellectual rigor; commercial partners optimize for deployable results. Managing this gap is the translator's job.
+*The SC26 Connection:* Mehran's decade of attending SC created a network of relationships with HPC and quantum researchers at national labs and research universities that no corporate program could replicate by writing checks. Annual attendance at SC26 is how organizations build the research partner network that makes external partnerships productive rather than transactional. Send your Translator to SC26.
 
----
+### Hiring Sequence by Horizon
 
-### When to Hire What
-
-```{list-table} Quantum Talent Hiring Sequence
+```{list-table} Quantum Talent Sequence
 :header-rows: 1
-:name: table-talent-sequence
 
 * - Horizon
   - First Priority
@@ -269,680 +263,582 @@ The risk: academic timelines and commercial timelines are frequently misaligned.
   - Hire one Quantum Translator
   - Establish one External Research Partnership
 * - Horizon 2 (2–5 yr)
-  - Deepen translator role; expand manager training
-  - Add specialist in validated use-case domain
-  - Expand external partnerships to 2–3
+  - Deepen Translator role; expand manager training to 10+
+  - Add Specialist in validated use-case domain
+  - Expand external partnerships to 2–3; attend SC26 annually
 * - Horizon 3 (5–10 yr)
-  - Build quantum team of 5–10 specialists
-  - Develop internal training pipeline
-  - Consider founding internal quantum center of excellence
+  - Build quantum team of 5–10 specialists across paradigms
+  - Develop internal quantum training pipeline
+  - Consider founding a quantum Center of Excellence
 ```
 
----
+### Building a Quantum Center of Excellence
 
-## 9.5 Partnership Models
+Organizations that reach Horizon 3 with sustained quantum investment often formalize their capability in a **Quantum Center of Excellence (QCoE)** — a dedicated organizational unit that owns quantum strategy, manages vendor relationships, runs the talent pipeline, and serves as the internal resource for all quantum-related business unit questions.
 
-:::{figure} ../images/ch09-partnership-models.png
-:name: fig-ch09-partnerships
-:alt: Partnership models quadrant with risk tolerance on the x-axis and quantum maturity on the y-axis, showing four quadrant positions for hyperscaler, consortium, native quantum startup, and academic lab
-:width: 100%
+The QCoE model has precedents: the AI Centers of Excellence that became standard at major enterprises in the 2018–2022 period followed exactly this pattern. The organizations that built AI CoEs in 2018 captured disproportionate advantage in the 2020–2024 AI deployment wave. The organizations that built them in 2023 are still catching up.
 
-**Quantum Partnership Models.** The right partnership model depends on your organization's risk tolerance and quantum maturity. Early-stage organizations with low risk tolerance should start with hyperscaler access and consortium membership — both are low-cost and reversible. As maturity grows, native quantum startups and deep academic partnerships become more appropriate.
-:::
-
-Most organizations will not build quantum capability alone. The quantum ecosystem — hardware manufacturers, software platforms, algorithm developers, domain specialists — is already rich enough that the question is not *whether* to partner but *with whom* and on *what terms*.
-
-There are four partnership models worth understanding:
-
-**The Hyperscaler Model (IBM, Google, AWS, Microsoft, Azure)**
-
-The fastest on-ramp to quantum access. Hyperscalers offer cloud-based quantum computing platforms (IBM Quantum, AWS Braket, Azure Quantum, Google Quantum AI) with pay-per-use pricing, pre-built circuit libraries, developer documentation, and enterprise support. For Horizon 1 and early Horizon 2 organizations, this is the right starting point.
-
-Strengths: Low cost to start, familiar procurement model, vendor support, broad algorithm libraries, certification programs for team training.
-
-Risks: Your quantum know-how runs on their platform, creating dependency. As quantum matures, hyperscaler pricing models will likely shift. The most differentiated quantum work will require capabilities that hyperscalers do not offer for competitive reasons.
-
-Right for: Any organization beginning quantum exploration. Essential for Horizon 1. Appropriate as a foundation through Horizon 2.
-
-**The Native Quantum Startup Model (IonQ, Quantinuum, Rigetti, PsiQuantum, etc.)**
-
-Native quantum startups offer more direct access to specific hardware modalities and often more specialized software support for domain-specific applications. They are also higher risk — the startup landscape in quantum is volatile, and acquisition or pivot is common.
-
-Strengths: Access to cutting-edge capabilities not available on hyperscaler platforms; partnership terms often more flexible and tailored; opportunity for equity-like arrangements (joint IP, revenue sharing, research partnerships).
-
-Risks: Platform continuity risk; talent dependency on small teams; some startups are significantly better at fundraising than at shipping production-ready products.
-
-Right for: Organizations in late Horizon 2 with validated use cases that require hardware specificity not available from hyperscalers. Not appropriate as a primary relationship for Horizon 1 organizations.
-
-**The Consortium Model (Chicago Quantum Exchange, Quantum Economic Development Consortium, European Quantum Flagship, etc.)**
-
-Industry consortia offer access to shared research infrastructure, pre-competitive knowledge exchange, regulatory engagement, and talent networks at a fraction of the cost of building independent capability. Annual membership fees typically range from \$50,000 to \$500,000 depending on organization size and membership tier.
-
-Strengths: Access to peer networks of organizations solving similar problems; influence on standards and regulatory outcomes; early access to research results; talent pipeline access through consortium academic partnerships.
-
-Risks: Knowledge shared in consortia is available to competitors; working group cadence is typically slower than commercial timelines.
-
-Right for: Most organizations in Horizon 1 and Horizon 2. Consortium membership is one of the highest-ROI quantum investments available today.
-
-**The Academic Lab Model**
-
-As described in the talent section above, research university partnerships offer specialized expertise, talent pipeline access, and credibility at relatively low cost. The key is matching the lab's research focus to your organization's strategic use cases.
-
-Right for: Organizations with clearly identified technical use cases that map to specific academic research programs. Particularly valuable for simulation, optimization, and cryptography work.
+A QCoE for quantum should include, at minimum: the Quantum Translator (Director level in Horizon 3), two to three Specialists in the organization's primary use-case domains, a dedicated research partnership manager, a governance and compliance function (covering dual-use risk and export controls), and a talent development program that trains the next generation of Quantum-Literate Managers from within the organization.
 
 ---
 
-## 9.6 Governance: The Board Conversation You Need to Have
+## Part III: Ethics, Governance, and the Regulatory Landscape
+
+Quantum computing creates governance challenges that classical technology governance has not addressed. Two new risk categories — dual-use risk and export controls — require explicit organizational attention. Three regulatory landscapes — United States, European Union, and Asia-Pacific — are converging toward quantum-specific requirements with material consequences for non-compliance.
+
+This governance layer is not academic. It is the legal and reputational environment in which every quantum investment decision is made.
 
 :::{figure} ../images/ch09-governance-framework.png
-:name: fig-ch09-governance
-:alt: Quantum governance framework pyramid showing Board at top, Executive Team, Quantum Working Group, and Technical Teams at base, with reporting flows and dual-use risk checklist, export controls flag, and board reporting cadence shown in side panels
+:label: fig-ch09-governance
+:alt: Quantum governance framework diagram showing four layers — Board, Executive Team, Quantum Working Group, Technical Teams — with dual-use risk flag, export controls checklist, and regulatory jurisdiction panel showing US CNSA/EAR, EU NIS2/Chips Act, and Asia-Pacific signals.
 :width: 100%
+:align: center
 
-**The Quantum Governance Framework.** Quantum governance is not a separate structure — it is an extension of existing technology governance. The key additions are: quantum-specific risk taxonomy (cryptographic exposure, dual-use risk, export controls), a quantum working group with executive sponsorship, and a board-level reporting cadence that speaks the language of risk and opportunity rather than technical specification.
+**The Quantum Governance Framework.** Quantum governance is not a separate governance structure — it is an extension of existing technology governance. The additions are: quantum-specific risk taxonomy (cryptographic exposure, dual-use risk, export controls), a Quantum Working Group with executive sponsorship, and a board-level reporting cadence in the language of risk and opportunity rather than technical specification.
 :::
 
-### The 9th-Grader Version
+### Dual-Use Risk: The Hardest Governance Question
 
-In 2014, the cybersecurity landscape changed permanently. A series of high-profile breaches — Target, Home Depot, JPMorgan Chase, Sony Pictures — forced boards of directors to confront a reality they had previously delegated away: cybersecurity was not an IT problem. It was a governance problem. It was a board problem.
+Quantum algorithms capable of breaking encryption can also be used defensively — to audit your own cryptographic vulnerabilities before adversaries exploit them — or offensively, to break cryptographic systems that others depend on. An organization that develops meaningful quantum cryptanalysis capability, even for purely internal defensive purposes, may find itself subject to dual-use technology regulations and, if the capability is ever misused, to significant legal and reputational exposure.
 
-The organizations that were ready for that conversation had already built the vocabulary. They could walk into a board meeting and say: "Here is our attack surface. Here is the exposure we carry. Here is our mitigation plan. Here is what we are spending and why." The board could evaluate, challenge, and direct. The relationship worked.
+The governance principle: any quantum activity that touches cryptographic systems — vulnerability scanning, algorithm benchmarking, key recovery research — requires legal review before execution. This is not a technicality. The U.S. Department of Commerce, the EU's ENISA, and multiple national security agencies have explicitly identified quantum cryptography tools as dual-use. The consequences of misclassifying a quantum project as "purely internal" when it falls under dual-use regulations are not hypothetical.
 
-The organizations that were not ready spent the next two years in a different kind of meeting — explaining what SSL was, what a firewall did, and why passwords should not be stored in plaintext. Those were not productive board meetings. They were expensive ones.
+**Ethics of cryptographic disruption:** An organization that achieves meaningful quantum cryptographic capability faces ethical obligations beyond legal compliance. The ability to break encryption that others rely on for privacy, financial security, or intellectual property is not a competitive advantage to be deployed silently — it is a capability that carries disclosure obligations, industry coordination responsibilities, and reputational risks that no financial model captures. The standard should be: if you discover a quantum vulnerability in widely used cryptographic infrastructure, you disclose it to the affected parties and to NIST, you do not exploit it. Build this standard into the quantum governance framework from the start.
 
-Where the analogy breaks down: cybersecurity threats were operationally immediate — the breach was happening *now*. Quantum risk has a longer fuse but a larger blast radius. This means there is still time to build the vocabulary before the crisis. But only just.
+### Export Controls: The International Partnership Trap
 
-**The sell:** Quantum risk — especially post-quantum cryptography exposure — is already a board-level issue at Tier-1 financial institutions, defense contractors, and critical infrastructure operators. NIST has finalized PQC standards. The SEC has begun asking questions about cryptographic risk in public company filings. Within five years, every publicly traded company will be expected to have a quantum risk disclosure framework. The executive who builds quantum literacy into board reporting now will be the person who looks prescient in 2029. The executive who waits will be the person explaining, under duress, why they did not.
+Quantum hardware, quantum software, and quantum technical expertise are subject to export control regulations that are expanding rapidly. The most relevant frameworks:
 
----
+**United States — EAR and ITAR:** The Export Administration Regulations (EAR) and International Traffic in Arms Regulations (ITAR) both have quantum components. The Department of Commerce has identified quantum computing as a critical and emerging technology subject to enhanced export control scrutiny. Key quantum hardware (superconducting qubits, ion trap systems above certain specifications), quantum software with specific cryptographic applications, and technical expertise shared with certain foreign nationals may require export licenses.
 
-### The Governance Framework in Practice
+**The practical consequence:** Any international quantum partnership — academic collaboration, technology licensing, joint research, cloud service provisioning to foreign entities — requires export control review before execution. The review is not burdensome in most cases. Failing to conduct it is a federal compliance risk that can result in penalties, debarment from government contracts, and reputational damage.
 
-**Layer 1: The Board**
+### The Three Regulatory Landscapes
 
-Quantum risk and opportunity should appear on the board agenda at minimum annually, and quarterly for organizations with significant cryptographic risk exposure (financial services, healthcare, defense, critical infrastructure). The board does not need to understand quantum mechanics. They need to understand three things: (1) What is our quantum risk exposure? (2) What are we spending to address it? (3) What is the opportunity we are pursuing?
+`````{tab-set}
+````{tab-item} United States
+**CNSA 2.0:** NSA's Commercial National Security Algorithm Suite 2.0 mandates PQC migration in the federal supply chain by 2030–2035. Organizations with any federal contract exposure are implicitly on this timeline.
 
-A board-ready quantum briefing should take 15 minutes and leave the board equipped to ask three intelligent questions.
+**NIST PQC Standards:** The three algorithms standardized in 2024 (ML-KEM, ML-DSA, SLH-DSA) are the legally operative PQC standards for federal agencies and their suppliers. Private sector adoption is strongly signaled but not yet mandatory for non-federal entities.
 
-**Layer 2: Executive Team**
+**SEC Cybersecurity Disclosure Rules:** Material quantum cryptographic exposure — particularly HNDL risk for companies holding long-lived sensitive data — may meet the disclosure threshold under SEC cybersecurity disclosure rules. Any publicly traded company should evaluate this with securities counsel.
 
-The CIO, CISO, and CFO should have quarterly quantum reviews. The CTO or Chief Science Officer (if the role exists) should be the executive sponsor of the quantum program. This sponsor relationship is not ceremonial — it is the mechanism by which quantum program priorities get resolved when they conflict with other organizational priorities (as they inevitably will).
+**EAR / BIS Quantum Controls:** The Bureau of Industry and Security has added quantum computing capabilities to the emerging technology control list. International partnerships and technology transfers require EAR review.
 
-**Layer 3: The Quantum Working Group**
+**Key signal:** The U.S. is moving from guidance to requirements. CNSA 2.0 was guidance in 2022; it is becoming compliance in 2025–2030.
+````
+````{tab-item} European Union
+**NIS2 Directive:** In force since October 2024. Covers energy, transport, health, water, digital infrastructure, financial markets, and public administration. Requires "state-of-the-art" cybersecurity, increasingly interpreted by ENISA to include a credible PQC migration roadmap. Non-compliance fines: up to €10M or 2% of global annual turnover.
 
-A cross-functional working group with representatives from IT/security, R&D, legal/compliance, finance, and the business units most likely to benefit from quantum should meet monthly. This group owns the Horizon 1 and Horizon 2 quantum roadmap, manages vendor relationships, and produces the quarterly executive briefing.
+**DORA (Digital Operational Resilience Act):** EU financial sector regulation that explicitly addresses quantum risk in ICT risk management requirements. Banks, insurance companies, and investment firms covered by DORA must demonstrate ICT resilience against "emerging and anticipated technology risks" — language that ENISA guidance has explicitly connected to quantum computing.
 
-Critically: this group should include the Quantum Translator. The Translator is not a support function for this group — they are the group's technical spine.
+**EU Chips Act and Quantum Flagship:** The EU has designated quantum computing as a strategic technology under the EU Chips Act and committed €1B+ through the Quantum Flagship program. For organizations operating in the EU, this creates both regulatory signals (quantum capability may become a procurement criterion) and partnership opportunities (EU-funded research programs).
 
-**Layer 4: Technical Teams**
+**GDPR Quantum Implications:** The GDPR's requirement to protect personal data using "appropriate technical measures" may, as Q-Day approaches, require PQC for any personal data with long-term processing or retention requirements.
+````
+````{tab-item} Asia-Pacific
+**China:** Has designated quantum computing a national strategic priority under the 14th Five-Year Plan, with reported investment exceeding \$15B. China's National Cryptography Administration has published PQC migration guidance for state-owned enterprises. For organizations with operations or partnerships in China, both the PQC migration risk and the competitive intelligence implications of Chinese quantum investment are material governance considerations.
 
-Pilots and technical work live here. These teams report to the Quantum Working Group on progress, blockers, and budget needs. Their output feeds the executive briefing.
+**Japan:** The Quantum Flagship program under the Ministry of Education, Culture, Sports, Science and Technology (MEXT) and the Quantum Innovation Initiative Consortium (Q-STAR) have structured Japan's enterprise quantum engagement. Japanese industrial partners (Toyota, NEC, Toshiba, Fujitsu) are active in both quantum hardware and quantum-inspired optimization — creating both partnership opportunities and competitive pressure.
 
----
+**Australia:** Actively developing quantum export control frameworks aligned with the U.S. EAR. The Australia-U.S. Quantum Cooperation framework (2023) creates preferential conditions for quantum technology transfer but also extends export control discipline to Australian entities.
 
-### Dual-Use Risk and Export Controls
+**South Korea and Taiwan:** Both have announced national quantum programs with semiconductor-industry linkages. For organizations in the electronics supply chain, monitoring these programs is part of the competitive intelligence obligation.
 
-Quantum computing creates governance challenges that do not exist for conventional software. Two require explicit attention:
+**The governance implication for multinational organizations:** The regulatory landscape is fragmenting along geopolitical lines. A quantum governance framework that works in the United States may not be compliant in the EU or permissible in Asia-Pacific jurisdictions. Multinationals should build jurisdiction-specific compliance review into their quantum governance process, with annual updates as the regulatory landscape evolves.
+````
+`````
 
-**Dual-use risk:** Quantum algorithms capable of breaking encryption can also be used defensively (to identify vulnerabilities before adversaries do) or offensively (to break adversary systems). Organizations that develop or deploy quantum cryptanalysis capability — even for purely defensive purposes — may find themselves subject to regulations that govern dual-use technology. Legal review of quantum activities that touch cryptographic systems is non-optional.
+### The Governance Structure
 
-**Export controls:** Quantum hardware, software, and technical expertise are subject to export control regulations in the United States (EAR, ITAR), European Union, and other jurisdictions. Partnerships with foreign entities — including academic collaborations — may require export control review. This is not hypothetical: the Department of Commerce has identified quantum computing as a critical and emerging technology subject to enhanced export control scrutiny. Any international quantum partnership needs legal review before execution.
+**Board Layer:** Quantum risk and opportunity appear on the board agenda at minimum annually, quarterly for organizations with significant cryptographic exposure. The board needs three things: what is our quantum risk exposure, what are we spending, and what opportunity are we pursuing?
 
-**Ethics of cryptographic disruption:** An organization that achieves meaningful quantum cryptographic capability faces ethical obligations that go beyond legal compliance. The ability to break encryption that others rely on for privacy, financial security, or intellectual property protection is not a competitive advantage to be exploited silently — it is a capability that carries disclosure obligations, industry coordination responsibilities, and reputational risks that are not captured in any financial model. Build ethics review into the quantum governance framework from Day One.
+**Executive Team:** CIO, CISO, and CFO should have quarterly quantum reviews. The CTO or Chief Science Officer is the executive sponsor. That sponsorship is not ceremonial — it is the mechanism by which quantum program priorities get resolved when they conflict with other organizational priorities.
 
----
+**The Quantum Working Group:** Cross-functional, with representatives from IT/security, R&D, legal/compliance, finance, and the most quantum-relevant business units. Meets monthly. Owns the Horizon roadmap, manages vendor relationships, produces the quarterly executive briefing. The Quantum Translator is the group's technical spine.
 
-## 9.7 Budgeting Non-Linear Payoffs
-
-Quantum investments do not behave like conventional technology investments. Conventional technology investments typically show early costs and roughly linear value creation: deploy CRM, capture leads, generate revenue, measure ROI. The timeline is measured in months, and the value curve is approximately proportional to the investment.
-
-Quantum investments are different in three ways:
-
-**The Valley of Disillusionment is real and budgeted.** Early quantum pilots will frequently fail to demonstrate classical superiority on real-world problems — not because the technology is fraudulent, but because NISQ-era hardware has limitations that only become visible when you run real workloads. Organizations that have not pre-planned for this valley will kill programs at exactly the wrong moment: right before the hardware improvements that would have made the pilot work.
-
-**The option value is significant.** A quantum pilot that does not immediately produce classical advantage still produces: team learning, vendor relationships, problem decomposition skills, and hardware familiarity. These are valuable assets even if the pilot's primary objective is not met. A governance framework that evaluates quantum investments purely on primary objective achievement will systematically underinvest.
-
-**The payoff distribution is fat-tailed.** Most quantum investments in Horizons 1 and 2 will produce modest returns. A small number will produce enormous returns — because they happen to hit the exact combination of problem type, hardware maturity, and competitive timing that creates a defensible advantage. Organizations that make enough small-to-medium bets in Horizons 1 and 2 will be statistically likely to have at least one fat-tail outcome. Organizations that make one large bet on a single use case will not.
-
-```{admonition} The \$1.5M Annual Envelope as a Template
-:class: tip
-
-The mid-cap CEO case study in the next section operates on a \$1.5M annual quantum readiness envelope. This is a useful reference point: enough to fund a Translator hire, consortium membership, two cloud platform subscriptions, and one active pilot simultaneously. It is not enough for a Specialist hire or native quantum startup equity investment. Most mid-cap organizations should think of \$1–\$2M annually as the *right* Horizon 1 budget — sufficient to build real capability without over-committing to outcomes that are not yet predictable.
-```
+**Technical Teams:** Pilots and technical work live here. Report to the Quantum Working Group on progress, blockers, and budget needs.
 
 ---
 
-## 9.8 Synthesis: Every Tool From Every Chapter, United
+## Part IV: Partnership Models
 
-:::{figure} ../images/ch09-quantum-readiness-synthesis.png
-:name: fig-ch09-synthesis
-:alt: Synthesis diagram showing all nine chapters as puzzle pieces converging to the quantum-ready enterprise, with each chapter's key tool labeled and arrows showing how they feed the capstone
+:::{figure} ../images/ch09-partnership-models.png
+:label: fig-ch09-partnerships
+:alt: Partnership model quadrant showing risk tolerance on x-axis and quantum maturity on y-axis, with four partnership types positioned — hyperscaler low risk/low maturity, consortium medium/medium, native quantum startup high/high, academic lab low risk/variable maturity — with FAU Advantage2 highlighted as a unique academic partnership asset.
 :width: 100%
+:align: center
 
-**The Course in One Diagram.** Every chapter in this course contributed a specific analytical tool. This chapter shows how they combine into a single integrated framework for quantum organizational readiness. The capstone deliverable asks you to use all of them — not in isolation, but as a coherent argument.
+**Quantum Partnership Models.** The right partnership model depends on your organization's risk tolerance and quantum maturity. For FAU students, the Advantage2 partnership already provides an academic lab partnership at the institutional level — a resource most organizations must build from scratch.
 :::
 
-This course gave you eight analytical tools before this chapter. The capstone asks you to use all of them together. Here is how they connect:
+**The Hyperscaler Model (IBM, AWS, Google, Microsoft):** The fastest Horizon 1 on-ramp. Pay-per-use quantum access, developer documentation, enterprise support, certification programs. Right for: any Horizon 1 organization. Essential starting point.
 
-**From {ref}`ch-01-why-quantum-why-now` — Market Context and Urgency Calibration:**
-The market momentum data, the three accelerants (hardware, software, talent), and the geopolitical quantum race provide the *why now* framing for your investment thesis. Your capstone executive summary should anchor in this context: the window is real, the competition is real, and the timing is not arbitrary.
+**The Native Quantum Startup Model (IonQ, Quantinuum, Rigetti, etc.):** More specialized access and flexible partnership terms. Higher risk due to startup volatility. Right for: Horizon 2 organizations with validated use cases requiring hardware specificity not available from hyperscalers.
 
-**From {ref}`ch-02-thinking-in-probabilities` — Quantum Literacy and Claim Evaluation:**
-The mental models from Chapter 2 — superposition, entanglement, interference as computation — are the foundation for evaluating vendor claims in your partnership section. If you cannot assess whether a vendor's claimed advantage requires genuine quantum effects or is achievable classically, you cannot make a credible partnership recommendation.
+**The Consortium Model (Chicago Quantum Exchange, QED-C, European Quantum Flagship):** Shared research infrastructure, pre-competitive knowledge exchange, regulatory engagement, talent network access. Annual fees: \$50,000–\$500,000 depending on tier. One of the highest-ROI quantum investments available today. Right for: all Horizon 1 and 2 organizations.
 
-**From {ref}`ch-03-bits-to-qubits-economics` — The TCO Framework:**
-The total cost of ownership framework from Chapter 3 is the analytical backbone of your budget section. For each proposed investment, estimate: quantum hardware cost, classical alternative cost, transition cost, operational overhead, and expected value of performance improvement. The capstone budget is not a spreadsheet of hopes — it is a TCO analysis applied to your specific organizational context.
+**The Academic Lab Model:** University partnerships provide specialized expertise, talent pipeline, and credibility at \$50,000–\$200,000 per year. For FAU students specifically: the FAU/D-Wave Advantage2 relationship is the institutional version of this model. When you leave this course and join an organization building a quantum program, you understand what an academic quantum partnership looks like from the inside — because you have been its beneficiary.
 
-**From {ref}`ch-04-hardware-race` — The Hardware Rubric:**
-The hardware evaluation rubric from Chapter 4 (gate fidelity, qubit count, connectivity, coherence time, error correction overhead, cloud accessibility) should inform your Horizon 2 pilot selection. Not every quantum platform is appropriate for every use case. The rubric makes this selection disciplined rather than vendor-driven.
-
-**From {ref}`ch-05-cryptocalypse-y2q` — The Mosca Inequality:**
-The Mosca Inequality (Security Shelf Life + Migration Time > Quantum Threat Timeline = Act Now) is the quantitative foundation for your PQC migration urgency assessment. Every organization has a different answer to the inequality depending on how long their sensitive data needs to remain confidential and how long their cryptographic infrastructure will take to migrate. Run the calculation. The answer belongs in the Horizon 1 section of your investment thesis.
-
-:::::{prf:definition} The Mosca Inequality in the Investment Thesis Context
-:label: def-mosca-capstone
-
-For any organization building a quantum investment thesis, the Mosca Inequality check is:
-
-**If (X + Y) > Z, act now.** Where:
-- **X** = how many years your sensitive data must remain confidential
-- **Y** = how many years your cryptographic migration will take (typically 3–7 for large enterprises)
-- **Z** = how many years until a cryptographically relevant quantum computer exists (consensus estimate: 7–15 years)
-
-If X + Y > Z, you are already in the danger zone. Your investment thesis must include PQC migration as Horizon 1 priority regardless of any other quantum opportunity analysis.
-:::::
-
-**From {ref}`ch-06-optimization-goldmine` — Optimization Opportunity Map:**
-The optimization use-case framework from Chapter 6 (supply chain, financial portfolio, workforce scheduling, drug formulation) provides the vocabulary for identifying your Horizon 2 pilot candidates. Not every industry has the same optimization opportunity. The capstone asks you to identify the *one* optimization use case that is most likely to deliver near-term value for your named organization.
-
-**From {ref}`ch-07-simulation-revolution` — Simulation Opportunity Map:**
-The simulation use-case framework from Chapter 7 (molecular dynamics, materials discovery, drug-target interaction, financial stress testing) extends the pilot candidate list to domains where quantum's long-term value is potentially enormous but near-term hardware requirements are steeper. Most mid-market organizations should identify simulation opportunities as Horizon 3 targets rather than Horizon 2 pilots.
-
-**From {ref}`ch-08-quantum-ai-hybrid` — The Hype Filter:**
-The dequantization warning and the claim evaluation framework from Chapter 8 protect your investment thesis from the most common expensive mistake in quantum strategy: funding "quantum AI" initiatives that are classical AI with quantum marketing. Every vendor pitch you evaluate for your capstone should pass the Chapter 8 filter: *Is the quantum component doing genuine quantum work, or is this a classical algorithm with quantum decoration?*
+**The SC26 Signal:** Mehran Basiratmand attended the SC (supercomputing) conference for close to a decade as FAU's CTO. SC26 in Chicago (November 2026) is where quantum and HPC converge. Every major hardware vendor, national lab, and academic quantum program has a presence. Partnership discussions that would take 12 months of email happen in hallways at SC26. If your organization's quantum program has a Translator, that Translator should attend SC26 annually — not as a passive audience member but as an active network builder. The intelligence gathered and the relationships formed at SC26 are worth more than most consulting reports.
 
 ---
 
-## 9.9 Flagship Case Study: A Mid-Cap CEO's \$1.5M Annual Quantum Readiness Envelope
+## Part V: Governance Tools and Budget Frameworks
 
-:::{figure} ../images/ch09-ceo-case-study.png
-:name: fig-ch09-ceo-case
-:alt: Mid-cap CEO quantum readiness case study dashboard showing three-year timeline, budget allocation pie chart, key decisions made and paused, and lessons learned
-:width: 100%
-
-**The \$1.5M Quantum Readiness Envelope.** This case documents three years of structured quantum investment by a mid-cap CEO — what was bought, what was paused, what was regretted, and how it was reported to the board when the technology's vocabulary changed twice during the engagement. Use it as the template for your own capstone investment thesis.
-:::
-
-### Situation
-
-*The organization:* A regional logistics and supply chain company, \$2.1B in annual revenue, 4,800 employees across 12 states. The CEO has an engineering background and a track record of early adoption — the company was among the first in its segment to deploy predictive logistics AI in 2019, which generated measurable competitive advantage for approximately 18 months before competitors replicated it.
-
-In 2023, the CEO attended a quantum computing executive briefing hosted by a major consulting firm. She left with three convictions: (1) the technology was not ready for production deployment; (2) the post-quantum cryptography risk was real and her organization was underprepared; (3) her competitors were also underprepared, which meant that the first mover who built quantum competency would have a window. She authorized a \$1.5M annual quantum readiness budget, effective immediately.
-
-### Quantum Angle
-
-The CEO's primary quantum use case hypothesis: route optimization at scale. Her organization managed routing decisions for 14,000+ daily shipments across a complex network. Classical optimization heuristics were leaving measurable efficiency on the table — the gap was estimated internally at 4–7% of fuel cost. If quantum optimization (see {ref}`ch-06-optimization-goldmine`) could close even half of that gap at scale, the ROI would be decisive.
-
-The secondary hypothesis: PQC migration. The organization used RSA-2048 for internal certificate infrastructure and EDI partner communication. The Mosca Inequality calculation (using Chapter 5 methodology) showed X + Y = 12 years (5-year data sensitivity + 7-year estimated migration timeline). With Z = 10–12 years as the reasonable threat estimate, the organization was at the edge of the danger zone.
-
-### Decisions Made
-
-**Year 1 Budget Allocation (\$1.5M):**
-
-```{list-table} Year 1 Quantum Readiness Budget
-:header-rows: 1
-:name: table-ceo-budget-y1
-
-* - Investment
-  - Amount
-  - Rationale
-* - Quantum Translator hire (salary + benefits)
-  - \$240,000
-  - Core enabler; hired from a quantum computing startup that had just been acquired
-* - Cryptographic inventory tooling (2-year contract)
-  - \$180,000
-  - Required for PQC migration roadmap; identified 14 systems requiring priority migration
-* - Consortium membership (Quantum Economic Development Consortium)
-  - \$75,000
-  - Peer network, research access, policy influence
-* - IBM Quantum Premium Access (1-year enterprise subscription)
-  - \$120,000
-  - Platform access for pilot development; includes 100 hours of dedicated device time
-* - Team training (8 managers through quantum literacy program)
-  - \$90,000
-  - Built the internal audience for Translator communications
-* - Pilot development (route optimization use case)
-  - \$795,000
-  - Circuit development, problem decomposition, classical baseline benchmarking
-```
-
-**What was paused:** The CEO was offered an equity stake in a native quantum startup specializing in logistics optimization — \$500,000 for a 2% stake. She declined, citing insufficient technical due diligence capability at that stage of her program. "We didn't know enough to know if they were real," she noted. "The Translator had been on board for sixty days. Asking her to evaluate a startup investment on Day Sixty was asking her to run before she could walk."
-
-**What was bought differently in Year 2:** After the cryptographic inventory revealed 14 priority systems, Year 2 budget shifted significantly toward PQC migration — \$600,000 of the \$1.5M envelope went to migration work that had been underestimated in Year 1. The route optimization pilot continued but with reduced funding as the PQC migration became the more urgent deliverable.
-
-### Measured Outcome
-
-By end of Year 3:
-- PQC migration was 60% complete across priority systems. Zero cryptographic incidents during the period.
-- Route optimization pilot demonstrated a 2.1% improvement in fuel efficiency on a subset of 500 daily routes — statistically significant, but below the 4–7% hypothesis. The pilot identified that the largest gains required coherent time improvements not yet available on accessible hardware.
-- The Translator had become a recognized internal authority; three additional business units had requested quantum assessments of their own problem portfolios.
-- Board quantum briefings were institutionalized: annual detailed briefing plus a quarterly two-slide update in the standard board technology report.
-- Total three-year investment: \$4.5M. Estimated value of PQC migration risk reduction: \$8–\$12M (based on insurance premium reduction and regulatory compliance positioning). Estimated value of optimization pilot: inconclusive at current scale; earmarked for Horizon 2 expansion.
-
-### Open Question
-
-The CEO's regret is specific and instructive: "I should have hired the translator twelve months earlier. I spent the first year trying to evaluate quantum decisions without her, which meant I made several expensive mistakes — we bought one tool that turned out to be quantum-inspired classical software, not genuinely quantum. We spent \$80,000 on that tool before the Translator was in a position to tell me it wasn't what we thought it was." The lesson: the Translator is not the person you hire after you understand what you need. The Translator is the person who helps you understand what you need.
-
-The open question: should the organization take the equity stake in the logistics quantum startup now that their Translator has had two years to evaluate the landscape? The CEO is still deliberating.
-
----
-
-## 9.10 Industry Snapshots
-
-### The Fortune 500 CIO's Quantum-Readiness Governance Charter
-
-The CIO of a major financial services firm (assets under management: \$2.3T) completed a quantum governance audit in 2024 after the firm's risk committee flagged quantum computing as an emerging systemic risk. The resulting governance charter is instructive for organizations at any scale.
-
-The charter established four things. First, a quantum risk taxonomy with three tiers: Tier 1 (cryptographic exposure — addressed under regulatory compliance), Tier 2 (algorithmic opportunity — addressed under R&D investment), and Tier 3 (competitive intelligence — addressed under strategy function). Each tier had a designated executive owner, a quarterly review requirement, and a reporting line to the board risk committee.
-
-Second, a quantum investment governance process: any quantum investment above \$250,000 required a standardized proposal including a TCO analysis, a hardware rubric assessment, a Mosca Inequality calculation (for any initiative touching cryptographic systems), and pre-defined kill-switch criteria. The kill-switch requirement was non-negotiable and had teeth: two investments were terminated in the first year after failing to hit 180-day milestones.
-
-Third, a vendor evaluation framework: any quantum vendor claiming advantage over classical baselines had to provide independently verified benchmarks, specify whether the comparison was against optimized classical algorithms (not naive ones), and disclose whether the advantage had been demonstrated on real hardware or only on simulators. This framework, derived directly from the dequantization discipline in {ref}`ch-08-quantum-ai-hybrid`, eliminated three vendor relationships that could not satisfy the benchmark requirement.
-
-Fourth, a board literacy program: all twelve board members received a half-day quantum literacy briefing, and the annual board quantum report was structured in five sections — threat landscape, regulatory posture, investment portfolio, talent status, and competitive intelligence. Board members who completed the briefing reported feeling "equipped to ask real questions" rather than "nodded at by experts."
-
-The CIO's summary: "Quantum governance is not exotic. It is technology governance with a longer time horizon and a higher consequence of inaction. The same disciplines that make cybersecurity governance work — risk taxonomy, investment process, vendor evaluation, board literacy — work here. We did not build a new governance system. We extended the one we had."
-
----
-
-### The University Endowment's Quantum-Readiness Fund
-
-A \$4.2B university endowment established a quantum readiness fund in 2023 — a \$50M allocation dedicated to quantum-related investments across three categories: quantum computing infrastructure companies (\$20M), quantum software and algorithm companies (\$15M), and post-quantum cryptography and quantum security companies (\$15M).
-
-The fund's investment thesis was explicit about its organizational purpose: it was not purely a financial investment. It was simultaneously a financial investment, a knowledge-acquisition strategy (the endowment required a board observer seat or information rights in every investment, and fed the resulting intelligence to the university's quantum research program), and a talent pipeline investment (portfolio companies were preferred partners for student internships and faculty consulting).
-
-The governance structure was unusual: the fund was jointly overseen by the endowment's investment committee and a newly formed quantum advisory board composed of three faculty members from the university's quantum research center and two external quantum industry executives. Investment decisions required both financial underwriting (by the investment team) and technical due diligence (by the advisory board). Any investment where the technical advisory board returned a negative assessment — specifically, any company that could not explain their quantum advantage in terms that satisfied the Chapter 8 dequantization test — was automatically rejected regardless of financial merits.
-
-Two investments were declined on technical grounds in the fund's first year. Both went on to raise significant venture capital from investors without the technical due diligence requirement. One subsequently pivoted away from quantum; the other's claimed advantage remains unverified by independent benchmarking. The endowment considers both declines to be governance successes.
-
----
-
-## 9.11 The Kill-Switch Discipline
+### Kill-Switch Discipline
 
 :::{figure} ../images/ch09-kill-switch-framework.png
-:name: fig-ch09-kill-switch
-:alt: Kill-switch discipline framework showing quantum pilot lifecycle decision tree with milestone gates at 90 days, 180 days, and 1 year, with green continue and red stop paths at each gate, and pre-commitment checklist at bottom
+:label: fig-ch09-kill-switch
+:alt: Kill-switch discipline framework showing quantum pilot lifecycle decision gates at 90 days, 180 days, 12 months, and 18 months with green continue and red stop paths, and the pre-commitment checklist showing that kill-switch criteria must be written before the investment begins.
 :width: 100%
+:align: center
 
 **The Kill-Switch Framework.** Every quantum investment needs pre-defined stop conditions established before the investment begins. The kill-switch is not pessimism — it is the discipline that keeps organizations in the quantum game long enough to win, by preventing sunk-cost thinking from extending bad investments at the expense of better ones.
 :::
 
-### The 9th-Grader Version
-
-A great venture capitalist does not just decide what to fund. Before writing the check, they decide what conditions would cause them to stop funding. They write these conditions down — specific, measurable, time-bound — before emotions and commitments have accumulated. This pre-commitment is not pessimism. It is the specific mechanism that prevents "sunk cost" thinking from keeping bad investments alive at the expense of better ones. The VC who does not have kill-switch criteria ends up defending every investment, rationalizing every missed milestone, extending every timeline. The VC who has kill-switch criteria can make clean decisions when the evidence requires it.
-
-Every quantum pilot needs the same discipline. Define what "working" looks like *before* the pilot begins. Define what "not working" looks like. Assign a date to each. When the date arrives, evaluate honestly against the criteria, not against the hope.
-
-Where the analogy breaks down: a VC can exit an investment and recover the capital. A quantum pilot team invests their time and credibility in the work, which makes honest evaluation harder. This is why kill-switch criteria must be set by a group that includes people *outside* the pilot team — the Quantum Working Group, the Translator, and at minimum one business unit sponsor.
-
-**The sell:** The organizations that wasted the most money on AI were the ones that never defined what "working" looked like. They funded pilots that ran for two years without producing a deployable system, because no one had the courage to say "this is not working" — because no one had pre-committed to what "not working" looked like. Quantum is too expensive and too long-cycle to make the same mistake twice. Kill-switches are not pessimism. They are the discipline that lets you stay in the game long enough to win.
-
----
-
-### Kill-Switch Template for Quantum Pilots
+Every quantum pilot needs kill-switch criteria established *before* the pilot begins. This is the pre-commitment that makes honest evaluation possible when emotions and organizational pride have accumulated.
 
 ```{list-table} Quantum Pilot Kill-Switch Template
 :header-rows: 1
-:name: table-kill-switch
 
 * - Gate
   - Timing
-  - Success Criterion (Continue)
-  - Stop Criterion (Kill)
-* - Gate 1: Problem Validation
-  - 90 days after launch
-  - Problem is genuinely quantum-amenable (hardware rubric score >50/100); classical baseline established
-  - Problem fails rubric; better classical solution identified; redeploy budget to PQC migration
-* - Gate 2: Technical Proof of Concept
-  - 180 days after launch
-  - Quantum circuit runs on real hardware (not simulator only); demonstrates correct output on small-scale test case
-  - No functional circuit on real hardware; vendor blames hardware rather than algorithm
-* - Gate 3: Business Case Validation
-  - 12 months after launch
-  - Measurable improvement over classical baseline on a business-relevant metric (even if not yet production-scale)
-  - No measurable improvement; cost-per-improvement exceeds TCO threshold by 2×
-* - Gate 4: Scale Decision
-  - 18 months after launch
-  - Pilot results are reproducible and scale path is technically clear
-  - Results are not reproducible; scale path requires hardware that does not yet exist
+  - Continue Criterion
+  - Stop Criterion
+* - Problem Validation
+  - 90 days
+  - Problem is quantum-amenable; classical baseline established
+  - Better classical solution found; hardware rubric score below 50/100
+* - Technical Proof of Concept
+  - 180 days
+  - Circuit/QUBO runs on real hardware; correct output on small test case
+  - No functional output on real hardware after 6 months
+* - Business Case Validation
+  - 12 months
+  - Measurable improvement over optimized classical baseline
+  - No measurable improvement; cost-per-improvement exceeds TCO threshold 2×
+* - Scale Decision
+  - 18 months
+  - Results reproducible; scale path technically clear
+  - Results not reproducible; scale requires hardware not yet available
 ```
+
+### Budgeting Non-Linear Payoffs
+
+Quantum investments behave differently from conventional technology investments in three ways:
+
+**The valley of disillusionment is real and must be budgeted.** Early pilots will frequently fail to demonstrate classical superiority. This is not evidence that the technology is fraudulent — it is evidence that NISQ-era hardware has real limitations. Organizations that have not pre-planned for this valley will kill programs at the wrong moment.
+
+**The option value is significant.** A pilot that does not immediately produce classical advantage still produces: team learning, vendor relationships, problem decomposition skills, and hardware familiarity. A governance framework that evaluates quantum investments purely on primary objective achievement will systematically underinvest.
+
+**The payoff distribution is fat-tailed.** Most quantum investments in Horizons 1 and 2 produce modest returns. A small number produce enormous returns. Make enough diversified bets to be statistically likely to hit at least one fat-tail outcome.
+
+**The \$1.5M Annual Reference Envelope:** A mid-cap organization (\$500M–\$3B revenue) can fund a Translator hire, consortium membership, two cloud platform subscriptions, and one active pilot for approximately \$1–\$2M annually. This is the right Horizon 1 budget for most mid-cap organizations — enough to build real capability without over-committing to outcomes that are not yet predictable.
 
 ---
 
-## 9.12 Board-Level Quantum Reporting
+## Part VI: Synthesis — Every Tool From Every Chapter
+
+:::{figure} ../images/ch09-quantum-readiness-synthesis.png
+:label: fig-ch09-synthesis
+:alt: Synthesis diagram showing all nine chapters as interconnected nodes feeding into the quantum investment thesis at the center, with the dual-paradigm lens labeled as the unifying thread connecting annealing tools (Chapters 6, 7, 8 Lab 8B, 9 Lab 9B) to gate-model tools (Chapters 3, 4, 5, 7, 8).
+:width: 100%
+:align: center
+
+**The Course in One Diagram.** The dual-paradigm lens is the organizing thread: annealing tools (Chapters 6, 7 supply chain and finance, Chapter 8 Lab 8B, Chapter 9 Lab 9B) map to Horizon 1 and early Horizon 2. Gate-model tools (VQE from Chapter 7, quantum kernels from Chapter 8, the hardware roadmap from Chapter 4) map to Horizon 2 and 3. The capstone investment thesis deploys all of them in the right horizon.
+:::
+
+Every chapter gave you one or more analytical tools. The capstone asks you to use all of them together. The connections:
+
+**{ref}`ch-01-why-quantum-why-now` — Market Context:** The FAU/D-Wave Advantage2 deal, D-Wave's HQ relocation to Boca Raton, and the geopolitical quantum race provide the urgency framing for your investment thesis. The window is real, the competition is real, and the timing is not arbitrary.
+
+**{ref}`ch-02-thinking-in-probabilities` — Mental Models:** The ability to evaluate vendor claims accurately — and to explain quantum concepts to non-technical audiences — is the communication foundation of every board briefing, every partner conversation, and every pilot proposal.
+
+**{ref}`ch-03-bits-to-qubits-economics` — TCO Framework:** The total cost of ownership framework is the analytical backbone of your budget section. Cost of quantum cloud, classical alternative, transition cost, operational overhead, expected value of improvement. The budget is a TCO analysis, not a spreadsheet of hopes.
+
+**{ref}`ch-04-hardware-race` — Hardware Rubric:** The rubric (gate fidelity, qubit count, connectivity, coherence time, error correction overhead, cloud accessibility) makes pilot platform selection disciplined. Apply it to your Horizon 2 pilot candidates.
+
+**{ref}`ch-05-cryptocalypse-y2q` — Mosca Inequality + STRIDE:** The Mosca Inequality determines whether PQC migration is a Horizon 1 obligation. STRIDE provides the governance vocabulary for communicating cryptographic quantum risk to boards. Both belong in the security section of your investment thesis.
+
+**{ref}`ch-06-optimization-goldmine` — QUBO Formulation:** The annealing optimization toolkit is the primary Horizon 1 action tool for optimization-heavy organizations. Your investment thesis should name the specific QUBO candidate problem that your Horizon 1 pilot will target.
+
+**{ref}`ch-07-simulation-revolution` — Industry Verticals:** The vertical opportunity maps (finance, supply chain, healthcare, energy) provide the context for which quantum applications are relevant to your industry — and which are Horizon 2 vs. Horizon 3 targets based on hardware requirements.
+
+**{ref}`ch-08-quantum-ai-hybrid` — Hype Filter + Annealing ML:** The five-question governance filter protects your investment thesis from quantum AI marketing. The QUBO feature selection and quantum-inspired classical analytics from Chapter 8 extend the Horizon 1 annealing toolkit to ML applications.
+
+---
+
+## Flagship Case Study: The Mid-Cap CEO's \$1.5M Quantum Readiness Program
+
+:::{figure} ../images/ch09-ceo-case-study.png
+:label: fig-ch09-ceo-case
+:alt: Mid-cap CEO quantum readiness case study dashboard showing three-year timeline, Year 1 budget allocation pie chart, the Translator hire timeline, annealing pilot results, PQC migration progress, and board reporting cadence.
+:width: 100%
+:align: center
+
+**The \$1.5M Quantum Readiness Envelope.** Three years of structured quantum investment by a mid-cap operations CEO — what was bought, what was paused, what was regretted, and how it was reported to the board when the technology's vocabulary changed twice during the engagement.
+:::
+
+*A composite based on documented enterprise quantum programs.*
+
+A regional logistics company (\$2.1B revenue, 4,800 employees) whose CEO had an engineering background authorized a \$1.5M annual quantum readiness budget in 2023. Her primary hypothesis: route optimization for 14,000+ daily shipments. Her Mosca calculation placed the organization at the edge of the danger zone for its EDI partner communication infrastructure (RSA-2048, 7-year data sensitivity, 7-year estimated migration timeline, Q-Day estimate 10–12 years). Both hypotheses required action.
+
+**Year 1 allocation:** \$240K Translator hire; \$180K cryptographic inventory tooling; \$75K consortium membership; \$120K IBM Quantum Premium access; \$90K manager training (8 leaders); \$795K route optimization pilot development (including classical baseline optimization as the first deliverable, before a single quantum circuit was written).
+
+**What was paused:** A \$500K equity offer in a logistics quantum startup. "We didn't know enough to evaluate them on Day Sixty," the CEO noted. "The Translator needed 90 days before I trusted her judgment on a venture investment." The startup raised significant VC from investors without technical due diligence requirements. One subsequently pivoted away from quantum. The decline is considered a governance success.
+
+**Year 2 shift:** The cryptographic inventory revealed 14 priority systems. Year 2 budget shifted \$600K toward PQC migration — work that had been underestimated in Year 1. The route optimization pilot continued at reduced funding as the migration became the more urgent Horizon 1 deliverable.
+
+**Three-year outcome:** PQC migration 60% complete. Route optimization pilot: 2.1% fuel efficiency improvement on 500 daily routes — below the 4–7% hypothesis but statistically significant. The Translator had become a recognized internal authority; three business units had requested quantum assessments. Board quantum reporting institutionalized: annual detailed briefing, quarterly two-slide update.
+
+**The CEO's regret:** "I should have hired the Translator twelve months earlier. We spent the first year trying to make quantum decisions without her, which meant we bought one tool that turned out to be quantum-inspired classical software at a quantum price. \$80,000, gone. The Translator is not the person you hire after you understand what you need. She is the person who helps you understand what you need."
+
+**The open question:** Whether to take the equity stake in the logistics quantum startup, now that the Translator has two years to evaluate the landscape. The CEO is deliberating. The deliberation itself is a governance success — it is a considered investment decision, not a reactive one.
+
+---
+
+## Board-Level Quantum Reporting
 
 :::{figure} ../images/ch09-board-reporting.png
-:name: fig-ch09-board
-:alt: Board-level quantum reporting dashboard showing traffic light status indicators, quantum risk exposure panel, PQC migration progress bar, quantum investment ROI timeline, and annual reporting cadence calendar
+:label: fig-ch09-board
+:alt: Board quantum reporting dashboard showing five-section annual report structure — threat landscape, regulatory posture, investment portfolio, talent status, competitive intelligence — with traffic light status indicators and 15-minute presentation timing guide.
 :width: 100%
+:align: center
 
-**The Board Quantum Reporting Dashboard.** Boards need three things: threat clarity, investment transparency, and progress visibility. The five-section quantum board report — threat landscape, regulatory posture, investment portfolio, talent status, competitive intelligence — delivers all three in 15 minutes. Build the vocabulary before the crisis requires it.
+**The Board Quantum Reporting Dashboard.** Boards need three things: threat clarity, investment transparency, and progress visibility. The five-section quantum report delivers all three in 15 minutes. Build the vocabulary before the crisis requires it.
 :::
 
-Board quantum reporting should be modeled on the cybersecurity reporting templates that have become standard after a decade of refinement. The five-section format that works:
+Board quantum reporting should follow the cybersecurity reporting model that became standard after a decade of refinement. Five sections, 15 minutes total:
 
-**Section 1: Quantum Threat Landscape (3 minutes)**
-A brief update on the state of quantum hardware — where the major players are on error correction timelines, any significant milestones achieved in the quarter, and the current consensus estimate for cryptographically relevant quantum computing. This section should use the market context from {ref}`ch-01-why-quantum-why-now` as its anchoring framework.
+**Section 1: Threat Landscape (3 min)** — Current hardware milestone status, consensus Q-Day estimate update, any significant changes in the quantum competitive landscape. Anchor: {ref}`ch-01-why-quantum-why-now` and {ref}`ch-04-hardware-race`.
 
-**Section 2: Our Regulatory and Compliance Posture (3 minutes)**
-PQC migration status, NIST compliance posture, export control review status for any international partnerships, and any quantum-related regulatory developments in the organization's industry. For financial services, healthcare, and critical infrastructure, this section may require more time.
+**Section 2: Regulatory and Compliance Posture (3 min)** — PQC migration status, NIST compliance posture, export control review status, quantum-related regulatory developments. For financial services, healthcare, and critical infrastructure, this section may require more time.
 
-**Section 3: Our Quantum Investment Portfolio (4 minutes)**
-Status of active pilots against kill-switch criteria. Budget vs. actual. Partnership status. Talent status (Translator in seat? Specialists engaged?). This section uses the three-horizon roadmap as its organizing framework — where are we on the roadmap, and are we on track?
+**Section 3: Investment Portfolio Status (4 min)** — Active pilots against kill-switch criteria, budget vs. actual, partnership status, talent status. Organizing framework: the dual-paradigm Three-Horizon roadmap.
 
-**Section 4: Talent and Organization Status (2 minutes)**
-Key talent in place, key gaps, hiring pipeline, training completion metrics.
+**Section 4: Talent and Organization Status (2 min)** — Translator in seat? Specialist gaps? Training completion? Academic partnership active?
 
-**Section 5: Competitive Intelligence (3 minutes)**
-What are competitors doing? Are there public announcements, patent filings, partnership announcements, or talent moves that signal accelerated investment? This section should use the industry monitoring infrastructure built in Horizon 1.
-
-The entire briefing should take 15 minutes. The board should leave with the ability to answer: "Are we appropriately invested? Are we appropriately protected? Are we appropriately competitive?"
+**Section 5: Competitive Intelligence (3 min)** — Competitor quantum announcements, patent filings, talent moves, SC26 or equivalent signal events. This section should use the monitoring infrastructure built in Horizon 1.
 
 ---
 
-## 9.13 Capstone Deliverable: The One-Page Quantum Investment Thesis
-
-This is the deliverable that synthesizes the entire course. It is what every concept, framework, and case study has been building toward.
+## The Capstone Deliverable: One-Page Quantum Investment Thesis
 
 :::{figure} ../images/ch09-capstone-template.png
-:name: fig-ch09-capstone
-:alt: One-page quantum investment thesis template showing eight structured sections including executive summary, three-horizon roadmap table, talent plan, partnership recommendation, budget breakdown, success metrics, kill-switch criteria, and signatures
+:label: fig-ch09-capstone
+:alt: One-page quantum investment thesis template showing eight structured sections — executive summary, three-horizon roadmap, talent plan, partnership recommendation, budget breakdown, success metrics, kill-switch criteria, signatures — with the dual-paradigm lens explicitly incorporated in the three-horizon section.
 :width: 100%
+:align: center
 
-**The One-Page Quantum Investment Thesis Template.** This is your capstone deliverable. Every section connects to a specific chapter and analytical tool from this course. The one-page constraint is not arbitrary — it is the same constraint that forces clarity in venture capital pitch decks and strategic planning documents. If you cannot make the case in one page, the case is not yet clear enough.
+**The One-Page Quantum Investment Thesis Template.** Every section connects to a specific chapter and analytical tool. The dual-paradigm three-horizon roadmap is the structural spine: it answers both "what do we do now with annealing hardware?" and "what do we prepare for with gate-model hardware?" The one-page constraint is not arbitrary — it forces the clarity that makes a board presentation credible.
 :::
 
-### The Template: Eight Sections on One Page
+**Eight Sections on One Page:**
 
 **Section 1: Executive Summary (2 sentences)**
-
-Sentence one: What organization, what quantum opportunity or risk, and why now?
-Sentence two: What are you asking for (budget, timeline, authority) and what will you deliver?
-
-*Example:* "RegionalLogix, a \$2.1B supply chain company, faces a Mosca Inequality-confirmed PQC migration urgency and a potential 4–7% route optimization advantage from quantum optimization algorithms expected to reach production viability within 5–7 years. We are requesting a \$1.5M annual quantum readiness envelope over three years to protect our cryptographic infrastructure, build quantum translation capability, and position the organization to capture the optimization advantage when hardware matures."
+Organization, quantum opportunity/risk, and why now. What you are asking for and what you will deliver.
 
 **Section 2: Three-Horizon Roadmap (table)**
+Three rows, four columns (Timeframe, Paradigm Focus, Key Activities, Success Metric). The Paradigm Focus column distinguishes: H1 = annealing optimization + PQC security; H2 = annealing at scale + gate-model experimentation; H3 = integrated quantum-classical operations across both paradigms.
 
-A compact table with three rows (Horizons 1, 2, 3), four columns (Timeframe, Primary Objective, Key Activities, Success Metric). This condenses the three-horizon framework into a format the C-suite can absorb in 60 seconds.
+**Section 3: Talent Plan**
+Translator hire (timeline, profile, cost); Quantum-Literate Manager training (number, program, timeline); External Research Partnership (institution, focus area, annual cost).
 
-**Section 3: Talent Plan (3–5 bullet points)**
+**Section 4: Partnership Recommendation**
+Specific partnership model and rationale. Anchor in the partnership model framework. Name the specific hyperscaler, consortium, or academic partner.
 
-- Who you are hiring (Translator, first)
-- Who you are training (Quantum-Literate Managers)
-- Which external partnerships you are activating (consortium, academic lab)
-- Timeline and cost for each
+**Section 5: Budget Breakdown**
+Three years by category: talent, platform access, tools, pilots, partnerships, governance. Apply the TCO methodology from {ref}`ch-03-bits-to-qubits-economics`.
 
-**Section 4: Partnership Recommendation (2–3 sentences)**
+**Section 6: Success Metrics**
+Specific, measurable, time-bound. Include at least one annealing metric (pilot improvement vs. classical baseline), one security metric (PQC migration progress), and one organizational metric (board reporting institutionalized).
 
-Name the specific partnership model (hyperscaler, consortium, academic lab, native startup) you are recommending and why. Anchor in the partnership models framework: what is your risk tolerance, what is your quantum maturity level, and what does that imply for the right partnership profile?
-
-**Section 5: Budget Breakdown (table or pie chart reference)**
-
-Three years of budget by category: talent, platform access, tools, pilots, partnerships, governance infrastructure. Use the TCO methodology from {ref}`ch-03-bits-to-qubits-economics`. Do not simply list expenses — explain the cost-benefit logic for each category.
-
-**Section 6: Success Metrics (3–5 bullet points)**
-
-Specific, measurable, time-bound. Examples:
-- PQC migration of all Tier 1 cryptographic systems complete by end of Year 2
-- At least one quantum pilot demonstrates measurable improvement over classical baseline by Month 18
-- Board quantum reporting institutionalized by Quarter 4 of Year 1
-- Quantum-literate manager certification: 5 leaders by end of Year 1
-
-**Section 7: Kill-Switch Criteria (2–3 sentences)**
-
-Be specific. "If no quantum pilot demonstrates any measurable improvement over classical baseline by Month 18, we will reallocate \$500,000 of the Year 2 pilot budget to accelerate PQC migration instead." This is the pre-commitment that makes the investment credible.
+**Section 7: Kill-Switch Criteria**
+Pre-defined stop conditions for each major investment. Specific, time-bound, with explicit reallocation plan.
 
 **Section 8: Signatures**
-
-The quantum investment thesis requires sign-off from: (1) the business sponsor (CEO/CIO/relevant business unit head), (2) the financial authority (CFO or equivalent), and (3) the Quantum Translator (or the executive who will own the program before the Translator is hired). Three signatures mean three people own the outcome.
+Business sponsor + financial authority + Quantum Translator (or the executive who will own the program before the Translator is hired). Three signatures = three owners.
 
 ---
 
-## 9.14 Productive-Struggle Problem: The Capstone
+## Productive-Struggle Problem: The Capstone
 
-```{admonition} The Capstone Deliverable: Your One-Page Quantum Investment Thesis
+::::{admonition} Your One-Page Quantum Investment Thesis
 :class: important
 
-**This is the capstone deliverable for the entire course.** It synthesizes every chapter, every lab, every case study. It is what graduate students, executives, and professionals in quantum-adjacent roles need to produce to demonstrate quantum readiness leadership.
+**This is the capstone deliverable for the course.** It synthesizes every chapter, every lab, every case study. It is what quantum readiness leadership looks like on paper.
 
-**Your task:** Draft, present, and defend a one-page quantum investment thesis for a *named* real organization — either your own organization, a publicly traded company in your industry, or an organization from one of the cases in this book.
+**Your task:** Draft, present, and defend a one-page quantum investment thesis for a *named* real organization — your own, a publicly traded company in your industry, or an organization from the cases in this book.
 
-**The deliverable must include all eight sections** described in Section 9.13 above. It must be genuinely one page (formatted for an executive audience: 11-point font, standard margins, dense but readable). The supporting analysis — TCO calculations, Mosca Inequality workings, hardware rubric scores, pilot proposal — may be presented as appendices, but the thesis itself must stand alone on one page.
+**The deliverable must include all eight sections.** One page (11-point font, standard margins). Supporting analysis — TCO calculations, Mosca Inequality workings, hardware rubric scores, pilot proposal — may be appendices.
 
-**Presentation requirement:** A 10-minute live or recorded presentation in which you:
-1. Explain the organization and the quantum opportunity/risk (2 min)
-2. Walk through each section of the thesis (5 min)
-3. Field simulated C-suite objections, including: "Why now?", "Why not wait two years?", "What if the technology never matures?", "What does success look like at 18 months?" (3 min)
-```
+**Presentation (10 minutes):**
+1. Organization and quantum opportunity/risk (2 min)
+2. Walk through each section (5 min)
+3. Field C-suite objections: "Why now?" "Why not wait two years?" "What does success look like at 18 months?" "Why annealing and not gate-model?" (3 min)
+::::
 
-::::{dropdown} Scaffolding: How to Build Your Investment Thesis Step by Step
+::::{dropdown} Scaffolding: Step-by-Step
 :open:
 
-**Step 1: Choose your organization and name it.** Pick a real organization — your employer, a publicly traded company, a company from the case studies in this book. Vague organizations produce vague theses. The constraint of naming a real organization forces the specificity that makes the thesis valuable.
+1. **Choose your organization. Name it.** Vague organizations produce vague theses.
+2. **Run the Mosca Inequality.** Calculate X + Y for your primary data categories. If X + Y > Z, PQC migration is a Horizon 1 obligation regardless of all other analysis.
+3. **Identify your primary annealing candidate.** What is the highest-value optimization problem in your organization that can be formulated as a QUBO today? Use Chapter 6 and Lab 9B as your reference.
+4. **Apply the hardware rubric to your primary gate-model candidate.** Apply the Chapter 4 rubric to your Horizon 2 gate-model use case. If no platform scores above 50/100, that use case is Horizon 3.
+5. **Build the TCO analysis** for both your annealing pilot and your gate-model experiment.
+6. **Write kill-switch criteria first.** Before writing the budget.
+7. **Write the executive summary last.** After everything else is clear.
+8. **Rehearse the "Why not wait?" objection.** Your answer anchors in: Mosca Inequality (PQC cannot wait), Three-Horizon framework (H1 builds H2 optionality), talent market (Translators are already scarce), and annealing accessibility (the opportunity is open today, not in 3 years).
+::::
 
-**Step 2: Run the Mosca Inequality.** Using the methodology from {ref}`ch-05-cryptocalypse-y2q`, calculate X + Y for your organization. If X + Y > Z, PQC migration is a Horizon 1 priority regardless of any other analysis. Document this calculation — it belongs in your thesis appendices.
+---
 
-**Step 3: Apply the Hardware Rubric to your primary use case.** Pick one potential quantum use case from Chapters 6, 7, or 8. Apply the hardware rubric from {ref}`ch-04-hardware-race` to the leading platforms. If no platform scores above 50/100 for your use case, the use case is a Horizon 3 target, not a Horizon 2 pilot. Adjust your roadmap accordingly.
+## Module-Level Outcomes
 
-**Step 4: Build the TCO analysis.** Using the framework from {ref}`ch-03-bits-to-qubits-economics`, estimate the cost of quantum versus classical for your primary use case. Be honest about the current hardware limitations. The TCO analysis should show that quantum is not yet cost-competitive on this problem — but the analysis should also show what it would take (qubit count, error rate, coherence time) for quantum to become cost-competitive, and when that threshold might be reached.
+::::{card-carousel} 1
 
-**Step 5: Design your talent plan.** Answer: Who is your Translator (not a name — a profile)? Which managers will receive quantum literacy training in Year 1? Which consortium or academic partner is most relevant to your industry?
+:::{card} Outcome 1
+**Construct a dual-paradigm three-horizon quantum roadmap.**
+Distinguish between Horizon 1 annealing applications (D-Wave, accessible now) and gate-model applications (Horizon 2–3), and build a roadmap that deploys both paradigms in the right sequence.
+:::
 
-**Step 6: Write your kill-switch criteria first.** Before writing the budget, write the kill-switch criteria. This is counterintuitive but important: defining what "not working" looks like before defining what "working" looks like prevents motivated reasoning from corrupting both definitions.
+:::{card} Outcome 2
+**Design a quantum talent strategy.**
+Sequence the four talent roles correctly (Quantum-Literate Manager, Translator, Specialist, External Research Partner), identify where to find a Translator, and articulate why the Translator is always the first hire.
+:::
 
-**Step 7: Write the executive summary last.** The executive summary is the hardest two sentences to write and the most important. Write everything else first; then distill it.
+:::{card} Outcome 3
+**Evaluate partnership models.**
+Match the appropriate partnership model (hyperscaler, consortium, native startup, academic lab) to an organization's quantum maturity and risk tolerance, and name the specific partner most relevant to the organization's use case.
+:::
 
-**Step 8: Present it as if the CFO will ask "Why not just wait?"** The best test of a quantum investment thesis is whether it can survive the "Why not wait?" objection. Your answer should anchor in: the Mosca Inequality (for PQC, waiting is not an option), the three-horizon framework (Horizon 1 investment now enables Horizon 2 optionality), and the talent market (Translators are already in short supply and becoming scarcer).
+:::{card} Outcome 4
+**Build a quantum governance framework.**
+Design a governance structure covering dual-use risk, export controls, the US/EU/APAC regulatory landscape, and a board reporting cadence that builds vocabulary before it is urgently required.
+:::
+
+:::{card} Outcome 5
+**Defend a one-page quantum investment thesis.**
+Present and defend all eight sections of the quantum investment thesis to a C-suite audience, including quantified success metrics, pre-defined kill-switch criteria, and a credible answer to "why not wait?"
+:::
+
+:::{card} Outcome 6
+**Run a D-Wave optimization pilot for your own organization.**
+Formulate your organization's highest-priority optimization problem as a QUBO, execute it on D-Wave Leap, interpret the results against a classical baseline, and incorporate the findings into the Horizon 1 section of your investment thesis.
+:::
 
 ::::
 
 ---
 
-## 9.15 Module-Level Outcomes
+## Lab 9A (Regular): The Quantum Pilot Pitch
 
-By completing this chapter and the capstone deliverable, you can:
-
-1. **Construct a three-horizon quantum roadmap** tied to realistic commercial milestones — distinguishing between what to do now (awareness, security), in two to five years (experimentation, partnerships), and in five to ten years (integration, advantage)
-
-2. **Design a talent strategy** blending quantum-literate managers, translators, and specialists in the right sequence and at the right organizational scale — and identify the specific hire (always the Translator first) that creates the most organizational leverage
-
-3. **Evaluate partnership models** — hyperscaler, native quantum startup, consortium, academic lab — against your organization's risk tolerance, quantum maturity, and strategic use cases
-
-4. **Develop a board-level governance framework** covering quantum risk taxonomy, dual-use and export control considerations, ethics of cryptographic disruption, and a repeatable board reporting structure that builds vocabulary before it is urgently required
-
-5. **Defend a one-page quantum investment thesis** to a C-suite audience — with budget, milestones, kill-switch criteria, and an honest accounting of where the technology stands and what organizational actions create option value regardless of exact timing
-
-6. **Integrate insights from all eight previous chapters** into a single coherent quantum-readiness narrative — one that begins with "why quantum, why now" and ends with a credible, actionable plan
-
----
-
-## 9.16 Lab 9 (Regular): The Quantum Pilot Pitch
-
-**Time:** ~90 minutes  
-**Tools:** IBM Quantum Platform + all labs completed in Chapters 1–8  
+**Duration:** ~90 minutes
+**Tools:** IBM Quantum Platform + all labs completed in Chapters 1–8
 **Format:** Deliverable + 10-minute live pitch
 
-### The Assignment
+Look back at the labs you completed in Chapters 5 through 8. Choose the one that most directly maps to a real problem in your organization. Extend that lab into a full quantum pilot proposal including: problem statement, quantum approach (with hardware rubric score), success metrics (vs. optimized classical baseline), budget (TCO framework), kill-switch criteria, and a 90-second IBM Quantum or D-Wave Leap demo that makes the quantum approach visible to a non-technical sponsor.
 
-Look back at the labs you completed in Chapters 5 through 8. Choose the one that most directly maps to a real problem in your organization (or an organization you know well). Your task: extend that lab into a full quantum pilot proposal.
-
-**The Pilot Proposal must include:**
-
-1. **Problem Statement** (1 paragraph): What is the business problem? What does "solved" look like? What is the cost of the status quo?
-
-2. **Quantum Approach** (1 paragraph): Why is this problem quantum-amenable? Apply the hardware rubric from {ref}`ch-04-hardware-race`. Which platform are you using and why?
-
-3. **Success Metrics** (3–5 bullet points): Specific, measurable, time-bound. At minimum: a target performance improvement over the classical baseline, a timeline, and a cost per unit of improvement.
-
-4. **Budget** (\$1–\$5 page budget document): Platform costs, team costs, timeline. Apply the TCO framework from {ref}`ch-03-bits-to-qubits-economics`.
-
-5. **Kill-Switch Criteria** (1 paragraph): What would cause you to stop this pilot? Be specific. Use the kill-switch template from Section 9.11.
-
-6. **90-Second IBM Quantum Demo**: Run a circuit on IBM Quantum Platform that demonstrates the *concept* of your quantum approach — not a full solution, but enough that a non-technical sponsor watching for 90 seconds understands *what quantum is doing* in your proposed solution. This is a communication exercise as much as a technical one.
-
-**The Live Pitch**: 10 minutes. The demo is your hook — run it first, explain what the board just saw, then walk through the pilot proposal. Field objections with the frameworks from this chapter.
+**The live pitch:** 10 minutes. Lead with the demo. Walk through the pilot proposal. Field objections using the frameworks in this chapter.
 
 ---
 
-## 9.17 Lab 9 (Optional Advanced): Your Own Quantum Evaluation Toolkit
+## Lab 9B (Applied): Your Organization's QUBO on D-Wave Leap
 
-**Time:** 3–5 hours  
-**Language:** Python  
+**Duration:** 60–75 minutes
+**Tools:** D-Wave Leap — [cloud.dwavesys.com](https://cloud.dwavesys.com)
+**Deliverable:** Working QUBO + 400-word investment thesis excerpt
+
+<a href="https://colab.research.google.com/github/liquid-books/applied-quantum-computing/blob/main/notebooks/ch09-lab-org-qubo.ipynb" target="_blank">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" style="margin-bottom: 1rem;"/>
+</a>
+
+### Why This Lab
+
+This lab is the capstone of every D-Wave lab in this course. Chapter 6 gave you QUBO formulation. Chapter 7 applied it to supply chain and logistics. Chapter 8 applied it to ML feature selection. Chapter 9 asks you to formulate *your own organization's* most valuable optimization problem as a QUBO and run it on D-Wave Leap — the same hardware class as FAU's Advantage2.
+
+The output is not a toy example. It is the working technical foundation of the Horizon 1 annealing pilot section of your capstone investment thesis.
+
+### Step 1: Identify Your QUBO Candidate
+
+Using the optimization opportunity framework from {ref}`ch-06-optimization-goldmine`, identify your organization's highest-priority combinatorial optimization problem. Candidates: vehicle routing, production scheduling, resource allocation, portfolio construction, inventory allocation, feature selection, network design.
+
+Write a 100-word problem statement before opening a code editor. What is the business problem? What are the variables? What are the constraints? What does "better" look like, and how will you measure it?
+
+### Step 2: Formulate the QUBO
+
+```python
+import dimod
+from dwave.system import LeapHybridSampler
+
+# YOUR PROBLEM HERE
+# Replace the template below with your organization's actual optimization problem
+
+# Example: shift scheduling for 6 employees, 4 shifts, coverage constraints
+# Binary variable x_{i,j} = 1 if employee i works shift j
+employees = ['Alice', 'Bob', 'Carol', 'David', 'Eve', 'Frank']
+shifts = ['Morning', 'Afternoon', 'Evening', 'Night']
+
+# REPLACE WITH YOUR VARIABLES:
+# - What are the binary decisions?
+# - What are the costs/benefits of each decision?
+# - What constraints must be satisfied?
+
+Q = {}
+
+# OBJECTIVE: Minimize cost / Maximize value
+# (your formulation here)
+
+# CONSTRAINTS: Penalty for violations
+# (your formulation here)
+
+# Submit to D-Wave Leap
+sampler = LeapHybridSampler()
+sampleset = sampler.sample_qubo(Q, label='Ch9 Capstone — My Org QUBO', time_limit=10)
+
+best = sampleset.first
+print("Solution:")
+print(best.sample)
+print(f"Energy: {best.energy:.2f}")
+print(f"QPU timing: {sampleset.info.get('timing', {})}")
+```
+
+### Step 3: Benchmark Against Classical
+
+Run the same problem using:
+- Classical greedy heuristic (your organization's current approach, or a simple greedy algorithm)
+- `dimod.SimulatedAnnealingSampler` (quantum-inspired classical)
+- D-Wave Leap (quantum annealing)
+
+Compare solution quality and compute time across all three.
+
+### Step 4: Write the Investment Thesis Excerpt
+
+Write a **400-word excerpt** for the Horizon 1 section of your capstone investment thesis:
+1. The business problem and its current cost (what does the gap between classical and optimal cost annually?)
+2. Why this problem maps to QUBO formulation (specifically — using the language of Chapter 6)
+3. What the D-Wave result showed — improvement, time, and what it implies at production scale
+4. What the next step is: scale the pilot to your full production problem size, benchmark against your fully optimized classical baseline, and if improvement holds, present to your board as a Horizon 1 quantum win
+
+---
+
+## Lab 9C (Optional Advanced): The Quantum Evaluation Toolkit
+
+**Duration:** 3–5 hours
+**Language:** Python
 **Output:** Working GitHub repository + 500-word design writeup
 
 <a href="https://colab.research.google.com/github/liquid-books/applied-quantum-computing/blob/main/notebooks/ch09-quantum-eval-toolkit.ipynb" target="_blank">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" style="margin-bottom: 1rem;"/>
 </a>
 
-### The Assignment
+Build a Python library that integrates three quantitative frameworks from this course into a single command-line interface:
 
-Build a small Python library — a Quantum Evaluation Toolkit — that integrates the three quantitative frameworks from this course into a single command-line or notebook interface. Your toolkit must include:
+**Module 1: TCO Analyzer** — Input: problem parameters. Output: quantum vs. classical cost comparison, break-even analysis.
 
-**Module 1: TCO Analyzer (from {ref}`ch-03-bits-to-qubits-economics`)**
-- Input: problem parameters (qubit requirement, circuit depth, shot count, classical performance baseline)
-- Output: cost comparison table (quantum cloud cost vs. classical HPC cost), break-even analysis, sensitivity table
+**Module 2: Hardware Rubric Scorer** — Input: use case parameters. Output: rubric score for each supported platform, ranked recommendation.
 
-**Module 2: Hardware Rubric Scorer (from {ref}`ch-04-hardware-race`)**
-- Input: proposed use case parameters (required qubit count, required gate fidelity, connectivity requirements, time budget)
-- Output: rubric score (0–100) for each supported hardware platform, ranked recommendation with rationale
+**Module 3: Mosca Inequality Classifier** — Input: data sensitivity lifetime, migration time estimate, threat timeline. Output: classification (Safe/Danger Zone/Critical), recommended action.
 
-**Module 3: Mosca Inequality Classifier (from {ref}`ch-05-cryptocalypse-y2q`)**
-- Input: data sensitivity lifetime (X), estimated migration time (Y), quantum threat timeline estimate (Z)
-- Output: classification (Safe / Danger Zone / Critical), recommended action, urgency score
+**Module 4: Summary Report Generator** — Produces a one-page text output suitable for inclusion in a quantum investment thesis appendix.
 
-**Module 4: CLI/Notebook Interface**
-- Simple command-line or notebook cell interface that calls each module
-- Summary report generator that produces a one-page text output suitable for inclusion in a quantum investment thesis appendix
-
-**Deliverable:**
-- Working tool on GitHub (public repository)
-- Brief README explaining installation and usage
-- 500-word writeup of design choices: What trade-offs did you make? What would you add with more time? What did building the tool teach you about the frameworks themselves?
+**Deliverable:** Working tool on GitHub (public repository), README, and 500-word design writeup.
 
 ---
 
-## 9.18 Discussion Guidelines
+## Discussion Guidelines
 
-Respond to the following prompt with a post of 350–500 words. Cite at least two sources published within the last 24 months. Respond substantively to **two** of your peers' posts — not just "I agree" but a genuine engagement with their argument, either extending it, challenging a premise, or connecting it to a concept from the course.
+**Post 350–500 words. Cite at least two sources from the last 24 months. Reply substantively to TWO peers.**
 
-**Prompt:** Choose a real industry (financial services, logistics, pharmaceutical, defense, energy, or another with board-level approval) and defend a specific quantum readiness posture: *aggressive early mover, disciplined fast follower, or informed observer.* Your argument must address: (1) the Mosca Inequality implications for your industry's cryptographic exposure; (2) the relevant quantum use cases from Chapters 6–8; (3) the talent market realities for your industry; and (4) at least one governance consideration from this chapter. What does the right investment level look like, and why?
-
-```{admonition} Discussion Norms
-:class: note
-
-**Cite your sources:** Quantum computing coverage ranges from rigorous to promotional. When citing vendor materials, note the source. Peer-reviewed research, NIST publications, and reports from national laboratories carry more evidential weight than marketing white papers.
-
-**Engage with disagreement:** If a peer's quantum readiness posture recommendation differs from yours, engage with the strongest version of their argument before offering your critique.
-
-**Make it real:** Generic arguments about "quantum's potential" do not advance the conversation. The best posts name a specific organization (real or realistic), a specific problem, and a specific investment number. Vagueness is a signal that the thinking is not yet complete.
-```
+**Prompt:** Choose a real industry and defend a specific quantum readiness posture: *aggressive early mover, disciplined fast follower, or informed observer.* Your argument must address: (1) which paradigm (annealing, gate-model, or both) is most relevant for your industry and horizon; (2) the Mosca Inequality implications for your industry's cryptographic exposure; (3) the talent market realities for your industry; (4) at least one governance consideration from Part III; and (5) what SC26 or an equivalent signal event tells you about where your industry is heading.
 
 ---
 
-## 9.19 Glossary
+## Glossary
 
 ```{glossary}
 quantum organizational readiness
-  The capacity of an organization to perceive, evaluate, and act on quantum computing opportunities and risks within an 18-month window of when those opportunities and risks become commercially material.
+  The capacity of an organization to perceive, evaluate, and act on quantum computing opportunities and risks within an 18-month window of when those opportunities and risks become commercially material. A function of strategy clarity, talent depth, governance maturity, and partnership positioning.
 
-three-horizon framework
-  A strategic planning model that divides quantum investment into Horizon 1 (0–2 years: awareness and security), Horizon 2 (2–5 years: experimentation and partnerships), and Horizon 3 (5–10 years: integration and advantage). Actions in each horizon create the conditions for the next.
+dual-paradigm three-horizon roadmap
+  A quantum strategy planning framework that distinguishes between annealing applications (D-Wave, accessible in Horizon 1 today for optimization problems) and gate-model applications (Horizon 2–3 for simulation, QML, and fault-tolerant algorithms), and sequences organizational actions in both paradigms appropriately.
 
 quantum translator
-  A professional who is genuinely fluent in both quantum computing and business strategy — able to convert between technical requirements and business value in real time. The recommended first hire for any organization beginning a quantum readiness program.
+  A professional genuinely fluent in both quantum computing and business strategy. The recommended first hire for any quantum readiness program. Runs pilots, briefs boards, evaluates vendors, manages academic partners.
 
 quantum-literate manager
-  An executive or business leader with sufficient understanding of quantum computing to evaluate claims, oversee pilots, and participate in board-level quantum discussions, without necessarily having deep technical expertise.
+  An executive with sufficient quantum literacy to evaluate vendor claims, oversee pilots, and participate in board-level quantum discussions — achieved through structured training, not specialized hiring.
 
 quantum specialist
-  A quantum scientist or engineer with deep technical expertise in a specific quantum domain (algorithms, error correction, simulation, cryptography), appropriate for organizations in late Horizon 2 or Horizon 3.
+  A quantum scientist or engineer with deep technical expertise in a specific quantum domain. Appropriate for late Horizon 2 or Horizon 3 organizations with validated technical needs.
 
-external research partner
-  An academic laboratory, national quantum research center, or quantum consortium that provides specialized expertise, talent pipeline access, and early research visibility in exchange for a structured partnership agreement.
-
-hyperscaler quantum access
-  Cloud-based quantum computing services offered by large technology companies (IBM, AWS, Google, Microsoft) with pay-per-use pricing and enterprise support — the recommended starting point for Horizon 1 organizations.
-
-native quantum startup
-  A company whose primary product is quantum hardware, quantum software, or quantum algorithms, as distinct from a classical technology company that has added quantum capabilities. Appropriate as a partnership target for organizations in late Horizon 2 with validated use cases.
-
-quantum consortium
-  An industry group that enables pre-competitive knowledge exchange, shared research infrastructure, regulatory engagement, and talent networking across member organizations. Examples: Chicago Quantum Exchange, Quantum Economic Development Consortium (QED-C).
+quantum Center of Excellence (QCoE)
+  A dedicated organizational unit that owns quantum strategy, manages vendors, runs the talent pipeline, and serves as the internal resource for all quantum-related business unit questions. The Horizon 3 formalization of organizational quantum capability.
 
 kill-switch criteria
-  Pre-defined, specific, measurable conditions that would cause an organization to stop funding a quantum pilot or initiative — established before the investment begins to prevent sunk-cost rationalization.
+  Pre-defined, specific, measurable conditions established before a quantum investment begins that would cause the organization to stop funding it. The structural mechanism that prevents sunk-cost rationalization from extending bad investments.
 
 dual-use risk
-  The risk that quantum computing capabilities developed for defensive or commercial purposes could be used for offensive or harmful purposes, including breaking encryption that others rely on for privacy and security.
+  The risk that quantum computing capabilities developed for defensive or commercial purposes could be applied offensively or harmfully — including breaking encryption others rely on for privacy and security. Requires legal review and ethics governance.
 
-post-quantum cryptography (PQC) migration
-  The process of replacing cryptographic systems that are vulnerable to quantum attack (RSA, ECC-based systems) with quantum-resistant algorithms standardized by NIST, including CRYSTALS-Kyber and CRYSTALS-Dilithium.
+export controls
+  Regulations governing the transfer of quantum hardware, software, and technical expertise across national borders. Includes EAR (U.S.), ITAR (U.S.), and equivalent EU and Asia-Pacific frameworks. Material compliance obligation for any organization with international quantum partnerships.
 
 quantum investment thesis
-  A structured argument for quantum investment that includes an executive summary, three-horizon roadmap, talent plan, partnership recommendation, budget breakdown, success metrics, and kill-switch criteria — designed to be defended to a C-suite audience.
+  A structured one-page argument for quantum investment including executive summary, dual-paradigm three-horizon roadmap, talent plan, partnership recommendation, budget breakdown, success metrics, and kill-switch criteria.
 
-option value
-  The strategic value of a quantum investment beyond its immediate financial return — including team learning, vendor relationships, problem decomposition skills, and the organizational right to capture larger quantum payoffs when hardware matures.
+SC26
+  The International Conference for High Performance Computing, Networking, Storage and Analysis, convening in Chicago in November 2026. The annual signal event where quantum and HPC converge and where the frontier of enterprise quantum capability becomes visible. Recommended annual attendance for any organization's Quantum Translator.
 
 valley of disillusionment
-  The period in a technology investment program when early pilots fail to meet initial expectations due to hardware or software limitations, often leading to program cancellation just before the point at which the technology would have begun delivering value. Pre-planned for in a disciplined quantum roadmap.
-
-quantum working group
-  A cross-functional internal team responsible for managing an organization's quantum readiness program — including pilot oversight, vendor relationships, board reporting, and budget management.
-
-quantum risk taxonomy
-  A structured classification of quantum-related risks, typically divided into cryptographic exposure risk (Tier 1), algorithmic disruption risk (Tier 2), and competitive intelligence risk (Tier 3), each with designated ownership and reporting structures.
+  The period when early quantum pilots underperform initial expectations due to hardware limitations, leading to program cancellation just before the technology would have delivered value. Must be explicitly budgeted and planned for in any quantum roadmap.
 
 non-linear quantum payoff
-  The characteristic of quantum investment in which most investments in Horizons 1 and 2 produce modest returns while a small number produce very large returns, requiring portfolio-style investment discipline rather than single-bet commitment.
+  The characteristic of quantum investment in which most Horizon 1–2 investments produce modest returns while a small number produce very large returns, requiring portfolio-style investment discipline.
+
+option value
+  The strategic value of a quantum investment beyond its immediate financial return — team learning, vendor relationships, problem formulation skills, and the organizational right to capture larger quantum payoffs when hardware matures.
+
+CNSA 2.0
+  NSA's Commercial National Security Algorithm Suite 2.0 mandate requiring PQC migration in U.S. national security systems by 2030–2035.
+
+Quantum Working Group
+  A cross-functional internal team — IT/security, R&D, legal/compliance, finance, business units — that owns the quantum readiness roadmap, manages vendor relationships, and produces the quarterly executive briefing. The Quantum Translator is the group's technical spine.
 ```
 
 ---
 
-## 9.20 Leader's Takeaway — and a Course Closing
+## Leader's Takeaway
 
-```{admonition} The Leader's Takeaway
-:class: tip
+::::{admonition} The Leader's Takeaway — and a Course Closing
+:class: important
 
-**Quantum readiness is not about knowing when the technology will arrive. It is about being the kind of organization that arrives on time no matter when it does.**
+This course began with a question: is quantum computing real or hype? The answer is the same as the answer to every technology question about a transformative technology in its early deployment phase. Both. Depending on the layer.
 
-The three-horizon framework gives you the roadmap. The talent architecture gives you the people. The governance framework gives you the accountability. The investment thesis gives you the language to make the case. None of it requires knowing the exact date fault-tolerant quantum computing arrives — because organizational readiness is not a function of prediction. It is a function of preparation.
+The hype layer is loud and well-funded. Vendors are attaching "quantum" to classical algorithms, to marketing materials, to investment prospectuses, and to startup pitch decks where the quantum component is a random seed. The governance tools in this course — the dequantization test, the five-question procurement filter, the classical baseline optimization requirement, the hardware rubric — are what protect your organization from spending real money on imaginary quantum advantages.
 
-The window to be early is closing — not because quantum is imminent, but because the talent market is thinning, the vendor relationships are forming, and the competitive intelligence advantages of early mover status compound over time. The time to plant is spring. It is spring.
-```
+The real layer is quieter and more consequential. D-Wave's Advantage2 is on FAU's campus. It is the same hardware class that BASF uses for manufacturing scheduling, that Mastercard uses for fraud detection, that Verge Ag uses for autonomous fleet routing. It runs today. The QUBO formulation skills you developed in Chapter 6 and deployed in Labs 6, 7B, 8B, and 9B are the production skills that enable those deployments. The gap between "we have heard about quantum optimization" and "we have run a quantum optimization job and benchmarked it against our classical system" is a gap that almost no organization's leadership team has crossed. You have crossed it.
 
----
+The PQC migration obligation is not hype. NIST finalized three post-quantum cryptography standards in 2024. Nation-state adversaries have been collecting encrypted traffic for future quantum decryption for years. The Mosca Inequality calculation is not a thought experiment — for many organizations, it is a calculation that has already turned negative, meaning the migration must be complete before Q-Day to protect their longest-lived sensitive data. This is a present obligation, not a future concern.
 
-### The Last Page
+The talent gap is not hype. Quantum translators — the professionals who can genuinely bridge quantum science and business strategy — are in short supply and growing scarcer as organizations that understand this begin building programs. The students who completed this course, who ran QUBO formulations on D-Wave Leap and VQE simulations on IBM Quantum and PQC key generation with liboqs, have a measurable head start. That head start has a half-life. Use it.
 
-You started this course with a question that felt almost too large to answer: *Is quantum computing real, or is it the most expensive hype cycle in the history of computer science?*
+The dual-paradigm lens that this course has insisted on — distinguishing annealing from gate-model, distinguishing what is accessible today from what is coming in 5–8 years — is the strategic lens that makes quantum investment rational rather than speculative. Most organizations are either too early on the annealing track (waiting for gate-model maturity before doing anything quantum, including the optimization applications that are accessible now) or too late on the gate-model track (waiting for certainty before building the literacy and talent that takes years to develop).
 
-The honest answer, which you now know, is that it is both — depending on which layer you are looking at, which time horizon you are thinking in, and which use case you are evaluating. The quantum hype layer is real: there are hundreds of millions of dollars flowing toward solutions that will never exist, claims that will never be validated, and products that are quantum in marketing only. That is not the layer you need to worry about. You now have the tools to see through it.
+The quantum-ready enterprise is neither. It is deploying D-Wave annealing for optimization today, migrating its cryptographic infrastructure now, building its talent pipeline in parallel, and watching the gate-model frontier with the literacy to evaluate it honestly when the hardware matures.
 
-The quantum *substance* layer is also real: post-quantum cryptography is not a speculative concern — it is a regulatory present. Quantum optimization for logistics and finance is not a distant dream — it is a working tool at limited scale today and a production-ready one in the visible future. Quantum simulation for drug discovery and materials science is not a physics lecture — it is the reason serious pharmaceutical and materials companies are building quantum programs now. And the intersection of quantum and AI, however overhyped, contains genuine hybrid opportunities that will reward the organizations that build the literacy to recognize them.
+SC26 is in Chicago this November. The quantum track is there. The researchers who will shape the next five years of quantum enterprise capability will be in those rooms. If you are building a quantum program, send your Translator. If you do not have a Translator yet, put one in the hiring pipeline before you go.
 
-You have read the map. You have run the calculations. You have seen the cases. You know the frameworks.
-
-The only question left is the one that has always been the most important question in strategy: *What will you do with what you know?*
-
-In 1995, three companies received the same briefing. The third company told an engineer to build something and report back in ninety days.
-
-You are the engineer now.
-
-Build something. Report back.
-
-The quantum decade is not waiting.
+The window to be early is not infinite. Act accordingly.
+::::
 
 ---
 
-*— End of Chapter 9 and Applied Quantum Computing: A Leader's Guide to the Next Computing Revolution —*
+## Cross-References
+
+- **{ref}`ch-01-why-quantum-why-now`** — FAU/D-Wave Advantage2 anchor case and the dual-paradigm framing that runs through this chapter's Three-Horizon roadmap
+- **{ref}`ch-05-cryptocalypse-y2q`** — Mosca Inequality calculation and STRIDE framework for the security section of the investment thesis
+- **{ref}`ch-06-optimization-goldmine`** — QUBO formulation and D-Wave Ocean SDK skills deployed in Lab 9B
+- **{ref}`ch-07-simulation-revolution`** — Industry vertical opportunity maps that inform Horizon 2 and 3 pilot candidate selection
+- **{ref}`ch-08-quantum-ai-hybrid`** — Five-question governance filter and quantum-inspired classical analytics for the governance and hype-filtering sections of the investment thesis
