@@ -169,47 +169,38 @@ Upon successful completion of this course, students will be able to:
 ::::{grid} 2
 :::{grid-item-card} Ch 1 · The $850 Billion Question
 :link: chapters/ch01-why-quantum-why-now
-:link-type: doc
 Why quantum, why now — the NISQ-to-fault-tolerant roadmap, FAU's $20M D-Wave partnership, the SC26 HPC+quantum convergence, and three structural accelerants. Labs 1A (IBM Quantum) + 1B (first D-Wave Leap run). *Going Deeper: qubit state vectors and the Bloch sphere.*
 :::
 :::{grid-item-card} Ch 2 · The Quantum Mindset
 :link: chapters/ch02-thinking-in-probabilities
-:link-type: doc
 Superposition, entanglement, interference, tunneling, and decoherence explained with business analogies. Labs 2A (Bell state in Quirk) + 2B (D-Wave annealing observation). *(Graded Case Study.) Going Deeper: quantum gates and circuit notation.*
 :::
 :::{grid-item-card} Ch 3 · The Quantum Cloud Economy
 :link: chapters/ch03-bits-to-qubits-economics
-:link-type: doc
 The five QaaS platforms (D-Wave Leap, IBM, AWS, Azure, Google), four pricing archetypes, TCO framework, and the evergreen break-even model for both annealing and gate-model workloads. Lab 3B: D-Wave vs. IBM TCO comparison. *Going Deeper: complexity classes and quantum speedup math.*
 :::
 :::{grid-item-card} Ch 4 · The Hardware Race
 :link: chapters/ch04-hardware-race
-:link-type: doc
 Five competing architectures — superconducting, trapped-ion, neutral-atom, photonic, topological — plus D-Wave's Advantage2 deep dive. Vendor-neutral evaluation rubric. Lab 4A: backend comparison. *(Graded Case Study.) Going Deeper: coherence time, gate fidelity, and the Ising Hamiltonian.*
 :::
 :::{grid-item-card} Ch 5 · The Cryptocalypse — Y2Q and the Security Imperative
 :link: chapters/ch05-cryptocalypse-y2q
-:link-type: doc
 STRIDE threat modeling, Mosca Inequality, NIST PQC standards (ML-KEM, ML-DSA, SLH-DSA), crypto-agility migration framework. Labs 5A (period-finding demo) + 5B (D-Wave migration prioritization QUBO) + 5C (liboqs key generation, optional advanced). *Going Deeper: Shor's algorithm, RSA complexity, NIST algorithm math.*
 :::
 :::{grid-item-card} Ch 6 · The Optimization Goldmine
 :link: chapters/ch06-optimization-goldmine
-:link-type: doc
 QUBO formulation, D-Wave Ocean SDK, Stride hybrid solver, BASF/VW/Mastercard/Verge Ag enterprise deployments. Lab 6A: solve a real business optimization problem on D-Wave Stride. *(Graded Case Study.) Going Deeper: QUBO objective function, Ising equivalence, penalty scaling.*
 :::
 :::{grid-item-card} Ch 7 · Quantum Industry Verticals
 :link: chapters/ch07-simulation-revolution
-:link-type: doc
 Five verticals — Financial Services, Supply Chain, Healthcare & Pharma, Energy & Materials, Manufacturing — each with leading cases, quantum techniques, and readiness timelines. Labs 7A (H₂ VQE) + 7B (D-Wave supply chain QUBO) + 7C (LiH advanced, optional). *Going Deeper: VQE and the variational principle.*
 :::
 :::{grid-item-card} Ch 8 · Quantum + AI
 :link: chapters/ch08-quantum-ai-hybrid
-:link-type: doc
 Quantum ML framing (what it is and isn't), quantum kernels, QBOOST, dequantization, hybrid architectures for demand forecasting and fraud detection. Labs 8A (quantum kernel vs. classical) + 8B (D-Wave QUBO feature selection). *(Graded Case Study.) Going Deeper: quantum kernels, QBOOST math, the dequantization theorem.*
 :::
 :::{grid-item-card} Ch 9 · The Quantum-Ready Enterprise
 :link: chapters/ch09-quantum-ready-enterprise
-:link-type: doc
 Dual-paradigm three-horizon roadmap, talent architecture (QCoE model), SC26 integration, ethics/governance/regulatory (US/EU/APAC), capstone investment thesis framework. Labs 9A (pilot pitch) + 9B (your org's QUBO on D-Wave Leap). *Going Deeper: quantum error correction and the surface code threshold theorem.*
 :::
 ::::
@@ -217,42 +208,34 @@ Dual-paradigm three-horizon roadmap, talent architecture (QCoE model), SC26 inte
 ::::{grid} 2
 :::{grid-item-card} Appendix A: Glossary
 :link: chapters/appendix-a-glossary
-:link-type: doc
 ~80 quantum terms defined in ≤40 words each — for the non-physicist.
 :::
 :::{grid-item-card} Appendix B: Quantum Bookshelf
 :link: chapters/appendix-b-bookshelf
-:link-type: doc
 Curated readings by depth: popular, practitioner, executive, academic. Includes SC26 as an annual practitioner resource.
 :::
 :::{grid-item-card} Appendix C: Evaluation Rubric
 :link: chapters/appendix-c-evaluation-rubric
-:link-type: doc
 The Ch 4 vendor-neutral hardware evaluation rubric as a standalone printable template.
 :::
 :::{grid-item-card} Appendix D: Supplementary Cases
 :link: chapters/appendix-d-case-library
-:link-type: doc
 22 additional mini-cases across 8 sectors: financial services, pharma, energy, logistics, defense, automotive, aerospace, telecom.
 :::
 :::{grid-item-card} Appendix E: Assessment Toolkit
 :link: chapters/appendix-e-assessment-toolkit
-:link-type: doc
 Discussion rubrics, lab rubrics, capstone rubric (dual-paradigm aligned), midterm exam structure, and peer-review framework.
 :::
 :::{grid-item-card} Appendix F: Market Snapshot
 :link: chapters/appendix-f-market-snapshot
-:link-type: doc
 Current-state facts — refreshed annually. Leading vendors, qubit counts, cloud pricing, PQC timelines, regulatory deadlines. April 2026 edition.
 :::
 :::{grid-item-card} Appendix G: Lab Setup Guide
 :link: chapters/appendix-g-lab-setup
-:link-type: doc
 Step-by-step setup for **D-Wave Leap** (required, Labs 1B–9B), IBM Quantum, Quirk, Google Colab, and all Python packages. Complete before Chapter 1.
 :::
 :::{grid-item-card} Appendix H: FAU Research Computing & Quantum Infrastructure
 :link: chapters/appendix-h-fau-hpc-quantum
-:link-type: doc
 FAU's unique dual infrastructure: OwlCloud/Athene HPC cluster (Jupiter campus) and the on-campus D-Wave Advantage2 (Boca Raton). The $20M partnership, access instructions, and how HPC and quantum converge at FAU.
 :::
 ::::

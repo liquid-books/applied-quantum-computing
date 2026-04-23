@@ -8,7 +8,7 @@ project:
     - name: Dr. Ernesto Lee
   description: >
     A graduate-level masterclass in quantum computing for MBA students, executives,
-    consultants, and policy professionals. Nine chapters, nine hands-on labs, and
+    consultants, and policy professionals. Nine chapters, eighteen hands-on labs, and
     a complete quantum-readiness strategy framework — no physics background required.
   keywords:
     - quantum computing
@@ -24,7 +24,6 @@ project:
   license: CC-BY-4.0
   open_access: true
   github: https://github.com/liquid-books/applied-quantum-computing
-  # Numbering
   numbering:
     heading_1: true
     heading_2: true
@@ -32,63 +31,37 @@ project:
     figure: true
     table: true
     equation: true
-  exports:
-    - format: pdf
-  # Table of contents
   toc:
     - file: index.md
-    - part: "Chapters"
-      chapters:
-        - title: "Chapter 1: The $850 Billion Question"
-          file: chapters/ch01-why-quantum-why-now.md
-        - title: "Chapter 2: The Quantum Mindset"
-          file: chapters/ch02-thinking-in-probabilities.md
-        - title: "Chapter 3: The Quantum Cloud Economy"
-          file: chapters/ch03-bits-to-qubits-economics.md
-        - title: "Chapter 4: The Quantum Hardware Race"
-          file: chapters/ch04-hardware-race.md
-        - title: "Chapter 5: The Cryptocalypse"
-          file: chapters/ch05-cryptocalypse-y2q.md
-        - title: "Chapter 6: The Optimization Goldmine"
-          file: chapters/ch06-optimization-goldmine.md
-        - title: "Chapter 7: Quantum Industry Verticals"
-          file: chapters/ch07-simulation-revolution.md
-        - title: "Chapter 8: Quantum + AI"
-          file: chapters/ch08-quantum-ai-hybrid.md
-        - title: "Chapter 9: The Quantum-Ready Enterprise"
-          file: chapters/ch09-quantum-ready-enterprise.md
-    - part: "Appendices"
-      chapters:
-        - title: "Appendix A: Glossary"
-          file: chapters/appendix-a-glossary.md
-        - title: "Appendix B: Quantum Bookshelf"
-          file: chapters/appendix-b-bookshelf.md
-        - title: "Appendix C: Vendor-Neutral Evaluation Rubric"
-          file: chapters/appendix-c-evaluation-rubric.md
-        - title: "Appendix D: Supplementary Case Library"
-          file: chapters/appendix-d-case-library.md
-        - title: "Appendix E: Assessment Toolkit"
-          file: chapters/appendix-e-assessment-toolkit.md
-        - title: "Appendix F: Market Snapshot"
-          file: chapters/appendix-f-market-snapshot.md
-        - title: "Appendix G: Lab Setup Guide"
-          file: chapters/appendix-g-lab-setup.md
-        - title: "Appendix H: FAU Research Computing and Quantum Infrastructure"
-          file: chapters/appendix-h-fau-hpc-quantum.md
+    - title: "Chapters"
+      children:
+        - file: chapters/ch01-why-quantum-why-now.md
+        - file: chapters/ch02-thinking-in-probabilities.md
+        - file: chapters/ch03-bits-to-qubits-economics.md
+        - file: chapters/ch04-hardware-race.md
+        - file: chapters/ch05-cryptocalypse-y2q.md
+        - file: chapters/ch06-optimization-goldmine.md
+        - file: chapters/ch07-simulation-revolution.md
+        - file: chapters/ch08-quantum-ai-hybrid.md
+        - file: chapters/ch09-quantum-ready-enterprise.md
+    - title: "Appendices"
+      children:
+        - file: chapters/appendix-a-glossary.md
+        - file: chapters/appendix-b-bookshelf.md
+        - file: chapters/appendix-c-evaluation-rubric.md
+        - file: chapters/appendix-d-case-library.md
+        - file: chapters/appendix-e-assessment-toolkit.md
+        - file: chapters/appendix-f-market-snapshot.md
+        - file: chapters/appendix-g-lab-setup.md
+        - file: chapters/appendix-h-fau-hpc-quantum.md
 
 site:
   template: book-theme
   title: "Applied Quantum Computing"
-  base: /applied-quantum-computing
-  nav:
-    - title: "Applied Quantum Computing"
-      url: .
   options:
     logo_text: "Applied Quantum Computing"
     toc_sidebar: true
     breadcrumbs: true
     prev_next: true
     page_toc: true
-    search:
-      enabled: true
     dark_mode: true
