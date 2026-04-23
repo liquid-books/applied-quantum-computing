@@ -77,9 +77,18 @@ project:
           file: chapters/appendix-h-fau-hpc-quantum.md
 
 site:
+  template: book-theme
   title: "Applied Quantum Computing"
+  base: /applied-quantum-computing
+  nav:
+    - title: "Applied Quantum Computing"
+      url: .
   options:
     logo_text: "Applied Quantum Computing"
-    logo_url: "/applied-quantum-computing/"
-  parts:
-    primary_sidebar_footer: primary-sidebar-footer.md
+    toc_sidebar: true
+    breadcrumbs: true
+    prev_next: true
+    page_toc: true
+    search:
+      enabled: true
+    dark_mode: true
