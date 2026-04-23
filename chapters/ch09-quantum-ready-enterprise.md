@@ -757,40 +757,54 @@ Build a Python library that integrates three quantitative frameworks from this c
 
 ## Glossary
 
-```{glossary}
-quantum organizational readiness
-  The capacity of an organization to perceive, evaluate, and act on quantum computing opportunities and risks within an 18-month window of when those opportunities and risks become commercially material. A function of strategy clarity, talent depth, governance maturity, and partnership positioning.
-dual-paradigm three-horizon roadmap
-  A quantum strategy planning framework that distinguishes between annealing applications (D-Wave, accessible in Horizon 1 today for optimization problems) and gate-model applications (Horizon 2–3 for simulation, QML, and fault-tolerant algorithms), and sequences organizational actions in both paradigms appropriately.
-quantum translator
-  A professional genuinely fluent in both quantum computing and business strategy. The recommended first hire for any quantum readiness program. Runs pilots, briefs boards, evaluates vendors, manages academic partners.
-quantum-literate manager
-  An executive with sufficient quantum literacy to evaluate vendor claims, oversee pilots, and participate in board-level quantum discussions — achieved through structured training, not specialized hiring.
-quantum specialist
-  A quantum scientist or engineer with deep technical expertise in a specific quantum domain. Appropriate for late Horizon 2 or Horizon 3 organizations with validated technical needs.
-quantum Center of Excellence (QCoE)
-  A dedicated organizational unit that owns quantum strategy, manages vendors, runs the talent pipeline, and serves as the internal resource for all quantum-related business unit questions. The Horizon 3 formalization of organizational quantum capability.
-kill-switch criteria
-  Pre-defined, specific, measurable conditions established before a quantum investment begins that would cause the organization to stop funding it. The structural mechanism that prevents sunk-cost rationalization from extending bad investments.
-dual-use risk
-  The risk that quantum computing capabilities developed for defensive or commercial purposes could be applied offensively or harmfully — including breaking encryption others rely on for privacy and security. Requires legal review and ethics governance.
-export controls
-  Regulations governing the transfer of quantum hardware, software, and technical expertise across national borders. Includes EAR (U.S.), ITAR (U.S.), and equivalent EU and Asia-Pacific frameworks. Material compliance obligation for any organization with international quantum partnerships.
-quantum investment thesis
-  A structured one-page argument for quantum investment including executive summary, dual-paradigm three-horizon roadmap, talent plan, partnership recommendation, budget breakdown, success metrics, and kill-switch criteria.
-SC26
-  The International Conference for High Performance Computing, Networking, Storage and Analysis, convening in Chicago in November 2026. The annual signal event where quantum and HPC converge and where the frontier of enterprise quantum capability becomes visible. Recommended annual attendance for any organization's Quantum Translator.
-valley of disillusionment
-  The period when early quantum pilots underperform initial expectations due to hardware limitations, leading to program cancellation just before the technology would have delivered value. Must be explicitly budgeted and planned for in any quantum roadmap.
-non-linear quantum payoff
-  The characteristic of quantum investment in which most Horizon 1–2 investments produce modest returns while a small number produce very large returns, requiring portfolio-style investment discipline.
-option value
-  The strategic value of a quantum investment beyond its immediate financial return — team learning, vendor relationships, problem formulation skills, and the organizational right to capture larger quantum payoffs when hardware matures.
-CNSA 2.0
-  NSA's Commercial National Security Algorithm Suite 2.0 mandate requiring PQC migration in U.S. national security systems by 2030–2035.
-Quantum Working Group
-  A cross-functional internal team — IT/security, R&D, legal/compliance, finance, business units — that owns the quantum readiness roadmap, manages vendor relationships, and produces the quarterly executive briefing. The Quantum Translator is the group's technical spine.
-```
+**quantum organizational readiness**
+: The capacity of an organization to perceive, evaluate, and act on quantum computing opportunities and risks within an 18-month window of when those opportunities and risks become commercially material. A function of strategy clarity, talent depth, governance maturity, and partnership positioning.
+
+**dual-paradigm three-horizon roadmap**
+: A quantum strategy planning framework that distinguishes between annealing applications (D-Wave, accessible in Horizon 1 today for optimization problems) and gate-model applications (Horizon 2–3 for simulation, QML, and fault-tolerant algorithms), and sequences organizational actions in both paradigms appropriately.
+
+**quantum translator**
+: A professional genuinely fluent in both quantum computing and business strategy. The recommended first hire for any quantum readiness program. Runs pilots, briefs boards, evaluates vendors, manages academic partners.
+
+**quantum-literate manager**
+: An executive with sufficient quantum literacy to evaluate vendor claims, oversee pilots, and participate in board-level quantum discussions — achieved through structured training, not specialized hiring.
+
+**quantum specialist**
+: A quantum scientist or engineer with deep technical expertise in a specific quantum domain. Appropriate for late Horizon 2 or Horizon 3 organizations with validated technical needs.
+
+**quantum Center of Excellence (QCoE)**
+: A dedicated organizational unit that owns quantum strategy, manages vendors, runs the talent pipeline, and serves as the internal resource for all quantum-related business unit questions. The Horizon 3 formalization of organizational quantum capability.
+
+**kill-switch criteria**
+: Pre-defined, specific, measurable conditions established before a quantum investment begins that would cause the organization to stop funding it. The structural mechanism that prevents sunk-cost rationalization from extending bad investments.
+
+**dual-use risk**
+: The risk that quantum computing capabilities developed for defensive or commercial purposes could be applied offensively or harmfully — including breaking encryption others rely on for privacy and security. Requires legal review and ethics governance.
+
+**export controls**
+: Regulations governing the transfer of quantum hardware, software, and technical expertise across national borders. Includes EAR (U.S.), ITAR (U.S.), and equivalent EU and Asia-Pacific frameworks. Material compliance obligation for any organization with international quantum partnerships.
+
+**quantum investment thesis**
+: A structured one-page argument for quantum investment including executive summary, dual-paradigm three-horizon roadmap, talent plan, partnership recommendation, budget breakdown, success metrics, and kill-switch criteria.
+
+**SC26**
+: The International Conference for High Performance Computing, Networking, Storage and Analysis, convening in Chicago in November 2026. The annual signal event where quantum and HPC converge and where the frontier of enterprise quantum capability becomes visible. Recommended annual attendance for any organization's Quantum Translator.
+
+**valley of disillusionment**
+: The period when early quantum pilots underperform initial expectations due to hardware limitations, leading to program cancellation just before the technology would have delivered value. Must be explicitly budgeted and planned for in any quantum roadmap.
+
+**non-linear quantum payoff**
+: The characteristic of quantum investment in which most Horizon 1–2 investments produce modest returns while a small number produce very large returns, requiring portfolio-style investment discipline.
+
+**option value**
+: The strategic value of a quantum investment beyond its immediate financial return — team learning, vendor relationships, problem formulation skills, and the organizational right to capture larger quantum payoffs when hardware matures.
+
+**CNSA 2.0**
+: NSA's Commercial National Security Algorithm Suite 2.0 mandate requiring PQC migration in U.S. national security systems by 2030–2035.
+
+**Quantum Working Group**
+: A cross-functional internal team — IT/security, R&D, legal/compliance, finance, business units — that owns the quantum readiness roadmap, manages vendor relationships, and produces the quarterly executive briefing. The Quantum Translator is the group's technical spine.
+
 
 ---
 

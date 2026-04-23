@@ -710,36 +710,48 @@ Apply the vertical framework from this chapter to your own organization (or a pu
 
 ## Glossary
 
-```{glossary}
-VQE (Variational Quantum Eigensolver)
-  A hybrid classical-quantum algorithm for finding the ground-state energy of a molecular system. Used in pharmaceutical drug discovery and materials science to compute molecular properties more accurately than classical approximation methods.
-Variational Principle
-  A theorem from quantum mechanics stating that any trial quantum state has energy equal to or greater than the true ground-state energy. The foundation of VQE: minimizing energy over trial states converges to the exact ground state.
-Ground State
-  The lowest-energy quantum state of a molecule. The ground-state energy determines all chemical properties — bond strength, reaction rates, binding affinity, and drug-protein interaction geometry.
-Ansatz
-  A parameterized quantum circuit used in VQE to prepare trial quantum states. Common choices: UCCSD (physically motivated, high accuracy, deep circuit) and hardware-efficient (shallower, more noise-tolerant).
-Jordan-Wigner Transformation
-  A mathematical mapping from a molecular electronic Hamiltonian (describing electrons) to a qubit Hamiltonian that a quantum computer can process.
-Electron Correlation
-  The quantum mechanical interaction between electrons that classical mean-field methods (Hartree-Fock, DFT) approximate. Electron correlation governs binding affinity, reaction barriers, and drug-protein interaction strength — the specific properties that classical simulation gets wrong.
-DFT (Density Functional Theory)
-  The workhorse classical computational chemistry method — efficient but approximate, especially for strongly correlated electron systems relevant to drug-protein binding and materials science.
-Potential Energy Surface
-  A map of molecular energy as a function of atomic configuration. The foundational output of molecular simulation: its minimum identifies equilibrium geometries, its shape determines reaction pathways, its accuracy determines the reliability of drug design predictions.
-FeMoco (Iron-Molybdenum Cofactor)
-  The active site of the nitrogenase enzyme, containing approximately 54 strongly correlated electrons. The canonical hard target for quantum simulation — its accurate modeling would enable design of room-temperature nitrogen fixation catalysts.
-Nitrogenase
-  The enzyme used by nitrogen-fixing bacteria to convert atmospheric nitrogen to ammonia at room temperature. Its industrial equivalent — the Haber-Bosch process — consumes 1–2% of global energy and emits ~450 million tons of CO₂ annually.
-MOF (Metal-Organic Framework)
-  A class of porous crystalline materials with high internal surface area used for carbon capture, gas storage, and catalysis. MOF CO₂ binding energetics are governed by electron correlation effects that classical DFT calculates with 20–30% error.
-QUBO (Quadratic Unconstrained Binary Optimization)
-  The mathematical formulation language for D-Wave quantum annealers. Expresses optimization problems — portfolio construction, supply chain routing, inventory allocation — as minimization of a quadratic function of binary variables.
-Quantum-Inspired Algorithms
-  Classical algorithms that apply mathematical structures derived from quantum mechanics. Deliver near-term optimization value on conventional hardware while quantum hardware matures — the "bridge" strategy demonstrated by Volkswagen's Digital Annealer deployment.
-Vehicle Routing Problem (VRP)
-  The combinatorial optimization problem of assigning routes to a fleet of vehicles to minimize total distance or cost subject to vehicle capacity, time window, and depot constraints. A canonical D-Wave application in supply chain and logistics.
-```
+**VQE (Variational Quantum Eigensolver)**
+: A hybrid classical-quantum algorithm for finding the ground-state energy of a molecular system. Used in pharmaceutical drug discovery and materials science to compute molecular properties more accurately than classical approximation methods.
+
+**Variational Principle**
+: A theorem from quantum mechanics stating that any trial quantum state has energy equal to or greater than the true ground-state energy. The foundation of VQE: minimizing energy over trial states converges to the exact ground state.
+
+**Ground State**
+: The lowest-energy quantum state of a molecule. The ground-state energy determines all chemical properties — bond strength, reaction rates, binding affinity, and drug-protein interaction geometry.
+
+**Ansatz**
+: A parameterized quantum circuit used in VQE to prepare trial quantum states. Common choices: UCCSD (physically motivated, high accuracy, deep circuit) and hardware-efficient (shallower, more noise-tolerant).
+
+**Jordan-Wigner Transformation**
+: A mathematical mapping from a molecular electronic Hamiltonian (describing electrons) to a qubit Hamiltonian that a quantum computer can process.
+
+**Electron Correlation**
+: The quantum mechanical interaction between electrons that classical mean-field methods (Hartree-Fock, DFT) approximate. Electron correlation governs binding affinity, reaction barriers, and drug-protein interaction strength — the specific properties that classical simulation gets wrong.
+
+**DFT (Density Functional Theory)**
+: The workhorse classical computational chemistry method — efficient but approximate, especially for strongly correlated electron systems relevant to drug-protein binding and materials science.
+
+**Potential Energy Surface**
+: A map of molecular energy as a function of atomic configuration. The foundational output of molecular simulation: its minimum identifies equilibrium geometries, its shape determines reaction pathways, its accuracy determines the reliability of drug design predictions.
+
+**FeMoco (Iron-Molybdenum Cofactor)**
+: The active site of the nitrogenase enzyme, containing approximately 54 strongly correlated electrons. The canonical hard target for quantum simulation — its accurate modeling would enable design of room-temperature nitrogen fixation catalysts.
+
+**Nitrogenase**
+: The enzyme used by nitrogen-fixing bacteria to convert atmospheric nitrogen to ammonia at room temperature. Its industrial equivalent — the Haber-Bosch process — consumes 1–2% of global energy and emits ~450 million tons of CO₂ annually.
+
+**MOF (Metal-Organic Framework)**
+: A class of porous crystalline materials with high internal surface area used for carbon capture, gas storage, and catalysis. MOF CO₂ binding energetics are governed by electron correlation effects that classical DFT calculates with 20–30% error.
+
+**QUBO (Quadratic Unconstrained Binary Optimization)**
+: The mathematical formulation language for D-Wave quantum annealers. Expresses optimization problems — portfolio construction, supply chain routing, inventory allocation — as minimization of a quadratic function of binary variables.
+
+**Quantum-Inspired Algorithms**
+: Classical algorithms that apply mathematical structures derived from quantum mechanics. Deliver near-term optimization value on conventional hardware while quantum hardware matures — the "bridge" strategy demonstrated by Volkswagen's Digital Annealer deployment.
+
+**Vehicle Routing Problem (VRP)**
+: The combinatorial optimization problem of assigning routes to a fleet of vehicles to minimize total distance or cost subject to vehicle capacity, time window, and depot constraints. A canonical D-Wave application in supply chain and logistics.
+
 
 ---
 

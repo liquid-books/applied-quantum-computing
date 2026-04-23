@@ -695,36 +695,48 @@ You are advising the Chief Analytics Officer of a \$10 billion logistics company
 
 ## Glossary
 
-```{glossary}
-Quantum Machine Learning (QML)
-  The application of quantum computing to machine learning tasks — running ML algorithms on quantum hardware, using quantum circuits as trainable models, or leveraging quantum effects to accelerate ML subroutines. Distinct from quantum-inspired ML (classical algorithms using quantum math) and quantum-optimization-enhanced ML (D-Wave annealing applied to ML combinatorial tasks).
-Quantum Kernel
-  A kernel function implemented as a quantum circuit that maps data into Hilbert space — an exponentially high-dimensional feature space — for use in kernel-based classifiers such as SVMs. The quantum kernel value between two data points is the overlap of their quantum state representations.
-Feature Map Circuit
-  The quantum circuit that implements a quantum kernel by mapping classical data points to quantum states. The ZZFeatureMap (IBM Qiskit) is the most widely used experimental feature map circuit.
-Parameterized Quantum Circuit (PQC)
-  A quantum circuit with trainable parameters (gate rotation angles) optimized by a classical optimizer to minimize a loss function. The architectural foundation of variational QML — VQE, QAOA, and quantum neural networks.
-Barren Plateau
-  The problem (McClean et al., 2018) in which the gradient of the loss function for a randomly initialized variational quantum circuit vanishes exponentially with circuit depth and qubit count. The primary training challenge for deep quantum neural networks.
-Dequantization
-  The development of classical algorithms that match the asymptotic performance of quantum algorithms, eliminating the claimed speedup. Ewin Tang's 2019 result dequantizing the quantum recommendation system algorithm is the canonical example.
-Quantum-Inspired Algorithms
-  Classical algorithms applying mathematical structures from quantum mechanics — tensor networks, sampling methods, QUBO formulations — to deliver improved performance on classical hardware. Distinct from quantum algorithms running on quantum hardware. Production-ready today.
-Tensor Networks (MPS, PEPS)
-  Mathematical structures from quantum physics — Matrix Product States, Projected Entangled Pair States — adapted for classical ML to efficiently represent structured high-dimensional data correlations. Applied to multi-DC demand forecasting, sequential modeling, and Bayesian inference.
-QBOOST
-  D-Wave's quantum annealing approach to ensemble classifier optimization — formulating the problem of selecting and weighting binary classifiers as a QUBO to find optimal ensemble compositions. A production-accessible application of quantum annealing to ML.
-QUBO Feature Selection
-  The reformulation of ML feature selection as a Quadratic Unconstrained Binary Optimization problem — binary variables for feature inclusion, quadratic penalties for correlation — enabling D-Wave or quantum-inspired classical solvers to search the combinatorial feature space more broadly than greedy classical methods.
-Quantum Boltzmann Machine (QBM)
-  A generative model that uses quantum circuits (or D-Wave annealing) to represent latent probability distributions. The nearest-term production candidate for quantum-enhanced generative modeling, particularly for sampling from heavy-tailed distributions.
-Quantum GAN (QGAN)
-  A generative adversarial network in which the generator is a quantum circuit. Largely theoretical as of 2026 for gate-model hardware; D-Wave annealing provides the most experimentally tractable near-term version.
-Classical Baseline Optimization Plan
-  The governance document required before any QML pilot — specifying which classical algorithms will be compared, what hyperparameter tuning methodology will be used, what compute budget is allocated to classical optimization, and what performance gap is required to declare quantum advantage. The structural remedy for the FinCorp Capital failure mode.
-Simulated Annealing
-  A classical metaheuristic optimization algorithm that mimics the annealing process in metallurgy. Often used as a classical baseline for comparison against D-Wave quantum annealing in QUBO optimization problems.
-```
+**Quantum Machine Learning (QML)**
+: The application of quantum computing to machine learning tasks — running ML algorithms on quantum hardware, using quantum circuits as trainable models, or leveraging quantum effects to accelerate ML subroutines. Distinct from quantum-inspired ML (classical algorithms using quantum math) and quantum-optimization-enhanced ML (D-Wave annealing applied to ML combinatorial tasks).
+
+**Quantum Kernel**
+: A kernel function implemented as a quantum circuit that maps data into Hilbert space — an exponentially high-dimensional feature space — for use in kernel-based classifiers such as SVMs. The quantum kernel value between two data points is the overlap of their quantum state representations.
+
+**Feature Map Circuit**
+: The quantum circuit that implements a quantum kernel by mapping classical data points to quantum states. The ZZFeatureMap (IBM Qiskit) is the most widely used experimental feature map circuit.
+
+**Parameterized Quantum Circuit (PQC)**
+: A quantum circuit with trainable parameters (gate rotation angles) optimized by a classical optimizer to minimize a loss function. The architectural foundation of variational QML — VQE, QAOA, and quantum neural networks.
+
+**Barren Plateau**
+: The problem (McClean et al., 2018) in which the gradient of the loss function for a randomly initialized variational quantum circuit vanishes exponentially with circuit depth and qubit count. The primary training challenge for deep quantum neural networks.
+
+**Dequantization**
+: The development of classical algorithms that match the asymptotic performance of quantum algorithms, eliminating the claimed speedup. Ewin Tang's 2019 result dequantizing the quantum recommendation system algorithm is the canonical example.
+
+**Quantum-Inspired Algorithms**
+: Classical algorithms applying mathematical structures from quantum mechanics — tensor networks, sampling methods, QUBO formulations — to deliver improved performance on classical hardware. Distinct from quantum algorithms running on quantum hardware. Production-ready today.
+
+**Tensor Networks (MPS, PEPS)**
+: Mathematical structures from quantum physics — Matrix Product States, Projected Entangled Pair States — adapted for classical ML to efficiently represent structured high-dimensional data correlations. Applied to multi-DC demand forecasting, sequential modeling, and Bayesian inference.
+
+**QBOOST**
+: D-Wave's quantum annealing approach to ensemble classifier optimization — formulating the problem of selecting and weighting binary classifiers as a QUBO to find optimal ensemble compositions. A production-accessible application of quantum annealing to ML.
+
+**QUBO Feature Selection**
+: The reformulation of ML feature selection as a Quadratic Unconstrained Binary Optimization problem — binary variables for feature inclusion, quadratic penalties for correlation — enabling D-Wave or quantum-inspired classical solvers to search the combinatorial feature space more broadly than greedy classical methods.
+
+**Quantum Boltzmann Machine (QBM)**
+: A generative model that uses quantum circuits (or D-Wave annealing) to represent latent probability distributions. The nearest-term production candidate for quantum-enhanced generative modeling, particularly for sampling from heavy-tailed distributions.
+
+**Quantum GAN (QGAN)**
+: A generative adversarial network in which the generator is a quantum circuit. Largely theoretical as of 2026 for gate-model hardware; D-Wave annealing provides the most experimentally tractable near-term version.
+
+**Classical Baseline Optimization Plan**
+: The governance document required before any QML pilot — specifying which classical algorithms will be compared, what hyperparameter tuning methodology will be used, what compute budget is allocated to classical optimization, and what performance gap is required to declare quantum advantage. The structural remedy for the FinCorp Capital failure mode.
+
+**Simulated Annealing**
+: A classical metaheuristic optimization algorithm that mimics the annealing process in metallurgy. Often used as a classical baseline for comparison against D-Wave quantum annealing in QUBO optimization problems.
+
 
 ---
 
