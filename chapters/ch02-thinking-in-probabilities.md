@@ -876,6 +876,54 @@ Coherence Time
 
 ---
 
+## Going Deeper (Optional): Quantum Gates and Circuit Notation
+
+*This section is for readers with a STEM background or those working directly with quantum engineering teams. It is not required for course assessments.*
+
+### Quantum Gates as Unitary Matrices
+
+Where classical logic gates (AND, OR, NOT) take definite bit values as inputs, quantum gates operate on state vectors by **unitary matrix multiplication**. A gate $U$ applied to state $|\psi\rangle$ produces a new state $U|\psi\rangle$. The unitarity requirement ($U^\dagger U = I$) guarantees that all quantum operations are reversible — information is never destroyed, only transformed.
+
+The **Hadamard gate** is the most fundamental single-qubit gate. It transforms the computational basis states into equal superpositions:
+
+$$H|0\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) \qquad H|1\rangle = \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle)$$
+
+As a matrix:
+
+$$H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$$
+
+Applying $H$ to all $n$ qubits simultaneously creates an equal superposition of all $2^n$ computational basis states — this is the standard initialization step for most gate-model quantum algorithms.
+
+### The CNOT Gate and Entanglement
+
+The **CNOT (controlled-NOT)** gate acts on two qubits: a control qubit and a target qubit. It flips the target if and only if the control is $|1\rangle$:
+
+$$\text{CNOT}: |00\rangle \to |00\rangle, \quad |01\rangle \to |01\rangle, \quad |10\rangle \to |11\rangle, \quad |11\rangle \to |10\rangle$$
+
+Applying Hadamard to a qubit and then CNOT to that qubit and a second qubit in state $|0\rangle$ produces a **Bell state** — a maximally entangled two-qubit state:
+
+$$|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$$
+
+Measuring one qubit instantly determines the state of the other, regardless of distance. This is the entanglement effect that underpins quantum cryptography and quantum teleportation protocols.
+
+### Reading a Quantum Circuit
+
+Quantum circuits are read left to right. Each horizontal wire represents a qubit. Boxes on the wires are gates. A vertical line connecting two wires represents a two-qubit gate (like CNOT). A meter symbol (⊙) at the end represents a measurement. The circuit for creating a Bell state:
+
+```
+|0⟩ — H — ●— 
+            |
+|0⟩ ———— ⊕—
+```
+
+H creates superposition on qubit 1; CNOT (● = control, ⊕ = target) entangles qubit 1 with qubit 2. All gate-model quantum algorithms, including those on IBM Quantum that this book's labs use, are expressed in this circuit language.
+
+### Connection to Chapter Content
+
+The "thinking in probabilities" mindset in this chapter is the intuition layer on top of this formalism. When you visualize outcomes as probability distributions rather than definite answers, you are building the mental model for working with quantum state vectors — where every computation manipulates probabilities until the moment of measurement.
+
+---
+
 ## Leader's Takeaway
 
 :::{figure} ../images/ch02-quantum-mindset-framework.png

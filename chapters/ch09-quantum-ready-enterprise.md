@@ -809,6 +809,36 @@ Quantum Working Group
 
 ---
 
+## Going Deeper (Optional): Quantum Error Correction and the Path to Fault Tolerance
+
+*This section bridges the gap between the NISQ hardware you have used in this course and the fault-tolerant quantum computers that will enable Horizon 3 in your three-horizon roadmap. Not required for course assessments.*
+
+### Why NISQ Is Not Enough — and What Fault Tolerance Requires
+
+Every qubit in a NISQ processor has an error rate of approximately 0.1–1% per gate operation. For algorithms requiring millions of gate operations (Shor's algorithm at commercial key sizes, full molecular simulation for drug discovery, quantum-exact fluid dynamics), NISQ hardware produces outputs that are dominated by noise — not useful computation. **Quantum error correction (QEC)** solves this by encoding one **logical qubit** into many **physical qubits**, using redundancy to detect and correct errors without measuring (and thus collapsing) the logical qubit state.
+
+### The Surface Code: The Leading QEC Architecture
+
+The **surface code** is the most experimentally practical QEC code for superconducting qubits. It arranges physical qubits on a 2D grid, with alternating data qubits and syndrome measurement qubits. Errors (bit-flips and phase-flips) are detected by measuring stabilizer operators — multi-qubit Pauli measurements that reveal error syndromes without revealing the logical qubit state.
+
+The key metric is the **code distance** $d$: a surface code with distance $d$ can correct up to $\lfloor (d-1)/2 \rfloor$ arbitrary errors. The number of physical qubits required is $d^2$ data qubits + $(d^2 - 1)$ syndrome qubits $\approx 2d^2$.
+
+The **threshold theorem** establishes that if the physical error rate $p$ is below a threshold $p_{\text{th}} \approx 1\%$ (for surface code), then increasing $d$ exponentially suppresses the logical error rate:
+
+$$p_L \approx \left(\frac{p}{p_{\text{th}}}\right)^{\lceil d/2 \rceil}$$
+
+For $p = 0.1\%$ and $d = 15$: $p_L \approx (0.1)^7 = 10^{-7}$ logical errors per gate cycle. This is the suppression required for a billion-gate algorithm to succeed with high probability.
+
+### The Physical-to-Logical Qubit Overhead
+
+To run Shor's algorithm on a 2,048-bit RSA key requires approximately 4,000 logical qubits and $3 \times 10^9$ logical gate operations. At $d = 15$, each logical qubit requires ~450 physical qubits. Total physical qubit requirement: $\sim 4{,}000 \times 450 = 1{,}800{,}000$ physical qubits. IBM's current Heron processors have 133 qubits. This is the engineering gap that defines your Horizon 3 timeline.
+
+### Implications for Your Three-Horizon Roadmap
+
+This mathematics explains why the dual-paradigm roadmap in this chapter puts fault-tolerant gate-model applications in Horizon 3 (2030+): the physical qubit count required for fault-tolerant RSA-breaking or full molecular simulation exceeds any system in existence or announced roadmap through 2029. D-Wave's annealing hardware bypasses this overhead because it implements an analog optimization process — not a digital gate circuit — that is inherently error-robust at the algorithm level. This is not a workaround; it is a genuinely different computational model that operates today because it makes different (and tractable) trade-offs than gate-model fault tolerance requires.
+
+---
+
 ## Leader's Takeaway
 
 ::::{admonition} The Leader's Takeaway — and a Course Closing

@@ -787,6 +787,39 @@ Do you agree? Make the strongest possible case for or against this framing. Then
 
 ---
 
+## Going Deeper (Optional): Coherence, Fidelity, and the Ising Hamiltonian
+
+*This section is for readers with a STEM background. Not required for course assessments.*
+
+### Coherence Time: The Clock Ticking Against Your Algorithm
+
+Every gate-model qubit has two critical timescales:
+
+- **$T_1$ (relaxation time):** How long before a qubit in state $|1\rangle$ spontaneously decays to $|0\rangle$. Typical superconducting values: 100–500 microseconds on current IBM Eagle/Heron processors.
+- **$T_2$ (dephasing time):** How long before a qubit's phase relationship (the $e^{i\phi}$ term in the Bloch sphere representation) becomes randomized due to environmental noise. Always $T_2 \leq 2T_1$.
+
+A quantum algorithm must complete all its operations within $T_2$. Gate execution times are on the order of 10–100 nanoseconds, so modern processors can execute approximately $T_2 / t_{\text{gate}} \sim 10{,}000$ gates before decoherence destroys the computation. Fault-tolerant quantum computing requires extending this to billions of logical gate operations — hence the enormous engineering challenge.
+
+### Gate Fidelity
+
+**Fidelity** measures how accurately a gate operation is performed. A single-qubit gate fidelity of 99.9% means 1 in 1,000 operations introduces an error. Two-qubit gate fidelity is typically lower: 99.0–99.5% on best-in-class hardware. For a circuit with $d$ gates in sequence, the total fidelity scales roughly as $F_{\text{total}} \approx f^d$, where $f$ is the per-gate fidelity. For $d = 100$ gates at $f = 0.999$: $F \approx 0.999^{100} \approx 0.905$. At $d = 1{,}000$: $F \approx 0.37$. This is why NISQ algorithms are limited to shallow circuits.
+
+### The D-Wave Ising Hamiltonian
+
+D-Wave's approach is fundamentally different: rather than applying gate sequences, it implements a physical **Hamiltonian** — an energy function — directly in hardware:
+
+$$H = -\sum_{i} h_i \sigma_i^z - \sum_{i<j} J_{ij} \sigma_i^z \sigma_j^z$$
+
+Where $\sigma_i^z$ is the Pauli-Z operator for qubit $i$, $h_i$ are local biases (linear coefficients), and $J_{ij}$ are qubit-qubit couplings (quadratic coefficients). Finding the ground state of this Hamiltonian — the minimum energy configuration — is exactly equivalent to solving a QUBO problem (Chapter 6). The Advantage2 chip has ~5,000 qubits and over 40,000 couplers physically implemented in superconducting metal.
+
+The annealing process evolves from a transverse-field Hamiltonian (all qubits in superposition) to the problem Hamiltonian over a controllable anneal time (1–2,000 microseconds). The system exploits quantum tunneling — the ability to pass through energy barriers rather than climb over them — to find low-energy solutions. Coherence is not required to be preserved for the full computation; the annealing process is robust to thermal noise in ways gate-model circuits are not, which is why D-Wave hardware operates at a higher temperature (15 mK) than some gate-model systems while still delivering commercial optimization results.
+
+### Connection to Chapter Content
+
+The hardware comparison in this chapter — coherence times, qubit counts, fidelity benchmarks — is the engineering translation of the Hamiltonians and timescales above. When you evaluate a quantum vendor on "error rates," you are asking about $f$ in the gate fidelity formula. When you ask "how many logical qubits," you are asking how many physical qubits survive the error correction overhead.
+
+---
+
 ## Leader's Takeaway
 
 ```{epigraph}

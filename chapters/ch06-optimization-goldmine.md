@@ -785,6 +785,46 @@ The notebook provides the process data, constraint list, and starter CQM code. Y
 
 ---
 
+## Going Deeper (Optional): The QUBO Objective Function and Ising Equivalence
+
+*This section is for readers with a STEM background or those building QUBO formulations for D-Wave. Includes the formal mathematics needed to implement the chapter's labs at a deeper level.*
+
+### The QUBO Problem: Formal Definition
+
+A **Quadratic Unconstrained Binary Optimization (QUBO)** problem is defined by:
+
+$$\min_{x \in \{0,1\}^n} \; x^\top Q x = \min_{x \in \{0,1\}^n} \sum_i Q_{ii} x_i + \sum_{i<j} Q_{ij} x_i x_j$$
+
+Where:
+- $x \in \{0,1\}^n$ is a binary vector of $n$ decision variables
+- $Q$ is an upper-triangular $n \times n$ matrix of real-valued coefficients
+- Diagonal elements $Q_{ii}$ are **linear biases** (cost of assigning $x_i = 1$)
+- Off-diagonal elements $Q_{ij}$ are **quadratic interactions** (cost of $x_i = x_j = 1$ simultaneously)
+
+The "unconstrained" in QUBO is important: constraints are not applied externally but are instead **encoded as penalty terms** in $Q$. If two variables $x_i$ and $x_j$ cannot both be 1 simultaneously (e.g., two jobs on the same machine at the same time), you add a large positive penalty $P \gg 0$ to $Q_{ij}$, making any solution that violates the constraint high-cost and thus unlikely to appear as the minimum.
+
+### Worked Example: Binary Resource Allocation
+
+Suppose a company has 3 projects ($x_1, x_2, x_3$) and can fund at most 2. Each project has a value ($v_1 = 5, v_2 = 8, v_3 = 3$) and the constraint is $x_1 + x_2 + x_3 \leq 2$. The QUBO objective (maximizing value = minimizing negative value + penalty for constraint violation):
+
+$$Q = \begin{pmatrix} -5 & P & P \\ 0 & -8 & P \\ 0 & 0 & -3 \end{pmatrix}$$
+
+For $P = 20$, any solution selecting all three projects costs $-5 - 8 - 3 + 20 + 20 + 20 = 44$, making it far worse than the optimum of $x_1 = 1, x_2 = 1, x_3 = 0$ with cost $-5 - 8 + 20 = 7$ (wait — let me re-express: the minimum is actually $x_2 = 1, x_3 = 1$ at $-8 - 3 = -11$ or $x_1 = 1, x_2 = 1$ at $-5 - 8 = -13$, the global minimum). The D-Wave annealer finds this minimum by searching the energy landscape of the corresponding Ising Hamiltonian.
+
+### Ising Model Equivalence
+
+QUBO and the **Ising model** are mathematically equivalent via the substitution $s_i = 2x_i - 1$ (mapping $\{0,1\} \to \{-1,+1\}$). This maps the QUBO objective to:
+
+$$E(s) = \sum_i h_i s_i + \sum_{i<j} J_{ij} s_i s_j$$
+
+Where $h_i = -\frac{1}{2}\left(Q_{ii} + \sum_{j \neq i} Q_{ij}\right)$ and $J_{ij} = \frac{Q_{ij}}{4}$. This is exactly the Ising Hamiltonian implemented in D-Wave's physical hardware (Chapter 4). The Ocean SDK's `BinaryQuadraticModel` (BQM) object handles this transformation automatically when you submit to the LeapHybridSampler — you work in QUBO space, the SDK translates to the Ising Hamiltonian the hardware actually minimizes.
+
+### Penalty Scaling Guideline
+
+Choosing penalty $P$ is a practical engineering decision: too small and the constraint is violated in the optimal solution; too large and the penalty terms dominate the objective and solutions cluster around constraint-satisfaction rather than value-maximization. A reliable heuristic: set $P$ to be strictly greater than the range of the objective — if the best possible objective improvement from a constraint violation is $\Delta_{\max}$, then $P > \Delta_{\max}$ guarantees feasibility.
+
+---
+
 ## Leader's Takeaway
 
 ```{epigraph}

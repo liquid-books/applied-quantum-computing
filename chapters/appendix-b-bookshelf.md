@@ -345,4 +345,8 @@ For current events, follow:
 - **The Quantum Insider** (thequantuminsider.com) for industry news
 - **Shtetl-Optimized** (scottaaronson.blog) for rigorous critical perspective
 
+### Annual Conference: SC (Supercomputing)
+
+**SC** (sc-conference.org) — the premier annual conference on high-performance computing, networking, storage, and analysis — increasingly features a quantum computing track covering the HPC+quantum hybrid computing paradigm. SC26 takes place **November 15–20, 2026 in Chicago**. For practitioners in this course who work at the intersection of classical HPC and quantum computing (which describes FAU's unique position with OwlCloud/Athene HPC and the on-campus D-Wave Advantage2), SC is the most valuable single annual event for staying current with where the two worlds are converging. Mehran Basiratmand, this course's lead faculty, has attended SC for over a decade as FAU's former CTO.
+
 The best quantum computing literacy is built incrementally. Pick one entry from the tier that matches your role and start there. The field rewards patient curiosity more than any attempt to absorb it all at once.

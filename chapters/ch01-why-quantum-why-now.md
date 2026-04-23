@@ -708,6 +708,40 @@ In your main response (400–500 words), choose one quantum market forecast from
 
 ---
 
+## Going Deeper (Optional): The Mathematics of Quantum States
+
+*This section is for readers with a STEM background or those working directly with quantum engineering teams. It is not required for course assessments. Business leaders: bookmark it for when your quantum team starts throwing equations at you.*
+
+### The Qubit as a State Vector
+
+In classical computing, a bit is always 0 or 1 — a definite, measurable fact. A qubit is represented as a **state vector** in a two-dimensional complex vector space:
+
+$$|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$$
+
+Where $|0\rangle$ and $|1\rangle$ are the computational basis states (analogous to 0 and 1), and $\alpha, \beta$ are complex numbers called **probability amplitudes**. The constraint is:
+
+$$|\alpha|^2 + |\beta|^2 = 1$$
+
+This is the normalization condition — the total probability of measuring *some* outcome must be 1. When you measure the qubit, you get $|0\rangle$ with probability $|\alpha|^2$ and $|1\rangle$ with probability $|\beta|^2$. After measurement, the superposition collapses — the qubit is now definitively one or the other.
+
+### The Bloch Sphere
+
+Any single-qubit pure state can be visualized on a **Bloch sphere** — a unit sphere where the north pole is $|0\rangle$, the south pole is $|1\rangle$, and every other point on the surface represents a superposition. The parametric form:
+
+$$|\psi\rangle = \cos\!\left(\frac{\theta}{2}\right)|0\rangle + e^{i\phi}\sin\!\left(\frac{\theta}{2}\right)|1\rangle$$
+
+Here $\theta$ is the polar angle (0 at north, π at south) and $\phi$ is the azimuthal angle. The factor $e^{i\phi}$ is a **relative phase** — it doesn't affect measurement probabilities for a single qubit, but it matters deeply when multiple qubits interact. This is why quantum interference (the constructive and destructive combination of probability amplitudes) is a computational resource: you are manipulating phases to make wrong answers cancel and right answers reinforce.
+
+### Why Exponential Scaling Matters
+
+An $n$-qubit quantum system is described by $2^n$ complex amplitudes. A 10-qubit system has $2^{10} = 1{,}024$ amplitudes; a 300-qubit system has $2^{300}$ — more than the number of atoms in the observable universe. A quantum processor can manipulate all $2^n$ amplitudes in parallel with a single operation. Classical simulation of this requires storing and updating all $2^n$ numbers explicitly, which is why classical supercomputers max out at simulating roughly 50 qubits before hitting memory limits. This is not a scaling improvement — it is a fundamentally different computational model.
+
+### Connection to Chapter Content
+
+The business framing in this chapter — "quantum processes multiple possibilities simultaneously" — is the prose translation of the mathematics above. When a business leader says "quantum explores all solutions at once," the precise statement is: the quantum algorithm manipulates a superposition of $2^n$ computational basis states, using interference to amplify the amplitude of correct answers. The annealing paradigm (D-Wave) implements this through a physical process — the Ising Hamiltonian — that Chapter 4 and Chapter 6 treat in detail.
+
+---
+
 ## Leader's Takeaway
 
 ```{epigraph}

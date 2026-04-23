@@ -33,7 +33,9 @@ Quantum computing is no longer a physics experiment. It is an enterprise agenda 
 
 Written for graduate business students (MBA, EMBA, MS Analytics, MS Finance, MS Management) and the executives, directors, consultants, and board members making quantum-related decisions in the next 24–60 months, *Applied Quantum Computing* delivers nine TED-talk-style chapters — each opening with a real-world scene, building to one powerful idea, and ending with a concrete decision the reader can take to work.
 
-No Hamiltonians. No Hadamard gate notation. Math limited to arithmetic, percentages, probabilities, and whiteboard unit economics. Strategy, frameworks, and decision tools that survive technology change.
+No Hamiltonians required. No Hadamard gate notation. Math limited to arithmetic, percentages, probabilities, and whiteboard unit economics. Strategy, frameworks, and decision tools that survive technology change.
+
+**For STEM readers:** Every chapter ends with an optional *Going Deeper* section — the actual mathematics behind the concept, from qubit state vectors to the Ising Hamiltonian to Shor's algorithm to the surface code threshold theorem. Designed for engineers, scientists, and technical executives who want the formalism alongside the strategy.
 
 ---
 
@@ -212,7 +214,11 @@ The one place where current-state facts live — refreshed annually. Leading ven
 :::
 :::{grid-item-card} Appendix G: Lab Setup Guide
 :link: ./chapters/appendix-g-lab-setup.md
-Step-by-step instructions for IBM Quantum, Amazon Braket, Azure Quantum, Quirk, and hosted notebooks.
+Step-by-step instructions for IBM Quantum, **D-Wave Leap** (required for 5 labs), Quirk, Google Colab, and all Python packages. Set up before Chapter 1.
+:::
+:::{grid-item-card} Appendix H: FAU Research Computing & Quantum Infrastructure
+:link: ./chapters/appendix-h-fau-hpc-quantum.md
+FAU's unique dual infrastructure: OwlCloud/Athene HPC cluster and the on-campus D-Wave Advantage2. Access instructions, the $20M D-Wave partnership, and how HPC and quantum connect.
 :::
 <!-- GRID_PLACEHOLDER -->
 ::::

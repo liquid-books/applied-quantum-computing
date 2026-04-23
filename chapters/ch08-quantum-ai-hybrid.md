@@ -741,6 +741,34 @@ Simulated Annealing
 
 ---
 
+## Going Deeper (Optional): Quantum Kernels, QBOOST, and the Dequantization Theorem
+
+*This section is for readers with a machine learning background who want to understand the mathematical basis for quantum advantage (and its limits) in AI. Not required for course assessments.*
+
+### Quantum Kernel Methods
+
+Classical Support Vector Machines (SVMs) find optimal decision boundaries by computing inner products (kernels) between data points in a high-dimensional feature space. **Quantum kernel methods** replace the classical kernel with a quantum circuit: data point $x$ is encoded as a quantum state $|\phi(x)\rangle$ via a parameterized encoding circuit $U(x)$, and the kernel function becomes:
+
+$$k(x_i, x_j) = |\langle \phi(x_i) | \phi(x_j) \rangle|^2 = |\langle 0|U^\dagger(x_i) U(x_j)|0\rangle|^2$$
+
+The computational advantage: for certain encoding circuits, $|\phi(x)\rangle$ lives in an exponentially large Hilbert space ($2^n$ dimensional), making the effective feature map exponentially expressive. Classical computers cannot efficiently compute this inner product when $n$ is large, creating a potential quantum advantage — but only if the high-dimensional structure of $k$ is useful for the specific learning task. For most practical tabular business data, standard classical kernels (RBF, polynomial) are equally expressive, which is why quantum kernel advantage has been difficult to demonstrate empirically on real data.
+
+### QBOOST: D-Wave for Ensemble Learning
+
+**QBOOST** (Neven et al., 2012) formulates the boosting ensemble construction problem as a QUBO. In classical AdaBoost, weak classifiers are selected greedily (one at a time). QBOOST selects them jointly by minimizing the total ensemble prediction error:
+
+$$\min_{w \in \{0,1\}^T} \left\| \sum_{t=1}^T w_t h_t(x) - y \right\|^2 + \lambda \|w\|_0$$
+
+Where $h_t$ are pre-trained weak classifiers, $w_t \in \{0,1\}$ indicates selection, and $\lambda$ controls sparsity (regularization). The $\ell_0$ norm (count of selected classifiers) makes this NP-hard classically, but the quadratic binary structure maps directly to QUBO. D-Wave selects the optimal ensemble across all $2^T$ classifier subsets simultaneously, rather than greedily one at a time. At $T = 50$ classifiers, the classical exhaustive search has $2^{50} \approx 10^{15}$ candidates; D-Wave evaluates the energy landscape of all simultaneously.
+
+### The Dequantization Theorem (Tang, 2019)
+
+The most important limiting result for quantum ML: Ewin Tang showed that for several proposed quantum ML algorithms (quantum recommendation systems, quantum PCA, quantum linear systems) that claimed exponential speedups, classical algorithms with **sample-and-query access** (the ability to sample from the input in the same way a quantum computer can) match the quantum speedup. This "dequantization" result implies that the quantum speedup in these algorithms came not from quantum mechanics per se, but from a specific model of data access — and classical algorithms can use the same access model.
+
+The practical implication: quantum ML advantage is real, but it requires genuine quantum effects (interference, entanglement in the computation) not just quantum-like data access patterns. The D-Wave QUBO approach for feature selection and ensemble construction uses quantum tunneling in the optimization process — a genuine quantum mechanical effect with no classical equivalent — which is why it is more robust against dequantization arguments than circuit-based quantum ML approaches.
+
+---
+
 ## Leader's Takeaway
 
 ::::{admonition} The Leader's Takeaway

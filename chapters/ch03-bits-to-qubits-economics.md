@@ -910,6 +910,40 @@ if __name__ == "__main__":
 
 ---
 
+## Going Deeper (Optional): Quantum Complexity and Why Speedup Isn't Free
+
+*This section is for readers with a STEM background or those interested in the theoretical foundations of quantum advantage. Not required for course assessments.*
+
+### Complexity Classes: Where Quantum Fits
+
+Computer science classifies problems by how hard they are to solve as input size grows. The key classes relevant to quantum computing:
+
+- **P** — problems solvable in polynomial time on a classical computer (fast, tractable)
+- **NP** — problems whose solutions can be *verified* in polynomial time, but may require exponential time to *find* (e.g., factoring a large number, solving combinatorial optimization)
+- **BQP** (Bounded-error Quantum Polynomial time) — problems solvable in polynomial time on a quantum computer with error probability ≤ 1/3
+
+The widely believed (but unproven) relationship: **P ⊆ BQP ⊆ NP**. Quantum computers are faster than classical for problems in BQP that are not in P — but they are not believed to solve all NP problems efficiently. This is the most important nuance in quantum computing claims: quantum is not a universal speed-up.
+
+### Grover's and Shor's Speedup Quantified
+
+**Grover's search algorithm** provides a quadratic speedup for unstructured search: searching a database of $N$ entries requires $O(N)$ steps classically and $O(\sqrt{N})$ steps on a quantum computer. Significant, but not exponential.
+
+**Shor's factoring algorithm** provides an *exponential* speedup for integer factorization: factoring an $n$-bit integer requires $O(2^{n/2})$ classical steps with the best known algorithm, versus $O(n^3)$ quantum steps. This is why RSA encryption — whose security rests on the hardness of factoring — is cryptographically broken by a fault-tolerant quantum computer.
+
+### Why QaaS Pricing Reflects Marginal Cost, Not Value
+
+From a microeconomics perspective, quantum cloud pricing follows a pattern familiar from early cloud computing: vendors price near marginal cost (primarily electricity, cryogenic maintenance, and depreciation per shot) to capture market share and drive adoption, while classical HPC infrastructure has already paid off capital costs. The formula for break-even quantum value — introduced in Chapter 3's TCO framework — formalizes this:
+
+$$\text{Quantum ROI} = \frac{\Delta \text{Solution Quality} \times \text{Business Value per Unit}}{\text{QPU Cost per Run} + \text{Integration Cost}} - 1$$
+
+When $\Delta$ Solution Quality is small (quantum finds only marginally better solutions than classical), the denominator dominates and ROI is negative. This is the current state for most NISQ-era gate-model applications. D-Wave's hybrid Stride solver changes the denominator: LeapHybridSampler time is priced near zero for developers, making even modest solution quality improvements ROI-positive — the commercial insight behind every D-Wave enterprise deployment in this book.
+
+### Connection to Chapter Content
+
+The QaaS ecosystem comparison in this chapter — Leap, Braket, Azure, IBM, Google — is ultimately a comparison across different positions in the BQP landscape: annealing optimizers targeting combinatorial problems (D-Wave), universal gate-model simulators targeting chemistry/ML (IBM, Google), and hybrid platforms bridging both (AWS Braket). Each service tier price reflects where the vendor's marginal cost sits and what problem class they're pricing against.
+
+---
+
 ## Leader's Takeaway
 
 ```{epigraph}

@@ -802,6 +802,51 @@ Open Quantum Safe (OQS)
 
 ---
 
+## Going Deeper (Optional): Shor's Algorithm and the Mosca Inequality Formalized
+
+*This section is for readers with a STEM or cybersecurity engineering background. Not required for course assessments.*
+
+### How Shor's Algorithm Breaks RSA
+
+RSA encryption's security rests on a simple asymmetry: multiplying two large primes $p$ and $q$ is fast, but factoring their product $N = p \cdot q$ back into $p$ and $q$ is computationally infeasible for classical computers when $N$ is 2,048+ bits. The best classical factoring algorithm (General Number Field Sieve) runs in sub-exponential time:
+
+$$O\!\left(\exp\!\left(c \cdot (\ln N)^{1/3} (\ln \ln N)^{2/3}\right)\right)$$
+
+For a 2,048-bit key, this is effectively intractable — approximately $10^{34}$ operations on a classical computer.
+
+Shor's algorithm replaces factoring with **period finding** in a modular arithmetic function $f(x) = a^x \bmod N$, exploiting the fact that this function is periodic with period $r$ where $r$ divides $\phi(N) = (p-1)(q-1)$. The algorithm uses the **Quantum Fourier Transform (QFT)** — a quantum circuit implementation of the discrete Fourier transform — to find $r$ in polynomial time $O((\log N)^3)$. Once $r$ is known, the factors $p$ and $q$ are recovered with high probability via:
+
+$$\gcd(a^{r/2} \pm 1, N) \in \{p, q\}$$
+
+The exponential speedup comes entirely from the QFT's ability to extract periodicity from a superposition of $2^n$ function evaluations simultaneously. A fault-tolerant quantum computer with approximately 4,000 logical qubits (translating to millions of physical qubits with current error correction overhead) could factor a 2,048-bit RSA key in hours.
+
+### The Mosca Inequality: Formal Statement
+
+The Mosca Inequality frames the urgency of PQC migration as a sum of three time variables:
+
+$$x + y > z \implies \text{act now}$$
+
+Where:
+- $x$ = **shelf life** of data that must remain confidential (years from now)
+- $y$ = **migration time** to deploy post-quantum cryptography across your infrastructure (years)
+- $z$ = **threat timeline** — the estimated years until a cryptographically relevant quantum computer exists (current estimates: 10–15 years, per NIST and NSA)
+
+If $x + y > z$, your data will be harvested before you finish migrating — even if you start today. For a hospital with 30-year patient privacy obligations ($x = 30$) and a 5-year IT migration cycle ($y = 5$), the sum is 35 — well above any credible $z$ estimate. The hospital is already late.
+
+### NIST PQC Algorithms: Mathematical Foundations
+
+The three standardized NIST PQC algorithms are built on mathematical problems believed to be hard for quantum computers:
+
+| Algorithm | Security Basis | Problem | Key Operation |
+|-----------|---------------|---------|---------------|
+| **ML-KEM** (Kyber) | Module Learning With Errors (MLWE) | Find short vectors in a lattice | Key encapsulation |
+| **ML-DSA** (Dilithium) | Module Learning With Errors | Lattice short vector problem | Digital signatures |
+| **SLH-DSA** (SPHINCS+) | Hash function security | One-way function preimage resistance | Digital signatures |
+
+The Lattice problems (MLWE) are believed hard for quantum computers because the best known quantum algorithms for lattice problems (including quantum-accelerated sieve algorithms) provide only modest speedups — insufficient to break appropriately sized keys. SPHINCS+ is the most conservative choice: its security depends only on the cryptographic hash function being one-way, a property that survives Grover's algorithm when key sizes are doubled.
+
+---
+
 ## Leader's Takeaway
 
 ::::{admonition} The Leader's Takeaway
