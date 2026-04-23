@@ -67,35 +67,49 @@ Readers are fluent in financial analysis, strategy, and basic statistics.
 
 ---
 
-## What You Will Be Able to Do
+## Official Course Learning Outcomes
 
-By the end of this course, you will be able to:
+*Florida Atlantic University — Quantum-Enabled Business Strategy: Optimization, Analytics, and Emerging Applications*
 
-1. **Evaluate** the dual-paradigm quantum landscape — annealing and gate-model hardware — distinguishing production-ready systems (D-Wave Advantage2, Stride hybrid solver) from experimental gate-model research, and separating vendor narrative from operational reality.
-2. **Articulate** foundational quantum mechanics — superposition, entanglement, interference, quantum tunneling, decoherence — using plain-language business analogies, without formal mathematics.
-3. **Formulate and solve** combinatorial optimization problems as QUBO models and execute them on FAU's D-Wave Advantage2 or D-Wave Leap, interpreting results against classical baselines.
-4. **Analyze** the unit economics of quantum computing across both paradigms, applying the six-stage TCO framework to build defensible business cases and break-even models that survive vendor and hardware changes.
-5. **Assess** quantum-era cybersecurity risk using STRIDE threat modeling and the NIST PQC standards (ML-KEM, ML-DSA), and design a crypto-agility migration roadmap.
-6. **Architect** a three-horizon quantum-readiness strategy — platform selection, talent pipeline, governance, and phased investment — calibrated to your organization's industry and risk profile.
+Upon successful completion of this course, students will be able to:
+
+1. **Explain** foundational quantum computing concepts — qubits, superposition, entanglement, and annealing versus gate-model architectures — accurately and without physics jargon, and communicate them clearly to non-technical stakeholders including C-suite executives and boards.
+
+2. **Evaluate** the Quantum-as-a-Service ecosystem — including D-Wave Leap, AWS Braket, Azure Quantum, IBM Quantum Network, and Google Quantum AI — and recommend a provider strategy appropriate to a given business context, with cost modeling and make-vs.-buy analysis.
+
+3. **Formulate** a real business optimization problem as a model suitable for execution on the D-Wave Stride hybrid solver, execute it on live quantum hardware through the Leap cloud service, and interpret the results against classical benchmarks with documented methodology.
+
+4. **Identify and prioritize** quantum-suitable use cases across financial services, supply chain, healthcare, energy, and manufacturing, and build a defensible investment thesis for each vertical using the NPV and TCO frameworks developed in this course.
+
+5. **Assess** quantum-era cybersecurity risk — including harvest-now-decrypt-later exposure — and design a post-quantum cryptography migration plan aligned to NIST standards (ML-KEM, ML-DSA, SLH-DSA) using STRIDE threat modeling and the Mosca Inequality framework.
+
+6. **Produce** a multi-year quantum adoption roadmap for a real or chosen enterprise, including use case prioritization by paradigm (annealing vs. gate-model), capability building plan, partner selection, governance structure, and measurable outcomes with pre-defined kill-switch criteria.
 
 ---
 
 ## Course Structure
 
-### 8-Week Module Outline (Executive Education Format)
+### 8-Week Module Outline — 16 Sessions (Executive Education Format)
 
-| Week | Sessions | Theme | Chapters |
-|------|----------|-------|----------|
-| 1 | 1–2 | The Quantum-Enabled Enterprise + The Quantum Mindset | 1 & 2 |
-| 2 | 3–4 | The Quantum Cloud Economy — Platforms, Access, Economics | 3 |
-| 3 | 5–6 | The Hardware Race — Annealing vs. Gate-Model | 4 |
-| 4 | 7–8 | Quantum-Era Cybersecurity — STRIDE + PQC *(Midterm)* | 5 |
-| 5 | 9–10 | The Optimization Engine — QUBO, D-Wave, QAOA | 6 |
-| 6 | 11–12 | Industry Verticals — Finance, Supply Chain, Healthcare, Energy | 7 |
-| 7 | 13–14 | Quantum + AI — QML, Hybrid Systems, Quantum-Inspired | 8 |
-| 8 | 15–16 | Strategy & Capstone — Roadmap, Ethics, Talent, Pitch | 9 |
+| Week | Session | Theme | Chapter(s) |
+|------|---------|-------|-----------|
+| **1** | 1a | Introduction to Quantum Computing for Business Leaders | Ch 1 |
+| **1** | 1b | The Quantum Computing Landscape: Hardware, Vendors, and Ecosystem | Ch 4 |
+| **2** | 2a | Quantum as a Service: Access Models and Enterprise Adoption | Ch 3 |
+| **2** | 2b | D-Wave Stride and the Quantum Optimization Platform *(Hands-On)* | Ch 6 |
+| **3** | 3a | Quantum Algorithms That Matter for Business | Ch 2 |
+| **3** | 3b | Combinatorial Optimization and Operations Research Reimagined | Ch 6 |
+| **4** | 4a | Quantum-Enhanced Financial Services | Ch 7 |
+| **4** | 4b | Quantum Machine Learning and Predictive Analytics | Ch 8 |
+| **5** | 5a | Supply Chain and Logistics Optimization | Ch 7 |
+| **5** | 5b | Quantum Applications in Healthcare, Pharma, and Life Sciences | Ch 7 |
+| **6** | 6a | Energy, Materials Science, and Sustainability | Ch 7 |
+| **6** | 6b | Quantum-Era Cybersecurity: STRIDE Threat Modeling and Post-Quantum Cryptography | Ch 5 |
+| **7** | 7a | Quantum Talent, Organizational Design, and Capability Building | Ch 9 |
+| **7** | 7b | Ethics, Governance, and the Regulatory Landscape | Ch 9 |
+| **8** | 8 | Capstone: Building a Quantum Business Strategy | Ch 9 |
 
-*This course maps to FAU's Executive Education special topic format. D-Wave Stride hands-on work runs on FAU's on-campus Advantage2 or D-Wave Leap cloud.*
+*FAU Executive Education special topic format. D-Wave Stride hands-on work (Sessions 2b, 3b, capstone) runs on FAU's on-campus Advantage2 system or D-Wave Leap cloud — the same production-grade hardware used by BASF, Mastercard, and Verge Ag.*
 
 ---
 

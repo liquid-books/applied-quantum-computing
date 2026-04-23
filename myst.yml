@@ -73,6 +73,8 @@ project:
           file: chapters/appendix-f-market-snapshot.md
         - title: "Appendix G: Lab Setup Guide"
           file: chapters/appendix-g-lab-setup.md
+        - title: "Appendix H: FAU Research Computing and Quantum Infrastructure"
+          file: chapters/appendix-h-fau-hpc-quantum.md
 
 site:
   title: "Applied Quantum Computing"
