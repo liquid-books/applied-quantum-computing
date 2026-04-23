@@ -3,7 +3,7 @@
 version: 1
 project:
   title: "Applied Quantum Computing: A Leader's Guide to the Next Computing Revolution"
-  subtitle: "The Qubit Economy — A Graduate-Level Masterclass for Business Leaders"
+  subtitle: "Quantum-Enabled Business Strategy: Optimization, Analytics, and Emerging Applications"
   authors:
     - name: Dr. Ernesto Lee
   description: >
@@ -43,7 +43,7 @@ project:
           file: chapters/ch01-why-quantum-why-now.md
         - title: "Chapter 2: The Quantum Mindset"
           file: chapters/ch02-thinking-in-probabilities.md
-        - title: "Chapter 3: The New Economics of Computation"
+        - title: "Chapter 3: The Quantum Cloud Economy"
           file: chapters/ch03-bits-to-qubits-economics.md
         - title: "Chapter 4: The Quantum Hardware Race"
           file: chapters/ch04-hardware-race.md
@@ -51,7 +51,7 @@ project:
           file: chapters/ch05-cryptocalypse-y2q.md
         - title: "Chapter 6: The Optimization Goldmine"
           file: chapters/ch06-optimization-goldmine.md
-        - title: "Chapter 7: The Simulation Revolution"
+        - title: "Chapter 7: Quantum Industry Verticals"
           file: chapters/ch07-simulation-revolution.md
         - title: "Chapter 8: Quantum + AI"
           file: chapters/ch08-quantum-ai-hybrid.md
