@@ -19,13 +19,16 @@ All tools in this book are free. You do not need to pay for anything to complete
 
 | Tool | Used In | Account Required | Cost |
 |------|---------|-----------------|------|
-| IBM Quantum Platform | Ch 1, 2, 3, 4, 9 | Yes (free IBMid) | Free |
+| **D-Wave Leap** | Ch 5, 6, 7, 8, 9 | Yes (free developer) | Free |
+| IBM Quantum Platform | Ch 1, 2, 3, 4, 7, 8, 9 | Yes (free IBMid) | Free |
 | Quirk (algassert.com/quirk) | Ch 2, 5 | No | Free |
 | Google Colab | All advanced labs | Yes (Google account) | Free |
-| IBM Quantum Composer | Ch 3, 5, 6 | Yes (free IBMid) | Free |
-| Qiskit (via Colab) | Ch 2, 4, 6, 7, 8, 9 | No (auto-installed) | Free |
+| IBM Quantum Composer | Ch 3, 5 | Yes (free IBMid) | Free |
+| Qiskit (via Colab) | Ch 2, 4, 7, 8 | No (auto-installed) | Free |
 | Qiskit Nature (via Colab) | Ch 7 | No (auto-installed) | Free |
 | Qiskit Machine Learning (via Colab) | Ch 8 | No (auto-installed) | Free |
+| liboqs-python (via Colab) | Ch 5 | No (auto-installed) | Free |
+| D-Wave Ocean SDK (via Colab) | Ch 5, 6, 7, 8, 9 | No (auto-installed) | Free |
 
 **Minimum setup required before Chapter 1:**
 - Create an IBMid at quantum.ibm.com (5 minutes)
@@ -35,7 +38,78 @@ Everything else installs automatically when you open a lab notebook.
 
 ---
 
-## G.2 IBM Quantum Platform Setup
+## G.2 D-Wave Leap Setup (Required for Chapters 5, 6, 7, 8, 9)
+
+D-Wave Leap is the cloud access platform for D-Wave's quantum annealing hardware — including the same Advantage2 class of system hosted on FAU's campus. All D-Wave labs in this book (Labs 5B, 6A, 7B, 8B, 9B) run through Leap. Setup takes approximately 5 minutes and requires no credit card.
+
+### Step 1: Create a Free Developer Account
+
+1. Navigate to **[cloud.dwavesys.com](https://cloud.dwavesys.com)**
+2. Click **Sign Up** → select **Developer** account type
+3. Enter your name, email, and create a password
+4. Verify your email address
+5. Sign in — you will land on the Leap dashboard
+
+**Free tier includes:** ~1 minute of QPU time per month + unlimited LeapHybridSampler time (the hybrid solver used in all book labs). This is more than sufficient for every lab in the book.
+
+### Step 2: Get Your API Token
+
+1. In the Leap dashboard, click your profile icon (top right) → **API Token**
+2. Copy the token — it looks like `DEV-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`
+3. Store it securely — you will use it in the lab notebooks
+
+### Step 3: Install the Ocean SDK (via Colab — no local install needed)
+
+All book lab notebooks install the Ocean SDK automatically. If you want to verify it works:
+
+```python
+# Run this in a Colab cell after opening any D-Wave lab notebook
+!pip install dwave-ocean-sdk --quiet
+
+import dwave.cloud
+client = dwave.cloud.Client.from_config(token="YOUR-API-TOKEN-HERE")
+solvers = client.get_solvers()
+print([s.id for s in solvers])
+# You should see a list including "hybrid_binary_quadratic_model_version2"
+```
+
+### Step 4: Configure the Token in Notebooks
+
+Each D-Wave lab notebook has a configuration cell at the top. Replace `"YOUR-LEAP-API-TOKEN"` with your actual token:
+
+```python
+import os
+os.environ["DWAVE_API_TOKEN"] = "DEV-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+```
+
+Alternatively, create a `~/.config/dwave/dwave.conf` file for persistent configuration (see [D-Wave Ocean SDK docs](https://docs.ocean.dwavesys.com/en/stable/overview/install.html) for details).
+
+### D-Wave Lab Notebooks in This Book
+
+| Lab | Chapter | Description |
+|-----|---------|-------------|
+| Lab 5B | Ch 5 | PQC Migration Optimizer — QUBO feature selection for migration prioritization |
+| Lab 6A | Ch 6 | D-Wave Stride Hands-On — business optimization on live hardware |
+| Lab 7B | Ch 7 | Supply Chain Inventory Allocation as QUBO |
+| Lab 8B | Ch 8 | ML Feature Selection for Demand Forecasting via D-Wave |
+| Lab 9B | Ch 9 | Your Organization's QUBO — capstone optimization on D-Wave Leap |
+
+### FAU Students: On-Campus Advantage2 Access
+
+Once FAU's D-Wave Advantage2 is deployed on the Boca Raton campus (expected later 2026), on-campus access instructions will replace the Leap cloud configuration above. Until then, D-Wave Leap cloud provides access to the same Advantage2 class of hardware. See **Appendix H** for details on FAU's computing infrastructure.
+
+### Troubleshooting D-Wave Leap
+
+| Problem | Likely Cause | Fix |
+|---------|-------------|-----|
+| `AuthenticationError` | Token invalid or expired | Re-copy token from cloud.dwavesys.com dashboard |
+| `SolverNotFoundError` | Wrong solver name | Use `LeapHybridSampler` for all book labs — not `DWaveSampler` |
+| Submission timeout | Network issue | Re-run the submission cell; Leap submissions are idempotent |
+| QPU minutes exhausted | Free tier limit | All book labs use `LeapHybridSampler` which has unlimited free time — switch from `DWaveSampler` if you see this error |
+
+---
+
+## G.3 IBM Quantum Platform Setup
 
 IBM Quantum Platform gives you access to real quantum hardware and simulators through a browser. This takes about 10 minutes to set up.
 
@@ -493,13 +567,27 @@ Alternatively, switch to the simulator to avoid backend availability issues enti
 
 Use this checklist before starting Chapter 1:
 
+**D-Wave Leap (required for Ch 5, 6, 7, 8, 9):**
+- [ ] Created free developer account at cloud.dwavesys.com
+- [ ] Verified email and signed in to Leap dashboard
+- [ ] Copied API token from the dashboard
+- [ ] Ran the verification cell in a Colab notebook to confirm solver access
+
+**IBM Quantum (required for Ch 1, 2, 3, 4, 7, 8, 9):**
 - [ ] Created IBMid at quantum.ibm.com
 - [ ] Verified email and signed in to IBM Quantum Platform
 - [ ] Located your API token in Account Settings
-- [ ] Opened algassert.com/quirk and confirmed it loads in your browser
+
+**Google Colab (required for all advanced labs):**
 - [ ] Signed in to Google Colab at colab.research.google.com
 - [ ] Opened the Chapter 1 notebook using the link in Section G.5
 - [ ] Successfully ran the first cell (pip install)
-- [ ] (Optional) Completed local Python setup
 
-If every box is checked, you're ready to start Chapter 1. Welcome to quantum computing.
+**Quirk (required for Ch 2, 5):**
+- [ ] Opened algassert.com/quirk and confirmed it loads in your browser
+
+**Optional:**
+- [ ] Completed local Python setup (Section G.7)
+- [ ] Requested FAU OwlCloud/Athene HPC access (see Appendix H)
+
+If every required box is checked, you're ready to start Chapter 1. Welcome to quantum computing.

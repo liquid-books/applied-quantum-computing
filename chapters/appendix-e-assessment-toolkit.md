@@ -333,8 +333,20 @@ Submissions under 1,000 words are automatically capped at a maximum of 3/5 on Si
 
 ## Section 5: Capstone Rubric (Chapter 9 Investment Thesis)
 
-**Applies to:** Final capstone — one-page written investment thesis + 10-minute live pitch  
+**Applies to:** Final capstone — one-page written investment thesis (8 required sections) + 10-minute live pitch  
 **Grading Split:** Written Thesis = 60% of capstone grade | Live Pitch = 40% of capstone grade
+
+**The capstone directly assesses FAU Learning Outcome 6:** *"Produce a multi-year quantum adoption roadmap for a real or chosen enterprise, including use case prioritization by paradigm (annealing vs. gate-model), capability building plan, partner selection, governance structure, and measurable outcomes with pre-defined kill-switch criteria."*
+
+**Required thesis sections (all 8 must be present for full credit):**
+1. Executive Summary (2 sentences)
+2. Dual-Paradigm Three-Horizon Roadmap (table — distinguishes annealing H1 from gate-model H2/H3)
+3. Talent Plan
+4. Partnership Recommendation (specific named partner + rationale)
+5. Budget Breakdown (3-year, by category)
+6. Success Metrics (specific, measurable, time-bound)
+7. Kill-Switch Criteria (pre-defined stop conditions)
+8. Signatures (business sponsor + financial authority + program owner)
 
 ---
 
@@ -358,10 +370,10 @@ Submissions under 1,000 words are automatically capped at a maximum of 3/5 on Si
   - Two to three sentences; core bet is present but buried or over-qualified
   - More than three sentences; fails to distill the thesis
   - Absent, or so vague as to communicate nothing
-* - **Three-Horizon Roadmap**
-  - Three clearly labeled horizons with specific milestones, realistic timelines, and named dependencies; H1 is operationally credible, H3 is ambitious but not fantasy
-  - Three horizons present with reasonable milestones; minor timeline or dependency gaps
-  - Three horizons present but timelines are arbitrary or milestones are vague
+* - **Dual-Paradigm Three-Horizon Roadmap**
+  - Three horizons with explicit paradigm distinction: H1 includes annealing pilot (D-Wave/QUBO) AND PQC migration; H2 includes gate-model experimentation; milestones are specific, timelines realistic; kill-switch criteria pre-defined
+  - Three horizons present; paradigm distinction present but one horizon is underdeveloped
+  - Three horizons present but no paradigm distinction — treats "quantum" as monolithic
   - Roadmap is present but has only one or two horizons, or milestones are generic
   - No roadmap, or a single timeline bar with no horizon structure
 * - **Talent Plan**
@@ -382,10 +394,10 @@ Submissions under 1,000 words are automatically capped at a maximum of 3/5 on Si
   - Criteria present but vague ("if ROI is not achieved") or only one criterion listed
   - Kill-switch section present but criteria are circular or untestable
   - No kill-switch criteria
-* - **Course Concept Integration**
-  - Explicitly references at least four distinct course tools or frameworks from Chapters 1–8 (e.g., Technology Readiness Levels, NISQ constraints, error correction tradeoffs, talent frameworks); references are substantive, not name-dropping
-  - References three course tools; references are substantive
-  - References two course tools; or references are superficial
+* - **Course Concept Integration + LO Alignment**
+  - Explicitly references at least four distinct course tools from Chapters 1–8 (e.g., Mosca Inequality/STRIDE from Ch5, QUBO formulation from Ch6, industry vertical map from Ch7, five-question governance filter from Ch8); dual-paradigm lens is evident throughout; references substantive, not name-dropping
+  - References three course tools; substantive; dual-paradigm lens partially applied
+  - References two course tools; or references are superficial; paradigm distinction absent
   - References one course tool or concept
   - No course concepts referenced; thesis could have been written without taking the course
 ```

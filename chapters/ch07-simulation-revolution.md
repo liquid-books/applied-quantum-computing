@@ -2,7 +2,7 @@
 title: "Chapter 7: Quantum Industry Verticals — Finance, Supply Chain, Healthcare, and Energy"
 subtitle: "The Industries That Understand Quantum First Will Lead. The Industries That Don't Will Follow."
 short_title: "Ch. 7: Quantum Industry Verticals"
-description: "Quantum computing's commercial value is not uniformly distributed. This chapter maps four industry verticals — financial services, supply chain and logistics, healthcare and pharma, and energy and materials — against the quantum techniques that reshape them: optimization via D-Wave annealing, simulation via VQE, and hybrid quantum-classical analytics. For each vertical, you will find the business case, the leading enterprise deployments, and a hands-on framework for evaluating quantum opportunity in your own sector."
+description: "Quantum computing's commercial value is not uniformly distributed. This chapter maps five industry verticals — financial services, supply chain and logistics, healthcare and pharma, energy and materials, and manufacturing — against the quantum techniques that reshape them: optimization via D-Wave annealing, simulation via VQE, and hybrid quantum-classical analytics. For each vertical, you will find the business case, the leading enterprise deployments, and a hands-on framework for evaluating quantum opportunity in your own sector."
 label: ch-07-simulation-revolution
 tags: [quantum finance, quantum supply chain, quantum healthcare, quantum pharma, quantum energy, VQE, D-Wave, annealing, quantum simulation, industry verticals, JPMorgan, Goldman, Volkswagen, DHL, Boehringer Ingelheim, ExxonMobil, FAU Advantage2, Ocean SDK, molecular simulation]
 ---
@@ -11,11 +11,11 @@ tags: [quantum finance, quantum supply chain, quantum healthcare, quantum pharma
 
 :::{figure} ../images/ch07-explainer-infographic.png
 :label: fig-ch07-explainer
-:alt: Chapter 7 explainer infographic showing four industry quadrants — financial services, supply chain, healthcare and pharma, and energy and materials — each with leading quantum techniques and enterprise case studies.
+:alt: Chapter 7 explainer infographic showing five industry verticals — financial services, supply chain, healthcare and pharma, energy and materials, and manufacturing — each with leading quantum techniques and enterprise case studies.
 :width: 100%
 :align: center
 
-**Chapter 7 at a Glance.** Quantum computing's commercial impact is concentrated in four industry verticals, each with a distinct problem class and a distinct quantum technique. Financial services and supply chain are the early commercial frontier — optimization-heavy, near-term, and accessible today through D-Wave's annealing hardware. Healthcare and pharma represent the highest long-term NPV. Energy and materials hold civilization-scale stakes. This chapter maps the landscape of all four.
+**Chapter 7 at a Glance.** Quantum computing's commercial impact is concentrated in five industry verticals, each with a distinct problem class and a distinct quantum technique. Financial services, supply chain, and manufacturing are the early commercial frontier — optimization-heavy, near-term, and accessible today through D-Wave's annealing hardware. Healthcare and pharma represent the highest long-term NPV. Energy and materials hold civilization-scale stakes. This chapter maps all five.
 :::
 
 The previous chapters established the two quantum paradigms — gate-model and annealing — and their core algorithms: QUBO optimization on D-Wave annealers, VQE simulation on gate-model hardware, and the security migration tools of Chapter 5. This chapter is where those tools meet actual industries.
@@ -411,7 +411,7 @@ For supply chain and parts routing optimization (a D-Wave annealing application)
 ::::{admonition} The Challenge: Choose Your Vertical
 :class: tip
 
-You are the Chief Strategy Officer of a \$5 billion company. Your board has asked you to present a one-page "quantum opportunity assessment" for your industry vertical. Choose any of the four verticals in this chapter — or your own industry if it is not represented.
+You are the Chief Strategy Officer of a \$5 billion company. Your board has asked you to present a one-page "quantum opportunity assessment" for your industry vertical. Choose any of the five verticals in this chapter — financial services, supply chain, healthcare and pharma, energy and materials, or manufacturing — or your own industry if it is not represented.
 
 **Your deliverable:**
 
